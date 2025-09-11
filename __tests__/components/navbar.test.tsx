@@ -47,7 +47,7 @@ describe('Navbar Component', () => {
   it('renders mobile menu button', () => {
     render(<Navbar />)
     
-    const mobileMenuButton = screen.getByRole('button')
+    const mobileMenuButton = screen.getByRole('button', { name: /abrir menu/i })
     expect(mobileMenuButton).toBeInTheDocument()
   })
 })
