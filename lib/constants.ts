@@ -1,9 +1,18 @@
-// ==========================================================================
-// Constants
-// ==========================================================================
+// Application constants
+export const APP_CONFIG = {
+  name: 'Dogwarts',
+  tagline: 'Cães Felizes & Donos Tranquilos',
+  description: 'Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar.',
+  url: 'https://dogwarts.pt',
+  email: 'info@dogwarts.pt',
+  phone: '+351 XXX XXX XXX',
+  location: 'Lisboa, Portugal',
+  founded: 'Setembro 2023',
+  rating: 5.0,
+  happyDogs: 100,
+} as const
 
-// Navigation
-export const NAV_ITEMS = [
+export const NAVIGATION_ITEMS = [
   { href: '/', label: 'Início' },
   { href: '/sobre', label: 'Sobre Nós', noWrap: true },
   { href: '/servicos', label: 'Serviços' },
@@ -11,146 +20,99 @@ export const NAV_ITEMS = [
   { href: '/testemunhos', label: 'Testemunhos' },
 ] as const
 
-// Brand
-export const BRAND = {
-  name: 'Dogwarts',
-  logo: '/dogwarts-logo-transparent.png',
-  alt: 'Dogwarts Logo',
-  tagline: 'Cuidado Profissional para o Seu Melhor Amigo',
-  description: 'Oferecemos serviços de qualidade para o bem-estar dos seus cães e a sua tranquilidade.'
-} as const
-
-// Contact Information
-export const CONTACT = {
-  phone: '+351 123 456 789',
-  email: 'contacto@dogwarts.com',
-  address: 'Lisboa, Portugal',
-  hours: 'Segunda a Sexta: 8h00 - 18h00'
-} as const
-
-// Social Media
-export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/dogwarts',
-  instagram: 'https://instagram.com/dogwarts',
-  twitter: 'https://twitter.com/dogwarts',
-  linkedin: 'https://linkedin.com/company/dogwarts'
-} as const
-
-// Services
 export const SERVICES = [
   {
-    id: 'passeios',
-    title: 'Passeios',
-    description: 'Passeios regulares e personalizados para o seu cão',
-    icon: 'walking',
-    features: ['Passeios individuais', 'Passeios em grupo', 'Horários flexíveis']
+    id: 'petsitting',
+    icon: 'Home',
+    title: 'Petsitting',
+    description: 'Cuidados ao domicílio',
+    detail: 'Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.',
+    price: 'A partir de 15€',
+    color: 'primary',
+  },
+  {
+    id: 'dogwalking',
+    icon: 'MapPin',
+    title: 'Dogwalking',
+    description: 'Passeios diários',
+    detail: 'Passeios energizantes e socializantes adaptados às necessidades do seu cão.',
+    price: 'A partir de 12€',
+    color: 'accent',
   },
   {
     id: 'daycare',
-    title: 'Daycare',
-    description: 'Cuidado diurno com atividades e socialização',
-    icon: 'home',
-    features: ['Atividades recreativas', 'Socialização', 'Monitorização 24/7']
+    icon: 'Clock',
+    title: 'Creche/Daycare',
+    description: 'Cuidados diurnos',
+    detail: 'Ambiente seguro e divertido para o seu cão durante o dia de trabalho.',
+    price: 'A partir de 25€',
+    color: 'secondary',
   },
   {
-    id: 'hospedagem',
-    title: 'Hospedagem',
-    description: 'Hospedagem confortável para quando estiver fora',
-    icon: 'bed',
-    features: ['Quartos individuais', 'Cuidado personalizado', 'Relatórios diários']
+    id: 'boarding',
+    icon: 'Heart',
+    title: 'Estadia Familiar',
+    description: 'Hospedagem completa',
+    detail: 'O seu cão fica na nossa família durante as suas férias ou viagens.',
+    price: 'A partir de 30€/dia',
+    color: 'chart-4',
   },
-  {
-    id: 'treino',
-    title: 'Treino',
-    description: 'Sessões de treino com profissionais qualificados',
-    icon: 'graduation-cap',
-    features: ['Treino básico', 'Comportamento', 'Obediência']
-  }
 ] as const
 
-// Testimonials
 export const TESTIMONIALS = [
   {
-    id: 1,
-    name: 'Maria Silva',
-    location: 'Lisboa',
-    rating: 5,
-    text: 'O Dogwarts transformou a vida do meu Max. O cuidado é excepcional e ele adora ir lá!',
-    image: '/placeholder-user.jpg'
+    id: 'maria-costa',
+    text: 'A Dogwarts transformou a nossa rotina! O Max fica sempre feliz e eu trabalho tranquila sabendo que está em boas mãos.',
+    author: 'Maria Costa',
+    role: 'Tutora do Max',
+    initials: 'MC',
+    color: 'primary',
   },
   {
-    id: 2,
-    name: 'João Santos',
-    location: 'Porto',
-    rating: 5,
-    text: 'Profissionais dedicados e um ambiente perfeito para os nossos amigos de quatro patas.',
-    image: '/placeholder-user.jpg'
+    id: 'joao-silva',
+    text: 'Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!',
+    author: 'João Silva',
+    role: 'Tutor da Luna',
+    initials: 'JS',
+    color: 'accent',
   },
   {
-    id: 3,
-    name: 'Ana Costa',
-    location: 'Braga',
-    rating: 5,
-    text: 'Recomendo vivamente! O meu cão está sempre feliz e bem cuidado.',
-    image: '/placeholder-user.jpg'
-  }
+    id: 'ana-ferreira',
+    text: 'Durante as nossas férias, o Bobby ficou na Dogwarts. Voltámos e ele estava radiante! Serviço de confiança total.',
+    author: 'Ana Ferreira',
+    role: 'Tutora do Bobby',
+    initials: 'AF',
+    color: 'secondary',
+  },
 ] as const
 
-// FAQ
-export const FAQ_ITEMS = [
-  {
-    id: 1,
-    question: 'Que serviços oferecem?',
-    answer: 'Oferecemos passeios, daycare, hospedagem e treino para cães de todas as idades e raças.'
-  },
-  {
-    id: 2,
-    question: 'Como posso agendar um serviço?',
-    answer: 'Pode contactar-nos por telefone, email ou através do nosso formulário online.'
-  },
-  {
-    id: 3,
-    question: 'Os cães precisam de vacinas atualizadas?',
-    answer: 'Sim, todos os cães devem ter as vacinas em dia e apresentar o boletim de vacinas.'
-  },
-  {
-    id: 4,
-    question: 'Têm seguro?',
-    answer: 'Sim, temos seguro de responsabilidade civil para todos os nossos serviços.'
-  }
-] as const
-
-// Languages
-export const LANGUAGES = [
-  { code: 'pt', label: 'Português', flag: '🇵🇹' },
-  { code: 'en', label: 'English', flag: '🇬🇧' }
-] as const
-
-// Theme
-export const THEME_CONFIG = {
-  defaultTheme: 'system' as const,
-  storageKey: 'dogwarts-theme',
-  enableSystem: true
+export const FOOTER_LINKS = {
+  services: [
+    { href: '/servicos', label: 'Petsitting' },
+    { href: '/servicos', label: 'Dogwalking' },
+    { href: '/servicos', label: 'Creche/Daycare' },
+    { href: '/servicos', label: 'Estadia Familiar' },
+  ],
+  company: [
+    { href: '/sobre', label: 'Sobre Nós' },
+    { href: '/testemunhos', label: 'Testemunhos' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/blog', label: 'Blog' },
+  ],
 } as const
 
-// Animation
-export const ANIMATION_CONFIG = {
-  scrollThreshold: 0.1,
-  staggerDelay: 100,
-  duration: 300
+export const BREAKPOINTS = {
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+  '2xl': '1536px',
 } as const
 
-// API
-export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || '/api',
-  timeout: 10000
-} as const
-
-// SEO
-export const SEO_CONFIG = {
-  title: 'Dogwarts - Cuidado Profissional para Cães',
-  description: 'Oferecemos serviços de qualidade para o bem-estar dos seus cães: passeios, daycare, hospedagem e treino.',
-  keywords: ['cuidado de cães', 'passeios', 'daycare', 'hospedagem', 'treino', 'Lisboa', 'Portugal'],
-  author: 'Dogwarts',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://dogwarts.vercel.app'
+export const ANIMATION_DELAYS = {
+  '100': 'delay-100',
+  '200': 'delay-200',
+  '300': 'delay-300',
+  '400': 'delay-400',
+  '500': 'delay-500',
 } as const

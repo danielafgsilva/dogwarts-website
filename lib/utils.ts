@@ -1,49 +1,56 @@
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { type ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Format phone number
+// Phone number formatting
 export function formatPhoneNumber(phone: string): string {
-  return phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  const cleaned = phone.replace(/\D/g, '')
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
+  if (match) {
+    return `+351 ${match[1]} ${match[2]} ${match[3]}`
+  }
+  return phone
 }
 
-// Format currency
+// Currency formatting
 export function formatCurrency(amount: number, currency = 'EUR'): string {
   return new Intl.NumberFormat('pt-PT', {
     style: 'currency',
-    currency
+    currency,
   }).format(amount)
 }
 
-// Format date
-export function formatDate(date: string | Date, locale = 'pt-PT'): string {
+// Date formatting
+export function formatDate(date: Date | string, locale = 'pt-PT'): string {
+  const dateObj = typeof date === 'string' ? new Date(date) : date
   return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
-  }).format(new Date(date))
+    day: 'numeric',
+  }).format(dateObj)
 }
 
-// Format time
-export function formatTime(time: string, locale = 'pt-PT'): string {
+// Time formatting
+export function formatTime(date: Date | string, locale = 'pt-PT'): string {
+  const dateObj = typeof date === 'string' ? new Date(date) : date
   return new Intl.DateTimeFormat(locale, {
     hour: '2-digit',
-    minute: '2-digit'
-  }).format(new Date(`2000-01-01T${time}`))
+    minute: '2-digit',
+  }).format(dateObj)
 }
 
-// Generate slug
+// Generate slug from text
 export function generateSlug(text: string): string {
   return text
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
     .trim()
 }
 
@@ -112,13 +119,13 @@ export function isValidEmail(email: string): boolean {
   return emailRegex.test(email)
 }
 
-// Validate phone
+// Validate phone number
 export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
+  const phoneRegex = /^(\+351|351)?\s?[0-9]{9}$/
   return phoneRegex.test(phone.replace(/\s/g, ''))
 }
 
-// Get initials
+// Get initials from name
 export function getInitials(name: string): string {
   return name
     .split(' ')
@@ -126,4 +133,46 @@ export function getInitials(name: string): string {
     .join('')
     .toUpperCase()
     .slice(0, 2)
+}
+
+// Format file size
+export function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}
+
+// Generate random ID
+export function generateId(length = 8): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = ''
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return result
+}
+
+// Sleep function
+export function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+// Check if device is mobile
+export function isMobile(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.innerWidth < 768
+}
+
+// Check if device is tablet
+export function isTablet(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.innerWidth >= 768 && window.innerWidth < 1024
+}
+
+// Check if device is desktop
+export function isDesktop(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.innerWidth >= 1024
 }

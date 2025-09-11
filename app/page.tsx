@@ -1,14 +1,18 @@
 "use client"
 
 import React from "react"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
+import { APP_CONFIG, SERVICES, TESTIMONIALS, FOOTER_LINKS, ANIMATION_DELAYS } from "@/lib/constants"
+import type { Service, Testimonial } from "@/lib/types"
+import { useLanguage } from "@/hooks/use-language"
+
 export default function HomePage() {
+  const { t } = useLanguage()
 
   return (
     <div className="min-h-screen">
@@ -28,17 +32,16 @@ export default function HomePage() {
                   variant="secondary"
                   className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
                 >
-                  Desde Setembro 2023
+                  {t.hero.badge}
                 </Badge>
                 <h1 
                   id="hero-heading"
                   className="text-3xl md:text-4xl lg:text-6xl font-bold text-balance leading-tight"
                 >
-                  Cães Felizes & <span className="text-[#1F3B75] dark:text-[#FDCF4D]">Donos Tranquilos</span>
+                  {t.hero.title}
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Um espaço seguro e familiar onde os seus cães se sentem em casa, criado por uma tutora que compreende
-                  as necessidades dos animais quando os donos estão ausentes.
+                  {t.hero.description}
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" role="group" aria-label="Ações principais">
@@ -48,7 +51,7 @@ export default function HomePage() {
                   aria-label="Conhecer os nossos serviços de cuidados para cães"
                 >
                   <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Conhecer Serviços
+                  {t.hero.ctaPrimary}
                 </Button>
                 <Button
                   size="lg"
@@ -57,7 +60,7 @@ export default function HomePage() {
                   aria-label="Contactar-nos agora para mais informações"
                 >
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Contactar Agora
+                  {t.hero.ctaSecondary}
                 </Button>
               </div>
             </div>
@@ -106,13 +109,13 @@ export default function HomePage() {
               variant="secondary"
               className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
             >
-              Os Nossos Serviços
+              {t.services.title}
             </Badge>
             <h2 
               id="services-heading"
               className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance"
             >
-              Cuidados Personalizados para Cada Patudo
+              {t.services.subtitle}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
               Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua tranquilidade.
@@ -123,37 +126,37 @@ export default function HomePage() {
             {[
               {
                 icon: Home,
-                title: "Petsitting",
-                desc: "Cuidados ao domicílio",
-                detail: "Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.",
-                price: "A partir de 15€",
+                title: t.services.items.daycare.title,
+                desc: t.services.items.daycare.description,
+                detail: t.services.items.daycare.detail,
+                price: t.services.items.daycare.price,
                 color: "primary",
                 delay: "delay-100",
               },
               {
                 icon: MapPin,
-                title: "Dogwalking",
-                desc: "Passeios diários",
-                detail: "Passeios energizantes e socializantes adaptados às necessidades do seu cão.",
-                price: "A partir de 12€",
+                title: t.services.items.walking.title,
+                desc: t.services.items.walking.description,
+                detail: t.services.items.walking.detail,
+                price: t.services.items.walking.price,
                 color: "accent",
                 delay: "delay-200",
               },
               {
                 icon: Clock,
-                title: "Creche/Daycare",
-                desc: "Cuidados diurnos",
-                detail: "Ambiente seguro e divertido para o seu cão durante o dia de trabalho.",
-                price: "A partir de 25€",
+                title: t.services.items.boarding.title,
+                desc: t.services.items.boarding.description,
+                detail: t.services.items.boarding.detail,
+                price: t.services.items.boarding.price,
                 color: "secondary",
                 delay: "delay-300",
               },
               {
                 icon: Heart,
-                title: "Estadia Familiar",
-                desc: "Hospedagem completa",
-                detail: "O seu cão fica na nossa família durante as suas férias ou viagens.",
-                price: "A partir de 30€/dia",
+                title: t.services.items.training.title,
+                desc: t.services.items.training.description,
+                detail: t.services.items.training.detail,
+                price: t.services.items.training.price,
                 color: "chart-4",
                 delay: "delay-400",
               },

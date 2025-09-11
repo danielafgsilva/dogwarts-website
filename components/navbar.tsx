@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { LanguageSelector } from "@/components/language-selector"
+import { useLanguage } from "@/hooks/use-language"
 
 interface NavbarProps {
   currentPage?: string
@@ -12,13 +14,14 @@ interface NavbarProps {
 
 export default function Navbar({ currentPage }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   const navItems = [
-    { href: "/", label: "Início" },
-    { href: "/sobre", label: "Sobre Nós", noWrap: true },
-    { href: "/servicos", label: "Serviços" },
-    { href: "/contactos", label: "Contactos" },
-    { href: "/testemunhos", label: "Testemunhos" },
+    { href: "/", label: t.navigation.home },
+    { href: "/sobre", label: t.navigation.about, noWrap: true },
+    { href: "/servicos", label: t.navigation.services },
+    { href: "/contactos", label: t.navigation.contact },
+    { href: "/testemunhos", label: t.navigation.testimonials },
   ]
 
   return (
@@ -67,6 +70,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 )}
               </Link>
             ))}
+            <LanguageSelector />
           </div>
 
           <Button
@@ -111,6 +115,9 @@ export default function Navbar({ currentPage }: NavbarProps) {
                   )}
                 </Link>
               ))}
+              <div className="pt-2 border-t border-border">
+                <LanguageSelector />
+              </div>
             </div>
           </div>
         )}

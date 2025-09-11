@@ -14,3 +14,4 @@ export type { UseScrollAnimationOptions, UseScrollAnimationReturn } from './use-
 // Re-export existing hooks
 export { useMobile } from './use-mobile'
 export { useToast } from './use-toast'
+export { useLanguage } from './use-language'

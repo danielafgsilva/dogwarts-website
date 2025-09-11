@@ -1,12 +1,4 @@
-// ==========================================================================
-// Library Index
-// ==========================================================================
-
-// Utils
+// Export all utilities
 export * from './utils'
-
-// Constants
 export * from './constants'
-
-// Types
 export * from './types'
