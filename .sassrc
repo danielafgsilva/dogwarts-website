@@ -1,0 +1,6 @@
+{
+  "includePaths": ["styles"],
+  "precision": 6,
+  "sourceMap": true,
+  "outputStyle": "expanded"
+}
