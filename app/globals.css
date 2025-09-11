@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import "tw-animate-css";
-@import "/styles/main.css";
 
 /* Custom Dogwarts Styles */
 @import "./custom-styles.css";

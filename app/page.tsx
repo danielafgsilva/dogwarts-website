@@ -8,25 +8,14 @@ import { Badge } from "@/components/ui/badge"
 import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { useScrollAnimation } from "@/hooks/use-scroll-animation"
-
 export default function HomePage() {
-  const heroAnimation = useScrollAnimation()
-  const servicesAnimation = useScrollAnimation()
-  const testimonialsAnimation = useScrollAnimation()
-  const ctaAnimation = useScrollAnimation()
 
   return (
     <div className="min-h-screen">
       <Navbar currentPage="/" />
 
       {/* Hero Section */}
-      <section
-        ref={heroAnimation.ref}
-        className={`relative py-12 md:py-20 lg:py-32 bg-gradient-to-br from-card to-background transition-all duration-1000 ${
-          heroAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
+      <section className="relative py-12 md:py-20 lg:py-32 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
@@ -90,13 +79,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section
-        ref={servicesAnimation.ref}
-        id="servicos"
-        className={`py-12 md:py-20 bg-background transition-all duration-1000 delay-200 ${
-          servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
+      <section id="servicos" className="py-12 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 md:mb-16">
             <Badge
@@ -154,9 +137,7 @@ export default function HomePage() {
             ].map((service, index) => (
               <Card
                 key={index}
-                className={`group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20 ${service.delay} ${
-                  servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20"
               >
                 <CardHeader className="text-center pb-4">
                   <div
@@ -177,11 +158,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div
-            className={`text-center mt-8 md:mt-12 transition-all duration-700 delay-500 ${
-              servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
+          <div className="text-center mt-8 md:mt-12">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               Ver Todos os Serviços
             </Button>
@@ -190,12 +167,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick Testimonials */}
-      <section
-        ref={testimonialsAnimation.ref}
-        className={`py-12 md:py-20 bg-card transition-all duration-1000 delay-300 ${
-          testimonialsAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
+      <section className="py-12 md:py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 md:mb-16">
             <Badge
@@ -239,9 +211,7 @@ export default function HomePage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className={`border-border transition-all duration-700 ${testimonial.delay} ${
-                  testimonialsAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
+                className="border-border transition-all duration-700"
               >
                 <CardContent className="pt-6">
                   <div className="flex items-center mb-4">
@@ -271,12 +241,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section
-        ref={ctaAnimation.ref}
-        className={`py-12 md:py-20 bg-secondary text-secondary-foreground transition-all duration-1000 delay-400 ${
-          ctaAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
+      <section className="py-12 md:py-20 bg-secondary text-secondary-foreground">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">
