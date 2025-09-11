@@ -15,3 +15,5 @@ export type { UseScrollAnimationOptions, UseScrollAnimationReturn } from './use-
 export { useMobile } from './use-mobile'
 export { useToast } from './use-toast'
 export { useLanguage } from './use-language'
+export { useForm } from './use-form'
+export { useLocalStorage } from './use-local-storage'
