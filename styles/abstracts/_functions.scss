@@ -37,15 +37,45 @@
   @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }
 
-// Power function
+// Power function - handles positive, negative, and fractional exponents
 @function pow($number, $exponent) {
-  $value: 1;
-  @if $exponent > 0 {
+  @if $exponent == 0 {
+    @return 1;
+  }
+  
+  @if $exponent == 1 {
+    @return $number;
+  }
+  
+  @if $exponent > 0 and $exponent == round($exponent) {
+    // Positive integer exponents
+    $value: 1;
     @for $i from 1 through $exponent {
       $value: $value * $number;
     }
+    @return $value;
   }
-  @return $value;
+  
+  @if $exponent < 0 {
+    // Negative exponents: x^(-n) = 1/(x^n)
+    @return 1 / pow($number, -$exponent);
+  }
+  
+  // For fractional exponents, we'll use a simple approximation
+  // This is a basic implementation - for production, consider using a more sophisticated algorithm
+  @if $exponent > 0 and $exponent != round($exponent) {
+    // For fractional exponents, use a simple approximation
+    // This is not mathematically precise but works for basic use cases
+    $integer-part: floor($exponent);
+    $fractional-part: $exponent - $integer-part;
+    
+    $integer-result: pow($number, $integer-part);
+    $fractional-result: 1 + ($fractional-part * ($number - 1));
+    
+    @return $integer-result * $fractional-result;
+  }
+  
+  @return $number;
 }
 
 // Get z-index - using individual variables instead of map
