@@ -5,9 +5,29 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Format phone number
+// Format phone number - handles variable digit counts
 export function formatPhoneNumber(phone: string): string {
-  return phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+  
+  // Handle different phone number lengths
+  if (cleaned.startsWith('+')) {
+    // International format: +XX XXX XXX XXX
+    const countryCode = cleaned.slice(0, 3)
+    const number = cleaned.slice(3)
+    if (number.length >= 6) {
+      return `${countryCode} ${number.slice(0, 3)} ${number.slice(3, 6)}${number.length > 6 ? ' ' + number.slice(6) : ''}`
+    }
+    return cleaned
+  } else if (cleaned.length === 9) {
+    // Portuguese format: XXX XXX XXX
+    return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  } else if (cleaned.length >= 7) {
+    // Generic format: XXX XXX XXXX
+    return cleaned.replace(/(\d{3})(\d{3})(\d+)/, '$1 $2 $3')
+  }
+  
+  return cleaned
 }
 
 // Format currency
@@ -118,8 +138,8 @@ export function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/[^\d+]/g, '')
   
   // Basic validation: starts with + (optional), followed by 7-15 digits
-  // More comprehensive regex for international phone numbers
-  const phoneRegex = /^(\+?[1-9]\d{6,14})$/
+  // More comprehensive regex for international phone numbers (allows 0 after country code)
+  const phoneRegex = /^(\+?\d{7,15})$/
   
   return phoneRegex.test(cleaned)
 }

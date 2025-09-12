@@ -63,14 +63,18 @@ export function useNavbar(options: UseNavbarOptions = {}): UseNavbarReturn {
 
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
+    if (typeof document !== 'undefined' && document.body) {
+      if (isMenuOpen) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'unset'
+      }
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
+      if (typeof document !== 'undefined' && document.body) {
+        document.body.style.overflow = 'unset'
+      }
     }
   }, [isMenuOpen])
 
