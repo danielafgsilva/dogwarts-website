@@ -25,9 +25,8 @@ export function values<T extends Record<string, any>>(obj: T): T[keyof T][] {
   return Object.values(obj)
 }
 
-export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][]
-export function entries<T>(obj: T): [string, any][] {
-  return Object.entries(obj)
+export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][] {
+  return Object.entries(obj) as [keyof T, T[keyof T]][]
 }
 
 export function isEmpty(obj: any): boolean {
@@ -96,13 +95,13 @@ export function deepMerge<T extends Record<string, any>>(target: T, ...sources: 
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
-      const sourceValue = source[key]
-      const targetValue = result[key]
+      const sourceValue = source[key as keyof T]
+      const targetValue = result[key as keyof T]
       
       if (isObject(sourceValue) && isObject(targetValue)) {
-        result[key] = deepMerge(targetValue, sourceValue)
+        result[key as keyof T] = deepMerge(targetValue, sourceValue)
       } else {
-        result[key] = sourceValue
+        result[key as keyof T] = sourceValue
       }
     })
   })

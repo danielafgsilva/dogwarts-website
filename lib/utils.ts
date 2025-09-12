@@ -62,20 +62,6 @@ export function isInViewport(element: Element): boolean {
   )
 }
 
-// Get random item from array
-export function getRandomItem<T>(array: T[]): T {
-  return array[Math.floor(Math.random() * array.length)]
-}
-
-// Shuffle array
-export function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array]
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
-  }
-  return shuffled
-}
 
 // Validate email
 export function isValidEmail(email: string): boolean {
