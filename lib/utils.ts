@@ -112,10 +112,16 @@ export function isValidEmail(email: string): boolean {
   return emailRegex.test(email)
 }
 
-// Validate phone
+// Validate phone - supports international formats
 export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
-  return phoneRegex.test(phone.replace(/\s/g, ''))
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+  
+  // Basic validation: starts with + (optional), followed by 7-15 digits
+  // More comprehensive regex for international phone numbers
+  const phoneRegex = /^(\+?[1-9]\d{6,14})$/
+  
+  return phoneRegex.test(cleaned)
 }
 
 // Get initials

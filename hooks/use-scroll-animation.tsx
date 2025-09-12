@@ -36,9 +36,11 @@ export function useScrollAnimation(
     const element = ref.current
     if (!element) return
 
+    let observer: IntersectionObserver | null = null
+
     // Add delay if specified
     const timeoutId = setTimeout(() => {
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         ([entry]) => {
           const isIntersecting = entry.isIntersecting
           setIsVisible(isIntersecting)
@@ -49,7 +51,7 @@ export function useScrollAnimation(
 
           // Disconnect if triggerOnce and element is visible
           if (triggerOnce && isIntersecting) {
-            observer.disconnect()
+            observer?.disconnect()
           }
         },
         {
@@ -59,16 +61,15 @@ export function useScrollAnimation(
       )
 
       observer.observe(element)
-
-      return () => {
-        observer.disconnect()
-      }
     }, delay)
 
     return () => {
       clearTimeout(timeoutId)
+      if (observer) {
+        observer.disconnect()
+      }
     }
-  }, [threshold, rootMargin, triggerOnce, delay, hasBeenVisible])
+  }, [threshold, rootMargin, triggerOnce, delay])
 
   return {
     ref,

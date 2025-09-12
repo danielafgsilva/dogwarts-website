@@ -96,7 +96,7 @@ const CustomNavbar = React.forwardRef<HTMLElement, CustomNavbarProps>(
                 alt={brand.alt}
                 width={48}
                 height={48}
-                className="navbar__logo"
+                className="navbar__logo-image"
                 priority
               />
             </div>

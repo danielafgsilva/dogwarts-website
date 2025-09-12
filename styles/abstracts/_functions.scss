@@ -48,18 +48,15 @@
   @return $value;
 }
 
-// Get z-index
+// Get z-index - using individual variables instead of map
 @function z($layer) {
-  @return map-get($z-indexes, $layer);
+  @if $layer == 'dropdown' { @return $z-index-dropdown; }
+  @if $layer == 'sticky' { @return $z-index-sticky; }
+  @if $layer == 'fixed' { @return $z-index-fixed; }
+  @if $layer == 'modal-backdrop' { @return $z-index-modal-backdrop; }
+  @if $layer == 'modal' { @return $z-index-modal; }
+  @if $layer == 'popover' { @return $z-index-popover; }
+  @if $layer == 'tooltip' { @return $z-index-tooltip; }
+  @warn "Unknown z-index layer: #{$layer}";
+  @return 0;
 }
-
-// Map of z-indexes
-$z-indexes: (
-  'dropdown': 1000,
-  'sticky': 1020,
-  'fixed': 1030,
-  'modal-backdrop': 1040,
-  'modal': 1050,
-  'popover': 1060,
-  'tooltip': 1070
-);
