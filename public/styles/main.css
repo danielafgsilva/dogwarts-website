@@ -554,11 +554,10 @@ select {
   cursor: not-allowed;
 }
 .button--outline {
-  --border-width: 2px;
   background-color: transparent;
   color: #B8860B;
-  border: var(--border-width) solid #B8860B;
-  padding: calc(0.75rem - var(--border-width)) calc(1.5rem - var(--border-width));
+  border: 2px solid #B8860B;
+  padding: calc(0.75rem - 2px) calc(1.5rem - 2px);
 }
 .button--outline:hover:not(:disabled) {
   background-color: #B8860B;
