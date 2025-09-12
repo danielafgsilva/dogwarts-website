@@ -72,17 +72,17 @@ export function deepClone<T>(obj: T): T {
 }
 
 export function merge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = { ...target }
+  const result = { ...target } as T
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
-      const sourceValue = source[key]
-      const targetValue = result[key]
+      const sourceValue = source[key as keyof T]
+      const targetValue = result[key as keyof T]
       
       if (isObject(sourceValue) && isObject(targetValue)) {
-        result[key] = merge(targetValue, sourceValue)
+        result[key as keyof T] = merge(targetValue as any, sourceValue as any) as T[keyof T]
       } else {
-        result[key] = sourceValue
+        result[key as keyof T] = sourceValue as T[keyof T]
       }
     })
   })
@@ -91,7 +91,7 @@ export function merge<T extends Record<string, any>>(target: T, ...sources: Part
 }
 
 export function deepMerge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = deepClone(target)
+  const result = deepClone(target) as T
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
@@ -99,9 +99,9 @@ export function deepMerge<T extends Record<string, any>>(target: T, ...sources: 
       const targetValue = result[key as keyof T]
       
       if (isObject(sourceValue) && isObject(targetValue)) {
-        result[key as keyof T] = deepMerge(targetValue, sourceValue)
+        result[key as keyof T] = deepMerge(targetValue as any, sourceValue as any) as T[keyof T]
       } else {
-        result[key as keyof T] = sourceValue
+        result[key as keyof T] = sourceValue as T[keyof T]
       }
     })
   })
