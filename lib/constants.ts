@@ -4,6 +4,8 @@
 
 // TODO: Extract hard-coded strings to i18n system for internationalization
 // Currently supports Portuguese (pt) and English (en) as shown in LANGUAGES constant
+// Planned i18n implementation: Q2 2024. Update all user-facing strings to use i18n system.
+// Priority: Navigation items, service descriptions, testimonials, FAQ content, and brand messaging.
 
 // Navigation
 export const NAV_ITEMS = [
