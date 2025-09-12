@@ -12,5 +12,5 @@ export { useScrollAnimation, useStaggeredAnimation } from './use-scroll-animatio
 export type { UseScrollAnimationOptions, UseScrollAnimationReturn } from './use-scroll-animation'
 
 // Re-export existing hooks
-export { useMobile } from './use-mobile'
+export { useIsMobile } from './use-mobile'
 export { useToast } from './use-toast'
