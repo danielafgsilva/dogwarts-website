@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit",
     "sass:build": "sass styles/main.scss:public/styles/main.css --style=compressed",
     "sass:watch": "sass styles/main.scss:public/styles/main.css --watch --style=expanded",
-    "sass:dev": "sass styles/main.scss:app/globals.css --watch --style=expanded"
+    "sass:dev": "sass styles/main.scss:public/styles/main.css --watch --style=expanded"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
