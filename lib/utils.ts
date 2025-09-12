@@ -138,11 +138,11 @@ export function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/[^\d+]/g, '')
   
   // International format: +[country code][local number]
-  // - Country code: 1-3 digits after '+'
+  // - Country code: 1-3 digits after '+' (no leading zero)
   // - Local number: 6-12 digits (varies by country, but 6+ is typical)
-  // - Allows leading zeros in local number (intentional)
+  // - Local number can start with any digit including zero
   // Domestic format: 7-15 digits
-  const intlRegex = /^\+([1-9]\d{0,2})(\d{6,12})$/; // +[1-3 digits][6-12 digits], local number may start with zero
+  const intlRegex = /^\+([1-9]\d{0,2})(\d{6,12})$/; // +[1-3 digits][6-12 digits], local number can start with zero
   const domesticRegex = /^\d{7,15}$/;
   
   if (cleaned.startsWith('+')) {

@@ -9,6 +9,13 @@
 
 :root {
   /* Updated color tokens to match Dogwarts brand palette */
+  /* 
+   * NOTE: Color custom properties have been changed from `oklch()` to HSL values.
+   * This switch was made for compatibility and brand palette alignment.
+   * Be aware that HSL is less perceptually uniform than oklch, which may affect
+   * color consistency and accessibility across the application.
+   * If perceptual uniformity is required, consider reverting to oklch or testing colors carefully.
+   */
   --background: 0 0% 100%; /* White background */
   --foreground: 0 0% 10%; /* Dark text */
   --card: 45 20% 95%; /* Warm beige */

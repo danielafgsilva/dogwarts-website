@@ -78,8 +78,8 @@
   @return $number;
 }
 
-// Calculate padding with border adjustment
-@function padding-with-border($padding, $border-width: 0) {
+// Calculate inner padding by adjusting for border width
+@function adjust-padding-for-border($padding, $border-width: 0) {
   @if $border-width > 0 {
     @return calc(#{$padding} - #{$border-width});
   }
