@@ -167,7 +167,7 @@
     background-color: rgba($color-white, 0.3);
     transform: scale(0);
     animation: ripple 0.6s linear;
-    pointer-events: none; // Prevents the ripple effect element from interfering with button clicks and other pointer events
+    pointer-events: none; // Prevent interaction with ripple element
   }
 }
 

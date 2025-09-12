@@ -2,6 +2,8 @@
 // TypeScript Types
 // ==========================================================================
 
+import React from 'react'
+
 // Navigation
 export interface NavItem {
   href: string
