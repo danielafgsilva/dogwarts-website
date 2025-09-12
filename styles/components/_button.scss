@@ -20,8 +20,11 @@
     @include button-base;
     background-color: transparent;
     color: $color-primary;
-    border: 2px solid $color-primary;
-    padding: $spacing-3 $spacing-6;
+    $outline-border-width: 2px;
+    border: $outline-border-width solid $color-primary;
+    $outline-padding-vertical: adjust-padding-for-border($spacing-3, $outline-border-width);
+    $outline-padding-horizontal: adjust-padding-for-border($spacing-6, $outline-border-width);
+    padding: $outline-padding-vertical $outline-padding-horizontal;
 
     &:hover:not(:disabled) {
       background-color: $color-primary;
@@ -167,7 +170,7 @@
     background-color: rgba($color-white, 0.3);
     transform: scale(0);
     animation: ripple 0.6s linear;
-    pointer-events: none;
+    pointer-events: none; // Prevent interaction with ripple element
   }
 }
 

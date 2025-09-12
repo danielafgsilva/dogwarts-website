@@ -1,44 +1,53 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "../public/styles/main.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+@import "tw-animate-css";
+
+/* Custom Dogwarts Styles */
+@import "./custom-styles.css";
 
 :root {
   /* Updated color tokens to match Dogwarts brand palette */
-  --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.2 0 0); /* Dark text (#1A1A1A equivalent) */
-  --card: oklch(0.97 0.02 85); /* Warm beige (#F5F1DA equivalent) */
-  --card-foreground: oklch(0.2 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0 0);
-  --primary: oklch(0.8 0.15 85); /* Golden Yellow (#FDCF4D equivalent) */
-  --primary-foreground: oklch(0.25 0.08 250); /* Deep Navy Blue (#1F3B75 equivalent) */
-  --secondary: oklch(0.25 0.08 250); /* Deep Navy Blue (#1F3B75 equivalent) */
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.97 0.02 85); /* Warm beige for muted elements */
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.45 0.15 320); /* Burgundy Red (#B4164C equivalent) */
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.01 85);
-  --input: oklch(0.97 0.02 85);
-  --ring: oklch(0.8 0.15 85); /* Golden yellow for focus rings */
-  --chart-1: oklch(0.8 0.15 85); /* Golden Yellow */
-  --chart-2: oklch(0.25 0.08 250); /* Deep Navy Blue */
-  --chart-3: oklch(0.45 0.15 320); /* Burgundy Red */
-  --chart-4: oklch(0.3 0.08 150); /* Forest Green (#1F4732 equivalent) */
-  --chart-5: oklch(0.4 0.12 250); /* Royal Blue (#255FB5 equivalent) */
+  /* 
+   * NOTE: Color custom properties have been changed from `oklch()` to HSL values.
+   * This switch was made for compatibility and brand palette alignment.
+   * Be aware that HSL is less perceptually uniform than oklch, which may affect
+   * color consistency and accessibility across the application.
+   * If perceptual uniformity is required, consider reverting to oklch or testing colors carefully.
+   * 
+   * Accessibility Guidance:
+   * - After changing or adding colors, test foreground/background pairs for sufficient contrast.
+   * - Use WCAG 2.1 guidelines: AA requires a contrast ratio of at least 4.5:1 for normal text, 3:1 for large text.
+   * - Recommended tools: WebAIM Contrast Checker (https://webaim.org/resources/contrastchecker/), 
+   *   browser extensions (e.g., axe, Lighthouse), or VS Code plugins.
+   * - Document any exceptions and ensure interactive elements meet minimum contrast requirements.
+   */
+  --background: 0 0% 100%; /* White background */
+  --foreground: 0 0% 10%; /* Dark text */
+  --card: 45 20% 95%; /* Warm beige */
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 45 100% 65%; /* Golden Yellow */
+  --primary-foreground: 220 50% 25%; /* Deep Navy Blue */
+  --secondary: 220 50% 25%; /* Deep Navy Blue */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 45 20% 95%; /* Warm beige for muted elements */
+  --muted-foreground: 0 0% 50%;
+  --accent: 340 60% 45%; /* Burgundy Red */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 45 10% 90%;
+  --input: 45 20% 95%;
+  --ring: 45 100% 65%; /* Golden yellow for focus rings */
+  --chart-1: 45 100% 65%; /* Golden Yellow */
+  --chart-2: 220 50% 25%; /* Deep Navy Blue */
+  --chart-3: 340 60% 45%; /* Burgundy Red */
+  --chart-4: 150 30% 25%; /* Forest Green */
+  --chart-5: 220 60% 50%; /* Royal Blue */
   --radius: 0.75rem; /* Slightly more rounded for friendly feel */
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.2 0 0);
-  --sidebar-primary: oklch(0.8 0.15 85);
-  --sidebar-primary-foreground: oklch(0.25 0.08 250);
-  --sidebar-accent: oklch(0.97 0.02 85);
-  --sidebar-accent-foreground: oklch(0.2 0 0);
-  --sidebar-border: oklch(0.9 0.01 85);
-  --sidebar-ring: oklch(0.8 0.15 85);
 }
 
 .dark {
@@ -122,9 +131,9 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-gray-200;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-900;
   }
 }

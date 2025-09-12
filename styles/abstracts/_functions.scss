@@ -2,6 +2,8 @@
 // Functions
 // ==========================================================================
 
+@use "sass:math";
+
 // Convert px to rem
 @function rem($pixels, $base: 16) {
   @return #{$pixels / $base}rem;
@@ -78,6 +80,22 @@
   @return $number;
 }
 
+// Calculate inner padding by adjusting for border width
+@function adjust-padding-for-border($padding, $border-width: 0) {
+  @if $border-width > 0 {
+    // Convert both values to the same unit for consistent calculation
+    $padding-unit: math.unit($padding);
+    $border-unit: math.unit($border-width);
+    
+    @if $padding-unit != $border-unit {
+      @warn "Unit mismatch: padding (#{$padding-unit}) and border-width (#{$border-unit}) have different units. Results may be unexpected.";
+    }
+    
+    @return calc(#{$padding} - #{$border-width});
+  }
+  @return $padding;
+}
+
 // Get z-index - using individual variables instead of map
 @function z($layer) {
   @if $layer == 'dropdown' { @return $z-index-dropdown; }
@@ -90,4 +108,3 @@
   @warn "Unknown z-index layer: #{$layer}";
   @return 0;
 }
-
