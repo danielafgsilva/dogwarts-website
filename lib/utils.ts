@@ -5,42 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Phone number formatting
-export function formatPhoneNumber(phone: string): string {
-  const cleaned = phone.replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
-  if (match) {
-    return `+351 ${match[1]} ${match[2]} ${match[3]}`
-  }
-  return phone
-}
-
-// Currency formatting
-export function formatCurrency(amount: number, currency = 'EUR'): string {
-  return new Intl.NumberFormat('pt-PT', {
-    style: 'currency',
-    currency,
-  }).format(amount)
-}
-
-// Date formatting
-export function formatDate(date: Date | string, locale = 'pt-PT'): string {
-  const dateObj = typeof date === 'string' ? new Date(date) : date
-  return new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(dateObj)
-}
-
-// Time formatting
-export function formatTime(date: Date | string, locale = 'pt-PT'): string {
-  const dateObj = typeof date === 'string' ? new Date(date) : date
-  return new Intl.DateTimeFormat(locale, {
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(dateObj)
-}
 
 // Generate slug from text
 export function generateSlug(text: string): string {
@@ -135,14 +99,6 @@ export function getInitials(name: string): string {
     .slice(0, 2)
 }
 
-// Format file size
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes'
-  const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
 
 // Generate random ID
 export function generateId(length = 8): string {

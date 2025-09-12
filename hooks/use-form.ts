@@ -106,10 +106,10 @@ export function useForm(options: UseFormOptions = {}): UseFormReturn {
   }, [initialValues])
 
   const isValid = Object.keys(errors).length === 0 && 
-    values.name && 
+    Boolean(values.name && 
     values.email && 
     values.phone && 
-    values.message
+    values.message)
 
   return {
     values,
