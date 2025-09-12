@@ -52,7 +52,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
         'button--full': fullWidth,
         'button--loading': loading,
         'button--disabled': disabled,
-        'button--icon-only': !children && icon
+        'button--icon-only': React.Children.count(children) === 0 && icon
       },
       className
     )

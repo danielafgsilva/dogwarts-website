@@ -60,9 +60,11 @@ export function useTheme(options: UseThemeOptions = {}): UseThemeReturn {
     setResolvedTheme(resolved)
 
     // Apply theme to document
-    const root = document.documentElement
-    root.classList.remove('light', 'dark')
-    root.classList.add(resolved)
+    if (typeof document !== 'undefined') {
+      const root = document.documentElement
+      root.classList.remove('light', 'dark')
+      root.classList.add(resolved)
+    }
   }, [theme, enableSystem])
 
   // Listen for system theme changes

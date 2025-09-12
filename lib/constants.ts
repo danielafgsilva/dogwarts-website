@@ -2,6 +2,11 @@
 // Constants
 // ==========================================================================
 
+// TODO: Extract hard-coded strings to i18n system for internationalization
+// Currently supports Portuguese (pt) and English (en) as shown in LANGUAGES constant
+// IMMEDIATE PRIORITY: i18n implementation is overdue as of September 2025. Update all user-facing strings to use i18n system.
+// Priority: Navigation items, service descriptions, testimonials, FAQ content, and brand messaging.
+
 // Navigation
 export const NAV_ITEMS = [
   { href: '/', label: 'Início' },

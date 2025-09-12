@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 export interface UseNavbarOptions {
   scrollThreshold?: number
@@ -26,6 +27,7 @@ export function useNavbar(options: UseNavbarOptions = {}): UseNavbarReturn {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
   // Handle scroll effect
   useEffect(() => {
@@ -42,10 +44,10 @@ export function useNavbar(options: UseNavbarOptions = {}): UseNavbarReturn {
 
   // Close menu on route change
   useEffect(() => {
-    if (autoCloseOnRouteChange) {
+    if (autoCloseOnRouteChange && isMenuOpen) {
       setIsMenuOpen(false)
     }
-  }, [autoCloseOnRouteChange])
+  }, [pathname, autoCloseOnRouteChange, isMenuOpen])
 
   // Close menu on escape key
   useEffect(() => {
@@ -63,14 +65,18 @@ export function useNavbar(options: UseNavbarOptions = {}): UseNavbarReturn {
 
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
+    if (typeof document !== 'undefined' && document.body) {
+      if (isMenuOpen) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'unset'
+      }
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
+      if (typeof document !== 'undefined' && document.body) {
+        document.body.style.overflow = 'unset'
+      }
     }
   }, [isMenuOpen])
 

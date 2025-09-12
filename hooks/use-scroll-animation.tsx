@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect, useRef } from 'react'
 
 export interface UseScrollAnimationOptions {
@@ -36,20 +38,29 @@ export function useScrollAnimation(
     const element = ref.current
     if (!element) return
 
+    let observer: IntersectionObserver | null = null
+    let timeoutId: NodeJS.Timeout | null = null
+
     // Add delay if specified
-    const timeoutId = setTimeout(() => {
-      const observer = new IntersectionObserver(
+    timeoutId = setTimeout(() => {
+      observer = new IntersectionObserver(
         ([entry]) => {
           const isIntersecting = entry.isIntersecting
           setIsVisible(isIntersecting)
 
-          if (isIntersecting && !hasBeenVisible) {
-            setHasBeenVisible(true)
+          if (isIntersecting) {
+            setHasBeenVisible(prev => {
+              // Only update if it hasn't been visible before
+              if (!prev) {
+                return true
+              }
+              return prev
+            })
           }
 
           // Disconnect if triggerOnce and element is visible
           if (triggerOnce && isIntersecting) {
-            observer.disconnect()
+            observer?.disconnect()
           }
         },
         {
@@ -59,16 +70,17 @@ export function useScrollAnimation(
       )
 
       observer.observe(element)
-
-      return () => {
-        observer.disconnect()
-      }
     }, delay)
 
     return () => {
-      clearTimeout(timeoutId)
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+      if (observer) {
+        observer.disconnect()
+      }
     }
-  }, [threshold, rootMargin, triggerOnce, delay, hasBeenVisible])
+  }, [threshold, rootMargin, triggerOnce, delay])
 
   return {
     ref,

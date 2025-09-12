@@ -2,6 +2,8 @@
 // Functions
 // ==========================================================================
 
+@use "sass:math";
+
 // Convert px to rem
 @function rem($pixels, $base: 16) {
   @return #{$pixels / $base}rem;
@@ -37,29 +39,72 @@
   @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
 }
 
-// Power function
+// Power function - handles positive, negative, and fractional exponents
 @function pow($number, $exponent) {
-  $value: 1;
-  @if $exponent > 0 {
+  @if $exponent == 0 {
+    @return 1;
+  }
+  
+  @if $exponent == 1 {
+    @return $number;
+  }
+  
+  @if $exponent > 0 and $exponent == round($exponent) {
+    // Positive integer exponents
+    $value: 1;
     @for $i from 1 through $exponent {
       $value: $value * $number;
     }
+    @return $value;
   }
-  @return $value;
+  
+  @if $exponent < 0 {
+    // Negative exponents: x^(-n) = 1/(x^n)
+    @return 1 / pow($number, -$exponent);
+  }
+  
+  // For fractional exponents, we'll use a simple approximation
+  // This is a basic implementation - for production, consider using a more sophisticated algorithm
+  @if $exponent > 0 and $exponent != round($exponent) {
+    // For fractional exponents, use a simple approximation
+    // This is not mathematically precise but works for basic use cases
+    $integer-part: floor($exponent);
+    $fractional-part: $exponent - $integer-part;
+    
+    $integer-result: pow($number, $integer-part);
+    $fractional-result: 1 + ($fractional-part * ($number - 1));
+    
+    @return $integer-result * $fractional-result;
+  }
+  
+  @return $number;
 }
 
-// Get z-index
+// Calculate inner padding by adjusting for border width
+@function adjust-padding-for-border($padding, $border-width: 0) {
+  @if $border-width > 0 {
+    // Convert both values to the same unit for consistent calculation
+    $padding-unit: math.unit($padding);
+    $border-unit: math.unit($border-width);
+    
+    @if $padding-unit != $border-unit {
+      @warn "Unit mismatch: padding (#{$padding-unit}) and border-width (#{$border-unit}) have different units. Results may be unexpected.";
+    }
+    
+    @return calc(#{$padding} - #{$border-width});
+  }
+  @return $padding;
+}
+
+// Get z-index - using individual variables instead of map
 @function z($layer) {
-  @return map-get($z-indexes, $layer);
+  @if $layer == 'dropdown' { @return $z-index-dropdown; }
+  @if $layer == 'sticky' { @return $z-index-sticky; }
+  @if $layer == 'fixed' { @return $z-index-fixed; }
+  @if $layer == 'modal-backdrop' { @return $z-index-modal-backdrop; }
+  @if $layer == 'modal' { @return $z-index-modal; }
+  @if $layer == 'popover' { @return $z-index-popover; }
+  @if $layer == 'tooltip' { @return $z-index-tooltip; }
+  @warn "Unknown z-index layer: #{$layer}";
+  @return 0;
 }
-
-// Map of z-indexes
-$z-indexes: (
-  'dropdown': 1000,
-  'sticky': 1020,
-  'fixed': 1030,
-  'modal-backdrop': 1040,
-  'modal': 1050,
-  'popover': 1060,
-  'tooltip': 1070
-);

@@ -5,9 +5,29 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Format phone number
+// Format phone number - handles variable digit counts
 export function formatPhoneNumber(phone: string): string {
-  return phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+  
+  // Handle different phone number lengths
+  if (cleaned.startsWith('+')) {
+    // International format: +XX XXX XXX XXX
+    const countryCode = cleaned.slice(0, 3)
+    const number = cleaned.slice(3)
+    if (number.length >= 6) {
+      return `${countryCode} ${number.slice(0, 3)} ${number.slice(3, 6)}${number.length > 6 ? ' ' + number.slice(6) : ''}`
+    }
+    return cleaned
+  } else if (cleaned.length === 9) {
+    // Portuguese format: XXX XXX XXX
+    return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  } else if (cleaned.length >= 7) {
+    // Generic format: XXX XXX XXXX
+    return cleaned.replace(/(\d{3})(\d{3})(\d+)/, '$1 $2 $3')
+  }
+  
+  return cleaned
 }
 
 // Format currency
@@ -112,10 +132,24 @@ export function isValidEmail(email: string): boolean {
   return emailRegex.test(email)
 }
 
-// Validate phone
+// Validate phone - supports international and domestic formats
 export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
-  return phoneRegex.test(phone.replace(/\s/g, ''))
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+  
+  // International format: +[country code][local number]
+  // - Country code: 1-3 digits after '+' (no leading zero)
+  // - Local number: 6-12 digits (varies by country, but 6+ is typical)
+  // - Leading zeros are allowed in the local number (intentional), but NOT in the country code
+  // Domestic format: 7-15 digits
+  const intlRegex = /^\+([1-9]\d{0,2})(\d{6,12})$/; // +[1-3 digits][6-12 digits], local number may start with zero, country code cannot
+  const domesticRegex = /^\d{7,15}$/;
+  
+  if (cleaned.startsWith('+')) {
+    return intlRegex.test(cleaned);
+  } else {
+    return domesticRegex.test(cleaned);
+  }
 }
 
 // Get initials
