@@ -137,8 +137,12 @@ export function isValidPhone(phone: string): boolean {
   // Remove all non-digit characters except + at the start
   const cleaned = phone.replace(/[^\d+]/g, '')
   
-  // Basic validation: starts with + (optional), followed by 7-15 digits
-  // More comprehensive regex for international phone numbers (allows 0 after country code)
+  // Regex for international phone numbers:
+  // - Accepts numbers with an optional leading '+' (for country code)
+  // - Allows 7 to 15 digits in total (including country code and local number)
+  // - Allows leading zeros after the country code (intentional: some countries' local numbers start with zero)
+  // - Only digits and an optional leading '+' are permitted; all other characters are stripped before validation
+  // - Examples of valid numbers: '+351912345678', '+441234567890', '+3906123456', '912345678'
   const phoneRegex = /^(\+?\d{7,15})$/
   
   return phoneRegex.test(cleaned)

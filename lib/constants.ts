@@ -2,6 +2,9 @@
 // Constants
 // ==========================================================================
 
+// TODO: Extract hard-coded strings to i18n system for internationalization
+// Currently supports Portuguese (pt) and English (en) as shown in LANGUAGES constant
+
 // Navigation
 export const NAV_ITEMS = [
   { href: '/', label: 'Início' },
