@@ -2,6 +2,8 @@
 // Functions
 // ==========================================================================
 
+@use "sass:math";
+
 // Convert px to rem
 @function rem($pixels, $base: 16) {
   @return #{$pixels / $base}rem;
@@ -82,8 +84,8 @@
 @function adjust-padding-for-border($padding, $border-width: 0) {
   @if $border-width > 0 {
     // Convert both values to the same unit for consistent calculation
-    $padding-unit: unit($padding);
-    $border-unit: unit($border-width);
+    $padding-unit: math.unit($padding);
+    $border-unit: math.unit($border-width);
     
     @if $padding-unit != $border-unit {
       @warn "Unit mismatch: padding (#{$padding-unit}) and border-width (#{$border-unit}) have different units. Results may be unexpected.";

@@ -131,9 +131,9 @@
 
 @layer base {
   * {
-    @apply border-border/20 outline-ring/50;
+    @apply border-gray-200 outline-blue-500/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-900;
   }
 }
