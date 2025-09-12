@@ -125,7 +125,7 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" role="list" aria-label="Lista de serviços oferecidos">
             {[
               {
-                icon: Home,
+                icon: Heart,
                 title: t.services.items.daycare.title,
                 desc: t.services.items.daycare.description,
                 detail: t.services.items.daycare.detail,

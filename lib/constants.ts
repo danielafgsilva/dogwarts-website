@@ -12,6 +12,25 @@ export const APP_CONFIG = {
   happyDogs: 100,
 } as const
 
+export const STATISTICS = {
+  happyDogs: {
+    value: '100+',
+    label: 'Cães Felizes',
+  },
+  yearsExperience: {
+    value: '5+',
+    label: 'Anos de Experiência',
+  },
+  satisfiedClients: {
+    value: '200+',
+    label: 'Clientes Satisfeitos',
+  },
+  servicesProvided: {
+    value: '1000+',
+    label: 'Serviços Prestados',
+  },
+} as const
+
 export const NAVIGATION_ITEMS = [
   { href: '/', label: 'Início' },
   { href: '/sobre', label: 'Sobre Nós', noWrap: true },

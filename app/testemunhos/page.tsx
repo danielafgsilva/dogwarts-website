@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Star, Quote, Camera, Calendar, MapPin, Phone, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
+import { STATISTICS, APP_CONFIG } from "@/lib/constants"
 
 export default function TestimonialsPage() {
   return (
@@ -43,16 +44,16 @@ export default function TestimonialsPage() {
             </p>
             <div className="flex items-center justify-center space-x-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary">100+</div>
-                <div className="text-sm text-muted-foreground">Cães Felizes</div>
+                <div className="text-3xl font-bold text-primary">{STATISTICS.happyDogs.value}</div>
+                <div className="text-sm text-muted-foreground">{STATISTICS.happyDogs.label}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">5.0</div>
+                <div className="text-3xl font-bold text-accent">{APP_CONFIG.rating}</div>
                 <div className="text-sm text-muted-foreground">Avaliação Média</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-secondary">2+</div>
-                <div className="text-sm text-muted-foreground">Anos de Experiência</div>
+                <div className="text-3xl font-bold text-secondary">{STATISTICS.yearsExperience.value}</div>
+                <div className="text-sm text-muted-foreground">{STATISTICS.yearsExperience.label}</div>
               </div>
             </div>
           </div>

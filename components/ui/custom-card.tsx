@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 export interface CustomCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -80,7 +81,7 @@ const CustomCard = React.forwardRef<HTMLDivElement, CustomCardProps>(
         {badge && <span className="card__badge">{badge}</span>}
         
         {image && (
-          <img
+          <Image
             src={image.src}
             alt={image.alt}
             width={image.width}
