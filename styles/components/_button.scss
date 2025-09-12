@@ -21,7 +21,7 @@
     background-color: transparent;
     color: $color-primary;
     border: 2px solid $color-primary;
-    padding: calc(#{$spacing-3} - 2px) calc(#{$spacing-6} - 2px);
+    padding: padding-with-border($spacing-3, 2px) padding-with-border($spacing-6, 2px);
 
     &:hover:not(:disabled) {
       background-color: $color-primary;

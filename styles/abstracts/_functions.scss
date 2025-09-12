@@ -78,6 +78,14 @@
   @return $number;
 }
 
+// Calculate padding with border adjustment
+@function padding-with-border($padding, $border-width: 0) {
+  @if $border-width > 0 {
+    @return calc(#{$padding} - #{$border-width});
+  }
+  @return $padding;
+}
+
 // Get z-index - using individual variables instead of map
 @function z($layer) {
   @if $layer == 'dropdown' { @return $z-index-dropdown; }

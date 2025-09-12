@@ -132,20 +132,24 @@ export function isValidEmail(email: string): boolean {
   return emailRegex.test(email)
 }
 
-// Validate phone - supports international formats
+// Validate phone - supports international and domestic formats
 export function isValidPhone(phone: string): boolean {
   // Remove all non-digit characters except + at the start
   const cleaned = phone.replace(/[^\d+]/g, '')
   
-  // Regex for international phone numbers:
-  // - Accepts numbers with an optional leading '+' (for country code)
-  // - Allows 7 to 15 digits in total (including country code and local number)
-  // - Allows leading zeros after the country code (intentional: some countries' local numbers start with zero)
-  // - Only digits and an optional leading '+' are permitted; all other characters are stripped before validation
-  // - Examples of valid numbers: '+351912345678', '+441234567890', '+3906123456', '912345678'
-  const phoneRegex = /^(\+\d{7,15}|\d{7,15})$/
+  // International format: +[country code][local number]
+  // - Country code: 1-3 digits after '+'
+  // - Local number: 6-12 digits (varies by country, but 6+ is typical)
+  // - Allows leading zeros in local number (intentional)
+  // Domestic format: 7-15 digits
+  const intlRegex = /^\+([1-9]\d{0,2})(0*\d{6,12})$/; // +[1-3 digits][6-12 digits], local number may start with zero
+  const domesticRegex = /^\d{7,15}$/;
   
-  return phoneRegex.test(cleaned)
+  if (cleaned.startsWith('+')) {
+    return intlRegex.test(cleaned);
+  } else {
+    return domesticRegex.test(cleaned);
+  }
 }
 
 // Get initials
