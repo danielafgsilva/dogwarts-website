@@ -1,0 +1,216 @@
+// ==========================================================================
+// Button Component (BEM)
+// ==========================================================================
+
+.button {
+  @include button-base;
+  position: relative;
+  overflow: hidden;
+
+  // Block modifiers
+  &--primary {
+    @include button-primary;
+  }
+
+  &--secondary {
+    @include button-secondary;
+  }
+
+  &--outline {
+    @include button-base;
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+    padding: $spacing-3 $spacing-6;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &--ghost {
+    @include button-base;
+    background-color: transparent;
+    color: $color-primary;
+    padding: $spacing-3 $spacing-6;
+
+    &:hover:not(:disabled) {
+      background-color: rgba($color-primary, 0.1);
+    }
+  }
+
+  &--link {
+    @include button-base;
+    background-color: transparent;
+    color: $color-primary;
+    padding: 0;
+    text-decoration: underline;
+
+    &:hover:not(:disabled) {
+      color: $color-primary-dark;
+    }
+  }
+
+  // Size modifiers
+  &--sm {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+    border-radius: $border-radius-sm;
+  }
+
+  &--md {
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-base;
+    border-radius: $border-radius-md;
+  }
+
+  &--lg {
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-lg;
+    border-radius: $border-radius-lg;
+  }
+
+  &--xl {
+    padding: $spacing-5 $spacing-10;
+    font-size: $font-size-xl;
+    border-radius: $border-radius-xl;
+  }
+
+  // Width modifiers
+  &--full {
+    width: 100%;
+  }
+
+  &--auto {
+    width: auto;
+  }
+
+  // State modifiers
+  &--loading {
+    position: relative;
+    color: transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Icon modifiers
+  &--icon-only {
+    padding: $spacing-3;
+    aspect-ratio: 1;
+
+    &.button--sm {
+      padding: $spacing-2;
+    }
+
+    &.button--lg {
+      padding: $spacing-4;
+    }
+
+    &.button--xl {
+      padding: $spacing-5;
+    }
+  }
+
+  // Elements
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: $spacing-2;
+
+    .button--icon-only & {
+      margin-right: 0;
+    }
+
+    .button--icon-right & {
+      margin-right: 0;
+      margin-left: $spacing-2;
+      order: 1;
+    }
+  }
+
+  &__text {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // Ripple effect
+  &__ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba($color-white, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+}
+
+// Button group
+.button-group {
+  display: flex;
+  gap: $spacing-2;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--attached {
+    .button {
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: $border-radius-md;
+        border-bottom-left-radius: $border-radius-md;
+      }
+
+      &:last-child {
+        border-top-right-radius: $border-radius-md;
+        border-bottom-right-radius: $border-radius-md;
+      }
+    }
+  }
+
+  &--spaced {
+    gap: $spacing-4;
+  }
+}
+
+// Animations
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
