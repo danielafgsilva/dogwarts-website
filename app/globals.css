@@ -15,6 +15,13 @@
    * Be aware that HSL is less perceptually uniform than oklch, which may affect
    * color consistency and accessibility across the application.
    * If perceptual uniformity is required, consider reverting to oklch or testing colors carefully.
+   * 
+   * Accessibility Guidance:
+   * - After changing or adding colors, test foreground/background pairs for sufficient contrast.
+   * - Use WCAG 2.1 guidelines: AA requires a contrast ratio of at least 4.5:1 for normal text, 3:1 for large text.
+   * - Recommended tools: WebAIM Contrast Checker (https://webaim.org/resources/contrastchecker/), 
+   *   browser extensions (e.g., axe, Lighthouse), or VS Code plugins.
+   * - Document any exceptions and ensure interactive elements meet minimum contrast requirements.
    */
   --background: 0 0% 100%; /* White background */
   --foreground: 0 0% 10%; /* Dark text */
@@ -124,7 +131,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border/20 outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;

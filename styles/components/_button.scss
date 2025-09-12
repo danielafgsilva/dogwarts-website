@@ -20,9 +20,10 @@
     @include button-base;
     background-color: transparent;
     color: $color-primary;
-    border: 2px solid $color-primary;
-    $outline-padding-vertical: adjust-padding-for-border($spacing-3, 2px);
-    $outline-padding-horizontal: adjust-padding-for-border($spacing-6, 2px);
+    $outline-border-width: 2px;
+    border: $outline-border-width solid $color-primary;
+    $outline-padding-vertical: adjust-padding-for-border($spacing-3, $outline-border-width);
+    $outline-padding-horizontal: adjust-padding-for-border($spacing-6, $outline-border-width);
     padding: $outline-padding-vertical $outline-padding-horizontal;
 
     &:hover:not(:disabled) {

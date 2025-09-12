@@ -81,6 +81,14 @@
 // Calculate inner padding by adjusting for border width
 @function adjust-padding-for-border($padding, $border-width: 0) {
   @if $border-width > 0 {
+    // Convert both values to the same unit for consistent calculation
+    $padding-unit: unit($padding);
+    $border-unit: unit($border-width);
+    
+    @if $padding-unit != $border-unit {
+      @warn "Unit mismatch: padding (#{$padding-unit}) and border-width (#{$border-unit}) have different units. Results may be unexpected.";
+    }
+    
     @return calc(#{$padding} - #{$border-width});
   }
   @return $padding;
