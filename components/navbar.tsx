@@ -38,7 +38,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 className="object-contain"
               />
             </div>
-            <span className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-gray-100">
+            <span className="text-xl md:text-2xl font-inter font-bold text-black">
               Dogwarts
             </span>
           </Link>
