@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from "react";
 
 export interface UseScrollAnimationOptions {
-  threshold?: number
-  rootMargin?: string
-  triggerOnce?: boolean
-  delay?: number
+  threshold?: number;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+  delay?: number;
 }
 
 export interface UseScrollAnimationReturn {
-  ref: React.RefObject<HTMLElement>
-  isVisible: boolean
-  hasBeenVisible: boolean
+  ref: React.RefObject<HTMLElement>;
+  isVisible: boolean;
+  hasBeenVisible: boolean;
 }
 
 /**
@@ -21,72 +21,66 @@ export interface UseScrollAnimationReturn {
  * @returns Animation state and ref to attach to elements
  */
 export function useScrollAnimation(
-  options: UseScrollAnimationOptions = {}
+  options: UseScrollAnimationOptions = {},
 ): UseScrollAnimationReturn {
   const {
     threshold = 0.1,
-    rootMargin = '0px',
+    rootMargin = "0px",
     triggerOnce = true,
-    delay = 0
-  } = options
+    delay = 0,
+  } = options;
 
-  const [isVisible, setIsVisible] = useState(false)
-  const [hasBeenVisible, setHasBeenVisible] = useState(false)
-  const ref = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const element = ref.current
-    if (!element) return
+    const element = ref.current;
+    if (!element) return;
 
-    let observer: IntersectionObserver | null = null
-    let timeoutId: NodeJS.Timeout | null = null
+    let observer: IntersectionObserver | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
 
     // Add delay if specified
     timeoutId = setTimeout(() => {
       observer = new IntersectionObserver(
         ([entry]) => {
-          const isIntersecting = entry.isIntersecting
-          setIsVisible(isIntersecting)
+          const isIntersecting = entry.isIntersecting;
+          setIsVisible(isIntersecting);
 
-          if (isIntersecting) {
-            setHasBeenVisible(prev => {
-              // Only update if it hasn't been visible before
-              if (!prev) {
-                return true
-              }
-              return prev
-            })
+          if (isIntersecting && !hasBeenVisible) {
+            setHasBeenVisible(true);
           }
 
           // Disconnect if triggerOnce and element is visible
           if (triggerOnce && isIntersecting) {
-            observer?.disconnect()
+            observer?.disconnect();
           }
         },
         {
           threshold,
-          rootMargin
-        }
-      )
+          rootMargin,
+        },
+      );
 
-      observer.observe(element)
-    }, delay)
+      observer.observe(element);
+    }, delay);
 
     return () => {
       if (timeoutId) {
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
       }
       if (observer) {
-        observer.disconnect()
+        observer.disconnect();
       }
-    }
-  }, [threshold, rootMargin, triggerOnce, delay])
+    };
+  }, [threshold, rootMargin, triggerOnce, delay]);
 
   return {
     ref,
     isVisible,
-    hasBeenVisible
-  }
+    hasBeenVisible,
+  };
 }
 
 /**
@@ -97,40 +91,40 @@ export function useScrollAnimation(
  */
 export function useStaggeredAnimation(
   itemCount: number,
-  options: UseScrollAnimationOptions & { staggerDelay?: number } = {}
+  options: UseScrollAnimationOptions & { staggerDelay?: number } = {},
 ) {
-  const { staggerDelay = 100, ...animationOptions } = options
+  const { staggerDelay = 100, ...animationOptions } = options;
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
-    new Array(itemCount).fill(false)
-  )
+    new Array(itemCount).fill(false),
+  );
 
-  const { ref, isVisible } = useScrollAnimation(animationOptions)
+  const { ref, isVisible } = useScrollAnimation(animationOptions);
 
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible) return;
 
-    const timeouts: NodeJS.Timeout[] = []
-    
+    const timeouts: NodeJS.Timeout[] = [];
+
     for (let i = 0; i < itemCount; i++) {
       const timeout = setTimeout(() => {
-        setVisibleItems(prev => {
-          const newState = [...prev]
-          newState[i] = true
-          return newState
-        })
-      }, i * staggerDelay)
+        setVisibleItems((prev) => {
+          const newState = [...prev];
+          newState[i] = true;
+          return newState;
+        });
+      }, i * staggerDelay);
 
-      timeouts.push(timeout)
+      timeouts.push(timeout);
     }
 
     return () => {
-      timeouts.forEach(clearTimeout)
-    }
-  }, [isVisible, itemCount, staggerDelay])
+      timeouts.forEach(clearTimeout);
+    };
+  }, [isVisible, itemCount, staggerDelay]);
 
   return {
     ref,
     isVisible,
-    visibleItems
-  }
+    visibleItems,
+  };
 }
