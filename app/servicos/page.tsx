@@ -1,11 +1,27 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Heart, Home, MapPin, Clock, Phone, CheckCircle, Shield, Camera, MessageCircle } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import Navbar from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Heart,
+  Home,
+  MapPin,
+  Clock,
+  Phone,
+  CheckCircle,
+  Shield,
+  Camera,
+  MessageCircle,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/navbar";
 
 export default function ServicesPage() {
   return (
@@ -17,7 +33,10 @@ export default function ServicesPage() {
       <div className="bg-card py-3 lg:py-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="/"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Início
             </Link>
             <span className="text-muted-foreground">/</span>
@@ -30,15 +49,19 @@ export default function ServicesPage() {
       <section className="py-12 lg:py-20 xl:py-32 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto space-y-6 lg:space-y-8">
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-primary/20"
+            >
               Os Nossos Serviços
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
-              Cuidados <span className="text-primary">Personalizados</span> para Cada Patudo
+              Cuidados <span className="text-primary">Personalizados</span> para
+              Cada Patudo
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
-              Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua total
-              tranquilidade.
+              Oferecemos uma gama completa de serviços pensados para o bem-estar
+              dos seus cães e a sua total tranquilidade.
             </p>
           </div>
         </div>
@@ -62,11 +85,16 @@ export default function ServicesPage() {
                   <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <Home className="w-6 h-6 lg:w-8 lg:h-8 text-primary" />
                   </div>
-                  <Badge variant="outline" className="text-primary border-primary/30 bg-primary/5">
+                  <Badge
+                    variant="outline"
+                    className="text-primary border-primary/30 bg-primary/5"
+                  >
                     Mais Popular
                   </Badge>
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold">Petsitting ao Domicílio</CardTitle>
+                <CardTitle className="text-xl lg:text-2xl font-bold">
+                  Petsitting ao Domicílio
+                </CardTitle>
                 <CardDescription className="text-sm lg:text-base">
                   Cuidados personalizados no conforto da sua casa
                 </CardDescription>
@@ -74,20 +102,28 @@ export default function ServicesPage() {
               <CardContent className="space-y-4 lg:space-y-6">
                 <div className="space-y-4">
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    Sessões de 1h30 onde cuidamos do seu cão no ambiente familiar que ele conhece e ama. Mantemos a
-                    rotina, proporcionamos carinho e garantimos que se sente seguro e feliz.
+                    Sessões de 1h30 onde cuidamos do seu cão no ambiente
+                    familiar que ele conhece e ama. Mantemos a rotina,
+                    proporcionamos carinho e garantimos que se sente seguro e
+                    feliz.
                   </p>
 
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm lg:text-base text-foreground">O que está incluído:</h4>
+                    <h4 className="font-semibold text-sm lg:text-base text-foreground">
+                      O que está incluído:
+                    </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Alimentação e hidratação</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Alimentação e hidratação
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Brincadeiras e exercício</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Brincadeiras e exercício
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
@@ -97,11 +133,15 @@ export default function ServicesPage() {
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Relatório com fotos</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Relatório com fotos
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Cuidados básicos de higiene</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Cuidados básicos de higiene
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -111,10 +151,17 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-primary">15€</p>
-                    <p className="text-xs lg:text-sm text-muted-foreground">por sessão de 1h30</p>
+                    <p className="text-xl lg:text-2xl font-bold text-primary">
+                      15€
+                    </p>
+                    <p className="text-xs lg:text-sm text-muted-foreground">
+                      por sessão de 1h30
+                    </p>
                   </div>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto" asChild>
+                  <Button
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
+                    asChild
+                  >
                     <Link href="/contactos">Contactar-nos</Link>
                   </Button>
                 </div>
@@ -136,7 +183,9 @@ export default function ServicesPage() {
                     <MapPin className="w-6 h-6 lg:w-8 lg:h-8 text-accent" />
                   </div>
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold">Dogwalking</CardTitle>
+                <CardTitle className="text-xl lg:text-2xl font-bold">
+                  Dogwalking
+                </CardTitle>
                 <CardDescription className="text-sm lg:text-base">
                   Passeios energizantes e socializantes
                 </CardDescription>
@@ -144,32 +193,45 @@ export default function ServicesPage() {
               <CardContent className="space-y-4 lg:space-y-6">
                 <div className="space-y-4">
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    Passeios adaptados às necessidades e energia do seu cão. Exploramos parques, praias e zonas verdes
-                    para garantir exercício físico e estímulo mental adequados.
+                    Passeios adaptados às necessidades e energia do seu cão.
+                    Exploramos parques, praias e zonas verdes para garantir
+                    exercício físico e estímulo mental adequados.
                   </p>
 
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm lg:text-base text-foreground">O que está incluído:</h4>
+                    <h4 className="font-semibold text-sm lg:text-base text-foreground">
+                      O que está incluído:
+                    </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Passeio de 45-60 minutos</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Passeio de 45-60 minutos
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Socialização com outros cães</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Socialização com outros cães
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Exercício físico adequado</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Exercício físico adequado
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Fotos durante o passeio</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Fotos durante o passeio
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Limpeza das patas</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Limpeza das patas
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -179,8 +241,12 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-accent">12€</p>
-                    <p className="text-xs lg:text-sm text-muted-foreground">por passeio</p>
+                    <p className="text-xl lg:text-2xl font-bold text-accent">
+                      12€
+                    </p>
+                    <p className="text-xs lg:text-sm text-muted-foreground">
+                      por passeio
+                    </p>
                   </div>
                   <Button
                     variant="outline"
@@ -208,38 +274,55 @@ export default function ServicesPage() {
                     <Clock className="w-6 h-6 lg:w-8 lg:h-8 text-secondary" />
                   </div>
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold">Creche/Daycare</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Cuidados diurnos num ambiente seguro</CardDescription>
+                <CardTitle className="text-xl lg:text-2xl font-bold">
+                  Creche/Daycare
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Cuidados diurnos num ambiente seguro
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 lg:space-y-6">
                 <div className="space-y-4">
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    Um dia completo de diversão, socialização e cuidados num ambiente controlado e seguro. Perfeito para
-                    cães que precisam de companhia durante o seu dia de trabalho.
+                    Um dia completo de diversão, socialização e cuidados num
+                    ambiente controlado e seguro. Perfeito para cães que
+                    precisam de companhia durante o seu dia de trabalho.
                   </p>
 
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm lg:text-base text-foreground">O que está incluído:</h4>
+                    <h4 className="font-semibold text-sm lg:text-base text-foreground">
+                      O que está incluído:
+                    </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Cuidados das 8h às 18h</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Cuidados das 8h às 18h
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Refeições e snacks</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Refeições e snacks
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Atividades e brincadeiras</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Atividades e brincadeiras
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Socialização supervisionada</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Socialização supervisionada
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Relatório diário completo</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Relatório diário completo
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -249,8 +332,12 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-secondary">25€</p>
-                    <p className="text-xs lg:text-sm text-muted-foreground">por dia completo</p>
+                    <p className="text-xl lg:text-2xl font-bold text-secondary">
+                      25€
+                    </p>
+                    <p className="text-xs lg:text-sm text-muted-foreground">
+                      por dia completo
+                    </p>
                   </div>
                   <Button
                     variant="outline"
@@ -277,42 +364,62 @@ export default function ServicesPage() {
                   <div className="w-12 h-12 lg:w-16 lg:h-16 bg-chart-4/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-chart-4/20 transition-colors">
                     <Heart className="w-6 h-6 lg:w-8 lg:h-8 text-chart-4" />
                   </div>
-                  <Badge variant="outline" className="text-chart-4 border-chart-4/30 bg-chart-4/5">
+                  <Badge
+                    variant="outline"
+                    className="text-chart-4 border-chart-4/30 bg-chart-4/5"
+                  >
                     Premium
                   </Badge>
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold">Estadia Familiar</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Hospedagem completa na nossa família</CardDescription>
+                <CardTitle className="text-xl lg:text-2xl font-bold">
+                  Estadia Familiar
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Hospedagem completa na nossa família
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 lg:space-y-6">
                 <div className="space-y-4">
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    O seu cão fica integrado na nossa família durante as suas férias ou viagens. Cuidados 24h, muito
-                    amor e um ambiente verdadeiramente familiar.
+                    O seu cão fica integrado na nossa família durante as suas
+                    férias ou viagens. Cuidados 24h, muito amor e um ambiente
+                    verdadeiramente familiar.
                   </p>
 
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-sm lg:text-base text-foreground">O que está incluído:</h4>
+                    <h4 className="font-semibold text-sm lg:text-base text-foreground">
+                      O que está incluído:
+                    </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Cuidados 24h por dia</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Cuidados 24h por dia
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Todas as refeições incluídas</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Todas as refeições incluídas
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Passeios diários</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Passeios diários
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Updates diários com fotos</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Updates diários com fotos
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
-                        <span className="text-xs lg:text-sm text-muted-foreground">Ambiente familiar acolhedor</span>
+                        <span className="text-xs lg:text-sm text-muted-foreground">
+                          Ambiente familiar acolhedor
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -322,8 +429,12 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-chart-4">30€</p>
-                    <p className="text-xs lg:text-sm text-muted-foreground">por dia</p>
+                    <p className="text-xl lg:text-2xl font-bold text-chart-4">
+                      30€
+                    </p>
+                    <p className="text-xs lg:text-sm text-muted-foreground">
+                      por dia
+                    </p>
                   </div>
                   <Button
                     variant="outline"
@@ -343,7 +454,10 @@ export default function ServicesPage() {
       <section className="py-12 lg:py-20 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-primary/20"
+            >
               Serviços Adicionais
             </Badge>
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
@@ -357,14 +471,22 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Camera className="w-6 h-6 lg:w-8 lg:h-8 text-primary" />
                 </div>
-                <CardTitle className="text-lg lg:text-xl">Relatórios Fotográficos</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Updates regulares com fotos</CardDescription>
+                <CardTitle className="text-lg lg:text-xl">
+                  Relatórios Fotográficos
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Updates regulares com fotos
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground mb-4">
-                  Receba fotos e vídeos do seu patudo durante os cuidados para ficar sempre tranquilo.
+                  Receba fotos e vídeos do seu patudo durante os cuidados para
+                  ficar sempre tranquilo.
                 </p>
-                <Badge variant="outline" className="text-primary border-primary/30">
+                <Badge
+                  variant="outline"
+                  className="text-primary border-primary/30"
+                >
                   Incluído
                 </Badge>
               </CardContent>
@@ -375,14 +497,22 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 lg:w-16 lg:h-16 bg-accent/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-6 h-6 lg:w-8 lg:h-8 text-accent" />
                 </div>
-                <CardTitle className="text-lg lg:text-xl">Comunicação 24/7</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Sempre disponível para si</CardDescription>
+                <CardTitle className="text-lg lg:text-xl">
+                  Comunicação 24/7
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Sempre disponível para si
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground mb-4">
-                  Contacto direto via WhatsApp ou telefone para qualquer questão ou emergência.
+                  Contacto direto via WhatsApp ou telefone para qualquer questão
+                  ou emergência.
                 </p>
-                <Badge variant="outline" className="text-accent border-accent/30">
+                <Badge
+                  variant="outline"
+                  className="text-accent border-accent/30"
+                >
                   Incluído
                 </Badge>
               </CardContent>
@@ -393,14 +523,22 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 lg:w-16 lg:h-16 bg-secondary/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-6 h-6 lg:w-8 lg:h-8 text-secondary" />
                 </div>
-                <CardTitle className="text-lg lg:text-xl">Seguro de Responsabilidade</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Proteção total garantida</CardDescription>
+                <CardTitle className="text-lg lg:text-xl">
+                  Seguro de Responsabilidade
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Proteção total garantida
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground mb-4">
-                  Todos os nossos serviços estão cobertos por seguro de responsabilidade civil.
+                  Todos os nossos serviços estão cobertos por seguro de
+                  responsabilidade civil.
                 </p>
-                <Badge variant="outline" className="text-secondary border-secondary/30">
+                <Badge
+                  variant="outline"
+                  className="text-secondary border-secondary/30"
+                >
                   Incluído
                 </Badge>
               </CardContent>
@@ -413,7 +551,10 @@ export default function ServicesPage() {
       <section className="py-12 lg:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-primary/20"
+            >
               Planos e Descontos
             </Badge>
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
@@ -425,11 +566,19 @@ export default function ServicesPage() {
             {/* Ocasional */}
             <Card className="border-border hover:shadow-lg transition-all duration-300">
               <CardHeader className="text-center pb-4 lg:pb-6">
-                <CardTitle className="text-lg lg:text-xl font-bold">Ocasional</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Para necessidades pontuais</CardDescription>
+                <CardTitle className="text-lg lg:text-xl font-bold">
+                  Ocasional
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Para necessidades pontuais
+                </CardDescription>
                 <div className="mt-4">
-                  <span className="text-2xl lg:text-3xl font-bold text-foreground">Preço</span>
-                  <p className="text-xs lg:text-sm text-muted-foreground">por serviço</p>
+                  <span className="text-2xl lg:text-3xl font-bold text-foreground">
+                    Preço
+                  </span>
+                  <p className="text-xs lg:text-sm text-muted-foreground">
+                    por serviço
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -440,14 +589,22 @@ export default function ServicesPage() {
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Todos os serviços disponíveis</span>
+                    <span className="text-xs lg:text-sm">
+                      Todos os serviços disponíveis
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Relatórios incluídos</span>
+                    <span className="text-xs lg:text-sm">
+                      Relatórios incluídos
+                    </span>
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full bg-transparent" asChild>
+                <Button
+                  variant="outline"
+                  className="w-full bg-transparent"
+                  asChild
+                >
                   <Link href="/contactos">Contactar-nos</Link>
                 </Button>
               </CardContent>
@@ -456,14 +613,24 @@ export default function ServicesPage() {
             {/* Regular */}
             <Card className="border-primary/30 hover:shadow-xl transition-all duration-300 relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-primary-foreground">Mais Popular</Badge>
+                <Badge className="bg-primary text-primary-foreground">
+                  Mais Popular
+                </Badge>
               </div>
               <CardHeader className="text-center pb-4 lg:pb-6">
-                <CardTitle className="text-lg lg:text-xl font-bold">Regular</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Para cuidados semanais</CardDescription>
+                <CardTitle className="text-lg lg:text-xl font-bold">
+                  Regular
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Para cuidados semanais
+                </CardDescription>
                 <div className="mt-4">
-                  <span className="text-2xl lg:text-3xl font-bold text-primary">-10%</span>
-                  <p className="text-xs lg:text-sm text-muted-foreground">desconto em todos os serviços</p>
+                  <span className="text-2xl lg:text-3xl font-bold text-primary">
+                    -10%
+                  </span>
+                  <p className="text-xs lg:text-sm text-muted-foreground">
+                    desconto em todos os serviços
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -474,18 +641,27 @@ export default function ServicesPage() {
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Prioridade no agendamento</span>
+                    <span className="text-xs lg:text-sm">
+                      Prioridade no agendamento
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Relatórios detalhados</span>
+                    <span className="text-xs lg:text-sm">
+                      Relatórios detalhados
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-primary flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Flexibilidade de horários</span>
+                    <span className="text-xs lg:text-sm">
+                      Flexibilidade de horários
+                    </span>
                   </li>
                 </ul>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+                <Button
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  asChild
+                >
                   <Link href="/contactos">Escolher Plano</Link>
                 </Button>
               </CardContent>
@@ -494,11 +670,19 @@ export default function ServicesPage() {
             {/* Premium */}
             <Card className="border-border hover:shadow-lg transition-all duration-300">
               <CardHeader className="text-center pb-4 lg:pb-6">
-                <CardTitle className="text-lg lg:text-xl font-bold">Premium</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Para cuidados diários</CardDescription>
+                <CardTitle className="text-lg lg:text-xl font-bold">
+                  Premium
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Para cuidados diários
+                </CardDescription>
                 <div className="mt-4">
-                  <span className="text-2xl lg:text-3xl font-bold text-accent">-20%</span>
-                  <p className="text-xs lg:text-sm text-muted-foreground">desconto em todos os serviços</p>
+                  <span className="text-2xl lg:text-3xl font-bold text-accent">
+                    -20%
+                  </span>
+                  <p className="text-xs lg:text-sm text-muted-foreground">
+                    desconto em todos os serviços
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -509,15 +693,21 @@ export default function ServicesPage() {
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Cuidador dedicado</span>
+                    <span className="text-xs lg:text-sm">
+                      Cuidador dedicado
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Serviços personalizados</span>
+                    <span className="text-xs lg:text-sm">
+                      Serviços personalizados
+                    </span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
-                    <span className="text-xs lg:text-sm">Suporte 24/7 prioritário</span>
+                    <span className="text-xs lg:text-sm">
+                      Suporte 24/7 prioritário
+                    </span>
                   </li>
                 </ul>
                 <Button
@@ -541,10 +731,15 @@ export default function ServicesPage() {
               Pronto para Começar?
             </h2>
             <p className="text-lg lg:text-xl text-secondary-foreground/80 text-pretty">
-              Entre em contacto connosco para discutir as necessidades do seu patudo e encontrar o serviço perfeito.
+              Entre em contacto connosco para discutir as necessidades do seu
+              patudo e encontrar o serviço perfeito.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                asChild
+              >
                 <Link href="/contactos">
                   <Phone className="w-5 h-5 mr-2" />
                   Contactar-nos
@@ -590,22 +785,34 @@ export default function ServicesPage() {
               <h3 className="font-semibold mb-4">Serviços</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/servicos#petsitting" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos#petsitting"
+                    className="hover:text-primary transition-colors"
+                  >
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos#dogwalking" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos#dogwalking"
+                    className="hover:text-primary transition-colors"
+                  >
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos#daycare" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos#daycare"
+                    className="hover:text-primary transition-colors"
+                  >
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos#estadia" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos#estadia"
+                    className="hover:text-primary transition-colors"
+                  >
                     Estadia Familiar
                   </Link>
                 </li>
@@ -616,22 +823,34 @@ export default function ServicesPage() {
               <h3 className="font-semibold mb-4">Empresa</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/sobre"
+                    className="hover:text-primary transition-colors"
+                  >
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/testemunhos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/blog"
+                    className="hover:text-primary transition-colors"
+                  >
                     Blog
                   </Link>
                 </li>
@@ -650,10 +869,12 @@ export default function ServicesPage() {
 
           <div className="border-t border-border mt-6 lg:mt-8 pt-6 lg:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs lg:text-sm text-muted-foreground">
             <p>&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-            <p className="text-muted-foreground/60">Desenvolvido por Daniela Silva & Tiago Santos</p>
+            <p className="text-muted-foreground/60">
+              Desenvolvido por Daniela Silva & Tiago Santos
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

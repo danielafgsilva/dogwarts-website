@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 interface NavbarProps {
-  currentPage?: string
+  currentPage?: string;
 }
 
 export default function Navbar({ currentPage }: NavbarProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { href: "/", label: "Início" },
@@ -19,18 +19,28 @@ export default function Navbar({ currentPage }: NavbarProps) {
     { href: "/servicos", label: "Serviços" },
     { href: "/contactos", label: "Contactos" },
     { href: "/testemunhos", label: "Testemunhos" },
-  ]
+  ];
 
   return (
     <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b border-border">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 transition-transform hover:scale-105 duration-200">
+          <Link
+            href="/"
+            className="flex items-center space-x-3 transition-transform hover:scale-105 duration-200"
+          >
             <div className="relative w-10 h-10 md:w-12 md:h-12">
-              <Image src="/dogwarts-logo-transparent.png" alt="Dogwarts Logo" fill className="object-contain" />
+              <Image
+                src="/dogwarts-logo-transparent.png"
+                alt="Dogwarts Logo"
+                fill
+                className="object-contain"
+              />
             </div>
-            <span className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-gray-100">Dogwarts</span>
+            <span className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-gray-100">
+              Dogwarts
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
@@ -56,7 +66,11 @@ export default function Navbar({ currentPage }: NavbarProps) {
             className="md:hidden transition-transform hover:scale-110 duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </Button>
         </div>
 
@@ -84,5 +98,5 @@ export default function Navbar({ currentPage }: NavbarProps) {
         )}
       </div>
     </nav>
-  )
+  );
 }

@@ -1,8 +1,23 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Calendar, Clock, User, ArrowRight, BookOpen, Lightbulb, Shield } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Heart,
+  Calendar,
+  Clock,
+  User,
+  ArrowRight,
+  BookOpen,
+  Lightbulb,
+  Shield,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function BlogPage() {
   const blogPosts = [
@@ -31,8 +46,10 @@ export default function BlogPage() {
     },
     {
       id: 3,
-      title: "A Importância da Socialização Canina: Benefícios dos Passeios em Grupo",
-      excerpt: "Descubra como os passeios em grupo podem melhorar o comportamento e a felicidade do seu cão.",
+      title:
+        "A Importância da Socialização Canina: Benefícios dos Passeios em Grupo",
+      excerpt:
+        "Descubra como os passeios em grupo podem melhorar o comportamento e a felicidade do seu cão.",
       category: "Comportamento",
       date: "5 Jan 2024",
       readTime: "6 min",
@@ -42,7 +59,8 @@ export default function BlogPage() {
     {
       id: 4,
       title: "Cuidados Especiais para Cães Idosos: O Que Deve Saber",
-      excerpt: "Orientações importantes para garantir conforto e qualidade de vida aos cães seniores.",
+      excerpt:
+        "Orientações importantes para garantir conforto e qualidade de vida aos cães seniores.",
       category: "Saúde & Bem-estar",
       date: "28 Dez 2023",
       readTime: "8 min",
@@ -52,7 +70,8 @@ export default function BlogPage() {
     {
       id: 5,
       title: "Rotinas de Exercício: Mantendo o Seu Cão Ativo e Saudável",
-      excerpt: "Planos de exercício adaptados a diferentes idades, raças e necessidades dos cães.",
+      excerpt:
+        "Planos de exercício adaptados a diferentes idades, raças e necessidades dos cães.",
       category: "Exercício & Atividade",
       date: "20 Dez 2023",
       readTime: "6 min",
@@ -62,21 +81,22 @@ export default function BlogPage() {
     {
       id: 6,
       title: "Sinais de Stress em Cães: Como Identificar e Ajudar",
-      excerpt: "Aprenda a reconhecer os sinais de ansiedade e stress no seu cão e como proporcionar alívio.",
+      excerpt:
+        "Aprenda a reconhecer os sinais de ansiedade e stress no seu cão e como proporcionar alívio.",
       category: "Comportamento",
       date: "15 Dez 2023",
       readTime: "7 min",
       author: "Equipa Dogwarts",
       image: "/bella-labrador-socializing-daycare-dogwarts-lisb.jpg",
     },
-  ]
+  ];
 
   const categories = [
     { name: "Saúde & Bem-estar", count: 8, icon: Heart },
     { name: "Dicas & Conselhos", count: 12, icon: Lightbulb },
     { name: "Comportamento", count: 6, icon: BookOpen },
     { name: "Exercício & Atividade", count: 5, icon: Shield },
-  ]
+  ];
 
   return (
     <div className="min-h-screen">
@@ -85,26 +105,49 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img src="/dogwarts-logo-simple.png" alt="Dogwarts Logo" className="w-12 h-12 object-contain" />
-              <span className="text-2xl font-serif font-bold text-foreground">Dogwarts</span>
+              <img
+                src="/dogwarts-logo-simple.png"
+                alt="Dogwarts Logo"
+                className="w-12 h-12 object-contain"
+              />
+              <span className="text-2xl font-serif font-bold text-foreground">
+                Dogwarts
+              </span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                href="/"
+                className="text-foreground hover:text-primary transition-colors"
+              >
                 Início
               </Link>
-              <Link href="/sobre" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                href="/sobre"
+                className="text-foreground hover:text-primary transition-colors"
+              >
                 Sobre Nós
               </Link>
-              <Link href="/servicos" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                href="/servicos"
+                className="text-foreground hover:text-primary transition-colors"
+              >
                 Serviços
               </Link>
-              <Link href="/testemunhos" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                href="/testemunhos"
+                className="text-foreground hover:text-primary transition-colors"
+              >
                 Testemunhos
               </Link>
-              <Link href="/contactos" className="text-foreground hover:text-primary transition-colors">
+              <Link
+                href="/contactos"
+                className="text-foreground hover:text-primary transition-colors"
+              >
                 Contactos
               </Link>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Agendar Agora</Button>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                Agendar Agora
+              </Button>
             </div>
           </div>
         </div>
@@ -114,15 +157,20 @@ export default function BlogPage() {
       <section className="py-20 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-6 max-w-3xl mx-auto">
-            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-primary/20"
+            >
               Blog Dogwarts
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance">
-              Dicas e Conselhos para <span className="text-primary">Cães Felizes</span>
+              Dicas e Conselhos para{" "}
+              <span className="text-primary">Cães Felizes</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty">
-              Partilhamos conhecimento e experiência para ajudar a cuidar melhor do seu patudo. Artigos escritos por
-              especialistas em cuidados caninos.
+              Partilhamos conhecimento e experiência para ajudar a cuidar melhor
+              do seu patudo. Artigos escritos por especialistas em cuidados
+              caninos.
             </p>
           </div>
         </div>
@@ -135,7 +183,9 @@ export default function BlogPage() {
             <div className="lg:col-span-3">
               {/* Featured Post */}
               <div className="mb-16">
-                <h2 className="text-2xl font-serif font-bold mb-8">Artigo em Destaque</h2>
+                <h2 className="text-2xl font-serif font-bold mb-8">
+                  Artigo em Destaque
+                </h2>
                 <Card className="overflow-hidden border-primary/20 hover:shadow-lg transition-all duration-300">
                   <div className="aspect-video overflow-hidden">
                     <img
@@ -146,7 +196,10 @@ export default function BlogPage() {
                   </div>
                   <CardHeader className="space-y-4">
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/10 text-primary border-primary/20"
+                      >
                         {blogPosts[0].category}
                       </Badge>
                       <div className="flex items-center gap-1">
@@ -165,7 +218,9 @@ export default function BlogPage() {
                     <CardTitle className="text-2xl font-serif hover:text-primary transition-colors cursor-pointer">
                       {blogPosts[0].title}
                     </CardTitle>
-                    <CardDescription className="text-base leading-relaxed">{blogPosts[0].excerpt}</CardDescription>
+                    <CardDescription className="text-base leading-relaxed">
+                      {blogPosts[0].excerpt}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -178,10 +233,15 @@ export default function BlogPage() {
 
               {/* Recent Posts */}
               <div>
-                <h2 className="text-2xl font-serif font-bold mb-8">Artigos Recentes</h2>
+                <h2 className="text-2xl font-serif font-bold mb-8">
+                  Artigos Recentes
+                </h2>
                 <div className="grid md:grid-cols-2 gap-8">
                   {blogPosts.slice(1).map((post) => (
-                    <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                    <Card
+                      key={post.id}
+                      className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
+                    >
                       <div className="aspect-video overflow-hidden">
                         <img
                           src={post.image || "/placeholder.svg"}
@@ -249,7 +309,7 @@ export default function BlogPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {categories.map((category) => {
-                    const IconComponent = category.icon
+                    const IconComponent = category.icon;
                     return (
                       <div
                         key={category.name}
@@ -257,13 +317,15 @@ export default function BlogPage() {
                       >
                         <div className="flex items-center gap-3">
                           <IconComponent className="w-4 h-4 text-primary" />
-                          <span className="text-sm font-medium">{category.name}</span>
+                          <span className="text-sm font-medium">
+                            {category.name}
+                          </span>
                         </div>
                         <Badge variant="secondary" className="text-xs">
                           {category.count}
                         </Badge>
                       </div>
-                    )
+                    );
                   })}
                 </CardContent>
               </Card>
@@ -276,7 +338,8 @@ export default function BlogPage() {
                     Newsletter Dogwarts
                   </CardTitle>
                   <CardDescription>
-                    Receba dicas semanais sobre cuidados caninos diretamente no seu email.
+                    Receba dicas semanais sobre cuidados caninos diretamente no
+                    seu email.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -287,9 +350,12 @@ export default function BlogPage() {
                       className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                     />
                   </div>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">Subscrever</Button>
+                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    Subscrever
+                  </Button>
                   <p className="text-xs text-muted-foreground">
-                    Prometemos não enviar spam. Pode cancelar a qualquer momento.
+                    Prometemos não enviar spam. Pode cancelar a qualquer
+                    momento.
                   </p>
                 </CardContent>
               </Card>
@@ -309,10 +375,14 @@ export default function BlogPage() {
                       className="flex gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
                     >
                       <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">{index + 1}</span>
+                        <span className="text-sm font-bold text-primary">
+                          {index + 1}
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-medium line-clamp-2 mb-1">{post.title}</h4>
+                        <h4 className="text-sm font-medium line-clamp-2 mb-1">
+                          {post.title}
+                        </h4>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Calendar className="w-3 h-3" />
                           {post.date}
@@ -335,11 +405,14 @@ export default function BlogPage() {
               Tem Alguma Pergunta Sobre Cuidados Caninos?
             </h2>
             <p className="text-xl text-secondary-foreground/80 text-pretty">
-              A nossa equipa de especialistas está sempre disponível para ajudar com dúvidas sobre o bem-estar do seu
-              patudo.
+              A nossa equipa de especialistas está sempre disponível para ajudar
+              com dúvidas sobre o bem-estar do seu patudo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+              >
                 <Heart className="w-5 h-5 mr-2" />
                 Contactar Especialistas
               </Button>
@@ -362,32 +435,50 @@ export default function BlogPage() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <img src="/dogwarts-logo-simple.png" alt="Dogwarts Logo" className="w-10 h-10 object-contain" />
+                <img
+                  src="/dogwarts-logo-simple.png"
+                  alt="Dogwarts Logo"
+                  className="w-10 h-10 object-contain"
+                />
                 <span className="text-xl font-serif font-bold">Dogwarts</span>
               </div>
-              <p className="text-muted-foreground text-pretty">Cães felizes & donos tranquilos desde 2023.</p>
+              <p className="text-muted-foreground text-pretty">
+                Cães felizes & donos tranquilos desde 2023.
+              </p>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Serviços</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Estadia Familiar
                   </Link>
                 </li>
@@ -398,22 +489,34 @@ export default function BlogPage() {
               <h3 className="font-semibold mb-4">Empresa</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/sobre"
+                    className="hover:text-primary transition-colors"
+                  >
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/testemunhos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/blog"
+                    className="hover:text-primary transition-colors"
+                  >
                     Blog
                   </Link>
                 </li>
@@ -436,5 +539,5 @@ export default function BlogPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

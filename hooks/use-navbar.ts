@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export interface UseNavbarOptions {
-  scrollThreshold?: number
-  autoCloseOnRouteChange?: boolean
+  scrollThreshold?: number;
+  autoCloseOnRouteChange?: boolean;
 }
 
 export interface UseNavbarReturn {
-  isMenuOpen: boolean
-  isScrolled: boolean
-  toggleMenu: () => void
-  closeMenu: () => void
-  openMenu: () => void
+  isMenuOpen: boolean;
+  isScrolled: boolean;
+  toggleMenu: () => void;
+  closeMenu: () => void;
+  openMenu: () => void;
 }
 
 /**
@@ -20,83 +20,80 @@ export interface UseNavbarReturn {
  * @returns Navbar state and control functions
  */
 export function useNavbar(options: UseNavbarOptions = {}): UseNavbarReturn {
-  const {
-    scrollThreshold = 10,
-    autoCloseOnRouteChange = true
-  } = options
+  const { scrollThreshold = 10, autoCloseOnRouteChange = true } = options;
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > scrollThreshold)
-    }
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
 
     // Check initial scroll position
-    handleScroll()
+    handleScroll();
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [scrollThreshold])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollThreshold]);
 
   // Close menu on route change
   useEffect(() => {
     if (autoCloseOnRouteChange && isMenuOpen) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-  }, [pathname, autoCloseOnRouteChange, isMenuOpen])
+  }, [pathname, autoCloseOnRouteChange, isMenuOpen]);
 
   // Close menu on escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false)
+      if (event.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
       }
-    }
+    };
 
     if (isMenuOpen) {
-      document.addEventListener('keydown', handleEscape)
-      return () => document.removeEventListener('keydown', handleEscape)
+      document.addEventListener("keydown", handleEscape);
+      return () => document.removeEventListener("keydown", handleEscape);
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (typeof document !== 'undefined' && document.body) {
+    if (typeof document !== "undefined" && document.body) {
       if (isMenuOpen) {
-        document.body.style.overflow = 'hidden'
+        document.body.style.overflow = "hidden";
       } else {
-        document.body.style.overflow = 'unset'
+        document.body.style.overflow = "unset";
       }
     }
 
     return () => {
-      if (typeof document !== 'undefined' && document.body) {
-        document.body.style.overflow = 'unset'
+      if (typeof document !== "undefined" && document.body) {
+        document.body.style.overflow = "unset";
       }
-    }
-  }, [isMenuOpen])
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev)
-  }
+    setIsMenuOpen((prev) => !prev);
+  };
 
   const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const openMenu = () => {
-    setIsMenuOpen(true)
-  }
+    setIsMenuOpen(true);
+  };
 
   return {
     isMenuOpen,
     isScrolled,
     toggleMenu,
     closeMenu,
-    openMenu
-  }
+    openMenu,
+  };
 }

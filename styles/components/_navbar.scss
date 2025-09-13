@@ -150,7 +150,7 @@
       font-weight: $font-weight-semibold;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -$spacing-1;
         left: 0;

@@ -2,7 +2,7 @@
 
 /* Hero Section Enhancements */
 .hero-section {
-  background: linear-gradient(135deg, #F5F1DA 0%, #FFFFFF 100%);
+  background: linear-gradient(135deg, #f5f1da 0%, #ffffff 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .hero-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -29,24 +29,26 @@
 
 /* Enhanced Card Styles */
 .service-card {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #e5e7eb;
   position: relative;
   overflow: hidden;
 }
 
 .service-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #B8860B, #FDCF4D, #B8860B);
+  background: linear-gradient(90deg, #b8860b, #fdcf4d, #b8860b);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -57,14 +59,16 @@
 
 .service-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border-color: #B8860B;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #b8860b;
 }
 
 /* Enhanced Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, #B8860B 0%, #FDCF4D 100%);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #b8860b 0%, #fdcf4d 100%);
+  color: #ffffff;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -76,13 +80,18 @@
 }
 
 .btn-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -97,30 +106,30 @@
 
 .btn-secondary {
   background: transparent;
-  color: #B8860B;
+  color: #b8860b;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
   transition: all 0.3s ease;
-  border: 2px solid #B8860B;
+  border: 2px solid #b8860b;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background: #B8860B;
-  color: #FFFFFF;
+  background: #b8860b;
+  color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(184, 134, 11, 0.2);
 }
 
 /* Enhanced Testimonial Cards */
 .testimonial-card {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border-left: 4px solid #B8860B;
+  border-left: 4px solid #b8860b;
   position: relative;
 }
 
@@ -130,7 +139,7 @@
   top: -0.5rem;
   left: 1rem;
   font-size: 4rem;
-  color: #B8860B;
+  color: #b8860b;
   opacity: 0.3;
   font-family: serif;
 }
@@ -159,17 +168,17 @@
     min-height: 80vh;
     padding: 2rem 0;
   }
-  
+
   .service-card {
     padding: 1.5rem;
     margin-bottom: 1rem;
   }
-  
+
   .testimonial-card {
     padding: 1.5rem;
     margin-bottom: 1rem;
   }
-  
+
   .btn-primary,
   .btn-secondary {
     padding: 0.625rem 1.5rem;
@@ -182,11 +191,11 @@
     min-height: 70vh;
     padding: 1rem 0;
   }
-  
+
   .service-card {
     padding: 1rem;
   }
-  
+
   .testimonial-card {
     padding: 1rem;
   }
@@ -250,7 +259,7 @@
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   line-height: 1.6;
   margin-bottom: 2rem;
-  color: #6B7280;
+  color: #6b7280;
 }
 
 .section-title {
@@ -262,7 +271,7 @@
 
 .section-subtitle {
   font-size: clamp(1rem, 2vw, 1.125rem);
-  color: #6B7280;
+  color: #6b7280;
   text-align: center;
   margin-bottom: 3rem;
 }
@@ -287,7 +296,7 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .testimonials-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -296,24 +305,24 @@
 
 /* Enhanced Footer */
 .footer-enhanced {
-  background: linear-gradient(135deg, #1F3B75 0%, #2D4A7C 100%);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #1f3b75 0%, #2d4a7c 100%);
+  color: #ffffff;
   padding: 3rem 0 2rem;
 }
 
 .footer-enhanced a {
-  color: #E5E7EB;
+  color: #e5e7eb;
   transition: color 0.3s ease;
 }
 
 .footer-enhanced a:hover {
-  color: #FDCF4D;
+  color: #fdcf4d;
 }
 
 /* Enhanced CTA Section */
 .cta-section {
-  background: linear-gradient(135deg, #1F3B75 0%, #2D4A7C 100%);
-  color: #FFFFFF;
+  background: linear-gradient(135deg, #1f3b75 0%, #2d4a7c 100%);
+  color: #ffffff;
   padding: 4rem 0;
   text-align: center;
 }
@@ -335,7 +344,7 @@
   align-items: center;
   padding: 0.5rem 1rem;
   background: rgba(184, 134, 11, 0.1);
-  color: #B8860B;
+  color: #b8860b;
   border: 1px solid rgba(184, 134, 11, 0.3);
   border-radius: 2rem;
   font-size: 0.875rem;
@@ -371,7 +380,7 @@
 .star-rating svg {
   width: 1.25rem;
   height: 1.25rem;
-  color: #FBBF24;
+  color: #fbbf24;
   fill: currentColor;
 }
 
@@ -380,11 +389,11 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #B8860B, #FDCF4D);
+  background: linear-gradient(135deg, #b8860b, #fdcf4d);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   margin-right: 1rem;
 }

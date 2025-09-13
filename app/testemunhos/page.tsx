@@ -1,12 +1,26 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Star, Quote, Camera, Calendar, MapPin, Phone, MessageCircle } from "lucide-react"
-import Link from "next/link"
-import Navbar from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Star,
+  Quote,
+  Camera,
+  Calendar,
+  MapPin,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
+import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 export default function TestimonialsPage() {
   return (
@@ -17,7 +31,10 @@ export default function TestimonialsPage() {
       <div className="bg-card py-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="/"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Início
             </Link>
             <span className="text-muted-foreground">/</span>
@@ -37,24 +54,31 @@ export default function TestimonialsPage() {
               Testemunhos dos Nossos Clientes
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance leading-tight">
-              Histórias de <span className="text-primary">Amor</span> e <span className="text-accent">Confiança</span>
+              Histórias de <span className="text-primary">Amor</span> e{" "}
+              <span className="text-accent">Confiança</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
-              Descubra o que os nossos clientes e os seus patudos pensam sobre os cuidados da Dogwarts através das suas
-              próprias palavras.
+              Descubra o que os nossos clientes e os seus patudos pensam sobre
+              os cuidados da Dogwarts através das suas próprias palavras.
             </p>
             <div className="flex items-center justify-center space-x-8 text-center">
               <div>
                 <div className="text-3xl font-bold text-primary">100+</div>
-                <div className="text-sm text-muted-foreground">Cães Felizes</div>
+                <div className="text-sm text-muted-foreground">
+                  Cães Felizes
+                </div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-accent">5.0</div>
-                <div className="text-sm text-muted-foreground">Avaliação Média</div>
+                <div className="text-sm text-muted-foreground">
+                  Avaliação Média
+                </div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-secondary">2+</div>
-                <div className="text-sm text-muted-foreground">Anos de Experiência</div>
+                <div className="text-sm text-muted-foreground">
+                  Anos de Experiência
+                </div>
               </div>
             </div>
           </div>
@@ -69,22 +93,36 @@ export default function TestimonialsPage() {
               <CardContent className="p-8 md:p-12 text-center">
                 <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
                 <blockquote className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                  "A Dogwarts transformou completamente a nossa vida! O Max fica sempre feliz quando vai para lá e eu
-                  trabalho tranquila sabendo que está em boas mãos. O cuidado é excepcional e o carinho genuíno."
+                  "A Dogwarts transformou completamente a nossa vida! O Max fica
+                  sempre feliz quando vai para lá e eu trabalho tranquila
+                  sabendo que está em boas mãos. O cuidado é excepcional e o
+                  carinho genuíno."
                 </blockquote>
                 <div className="flex items-center justify-center space-x-4">
                   <Avatar className="w-16 h-16">
-                    <AvatarImage src="/placeholder-user.jpg" alt="Maria Costa" />
-                    <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">MC</AvatarFallback>
+                    <AvatarImage
+                      src="/placeholder-user.jpg"
+                      alt="Maria Costa"
+                    />
+                    <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">
+                      MC
+                    </AvatarFallback>
                   </Avatar>
                   <div className="text-left">
                     <div className="font-semibold text-lg">Maria Costa</div>
-                    <div className="text-muted-foreground">Tutora do Max (Golden Retriever)</div>
+                    <div className="text-muted-foreground">
+                      Tutora do Max (Golden Retriever)
+                    </div>
                     <div className="flex items-center mt-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-primary fill-current"
+                        />
                       ))}
-                      <span className="ml-2 text-sm text-muted-foreground">5.0</span>
+                      <span className="ml-2 text-sm text-muted-foreground">
+                        5.0
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -98,9 +136,12 @@ export default function TestimonialsPage() {
       <section className="py-16 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">O Que Dizem os Nossos Clientes</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              O Que Dizem os Nossos Clientes
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Cada testemunho é uma história de confiança, amor e cuidado especializado.
+              Cada testemunho é uma história de confiança, amor e cuidado
+              especializado.
             </p>
           </div>
 
@@ -113,7 +154,7 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!",
                 service: "Dogwalking",
-                date: "Janeiro 2024"
+                date: "Janeiro 2024",
               },
               {
                 name: "Ana Ferreira",
@@ -122,7 +163,7 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "Durante as nossas férias, o Bobby ficou na Dogwarts. Voltámos e ele estava radiante! Serviço de confiança total.",
                 service: "Estadia Familiar",
-                date: "Dezembro 2023"
+                date: "Dezembro 2023",
               },
               {
                 name: "Carlos Santos",
@@ -131,7 +172,7 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "A Mia é muito tímida, mas na Dogwarts ela se sente em casa. O cuidado personalizado faz toda a diferença.",
                 service: "Petsitting",
-                date: "Fevereiro 2024"
+                date: "Fevereiro 2024",
               },
               {
                 name: "Sofia Rodrigues",
@@ -140,7 +181,7 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "O Rex adora ir à creche! Volta sempre com energia gasta e muito feliz. Equipe fantástica!",
                 service: "Creche/Daycare",
-                date: "Março 2024"
+                date: "Março 2024",
               },
               {
                 name: "Miguel Costa",
@@ -149,7 +190,7 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "Serviço excepcional! A Bella fica sempre feliz e bem cuidada. Recomendo sem hesitação.",
                 service: "Petsitting",
-                date: "Abril 2024"
+                date: "Abril 2024",
               },
               {
                 name: "Rita Alves",
@@ -158,20 +199,30 @@ export default function TestimonialsPage() {
                 rating: 5,
                 text: "O Thor é muito energético, mas na Dogwarts ele se diverte e socializa. Excelente trabalho!",
                 service: "Dogwalking",
-                date: "Maio 2024"
-              }
+                date: "Maio 2024",
+              },
             ].map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-all duration-300"
+              >
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-primary fill-current"
+                        />
                       ))}
                     </div>
-                    <span className="ml-2 text-sm text-muted-foreground">{testimonial.date}</span>
+                    <span className="ml-2 text-sm text-muted-foreground">
+                      {testimonial.date}
+                    </span>
                   </div>
-                  <p className="text-muted-foreground mb-4 text-pretty">"{testimonial.text}"</p>
+                  <p className="text-muted-foreground mb-4 text-pretty">
+                    "{testimonial.text}"
+                  </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10">
@@ -181,7 +232,9 @@ export default function TestimonialsPage() {
                       </Avatar>
                       <div>
                         <div className="font-medium">{testimonial.name}</div>
-                        <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {testimonial.role}
+                        </div>
                       </div>
                     </div>
                     <Badge variant="outline" className="text-xs">
@@ -203,10 +256,14 @@ export default function TestimonialsPage() {
               Pronto para Fazer Parte da Nossa Família?
             </h2>
             <p className="text-lg text-secondary-foreground/80 text-pretty">
-              Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado que ele merece.
+              Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado
+              que ele merece.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Contactar Agora
               </Button>
@@ -228,7 +285,11 @@ export default function TestimonialsPage() {
         <div className="container mx-auto px-4">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="space-y-4 sm:col-span-2 md:col-span-1">
-              <img src="/dogwarts-logo-transparent.png" alt="Dogwarts Logo" className="w-10 h-10 object-contain" />
+              <img
+                src="/dogwarts-logo-transparent.png"
+                alt="Dogwarts Logo"
+                className="w-10 h-10 object-contain"
+              />
               <span className="text-xl font-bold">Dogwarts</span>
             </div>
 
@@ -236,22 +297,34 @@ export default function TestimonialsPage() {
               <h3 className="font-semibold mb-4">Serviços</h3>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Estadia Familiar
                   </Link>
                 </li>
@@ -262,22 +335,34 @@ export default function TestimonialsPage() {
               <h3 className="font-semibold mb-4">Empresa</h3>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/sobre"
+                    className="hover:text-primary transition-colors"
+                  >
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/testemunhos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/blog"
+                    className="hover:text-primary transition-colors"
+                  >
                     Blog
                   </Link>
                 </li>
@@ -296,12 +381,16 @@ export default function TestimonialsPage() {
 
           <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 text-center text-muted-foreground">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-              <p className="text-sm">&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">Desenvolvido por Daniela Silva & Tiago Santos</p>
+              <p className="text-sm">
+                &copy; 2024 Dogwarts. Todos os direitos reservados.
+              </p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Desenvolvido por Daniela Silva & Tiago Santos
+              </p>
             </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

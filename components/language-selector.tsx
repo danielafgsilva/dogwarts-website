@@ -1,50 +1,51 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu'
-import { Globe } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Globe } from "lucide-react";
 
-export type Language = 'pt' | 'en'
+export type Language = "pt" | "en";
 
 export interface LanguageSelectorProps {
-  currentLanguage?: Language
-  onLanguageChange?: (language: Language) => void
-  className?: string
+  currentLanguage?: Language;
+  onLanguageChange?: (language: Language) => void;
+  className?: string;
 }
 
-export function LanguageSelector({ 
-  currentLanguage = 'pt', 
+export function LanguageSelector({
+  currentLanguage = "pt",
   onLanguageChange,
-  className 
+  className,
 }: LanguageSelectorProps) {
-  const [language, setLanguage] = useState<Language>(currentLanguage)
+  const [language, setLanguage] = useState<Language>(currentLanguage);
 
   useEffect(() => {
     // Load language from localStorage on mount
-    const savedLanguage = localStorage.getItem('language') as Language
-    if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage)
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage && (savedLanguage === "pt" || savedLanguage === "en")) {
+      setLanguage(savedLanguage);
     }
-  }, [])
+  }, []);
 
   const handleLanguageChange = (newLanguage: Language) => {
-    setLanguage(newLanguage)
-    localStorage.setItem('language', newLanguage)
-    onLanguageChange?.(newLanguage)
-  }
+    setLanguage(newLanguage);
+    localStorage.setItem("language", newLanguage);
+    onLanguageChange?.(newLanguage);
+  };
 
   const languages = [
-    { code: 'pt' as Language, name: 'Português', flag: '🇵🇹' },
-    { code: 'en' as Language, name: 'English', flag: '🇬🇧' }
-  ]
+    { code: "pt" as Language, name: "Português", flag: "🇵🇹" },
+    { code: "en" as Language, name: "English", flag: "🇬🇧" },
+  ];
 
-  const currentLang = languages.find(lang => lang.code === language) || languages[0]
+  const currentLang =
+    languages.find((lang) => lang.code === language) || languages[0];
 
   return (
     <DropdownMenu>
@@ -60,7 +61,7 @@ export function LanguageSelector({
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
-            className={language === lang.code ? 'bg-accent' : ''}
+            className={language === lang.code ? "bg-accent" : ""}
           >
             <span className="mr-2">{lang.flag}</span>
             {lang.name}
@@ -68,5 +69,5 @@ export function LanguageSelector({
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

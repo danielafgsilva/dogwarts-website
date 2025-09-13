@@ -1,15 +1,20 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
-import Link from "next/link"
-import Navbar from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react";
+import Link from "next/link";
+import Navbar from "@/components/navbar";
 export default function HomePage() {
-
   return (
     <div className="min-h-screen">
       <Navbar currentPage="/" />
@@ -27,15 +32,22 @@ export default function HomePage() {
                   Desde Setembro 2023
                 </Badge>
                 <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-balance leading-tight">
-                  Cães Felizes & <span className="text-[#1F3B75] dark:text-[#FDCF4D]">Donos Tranquilos</span>
+                  Cães Felizes &{" "}
+                  <span className="text-[#1F3B75] dark:text-[#FDCF4D]">
+                    Donos Tranquilos
+                  </span>
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Um espaço seguro e familiar onde os seus cães se sentem em casa, criado por uma tutora que compreende
-                  as necessidades dos animais quando os donos estão ausentes.
+                  Um espaço seguro e familiar onde os seus cães se sentem em
+                  casa, criado por uma tutora que compreende as necessidades dos
+                  animais quando os donos estão ausentes.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                >
                   <Heart className="w-5 h-5 mr-2" />
                   Conhecer Serviços
                 </Button>
@@ -65,10 +77,14 @@ export default function HomePage() {
                     <div className="w-6 h-6 md:w-8 md:h-8 bg-secondary rounded-full border-2 border-background"></div>
                   </div>
                   <div>
-                    <p className="text-xs md:text-sm font-medium">100+ Cães Felizes</p>
+                    <p className="text-xs md:text-sm font-medium">
+                      100+ Cães Felizes
+                    </p>
                     <div className="flex items-center">
                       <Star className="w-3 h-3 md:w-4 md:h-4 text-primary fill-current" />
-                      <span className="text-xs md:text-sm text-muted-foreground ml-1">5.0 avaliação</span>
+                      <span className="text-xs md:text-sm text-muted-foreground ml-1">
+                        5.0 avaliação
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -92,7 +108,8 @@ export default function HomePage() {
               Cuidados Personalizados para Cada Patudo
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua tranquilidade.
+              Oferecemos uma gama completa de serviços pensados para o bem-estar
+              dos seus cães e a sua tranquilidade.
             </p>
           </div>
 
@@ -102,7 +119,8 @@ export default function HomePage() {
                 icon: Home,
                 title: "Petsitting",
                 desc: "Cuidados ao domicílio",
-                detail: "Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.",
+                detail:
+                  "Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.",
                 price: "A partir de 15€",
                 color: "primary",
                 delay: "delay-100",
@@ -111,7 +129,8 @@ export default function HomePage() {
                 icon: MapPin,
                 title: "Dogwalking",
                 desc: "Passeios diários",
-                detail: "Passeios energizantes e socializantes adaptados às necessidades do seu cão.",
+                detail:
+                  "Passeios energizantes e socializantes adaptados às necessidades do seu cão.",
                 price: "A partir de 12€",
                 color: "accent",
                 delay: "delay-200",
@@ -120,7 +139,8 @@ export default function HomePage() {
                 icon: Clock,
                 title: "Creche/Daycare",
                 desc: "Cuidados diurnos",
-                detail: "Ambiente seguro e divertido para o seu cão durante o dia de trabalho.",
+                detail:
+                  "Ambiente seguro e divertido para o seu cão durante o dia de trabalho.",
                 price: "A partir de 25€",
                 color: "secondary",
                 delay: "delay-300",
@@ -129,7 +149,8 @@ export default function HomePage() {
                 icon: Heart,
                 title: "Estadia Familiar",
                 desc: "Hospedagem completa",
-                detail: "O seu cão fica na nossa família durante as suas férias ou viagens.",
+                detail:
+                  "O seu cão fica na nossa família durante as suas férias ou viagens.",
                 price: "A partir de 30€/dia",
                 color: "chart-4",
                 delay: "delay-400",
@@ -143,14 +164,23 @@ export default function HomePage() {
                   <div
                     className={`w-16 h-16 bg-${service.color}/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-${service.color}/20 transition-colors`}
                   >
-                    {React.createElement(service.icon, { className: `w-8 h-8 text-${service.color}` })}
+                    {React.createElement(service.icon, {
+                      className: `w-8 h-8 text-${service.color}`,
+                    })}
                   </div>
-                  <CardTitle className="text-xl font-serif">{service.title}</CardTitle>
+                  <CardTitle className="text-xl font-serif">
+                    {service.title}
+                  </CardTitle>
                   <CardDescription>{service.desc}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-sm text-muted-foreground mb-4">{service.detail}</p>
-                  <Badge variant="outline" className={`text-${service.color} border-${service.color}/30`}>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {service.detail}
+                  </p>
+                  <Badge
+                    variant="outline"
+                    className={`text-${service.color} border-${service.color}/30`}
+                  >
                     {service.price}
                   </Badge>
                 </CardContent>
@@ -159,7 +189,10 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-8 md:mt-12">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+            >
               Ver Todos os Serviços
             </Button>
           </div>
@@ -176,7 +209,9 @@ export default function HomePage() {
             >
               Testemunhos
             </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">O Que Dizem os Nossos Clientes</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">
+              O Que Dizem os Nossos Clientes
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -217,20 +252,31 @@ export default function HomePage() {
                   <div className="flex items-center mb-4">
                     <div className="flex">
                       {[...Array(testimonial.stars)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-primary fill-current"
+                        />
                       ))}
                     </div>
                   </div>
-                  <p className="text-muted-foreground mb-4 text-pretty">"{testimonial.text}"</p>
+                  <p className="text-muted-foreground mb-4 text-pretty">
+                    "{testimonial.text}"
+                  </p>
                   <div className="flex items-center">
                     <div
                       className={`w-10 h-10 bg-${testimonial.color}/20 rounded-full flex items-center justify-center mr-3`}
                     >
-                      <span className={`text-sm font-medium text-${testimonial.color}`}>{testimonial.initials}</span>
+                      <span
+                        className={`text-sm font-medium text-${testimonial.color}`}
+                      >
+                        {testimonial.initials}
+                      </span>
                     </div>
                     <div>
                       <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -248,11 +294,14 @@ export default function HomePage() {
               Pronto para Dar ao Seu Cão o Melhor Cuidado?
             </h2>
             <p className="text-lg md:text-xl text-secondary-foreground/80 text-pretty">
-              Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
-              tranquilo.
+              Entre em contacto connosco hoje e descubra como podemos ajudar a
+              manter o seu patudo feliz e você tranquilo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Ligar Agora
               </Button>
@@ -274,7 +323,11 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="space-y-4 sm:col-span-2 md:col-span-1">
-              <img src="/dogwarts-logo-transparent.png" alt="Dogwarts Logo" className="w-10 h-10 object-contain" />
+              <img
+                src="/dogwarts-logo-transparent.png"
+                alt="Dogwarts Logo"
+                className="w-10 h-10 object-contain"
+              />
               <span className="text-xl font-bold">Dogwarts</span>
             </div>
 
@@ -282,22 +335,34 @@ export default function HomePage() {
               <h3 className="font-semibold mb-4">Serviços</h3>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Estadia Familiar
                   </Link>
                 </li>
@@ -308,22 +373,34 @@ export default function HomePage() {
               <h3 className="font-semibold mb-4">Empresa</h3>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/sobre"
+                    className="hover:text-primary transition-colors"
+                  >
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/testemunhos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/blog"
+                    className="hover:text-primary transition-colors"
+                  >
                     Blog
                   </Link>
                 </li>
@@ -342,12 +419,16 @@ export default function HomePage() {
 
           <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 text-center text-muted-foreground">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-              <p className="text-sm">&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">Desenvolvido por Daniela Silva & Tiago Santos</p>
+              <p className="text-sm">
+                &copy; 2024 Dogwarts. Todos os direitos reservados.
+              </p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Desenvolvido por Daniela Silva & Tiago Santos
+              </p>
             </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
