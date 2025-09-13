@@ -1,5 +1,27 @@
 /* Custom Dogwarts Styles for Enhanced Responsiveness and Beauty */
 
+/* Fix for content overflow issues */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Ensure all content fits within viewport */
+* {
+  box-sizing: border-box;
+}
+
+/* Fix for responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Hero Section Enhancements */
 .hero-section {
   background: linear-gradient(135deg, #f5f1da 0%, #ffffff 100%);
