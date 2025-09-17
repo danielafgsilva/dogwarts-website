@@ -274,7 +274,9 @@
     // Masonry layout is not natively supported in most browsers.
     // Consider using a JavaScript masonry library for this modifier.
     // Example: https://masonry.desandro.com/
-    grid-template-rows: masonry;
+    @supports (grid-template-rows: masonry) {
+      grid-template-rows: masonry;
+    }
   }
 
   &--auto-fit {
