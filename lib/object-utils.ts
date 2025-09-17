@@ -26,7 +26,9 @@ export function values<T extends Record<string, any>>(obj: T): T[keyof T][] {
 }
 
 export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][] {
-  return Object.entries(obj) as [keyof T, T[keyof T]][]
+  return Object.entries(obj).map(
+    ([key, value]) => [key as keyof T, value as T[keyof T]]
+  )
 }
 
 export function isEmpty(obj: any): boolean {

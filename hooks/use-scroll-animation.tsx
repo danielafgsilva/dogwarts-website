@@ -70,7 +70,7 @@ export function useScrollAnimation(
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [threshold, rootMargin, triggerOnce, delay, hasBeenVisible])
+  }, [threshold, rootMargin, triggerOnce, delay, hasBeenVisible, ref.current])
 
   return {
     ref,
