@@ -25,9 +25,8 @@ export function values<T extends Record<string, any>>(obj: T): T[keyof T][] {
   return Object.values(obj)
 }
 
-export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][]
-export function entries<T>(obj: T): [string, any][] {
-  return Object.entries(obj)
+export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][] {
+  return Object.entries(obj) as [keyof T, T[keyof T]][]
 }
 
 export function isEmpty(obj: any): boolean {

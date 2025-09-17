@@ -104,7 +104,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                   id="name"
                   type="text"
                   placeholder="O seu nome"
-                  value={values.name || ''}
+                  value={values.name ?? ''}
                   onChange={handleChange('name')}
                   onBlur={handleBlur('name')}
                   className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
