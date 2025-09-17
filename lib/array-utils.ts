@@ -4,8 +4,8 @@ export function getRandomItem<T>(array: T[]): T | undefined {
   return array[Math.floor(Math.random() * array.length)]
 }
 
-// Fisher-Yates shuffle helper
-function fisherYatesShuffle<T>(array: T[]): T[] {
+// Fisher-Yates shuffle algorithm
+export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array]
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
@@ -16,12 +16,8 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
 
 export function getRandomItems<T>(array: T[], count: number): T[] {
   if (array.length === 0 || count <= 0) return []
-  const shuffled = fisherYatesShuffle(array)
+  const shuffled = shuffleArray(array)
   return shuffled.slice(0, count)
-}
-
-export function shuffleArray<T>(array: T[]): T[] {
-  return fisherYatesShuffle(array)
 }
 
 export function chunkArray<T>(array: T[], size: number): T[][] {
