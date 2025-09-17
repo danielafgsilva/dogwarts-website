@@ -48,14 +48,8 @@ export function useScrollAnimation(
           const isIntersecting = entry.isIntersecting
           setIsVisible(isIntersecting)
 
-          if (isIntersecting) {
-            setHasBeenVisible(prev => {
-              // Only update if it hasn't been visible before
-              if (!prev) {
-                return true
-              }
-              return prev
-            })
+          if (isIntersecting && !hasBeenVisible) {
+            setHasBeenVisible(true)
           }
 
           // Disconnect if triggerOnce and element is visible

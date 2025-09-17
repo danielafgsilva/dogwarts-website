@@ -1,61 +1,62 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { cn } from '@/lib/utils'
+import React from "react";
+import { cn } from "@/lib/utils";
 
-export interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
-  fullWidth?: boolean
-  loading?: boolean
-  icon?: React.ReactNode
-  iconPosition?: 'left' | 'right'
-  children: React.ReactNode
+export interface CustomButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "link";
+  size?: "sm" | "md" | "lg" | "xl";
+  fullWidth?: boolean;
+  loading?: boolean;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
+  children: React.ReactNode;
 }
 
 const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
   (
     {
-      variant = 'primary',
-      size = 'md',
+      variant = "primary",
+      size = "md",
       fullWidth = false,
       loading = false,
       icon,
-      iconPosition = 'left',
+      iconPosition = "left",
       className,
       children,
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const baseClasses = 'button'
+    const baseClasses = "button";
     const variantClasses = {
-      primary: 'button--primary',
-      secondary: 'button--secondary',
-      outline: 'button--outline',
-      ghost: 'button--ghost',
-      link: 'button--link'
-    }
+      primary: "button--primary",
+      secondary: "button--secondary",
+      outline: "button--outline",
+      ghost: "button--ghost",
+      link: "button--link",
+    };
     const sizeClasses = {
-      sm: 'button--sm',
-      md: 'button--md',
-      lg: 'button--lg',
-      xl: 'button--xl'
-    }
+      sm: "button--sm",
+      md: "button--md",
+      lg: "button--lg",
+      xl: "button--xl",
+    };
 
     const buttonClasses = cn(
       baseClasses,
       variantClasses[variant],
       sizeClasses[size],
       {
-        'button--full': fullWidth,
-        'button--loading': loading,
-        'button--disabled': disabled,
-        'button--icon-only': React.Children.count(children) === 0 && icon
+        "button--full": fullWidth,
+        "button--loading": loading,
+        "button--disabled": disabled,
+        "button--icon-only": React.Children.count(children) === 0 && icon,
       },
-      className
-    )
+      className,
+    );
 
     return (
       <button
@@ -88,21 +89,21 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
             </svg>
           </span>
         )}
-        
-        {!loading && icon && iconPosition === 'left' && (
+
+        {!loading && icon && iconPosition === "left" && (
           <span className="button__icon">{icon}</span>
         )}
-        
+
         {children && <span className="button__text">{children}</span>}
-        
-        {!loading && icon && iconPosition === 'right' && (
+
+        {!loading && icon && iconPosition === "right" && (
           <span className="button__icon">{icon}</span>
         )}
       </button>
-    )
-  }
-)
+    );
+  },
+);
 
-CustomButton.displayName = 'CustomButton'
+CustomButton.displayName = "CustomButton";
 
-export { CustomButton }
+export { CustomButton };

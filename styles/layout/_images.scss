@@ -1,0 +1,385 @@
+// ==========================================================================
+// Responsive Images (BEM)
+// ==========================================================================
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  // Aspect ratio modifiers
+  &--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  &--landscape {
+    aspect-ratio: 16 / 9;
+  }
+
+  &--portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  &--wide {
+    aspect-ratio: 21 / 9;
+  }
+
+  &--tall {
+    aspect-ratio: 2 / 3;
+  }
+
+  // Object fit modifiers
+  &--cover {
+    object-fit: cover;
+  }
+
+  &--contain {
+    object-fit: contain;
+  }
+
+  &--fill {
+    object-fit: fill;
+  }
+
+  &--scale-down {
+    object-fit: scale-down;
+  }
+
+  &--none {
+    object-fit: none;
+  }
+
+  // Position modifiers
+  &--center {
+    object-position: center;
+  }
+
+  &--top {
+    object-position: top;
+  }
+
+  &--bottom {
+    object-position: bottom;
+  }
+
+  &--left {
+    object-position: left;
+  }
+
+  &--right {
+    object-position: right;
+  }
+
+  // Size modifiers
+  &--xs {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &--sm {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &--md {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &--lg {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &--xl {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  &--2xl {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  // Responsive sizes
+  &--responsive {
+    width: 100%;
+    height: 200px;
+
+    @include respond-to(sm) {
+      height: 250px;
+    }
+
+    @include respond-to(md) {
+      height: 300px;
+    }
+
+    @include respond-to(lg) {
+      height: 400px;
+    }
+  }
+
+  // Border radius
+  &--rounded {
+    border-radius: $border-radius-md;
+  }
+
+  &--rounded-lg {
+    border-radius: $border-radius-lg;
+  }
+
+  &--rounded-xl {
+    border-radius: $border-radius-xl;
+  }
+
+  &--rounded-full {
+    border-radius: $border-radius-full;
+  }
+
+  // Shadow
+  &--shadow {
+    box-shadow: $shadow-sm;
+  }
+
+  &--shadow-lg {
+    box-shadow: $shadow-lg;
+  }
+
+  &--shadow-xl {
+    box-shadow: $shadow-xl;
+  }
+
+  // Hover effects
+  &--hover-scale {
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &--hover-zoom {
+    transition: transform $transition-base;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  // Loading state
+  &--loading {
+    background-color: $color-gray-200;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-white, 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+
+    .dark & {
+      background-color: $color-gray-800;
+    }
+  }
+}
+
+// Image container
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: $border-radius-md;
+
+  &--rounded {
+    border-radius: $border-radius-lg;
+  }
+
+  &--rounded-full {
+    border-radius: $border-radius-full;
+  }
+
+  // Overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba($color-black, 0.3) 100%
+    );
+    opacity: 0;
+    transition: opacity $transition-fast;
+
+    .image-container:hover & {
+      opacity: 1;
+    }
+  }
+
+  // Content
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-4;
+    color: $color-white;
+    transform: translateY(100%);
+    transition: transform $transition-fast;
+
+    .image-container:hover & {
+      transform: translateY(0);
+    }
+  }
+
+  // Badge
+  &__badge {
+    position: absolute;
+    top: $spacing-2;
+    right: $spacing-2;
+    padding: $spacing-1 $spacing-2;
+    background-color: $color-primary;
+    color: $color-white;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    border-radius: $border-radius-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// Responsive image grid
+.image-grid {
+  display: grid;
+  gap: $spacing-4;
+  grid-template-columns: 1fr;
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &--masonry {
+    // Masonry layout is not natively supported in most browsers.
+    // Consider using a JavaScript masonry library for this modifier.
+    // Example: https://masonry.desandro.com/
+    @supports (grid-template-rows: masonry) {
+      grid-template-rows: masonry;
+    }
+  }
+
+  &--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  &--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+// Hero image
+.hero-image {
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  object-fit: cover;
+  object-position: center;
+
+  @include respond-to(md) {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  @include respond-to(lg) {
+    height: 70vh;
+    min-height: 500px;
+  }
+}
+
+// Avatar
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-full;
+  background-color: $color-gray-200;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+  overflow: hidden;
+
+  .dark & {
+    background-color: $color-gray-800;
+    color: $color-gray-300;
+  }
+
+  &--xs {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: $font-size-xs;
+  }
+
+  &--sm {
+    width: 2rem;
+    height: 2rem;
+    font-size: $font-size-sm;
+  }
+
+  &--md {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: $font-size-base;
+  }
+
+  &--lg {
+    width: 3rem;
+    height: 3rem;
+    font-size: $font-size-lg;
+  }
+
+  &--xl {
+    width: 4rem;
+    height: 4rem;
+    font-size: $font-size-xl;
+  }
+
+  &--2xl {
+    width: 6rem;
+    height: 6rem;
+    font-size: $font-size-2xl;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Animations
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

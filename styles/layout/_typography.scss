@@ -1,0 +1,325 @@
+// ==========================================================================
+// Responsive Typography (BEM)
+// ==========================================================================
+
+// Responsive text sizes
+.text-responsive {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+
+  @include respond-to(sm) {
+    font-size: $font-size-lg;
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-xl;
+  }
+
+  @include respond-to(lg) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// Responsive headings
+.heading-responsive {
+  &--1 {
+    font-size: $font-size-3xl;
+    line-height: $line-height-tight;
+
+    @include respond-to(sm) {
+      font-size: $font-size-4xl;
+    }
+
+    @include respond-to(md) {
+      font-size: $font-size-5xl;
+    }
+
+    @include respond-to(lg) {
+      font-size: $font-size-6xl;
+    }
+  }
+
+  &--2 {
+    font-size: $font-size-2xl;
+    line-height: $line-height-tight;
+
+    @include respond-to(sm) {
+      font-size: $font-size-3xl;
+    }
+
+    @include respond-to(md) {
+      font-size: $font-size-4xl;
+    }
+
+    @include respond-to(lg) {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &--3 {
+    font-size: $font-size-xl;
+    line-height: $line-height-tight;
+
+    @include respond-to(sm) {
+      font-size: $font-size-2xl;
+    }
+
+    @include respond-to(md) {
+      font-size: $font-size-3xl;
+    }
+
+    @include respond-to(lg) {
+      font-size: $font-size-4xl;
+    }
+  }
+
+  &--4 {
+    font-size: $font-size-lg;
+    line-height: $line-height-tight;
+
+    @include respond-to(sm) {
+      font-size: $font-size-xl;
+    }
+
+    @include respond-to(md) {
+      font-size: $font-size-2xl;
+    }
+
+    @include respond-to(lg) {
+      font-size: $font-size-3xl;
+    }
+  }
+}
+
+// Text alignment responsive
+.text-align-responsive {
+  text-align: center;
+
+  @include respond-to(md) {
+    text-align: left;
+  }
+}
+
+// Line height responsive
+.line-height-responsive {
+  line-height: $line-height-tight;
+
+  @include respond-to(md) {
+    line-height: $line-height-normal;
+  }
+
+  @include respond-to(lg) {
+    line-height: $line-height-relaxed;
+  }
+}
+
+// Font weight responsive
+.font-weight-responsive {
+  font-weight: $font-weight-normal;
+
+  @include respond-to(md) {
+    font-weight: $font-weight-medium;
+  }
+
+  @include respond-to(lg) {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+// Spacing responsive
+.spacing-responsive {
+  margin-bottom: $spacing-4;
+
+  @include respond-to(md) {
+    margin-bottom: $spacing-6;
+  }
+
+  @include respond-to(lg) {
+    margin-bottom: $spacing-8;
+  }
+}
+
+// Text truncation responsive
+.text-truncate-responsive {
+  @include text-truncate;
+
+  @include respond-to(md) {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+}
+
+// Text clamp responsive
+.text-clamp-responsive {
+  @include text-clamp(2);
+
+  @include respond-to(md) {
+    -webkit-line-clamp: 3;
+  }
+
+  @include respond-to(lg) {
+    -webkit-line-clamp: 4;
+  }
+}
+
+// Reading width
+.reading-width {
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Text balance
+.text-balance {
+  text-wrap: wrap; // fallback for unsupported browsers
+  @supports (text-wrap: balance) {
+    text-wrap: balance;
+  }
+}
+
+// Text pretty
+.text-pretty {
+  text-wrap: wrap; // fallback for unsupported browsers
+  @supports (text-wrap: pretty) {
+    text-wrap: pretty;
+  }
+}
+
+// Responsive paragraph
+.paragraph-responsive {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  margin-bottom: $spacing-4;
+
+  @include respond-to(sm) {
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-5;
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-6;
+  }
+
+  &--large {
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+
+    @include respond-to(sm) {
+      font-size: $font-size-xl;
+    }
+
+    @include respond-to(md) {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &--small {
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+
+    @include respond-to(sm) {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Responsive list
+.list-responsive {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+
+  @include respond-to(sm) {
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+  }
+
+  &__item {
+    margin-bottom: $spacing-2;
+
+    @include respond-to(sm) {
+      margin-bottom: $spacing-3;
+    }
+  }
+}
+
+// Responsive blockquote
+.blockquote-responsive {
+  font-size: $font-size-lg;
+  font-style: italic;
+  line-height: $line-height-relaxed;
+  margin: $spacing-6 0;
+  padding-left: $spacing-4;
+  border-left: 4px solid $color-primary;
+
+  @include respond-to(sm) {
+    font-size: $font-size-xl;
+    margin: $spacing-8 0;
+    padding-left: $spacing-6;
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-2xl;
+    margin: $spacing-10 0;
+  }
+
+  &__author {
+    font-size: $font-size-sm;
+    font-style: normal;
+    color: $color-text-secondary;
+    margin-top: $spacing-2;
+
+    @include respond-to(sm) {
+      font-size: $font-size-base;
+      margin-top: $spacing-3;
+    }
+  }
+}
+
+// Responsive code
+.code-responsive {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background-color: $color-gray-100;
+  color: $color-text-primary;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $border-radius-sm;
+
+  .dark & {
+    background-color: $color-gray-800;
+    color: $color-gray-100;
+  }
+
+  @include respond-to(sm) {
+    font-size: $font-size-base;
+    padding: $spacing-2 $spacing-3;
+  }
+}
+
+// Responsive pre
+.pre-responsive {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  background-color: $color-gray-100;
+  color: $color-text-primary;
+  padding: $spacing-4;
+  border-radius: $border-radius-md;
+  overflow-x: auto;
+
+  .dark & {
+    background-color: $color-gray-800;
+    color: $color-gray-100;
+  }
+
+  @include respond-to(sm) {
+    font-size: $font-size-base;
+    padding: $spacing-6;
+  }
+
+  @include respond-to(md) {
+    padding: $spacing-8;
+  }
+}
