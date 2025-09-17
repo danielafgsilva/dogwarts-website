@@ -18,6 +18,7 @@ import {
   Shield,
 } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 export default function BlogPage() {
   const blogPosts = [
@@ -100,58 +101,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/dogwarts-logo-simple.png"
-                alt="Dogwarts Logo"
-                className="w-12 h-12 object-contain"
-              />
-              <span className="text-2xl font-serif font-bold text-foreground">
-                Dogwarts
-              </span>
-            </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <Link
-                href="/"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Início
-              </Link>
-              <Link
-                href="/sobre"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Sobre Nós
-              </Link>
-              <Link
-                href="/servicos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Serviços
-              </Link>
-              <Link
-                href="/testemunhos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Testemunhos
-              </Link>
-              <Link
-                href="/contactos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Contactos
-              </Link>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Agendar Agora
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar currentPage="/blog" />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-card to-background">
@@ -159,15 +109,15 @@ export default function BlogPage() {
           <div className="text-center space-y-6 max-w-3xl mx-auto">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D] hover:bg-[#FDCF4D]/90"
             >
               Blog Dogwarts
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance">
               Dicas e Conselhos para{" "}
-              <span className="text-primary">Cães Felizes</span>
+              <span className="text-[#1F3B75]">Cães Felizes</span>
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty">
+            <p className="text-xl text-[#1F3B75]/70 text-pretty">
               Partilhamos conhecimento e experiência para ajudar a cuidar melhor
               do seu patudo. Artigos escritos por especialistas em cuidados
               caninos.
@@ -186,7 +136,7 @@ export default function BlogPage() {
                 <h2 className="text-2xl font-serif font-bold mb-8">
                   Artigo em Destaque
                 </h2>
-                <Card className="overflow-hidden border-primary/20 hover:shadow-lg transition-all duration-300">
+                <Card className="overflow-hidden border-[#FDCF4D]/20 hover:shadow-lg transition-all duration-300">
                   <div className="aspect-video overflow-hidden">
                     <img
                       src={blogPosts[0].image || "/placeholder.svg"}
@@ -196,12 +146,12 @@ export default function BlogPage() {
                   </div>
                   <CardHeader className="space-y-4">
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <Badge
-                        variant="secondary"
-                        className="bg-primary/10 text-primary border-primary/20"
-                      >
-                        {blogPosts[0].category}
-                      </Badge>
+                        <Badge
+                          variant="secondary"
+                          className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
+                        >
+                          {blogPosts[0].category}
+                        </Badge>
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
                         {blogPosts[0].date}
@@ -215,7 +165,7 @@ export default function BlogPage() {
                         {blogPosts[0].author}
                       </div>
                     </div>
-                    <CardTitle className="text-2xl font-serif hover:text-primary transition-colors cursor-pointer">
+                    <CardTitle className="text-2xl font-serif hover:text-[#1F3B75] transition-colors cursor-pointer">
                       {blogPosts[0].title}
                     </CardTitle>
                     <CardDescription className="text-base leading-relaxed">
@@ -223,7 +173,7 @@ export default function BlogPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
                       Ler Artigo Completo
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -263,7 +213,7 @@ export default function BlogPage() {
                             {post.readTime}
                           </div>
                         </div>
-                        <CardTitle className="text-lg font-serif group-hover:text-primary transition-colors cursor-pointer line-clamp-2">
+                        <CardTitle className="text-lg font-serif group-hover:text-[#1F3B75] transition-colors cursor-pointer line-clamp-2">
                           {post.title}
                         </CardTitle>
                         <CardDescription className="text-sm leading-relaxed line-clamp-3">
@@ -274,7 +224,7 @@ export default function BlogPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors bg-transparent"
+                          className="group-hover:bg-[#FDCF4D] group-hover:text-[#1F3B75] transition-colors bg-transparent"
                         >
                           Ler Mais
                           <ArrowRight className="w-3 h-3 ml-2" />
@@ -290,7 +240,7 @@ export default function BlogPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+                  className="border-[#FDCF4D] text-[#FDCF4D] hover:bg-[#FDCF4D] hover:text-[#1F3B75] bg-transparent"
                 >
                   Carregar Mais Artigos
                 </Button>
@@ -303,7 +253,7 @@ export default function BlogPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-primary" />
+                    <BookOpen className="w-5 h-5 text-[#8B5CF6]" />
                     Categorias
                   </CardTitle>
                 </CardHeader>
@@ -316,7 +266,7 @@ export default function BlogPage() {
                         className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
-                          <IconComponent className="w-4 h-4 text-primary" />
+                          <IconComponent className="w-4 h-4 text-[#8B5CF6]" />
                           <span className="text-sm font-medium">
                             {category.name}
                           </span>
@@ -331,10 +281,10 @@ export default function BlogPage() {
               </Card>
 
               {/* Newsletter */}
-              <Card className="border-primary/20 bg-primary/5">
+              <Card className="border-[#FDCF4D]/20 bg-[#FDCF4D]/5">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-primary" />
+                    <Heart className="w-5 h-5 text-[#FDCF4D]" />
                     Newsletter Dogwarts
                   </CardTitle>
                   <CardDescription>
@@ -347,10 +297,10 @@ export default function BlogPage() {
                     <input
                       type="email"
                       placeholder="O seu email"
-                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FDCF4D]/20 focus:border-[#FDCF4D]"
                     />
                   </div>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button className="w-full bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
                     Subscrever
                   </Button>
                   <p className="text-xs text-muted-foreground">
@@ -364,7 +314,7 @@ export default function BlogPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Lightbulb className="w-5 h-5 text-accent" />
+                    <Lightbulb className="w-5 h-5 text-[#8B5CF6]" />
                     Artigos Populares
                   </CardTitle>
                 </CardHeader>
@@ -374,8 +324,8 @@ export default function BlogPage() {
                       key={post.id}
                       className="flex gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <span className="text-sm font-bold text-primary">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#8B5CF6]/10 rounded-lg flex items-center justify-center">
+                        <span className="text-sm font-bold text-[#8B5CF6]">
                           {index + 1}
                         </span>
                       </div>
@@ -398,20 +348,20 @@ export default function BlogPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary text-secondary-foreground">
+      <section className="py-20 bg-[#1F3B75] text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-5xl font-serif font-bold text-balance">
               Tem Alguma Pergunta Sobre Cuidados Caninos?
             </h2>
-            <p className="text-xl text-secondary-foreground/80 text-pretty">
+            <p className="text-xl text-white/80 text-pretty">
               A nossa equipa de especialistas está sempre disponível para ajudar
               com dúvidas sobre o bem-estar do seu patudo.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
               >
                 <Heart className="w-5 h-5 mr-2" />
                 Contactar Especialistas
@@ -419,7 +369,7 @@ export default function BlogPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
                 Ver FAQ
@@ -440,7 +390,7 @@ export default function BlogPage() {
                   alt="Dogwarts Logo"
                   className="w-10 h-10 object-contain"
                 />
-                <span className="text-xl font-serif font-bold">Dogwarts</span>
+                <span className="text-xl font-serif font-bold text-black">Dogwarts</span>
               </div>
               <p className="text-muted-foreground text-pretty">
                 Cães felizes & donos tranquilos desde 2023.

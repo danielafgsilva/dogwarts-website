@@ -60,12 +60,12 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Entre em Contacto
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-6xl font-inter font-bold text-balance leading-tight">
-              Vamos <span className="text-primary">Conversar</span> sobre o Seu
+              Vamos <span className="text-[#1F3B75]">Conversar</span> sobre o Seu
               Patudo
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
@@ -77,28 +77,28 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods */}
-      <section className="py-12 md:py-20 bg-background">
+      <section className="py-12 md:py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
             {/* Phone */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#FDCF4D]/20 bg-white">
               <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FDCF4D]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-[#FDCF4D]" />
                 </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold">
+                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
                   Telefone
                 </CardTitle>
-                <CardDescription>Ligue-nos diretamente</CardDescription>
+                <CardDescription className="text-[#1F3B75]/70">Ligue-nos diretamente</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-xl md:text-2xl font-bold text-primary mb-2">
+                <p className="text-xl md:text-2xl font-bold text-[#FDCF4D] mb-2">
                   +351 XXX XXX XXX
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-[#1F3B75]/60 mb-4">
                   Disponível das 8h às 20h
                 </p>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 w-full">
+                <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 w-full">
                   <Phone className="w-4 h-4 mr-2" />
                   Ligar Agora
                 </Button>
@@ -106,26 +106,26 @@ export default function ContactPage() {
             </Card>
 
             {/* WhatsApp */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-accent/20">
+            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#8B5CF6]/20 bg-white">
               <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-6 h-6 md:w-8 md:h-8 text-accent" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#8B5CF6]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="w-6 h-6 md:w-8 md:h-8 text-[#8B5CF6]" />
                 </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold">
+                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
                   WhatsApp
                 </CardTitle>
-                <CardDescription>Mensagem rápida e fácil</CardDescription>
+                <CardDescription className="text-[#1F3B75]/70">Mensagem rápida e fácil</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-xl md:text-2xl font-bold text-accent mb-2">
+                <p className="text-xl md:text-2xl font-bold text-[#8B5CF6] mb-2">
                   +351 XXX XXX XXX
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-[#1F3B75]/60 mb-4">
                   Resposta rápida garantida
                 </p>
                 <Button
                   variant="outline"
-                  className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent w-full"
+                  className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white bg-transparent w-full"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Enviar Mensagem
@@ -134,26 +134,26 @@ export default function ContactPage() {
             </Card>
 
             {/* Email */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-secondary/20">
+            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#10B981]/20 bg-white">
               <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-secondary" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#10B981]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-[#10B981]" />
                 </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold">
+                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
                   Email
                 </CardTitle>
-                <CardDescription>Para questões detalhadas</CardDescription>
+                <CardDescription className="text-[#1F3B75]/70">Para questões detalhadas</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-base md:text-lg font-semibold text-secondary mb-2">
+                <p className="text-base md:text-lg font-semibold text-[#10B981] mb-2">
                   info@dogwarts.pt
                 </p>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-[#1F3B75]/60 mb-4">
                   Resposta em 24h
                 </p>
                 <Button
                   variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent w-full"
+                  className="border-[#10B981] text-[#10B981] hover:bg-[#10B981] hover:text-white bg-transparent w-full"
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Enviar Email
@@ -243,7 +243,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button className="w-full bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
                     <Send className="w-4 h-4 mr-2" />
                     Enviar Mensagem
                   </Button>
@@ -257,7 +257,7 @@ export default function ContactPage() {
               <Card className="border-border">
                 <CardHeader>
                   <CardTitle className="text-lg md:text-xl font-inter font-semibold flex items-center">
-                    <MapPin className="w-5 h-5 mr-2 text-primary" />
+                    <MapPin className="w-5 h-5 mr-2 text-[#FDCF4D]" />
                     Localização
                   </CardTitle>
                 </CardHeader>
@@ -274,9 +274,9 @@ export default function ContactPage() {
                   </div>
 
                   {/* Map Placeholder */}
-                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg flex items-center justify-center border border-border">
+                  <div className="aspect-video bg-gradient-to-br from-[#FDCF4D]/10 to-[#8B5CF6]/10 rounded-lg flex items-center justify-center border border-border">
                     <div className="text-center space-y-2">
-                      <MapPin className="w-8 h-8 md:w-12 md:h-12 text-primary mx-auto" />
+                      <MapPin className="w-8 h-8 md:w-12 md:h-12 text-[#FDCF4D] mx-auto" />
                       <p className="text-sm text-muted-foreground">
                         Mapa Interativo
                       </p>
@@ -288,7 +288,7 @@ export default function ContactPage() {
 
                   <Button
                     variant="outline"
-                    className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+                    className="w-full border-[#FDCF4D] text-[#FDCF4D] hover:bg-[#FDCF4D] hover:text-[#1F3B75] bg-transparent"
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Ver no Google Maps
@@ -300,7 +300,7 @@ export default function ContactPage() {
               <Card className="border-border">
                 <CardHeader>
                   <CardTitle className="text-lg md:text-xl font-inter font-semibold flex items-center">
-                    <Clock className="w-5 h-5 mr-2 text-accent" />
+                    <Clock className="w-5 h-5 mr-2 text-[#8B5CF6]" />
                     Horários de Funcionamento
                   </CardTitle>
                 </CardHeader>
@@ -325,7 +325,7 @@ export default function ContactPage() {
                     <Separator />
                     <div className="flex justify-between items-center">
                       <span className="text-muted-foreground">Emergências</span>
-                      <span className="font-medium text-accent">24/7</span>
+                      <span className="font-medium text-[#8B5CF6]">24/7</span>
                     </div>
                   </div>
                 </CardContent>
@@ -368,12 +368,12 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Quick Links */}
-      <section className="py-12 md:py-20 bg-card">
+      <section className="py-12 md:py-20 bg-[#1F3B75]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 md:mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#FDCF4D]/10 text-[#FDCF4D] border-[#FDCF4D]/20"
             >
               Perguntas Frequentes
             </Badge>
@@ -394,7 +394,7 @@ export default function ContactPage() {
                 </p>
                 <Link
                   href="/faq"
-                  className="text-primary hover:underline text-sm"
+                  className="text-[#FDCF4D] hover:underline text-sm"
                 >
                   Saber mais →
                 </Link>
@@ -412,7 +412,7 @@ export default function ContactPage() {
                 </p>
                 <Link
                   href="/faq"
-                  className="text-primary hover:underline text-sm"
+                  className="text-[#FDCF4D] hover:underline text-sm"
                 >
                   Saber mais →
                 </Link>
@@ -430,7 +430,7 @@ export default function ContactPage() {
                 </p>
                 <Link
                   href="/faq"
-                  className="text-primary hover:underline text-sm"
+                  className="text-[#FDCF4D] hover:underline text-sm"
                 >
                   Saber mais →
                 </Link>
@@ -452,20 +452,20 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 bg-secondary text-secondary-foreground">
+      <section className="py-12 md:py-20 bg-[#1F3B75] text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-inter font-bold text-balance">
               Pronto para Conhecer a Dogwarts?
             </h2>
-            <p className="text-lg md:text-xl text-secondary-foreground/80 text-pretty">
+            <p className="text-lg md:text-xl text-white/80 text-pretty">
               Entre em contacto connosco e venha conhecer como podemos cuidar do
               seu patudo com todo o amor que ele merece.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Ligar Agora
@@ -473,7 +473,7 @@ export default function ContactPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 WhatsApp Direto

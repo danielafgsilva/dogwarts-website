@@ -51,12 +51,12 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto space-y-6 lg:space-y-8">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Os Nossos Serviços
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
-              Cuidados <span className="text-primary">Personalizados</span> para
+              Cuidados <span className="text-[#1F3B75]">Personalizados</span> para
               Cada Patudo
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-12 lg:py-20 bg-background">
+      <section className="py-12 lg:py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Petsitting */}
@@ -82,12 +82,12 @@ export default function ServicesPage() {
               </div>
               <CardHeader className="pb-4 lg:pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Home className="w-6 h-6 lg:w-8 lg:h-8 text-primary" />
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#FDCF4D]/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-[#FDCF4D]/20 transition-colors">
+                    <Home className="w-6 h-6 lg:w-8 lg:h-8 text-[#FDCF4D]" />
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-primary border-primary/30 bg-primary/5"
+                    className="text-[#FDCF4D] border-[#FDCF4D] bg-[#FDCF4D]/10"
                   >
                     Mais Popular
                   </Badge>
@@ -179,8 +179,8 @@ export default function ServicesPage() {
               </div>
               <CardHeader className="pb-4 lg:pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-accent/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <MapPin className="w-6 h-6 lg:w-8 lg:h-8 text-accent" />
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#8B5CF6]/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-[#8B5CF6]/20 transition-colors">
+                    <MapPin className="w-6 h-6 lg:w-8 lg:h-8 text-[#8B5CF6]" />
                   </div>
                 </div>
                 <CardTitle className="text-xl lg:text-2xl font-bold">
@@ -204,31 +204,31 @@ export default function ServicesPage() {
                     </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Passeio de 45-60 minutos
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Socialização com outros cães
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Exercício físico adequado
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Fotos durante o passeio
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Limpeza das patas
                         </span>
@@ -241,7 +241,7 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-accent">
+                    <p className="text-xl lg:text-2xl font-bold text-[#8B5CF6]">
                       12€
                     </p>
                     <p className="text-xs lg:text-sm text-muted-foreground">
@@ -250,7 +250,7 @@ export default function ServicesPage() {
                   </div>
                   <Button
                     variant="outline"
-                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent w-full sm:w-auto"
+                    className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white bg-transparent w-full sm:w-auto"
                     asChild
                   >
                     <Link href="/contactos">Contactar-nos</Link>
@@ -270,8 +270,8 @@ export default function ServicesPage() {
               </div>
               <CardHeader className="pb-4 lg:pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-secondary/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                    <Clock className="w-6 h-6 lg:w-8 lg:h-8 text-secondary" />
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#10B981]/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-[#10B981]/20 transition-colors">
+                    <Clock className="w-6 h-6 lg:w-8 lg:h-8 text-[#10B981]" />
                   </div>
                 </div>
                 <CardTitle className="text-xl lg:text-2xl font-bold">
@@ -295,31 +295,31 @@ export default function ServicesPage() {
                     </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#10B981] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Cuidados das 8h às 18h
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#10B981] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Refeições e snacks
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#10B981] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Atividades e brincadeiras
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#10B981] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Socialização supervisionada
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-secondary flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#10B981] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Relatório diário completo
                         </span>
@@ -332,7 +332,7 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-secondary">
+                    <p className="text-xl lg:text-2xl font-bold text-[#10B981]">
                       25€
                     </p>
                     <p className="text-xs lg:text-sm text-muted-foreground">
@@ -341,7 +341,7 @@ export default function ServicesPage() {
                   </div>
                   <Button
                     variant="outline"
-                    className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent w-full sm:w-auto"
+                    className="border-[#10B981] text-[#10B981] hover:bg-[#10B981] hover:text-white bg-transparent w-full sm:w-auto"
                     asChild
                   >
                     <Link href="/contactos">Contactar-nos</Link>
@@ -351,22 +351,22 @@ export default function ServicesPage() {
             </Card>
 
             {/* Estadia Familiar */}
-            <Card className="group hover:shadow-xl transition-all duration-300 border-border hover:border-chart-4/30">
-              <div className="aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-chart-4/20 to-primary/20">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-border hover:border-[#F59E0B]/30 relative overflow-hidden">
+              <div className="aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-[#F59E0B]/20 to-[#FDCF4D]/20 relative z-10">
                 <img
                   src="/founder-with-four-dogs-in-cozy-living-room-portra.jpg"
                   alt="Estadia Familiar - ambiente familiar acolhedor"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <CardHeader className="pb-4 lg:pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-chart-4/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-chart-4/20 transition-colors">
-                    <Heart className="w-6 h-6 lg:w-8 lg:h-8 text-chart-4" />
+                  <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#F59E0B]/10 rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:bg-[#F59E0B]/20 transition-colors">
+                    <Heart className="w-6 h-6 lg:w-8 lg:h-8 text-[#F59E0B]" />
                   </div>
                   <Badge
                     variant="outline"
-                    className="text-chart-4 border-chart-4/30 bg-chart-4/5"
+                    className="text-[#F59E0B] border-[#F59E0B] bg-[#F59E0B]/10"
                   >
                     Premium
                   </Badge>
@@ -392,31 +392,31 @@ export default function ServicesPage() {
                     </h4>
                     <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#F59E0B] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Cuidados 24h por dia
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#F59E0B] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Todas as refeições incluídas
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#F59E0B] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Passeios diários
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#F59E0B] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Updates diários com fotos
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-chart-4 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#F59E0B] flex-shrink-0" />
                         <span className="text-xs lg:text-sm text-muted-foreground">
                           Ambiente familiar acolhedor
                         </span>
@@ -429,7 +429,7 @@ export default function ServicesPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <p className="text-xl lg:text-2xl font-bold text-chart-4">
+                    <p className="text-xl lg:text-2xl font-bold text-[#F59E0B]">
                       30€
                     </p>
                     <p className="text-xs lg:text-sm text-muted-foreground">
@@ -438,7 +438,7 @@ export default function ServicesPage() {
                   </div>
                   <Button
                     variant="outline"
-                    className="border-chart-4 text-chart-4 hover:bg-chart-4 hover:text-white bg-transparent w-full sm:w-auto"
+                    className="border-[#F59E0B] text-[#F59E0B] hover:bg-[#F59E0B] hover:text-white bg-transparent w-full sm:w-auto"
                     asChild
                   >
                     <Link href="/contactos">Contactar-nos</Link>
@@ -451,12 +451,12 @@ export default function ServicesPage() {
       </section>
 
       {/* Additional Services */}
-      <section className="py-12 lg:py-20 bg-card">
+      <section className="py-12 lg:py-20 bg-[#8B5CF6]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
             >
               Serviços Adicionais
             </Badge>
@@ -468,8 +468,8 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
               <CardHeader>
-                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Camera className="w-6 h-6 lg:w-8 lg:h-8 text-primary" />
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#8B5CF6]/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Camera className="w-6 h-6 lg:w-8 lg:h-8 text-[#8B5CF6]" />
                 </div>
                 <CardTitle className="text-lg lg:text-xl">
                   Relatórios Fotográficos
@@ -485,7 +485,7 @@ export default function ServicesPage() {
                 </p>
                 <Badge
                   variant="outline"
-                  className="text-primary border-primary/30"
+                  className="text-[#8B5CF6] border-[#8B5CF6] bg-[#8B5CF6]/10"
                 >
                   Incluído
                 </Badge>
@@ -494,8 +494,8 @@ export default function ServicesPage() {
 
             <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
               <CardHeader>
-                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-accent/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-6 h-6 lg:w-8 lg:h-8 text-accent" />
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#10B981]/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <MessageCircle className="w-6 h-6 lg:w-8 lg:h-8 text-[#10B981]" />
                 </div>
                 <CardTitle className="text-lg lg:text-xl">
                   Comunicação 24/7
@@ -511,7 +511,7 @@ export default function ServicesPage() {
                 </p>
                 <Badge
                   variant="outline"
-                  className="text-accent border-accent/30"
+                  className="text-[#10B981] border-[#10B981] bg-[#10B981]/10"
                 >
                   Incluído
                 </Badge>
@@ -520,8 +520,8 @@ export default function ServicesPage() {
 
             <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
               <CardHeader>
-                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-secondary/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 lg:w-8 lg:h-8 text-secondary" />
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-[#F59E0B]/10 rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 lg:w-8 lg:h-8 text-[#F59E0B]" />
                 </div>
                 <CardTitle className="text-lg lg:text-xl">
                   Seguro de Responsabilidade
@@ -537,7 +537,7 @@ export default function ServicesPage() {
                 </p>
                 <Badge
                   variant="outline"
-                  className="text-secondary border-secondary/30"
+                  className="text-[#F59E0B] border-[#F59E0B] bg-[#F59E0B]/10"
                 >
                   Incluído
                 </Badge>
@@ -548,12 +548,12 @@ export default function ServicesPage() {
       </section>
 
       {/* Pricing Plans */}
-      <section className="py-12 lg:py-20 bg-background">
+      <section className="py-12 lg:py-20 bg-[#10B981]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#10B981] text-white border-[#10B981]"
             >
               Planos e Descontos
             </Badge>
@@ -677,7 +677,7 @@ export default function ServicesPage() {
                   Para cuidados diários
                 </CardDescription>
                 <div className="mt-4">
-                  <span className="text-2xl lg:text-3xl font-bold text-accent">
+                  <span className="text-2xl lg:text-3xl font-bold text-[#8B5CF6]">
                     -20%
                   </span>
                   <p className="text-xs lg:text-sm text-muted-foreground">
@@ -688,23 +688,23 @@ export default function ServicesPage() {
               <CardContent className="space-y-4">
                 <ul className="space-y-2">
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                     <span className="text-xs lg:text-sm">20% desconto</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                     <span className="text-xs lg:text-sm">
                       Cuidador dedicado
                     </span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                     <span className="text-xs lg:text-sm">
                       Serviços personalizados
                     </span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-[#8B5CF6] flex-shrink-0" />
                     <span className="text-xs lg:text-sm">
                       Suporte 24/7 prioritário
                     </span>
@@ -712,7 +712,7 @@ export default function ServicesPage() {
                 </ul>
                 <Button
                   variant="outline"
-                  className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground bg-transparent"
+                  className="w-full border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white bg-transparent"
                   asChild
                 >
                   <Link href="/contactos">Escolher Plano</Link>
@@ -724,20 +724,20 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 lg:py-20 bg-secondary text-secondary-foreground">
+      <section className="py-12 lg:py-20 bg-[#1F3B75] text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-6 lg:space-y-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
               Pronto para Começar?
             </h2>
-            <p className="text-lg lg:text-xl text-secondary-foreground/80 text-pretty">
+            <p className="text-lg lg:text-xl text-white/80 text-pretty">
               Entre em contacto connosco para discutir as necessidades do seu
               patudo e encontrar o serviço perfeito.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
                 asChild
               >
                 <Link href="/contactos">
@@ -748,7 +748,7 @@ export default function ServicesPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
                 asChild
               >
                 <Link href="/sobre">

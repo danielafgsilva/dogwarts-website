@@ -49,13 +49,13 @@ export default function TestimonialsPage() {
           <div className="max-w-4xl mx-auto space-y-8">
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Testemunhos dos Nossos Clientes
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance leading-tight">
-              Histórias de <span className="text-primary">Amor</span> e{" "}
-              <span className="text-accent">Confiança</span>
+              Histórias de <span className="text-[#FDCF4D]">Amor</span> e{" "}
+              <span className="text-[#1F3B75]">Confiança</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
               Descubra o que os nossos clientes e os seus patudos pensam sobre
@@ -63,20 +63,20 @@ export default function TestimonialsPage() {
             </p>
             <div className="flex items-center justify-center space-x-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary">100+</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-3xl font-bold text-[#FDCF4D]">100+</div>
+                <div className="text-sm text-[#1F3B75]/70">
                   Cães Felizes
                 </div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">5.0</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-3xl font-bold text-[#8B5CF6]">5.0</div>
+                <div className="text-sm text-[#1F3B75]/70">
                   Avaliação Média
                 </div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-secondary">2+</div>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-3xl font-bold text-[#10B981]">2+</div>
+                <div className="text-sm text-[#1F3B75]/70">
                   Anos de Experiência
                 </div>
               </div>
@@ -86,12 +86,12 @@ export default function TestimonialsPage() {
       </section>
 
       {/* Featured Testimonial */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="border-[#FDCF4D]/20 bg-gradient-to-br from-[#FDCF4D]/5 to-[#8B5CF6]/5">
               <CardContent className="p-8 md:p-12 text-center">
-                <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
+                <Quote className="w-12 h-12 text-[#FDCF4D] mx-auto mb-6" />
                 <blockquote className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
                   "A Dogwarts transformou completamente a nossa vida! O Max fica
                   sempre feliz quando vai para lá e eu trabalho tranquila
@@ -104,7 +104,7 @@ export default function TestimonialsPage() {
                       src="/placeholder-user.jpg"
                       alt="Maria Costa"
                     />
-                    <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">
+                    <AvatarFallback className="bg-[#FDCF4D]/20 text-[#1F3B75] text-lg font-semibold">
                       MC
                     </AvatarFallback>
                   </Avatar>
@@ -117,7 +117,7 @@ export default function TestimonialsPage() {
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-4 h-4 text-primary fill-current"
+                          className="w-4 h-4 text-[#FDCF4D] fill-current"
                         />
                       ))}
                       <span className="ml-2 text-sm text-muted-foreground">
@@ -133,7 +133,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="py-16 bg-card">
+      <section className="py-16 bg-[#8B5CF6]/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -212,7 +212,7 @@ export default function TestimonialsPage() {
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-4 h-4 text-primary fill-current"
+                          className="w-4 h-4 text-[#FDCF4D] fill-current"
                         />
                       ))}
                     </div>
@@ -226,7 +226,7 @@ export default function TestimonialsPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10">
-                        <AvatarFallback className="bg-primary/20 text-primary font-semibold">
+                        <AvatarFallback className="bg-[#FDCF4D]/20 text-[#FDCF4D] font-semibold">
                           {testimonial.avatar}
                         </AvatarFallback>
                       </Avatar>
@@ -249,20 +249,20 @@ export default function TestimonialsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-secondary text-secondary-foreground">
+      <section className="py-16 bg-[#1F3B75] text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-6">
             <h2 className="text-3xl lg:text-4xl font-bold text-balance">
               Pronto para Fazer Parte da Nossa Família?
             </h2>
-            <p className="text-lg text-secondary-foreground/80 text-pretty">
+            <p className="text-lg text-white/80 text-pretty">
               Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado
               que ele merece.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Contactar Agora
@@ -270,7 +270,7 @@ export default function TestimonialsPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Ver Serviços
@@ -290,7 +290,7 @@ export default function TestimonialsPage() {
                 alt="Dogwarts Logo"
                 className="w-10 h-10 object-contain"
               />
-              <span className="text-xl font-bold">Dogwarts</span>
+              <span className="text-xl font-bold text-black">Dogwarts</span>
             </div>
 
             <div>

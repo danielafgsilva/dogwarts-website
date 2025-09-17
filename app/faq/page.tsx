@@ -24,62 +24,12 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 export default function FAQPage() {
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/dogwarts-logo-simple.png"
-                alt="Dogwarts Logo"
-                className="w-12 h-12 object-contain"
-              />
-              <span className="text-2xl font-serif font-bold text-foreground">
-                Dogwarts
-              </span>
-            </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <Link
-                href="/"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Início
-              </Link>
-              <Link
-                href="/sobre"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Sobre Nós
-              </Link>
-              <Link
-                href="/servicos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Serviços
-              </Link>
-              <Link
-                href="/testemunhos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Testemunhos
-              </Link>
-              <Link
-                href="/contactos"
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Contactos
-              </Link>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Agendar Agora
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar currentPage="/faq" />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-card to-background">
@@ -87,13 +37,13 @@ export default function FAQPage() {
           <div className="text-center space-y-6 max-w-3xl mx-auto">
             <Badge
               variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20"
+              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Perguntas Frequentes
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance">
               Tudo o Que Precisa de Saber Sobre a{" "}
-              <span className="text-primary">Dogwarts</span>
+              <span className="text-[#1F3B75]">Dogwarts</span>
             </h1>
             <p className="text-xl text-muted-foreground text-pretty">
               Encontre respostas às perguntas mais comuns sobre os nossos
@@ -104,7 +54,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
@@ -317,10 +267,10 @@ export default function FAQPage() {
             </div>
 
             <div className="space-y-6">
-              <Card className="border-primary/20 bg-primary/5">
+              <Card className="border-[#FDCF4D]/20 bg-[#FDCF4D]/5">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MessageCircle className="w-5 h-5 text-primary" />
+                    <MessageCircle className="w-5 h-5 text-[#FDCF4D]" />
                     Ainda tem dúvidas?
                   </CardTitle>
                   <CardDescription>
@@ -328,7 +278,7 @@ export default function FAQPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button className="w-full bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
                     <Phone className="w-4 h-4 mr-2" />
                     Ligar Agora
                   </Button>
@@ -342,7 +292,7 @@ export default function FAQPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-accent" />
+                    <Clock className="w-5 h-5 text-[#8B5CF6]" />
                     Horários de Atendimento
                   </CardTitle>
                 </CardHeader>
@@ -365,25 +315,25 @@ export default function FAQPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-secondary" />
+                    <Shield className="w-5 h-5 text-[#10B981]" />
                     Garantias
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm">
                   <div className="flex items-start gap-2">
-                    <Star className="w-4 h-4 text-primary mt-0.5" />
+                    <Star className="w-4 h-4 text-[#FDCF4D] mt-0.5" />
                     <span>Cuidadores experientes e treinados</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Star className="w-4 h-4 text-primary mt-0.5" />
+                    <Star className="w-4 h-4 text-[#FDCF4D] mt-0.5" />
                     <span>Seguro de responsabilidade civil</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Star className="w-4 h-4 text-primary mt-0.5" />
+                    <Star className="w-4 h-4 text-[#FDCF4D] mt-0.5" />
                     <span>Updates regulares com fotos</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Star className="w-4 h-4 text-primary mt-0.5" />
+                    <Star className="w-4 h-4 text-[#FDCF4D] mt-0.5" />
                     <span>Suporte de emergência 24h</span>
                   </div>
                 </CardContent>
@@ -394,20 +344,20 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary text-secondary-foreground">
+      <section className="py-20 bg-[#1F3B75] text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-5xl font-serif font-bold text-balance">
               Pronto para Conhecer os Nossos Serviços?
             </h2>
-            <p className="text-xl text-secondary-foreground/80 text-pretty">
+            <p className="text-xl text-white/80 text-pretty">
               Agende uma consulta gratuita e descubra como podemos cuidar do seu
               patudo com todo o amor e dedicação.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
               >
                 <Heart className="w-5 h-5 mr-2" />
                 Agendar Consulta
@@ -415,7 +365,7 @@ export default function FAQPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
               >
                 <Users className="w-5 h-5 mr-2" />
                 Ver Testemunhos
@@ -426,26 +376,21 @@ export default function FAQPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-border py-12">
+      <footer className="bg-background border-t border-border py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <img
-                  src="/dogwarts-logo-simple.png"
-                  alt="Dogwarts Logo"
-                  className="w-10 h-10 object-contain"
-                />
-                <span className="text-xl font-serif font-bold">Dogwarts</span>
-              </div>
-              <p className="text-muted-foreground text-pretty">
-                Cães felizes & donos tranquilos desde 2023.
-              </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            <div className="space-y-4 sm:col-span-2 md:col-span-1">
+              <img
+                src="/dogwarts-logo-transparent.png"
+                alt="Dogwarts Logo"
+                className="w-10 h-10 object-contain"
+              />
+              <span className="text-xl font-bold text-black">Dogwarts</span>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Serviços</h3>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
                   <Link
                     href="/servicos"
@@ -483,7 +428,7 @@ export default function FAQPage() {
 
             <div>
               <h3 className="font-semibold mb-4">Empresa</h3>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>
                   <Link
                     href="/sobre"
@@ -521,7 +466,7 @@ export default function FAQPage() {
 
             <div>
               <h3 className="font-semibold mb-4">Contacto</h3>
-              <ul className="space-y-2 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground text-sm">
                 <li>+351 XXX XXX XXX</li>
                 <li>info@dogwarts.pt</li>
                 <li>Lisboa, Portugal</li>
@@ -529,8 +474,15 @@ export default function FAQPage() {
             </div>
           </div>
 
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
+          <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 text-center text-muted-foreground">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+              <p className="text-sm">
+                &copy; 2024 Dogwarts. Todos os direitos reservados.
+              </p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Desenvolvido por Daniela Silva & Tiago Santos
+              </p>
+            </div>
           </div>
         </div>
       </footer>

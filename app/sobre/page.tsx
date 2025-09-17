@@ -52,13 +52,13 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <Badge
                   variant="secondary"
-                  className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+                  className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
                 >
                   A Nossa História
                 </Badge>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
-                  Uma História de <span className="text-primary">Amor</span> e{" "}
-                  <span className="text-accent">Confiança</span>
+                  Uma História de <span className="text-[#FDCF4D]">Amor</span> e{" "}
+                  <span className="text-[#1F3B75]">Confiança</span>
                 </h1>
                 <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed">
                   Nascemos do coração de uma tutora que compreendeu, na prática,
@@ -124,13 +124,13 @@ export default function AboutPage() {
       </section>
 
       {/* Founder Story */}
-      <section className="py-12 lg:py-20 bg-background">
+      <section className="py-12 lg:py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center space-y-4 mb-12 lg:mb-16">
               <Badge
                 variant="secondary"
-                className="bg-accent/20 text-gray-800 border-accent/30 dark:bg-accent/30 dark:text-gray-100"
+                className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
               >
                 Setembro 2023
               </Badge>
@@ -237,12 +237,12 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-12 lg:py-20 bg-card">
+      <section className="py-12 lg:py-20 bg-[#8B5CF6]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-[#10B981] text-white border-[#10B981]"
             >
               Os Nossos Valores
             </Badge>
@@ -257,12 +257,12 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Confiança */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20 text-center">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-primary/20 transition-colors">
-                  <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-primary" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#FDCF4D]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#FDCF4D]/20 transition-colors">
+                  <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-[#FDCF4D]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-primary">
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#FDCF4D]">
                   Confiança
                 </CardTitle>
                 <CardDescription className="text-sm lg:text-base">
@@ -293,12 +293,12 @@ export default function AboutPage() {
             </Card>
 
             {/* Amor */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-accent/20 text-center">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#8B5CF6]/20 text-center">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-accent/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-accent/20 transition-colors">
-                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-accent" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#8B5CF6]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#8B5CF6]/20 transition-colors">
+                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-[#8B5CF6]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-accent">
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#8B5CF6]">
                   Amor
                 </CardTitle>
                 <CardDescription className="text-sm lg:text-base">
@@ -329,12 +329,12 @@ export default function AboutPage() {
             </Card>
 
             {/* Familiaridade */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-secondary/20 text-center md:col-span-2 lg:col-span-1">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#1F3B75]/20 text-center md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-secondary/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-secondary/20 transition-colors">
-                  <Home className="w-8 h-8 lg:w-10 lg:h-10 text-secondary" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#1F3B75]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#1F3B75]/20 transition-colors">
+                  <Home className="w-8 h-8 lg:w-10 lg:h-10 text-[#1F3B75]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-secondary">
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#1F3B75]">
                   Familiaridade
                 </CardTitle>
                 <CardDescription className="text-sm lg:text-base">
@@ -368,12 +368,12 @@ export default function AboutPage() {
       </section>
 
       {/* Team Photos Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-[#10B981]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-[#F59E0B] text-white border-[#F59E0B]"
             >
               A Nossa Família
             </Badge>
@@ -422,7 +422,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
                 asChild
               >
                 <Link href="/contactos">
@@ -433,7 +433,7 @@ export default function AboutPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-[#1F3B75] text-[#1F3B75] hover:bg-[#1F3B75] hover:text-white bg-transparent"
                 asChild
               >
                 <Link href="/servicos">
