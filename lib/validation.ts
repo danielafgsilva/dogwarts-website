@@ -24,8 +24,8 @@ export function validatePhone(phone: string): ValidationResult {
     return { isValid: false, error: 'Telefone é obrigatório' }
   }
   
-  const phoneRegex = /^(\+351|351)?\s?[0-9]{9}$/
   const cleanedPhone = phone.replace(/\s/g, '')
+  const phoneRegex = /^(\+351|351)?[0-9]{9}$/
   
   if (!phoneRegex.test(cleanedPhone)) {
     return { isValid: false, error: 'Telefone inválido. Use o formato: +351 912 345 678' }

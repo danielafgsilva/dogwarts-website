@@ -129,7 +129,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                   id="email"
                   type="email"
                   placeholder="seu@email.com"
-                  value={values.email || ''}
+                  value={values.email ?? ''}
                   onChange={handleChange('email')}
                   onBlur={handleBlur('email')}
                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
@@ -155,7 +155,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                 id="phone"
                 type="tel"
                 placeholder="+351 912 345 678"
-                value={values.phone || ''}
+                value={values.phone ?? ''}
                 onChange={handleChange('phone')}
                 onBlur={handleBlur('phone')}
                 className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
@@ -177,7 +177,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
             <Textarea
               id="message"
               placeholder="Conte-nos como podemos ajudar..."
-              value={values.message || ''}
+              value={values.message ?? ''}
               onChange={handleChange('message')}
               onBlur={handleBlur('message')}
               className={`min-h-[120px] ${errors.message ? 'border-red-500' : ''}`}
