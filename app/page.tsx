@@ -21,7 +21,7 @@ export default function HomePage() {
       <Navbar currentPage="/" />
 
       {/* Hero Section */}
-      <section className="relative h-screen bg-gradient-to-br from-card to-background flex items-center overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-br from-card to-background flex items-center overflow-hidden">
         <div className="container mx-auto px-4 w-full h-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full h-full">
             <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
