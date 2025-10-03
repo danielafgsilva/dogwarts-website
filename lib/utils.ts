@@ -5,66 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Phone number formatting
-export function formatPhoneNumber(phone: string, countryCode = '+351'): string {
-  // Remove all non-digit characters except + at the start
-  const cleaned = phone.replace(/[^\d+]/g, '')
-
-  // Handle different phone number lengths
-  if (cleaned.startsWith('+')) {
-    // International format: +XX XXX XXX XXX
-    const countryCodeMatch = cleaned.match(/^\+(\d{1,3})/)
-    if (countryCodeMatch) {
-      const code = countryCodeMatch[1]
-      const number = cleaned.slice(countryCodeMatch[0].length)
-      if (number.length >= 6) {
-        return `+${code} ${number.slice(0, 3)} ${number.slice(3, 6)}${number.length > 6 ? ' ' + number.slice(6) : ''}`
-      }
-    }
-    return cleaned
-  } else if (cleaned.length === 9 && countryCode === '+351') {
-    // Portuguese format: XXX XXX XXX
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
-    if (match) {
-      return `${countryCode} ${match[1]} ${match[2]} ${match[3]}`
-    }
-  } else if (cleaned.length >= 7) {
-    // Generic format: XXX XXX XXXX
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d+)$/)
-    if (match) {
-      return `${countryCode} ${match[1]} ${match[2]} ${match[3]}`
-    }
-  }
-  
-  return phone
-}
-
-// Currency formatting
-export function formatCurrency(amount: number, currency = 'EUR'): string {
-  return new Intl.NumberFormat('pt-PT', {
-    style: 'currency',
-    currency,
-  }).format(amount)
-}
-
-// Date formatting
-export function formatDate(date: Date | string, locale = 'pt-PT'): string {
-  const dateObj = typeof date === 'string' ? new Date(date) : date
-  return new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(dateObj)
-}
-
-// Time formatting
-export function formatTime(date: Date | string, locale = 'pt-PT'): string {
-  const dateObj = typeof date === 'string' ? new Date(date) : date
-  return new Intl.DateTimeFormat(locale, {
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(dateObj)
-}
 
 // Generate slug from text
 export function generateSlug(text: string): string {
@@ -123,20 +63,6 @@ export function isInViewport(element: Element): boolean {
   );
 }
 
-// Get random item from array
-export function getRandomItem<T>(array: T[]): T {
-  return array[Math.floor(Math.random() * array.length)];
-}
-
-// Shuffle array
-export function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
 
 // Validate email
 export function isValidEmail(email: string): boolean {
@@ -174,14 +100,6 @@ export function getInitials(name: string): string {
     .slice(0, 2);
 }
 
-// Format file size
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes'
-  const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
 
 // Generate random ID
 export function generateId(length = 8): string {

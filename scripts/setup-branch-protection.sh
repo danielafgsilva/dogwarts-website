@@ -27,19 +27,34 @@ echo "✅ Repository found: $REPO"
 # Set up branch protection rules
 echo "🔧 Configuring branch protection rules..."
 
-# Enable branch protection with required status checks
+# Create the protection rule JSON
+cat > /tmp/branch-protection.json << EOF
+{
+  "required_status_checks": {
+    "strict": true,
+    "contexts": ["ci-cd", "test"]
+  },
+  "enforce_admins": true,
+  "required_pull_request_reviews": {
+    "required_approving_review_count": 1,
+    "dismiss_stale_reviews": true,
+    "require_code_owner_reviews": false,
+    "require_last_push_approval": true
+  },
+  "restrictions": null,
+  "allow_force_pushes": false,
+  "allow_deletions": false,
+  "block_creations": false,
+  "required_conversation_resolution": true,
+  "lock_branch": false,
+  "allow_fork_syncing": true
+}
+EOF
+
+# Apply the protection rules
 gh api repos/$REPO/branches/$BRANCH/protection \
   --method PUT \
-  --field required_status_checks='{"strict":true,"contexts":["ci/cd","test"]}' \
-  --field enforce_admins=true \
-  --field required_pull_request_reviews='{"required_approving_review_count":1,"dismiss_stale_reviews":true,"require_code_owner_reviews":false,"require_last_push_approval":true}' \
-  --field restrictions='{"users":[],"teams":[],"apps":[]}' \
-  --field allow_force_pushes=false \
-  --field allow_deletions=false \
-  --field block_creations=false \
-  --field required_conversation_resolution=true \
-  --field lock_branch=false \
-  --field allow_fork_syncing=true
+  --input /tmp/branch-protection.json
 
 echo "✅ Branch protection rules configured successfully!"
 

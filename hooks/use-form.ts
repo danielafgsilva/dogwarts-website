@@ -105,11 +105,11 @@ export function useForm(options: UseFormOptions = {}): UseFormReturn {
     setIsSubmitting(false)
   }, [initialValues])
 
-  const isValid = Object.keys(errors).length === 0 &&
-    !!values.name?.trim() &&
-    !!values.email?.trim() &&
-    !!values.phone?.trim() &&
-    !!values.message?.trim()
+  const isValid = Object.keys(errors).length === 0 && 
+    Boolean(values.name && 
+    values.email && 
+    values.phone && 
+    values.message)
 
   return {
     values,

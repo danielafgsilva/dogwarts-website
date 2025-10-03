@@ -42,9 +42,10 @@ export default function Navbar({ currentPage }: NavbarProps) {
               <Image 
                 src="/dogwarts-logo-transparent.png" 
                 alt="Logo da Dogwarts" 
-                fill 
+                fill={true}
                 className="object-contain"
-                priority
+                priority={true}
+                sizes="(max-width: 768px) 40px, (max-width: 1200px) 48px, 48px"
               />
             </div>
             <span className="text-xl md:text-2xl font-inter font-bold text-black">

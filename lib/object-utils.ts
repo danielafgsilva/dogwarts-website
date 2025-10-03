@@ -9,7 +9,7 @@ export function pick<T extends Record<string, any>, K extends keyof T>(obj: T, k
   return result
 }
 
-export function omit<T, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
+export function omit<T extends Record<string, any>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj }
   keys.forEach(key => {
     delete result[key]
@@ -26,9 +26,7 @@ export function values<T extends Record<string, any>>(obj: T): T[keyof T][] {
 }
 
 export function entries<T extends Record<string, any>>(obj: T): [keyof T, T[keyof T]][] {
-  return Object.entries(obj).map(
-    ([key, value]) => [key as keyof T, value as T[keyof T]]
-  )
+  return Object.entries(obj) as [keyof T, T[keyof T]][]
 }
 
 export function isEmpty(obj: any): boolean {
@@ -74,17 +72,17 @@ export function deepClone<T>(obj: T): T {
 }
 
 export function merge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = { ...target } as any
+  const result = { ...target } as T
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
-      const sourceValue = source[key]
-      const targetValue = result[key]
+      const sourceValue = source[key as keyof T]
+      const targetValue = result[key as keyof T]
       
       if (isObject(sourceValue) && isObject(targetValue)) {
-        result[key] = merge(targetValue, sourceValue)
+        result[key as keyof T] = merge(targetValue as any, sourceValue as any) as T[keyof T]
       } else {
-        result[key] = sourceValue
+        result[key as keyof T] = sourceValue as T[keyof T]
       }
     })
   })
@@ -93,17 +91,17 @@ export function merge<T extends Record<string, any>>(target: T, ...sources: Part
 }
 
 export function deepMerge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = deepClone(target) as any
+  const result = deepClone(target) as T
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
-      const sourceValue = source[key]
-      const targetValue = result[key]
+      const sourceValue = source[key as keyof T]
+      const targetValue = result[key as keyof T]
       
       if (isObject(sourceValue) && isObject(targetValue)) {
-        result[key] = deepMerge(targetValue, sourceValue)
+        result[key as keyof T] = deepMerge(targetValue as any, sourceValue as any) as T[keyof T]
       } else {
-        result[key] = sourceValue
+        result[key as keyof T] = sourceValue as T[keyof T]
       }
     })
   })

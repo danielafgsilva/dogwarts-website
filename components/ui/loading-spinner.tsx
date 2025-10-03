@@ -21,9 +21,7 @@ export function LoadingSpinner({ size = 'md', className }: LoadingSpinnerProps) 
       )}
       role="status"
       aria-label="A carregar..."
-    >
-      <span className="sr-only">A carregar...</span>
-    </div>
+    />
   )
 }
 
@@ -62,7 +60,6 @@ export function LoadingDots({ size = 'md', className }: LoadingDotsProps) {
         )}
         style={{ animationDelay: '300ms' }}
       />
-      <span className="sr-only">A carregar...</span>
     </div>
   )
 }
@@ -82,7 +79,6 @@ export function LoadingSkeleton({ className, lines = 1 }: LoadingSkeletonProps) 
           style={{ width: `${100 - i * 10}%` }}
         />
       ))}
-      <span className="sr-only">A carregar...</span>
     </div>
   )
 }

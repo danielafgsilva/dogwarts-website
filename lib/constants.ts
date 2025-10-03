@@ -1,4 +1,48 @@
-// Service data
+// Application constants
+export const APP_CONFIG = {
+  name: 'Dogwarts',
+  tagline: 'Cães Felizes & Donos Tranquilos',
+  description: 'Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar.',
+  url: 'https://dogwarts.pt',
+  email: 'info@dogwarts.pt',
+  phone: '+351 XXX XXX XXX',
+  location: 'Lisboa, Portugal',
+  founded: 'Setembro 2023',
+  rating: 5.0,
+  happyDogs: 100,
+} as const
+
+export const STATISTICS = {
+  happyDogs: {
+    value: '100+',
+    label: 'Cães Felizes',
+  },
+  yearsExperience: {
+    value: '5+',
+    label: 'Anos de Experiência',
+  },
+  satisfiedClients: {
+    value: '200+',
+    label: 'Clientes Satisfeitos',
+  },
+  satisfaction: {
+    value: '98%',
+    label: 'Satisfação dos Clientes',
+  },
+  servicesProvided: {
+    value: '1000+',
+    label: 'Serviços Prestados',
+  },
+} as const
+
+export const NAVIGATION_ITEMS = [
+  { href: '/', label: 'Início' },
+  { href: '/sobre', label: 'Sobre Nós', noWrap: true },
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/contactos', label: 'Contactos' },
+  { href: '/testemunhos', label: 'Testemunhos' },
+] as const
+
 export const SERVICES = [
   {
     icon: 'Home',

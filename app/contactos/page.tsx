@@ -490,12 +490,7 @@ export default function ContactPage() {
             <div className="col-span-2 md:col-span-1 space-y-4">
               <Link href="/" className="flex items-center space-x-3">
                 <div className="relative w-8 h-8">
-                  <Image
-                    src="/dogwarts-logo-transparent.png"
-                    alt="Dogwarts Logo"
-                    fill
-                    className="object-contain"
-                  />
+                  <Image src="/dogwarts-logo-transparent.png" alt="Dogwarts Logo" fill={true} className="object-contain" />
                 </div>
                 <span className="text-lg md:text-xl font-inter font-bold">
                   Dogwarts
