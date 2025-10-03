@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Star, Quote, Camera, Calendar, MapPin, Phone, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { STATISTICS, APP_CONFIG } from "@/lib/constants"
+import { STATISTICS } from "@/lib/constants"
 
 export default function TestimonialsPage() {
   return (

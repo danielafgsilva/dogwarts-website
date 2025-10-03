@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { APP_CONFIG, SERVICES, TESTIMONIALS, FOOTER_LINKS, ANIMATION_DELAYS } from "@/lib/constants"
+import { APP_CONFIG } from "@/lib/constants"
 import type { Service, Testimonial } from "@/lib/types"
 import { useLanguage } from "@/hooks/use-language"
 
