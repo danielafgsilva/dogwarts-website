@@ -6,12 +6,36 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Phone number formatting
-export function formatPhoneNumber(phone: string): string {
-  const cleaned = phone.replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
-  if (match) {
-    return `+351 ${match[1]} ${match[2]} ${match[3]}`
+export function formatPhoneNumber(phone: string, countryCode = '+351'): string {
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+
+  // Handle different phone number lengths
+  if (cleaned.startsWith('+')) {
+    // International format: +XX XXX XXX XXX
+    const countryCodeMatch = cleaned.match(/^\+(\d{1,3})/)
+    if (countryCodeMatch) {
+      const code = countryCodeMatch[1]
+      const number = cleaned.slice(countryCodeMatch[0].length)
+      if (number.length >= 6) {
+        return `+${code} ${number.slice(0, 3)} ${number.slice(3, 6)}${number.length > 6 ? ' ' + number.slice(6) : ''}`
+      }
+    }
+    return cleaned
+  } else if (cleaned.length === 9 && countryCode === '+351') {
+    // Portuguese format: XXX XXX XXX
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
+    if (match) {
+      return `${countryCode} ${match[1]} ${match[2]} ${match[3]}`
+    }
+  } else if (cleaned.length >= 7) {
+    // Generic format: XXX XXX XXXX
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d+)$/)
+    if (match) {
+      return `${countryCode} ${match[1]} ${match[2]} ${match[3]}`
+    }
   }
+  
   return phone
 }
 
@@ -121,9 +145,23 @@ export function isValidEmail(email: string): boolean {
 }
 
 // Validate phone number
-export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^(\+351|351)?\s?[0-9]{9}$/
-  return phoneRegex.test(phone.replace(/\s/g, ''))
+export function isValidPhone(phone: string, countryCode = 'PT'): boolean {
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+
+  // International format: +[country code][local number]
+  // - Country code: 1-3 digits after '+' (no leading zero)
+  // - Local number: 6-12 digits (varies by country, but 6+ is typical)
+  // - Leading zeros are allowed in the local number (intentional), but NOT in the country code
+  // Domestic format: 7-15 digits
+  const intlRegex = /^\+([1-9]\d{0,2})(\d{6,12})$/ // +[1-3 digits][6-12 digits], local number may start with zero, country code cannot
+  const domesticRegex = /^\d{7,15}$/
+
+  if (cleaned.startsWith('+')) {
+    return intlRegex.test(cleaned)
+  } else {
+    return domesticRegex.test(cleaned)
+  }
 }
 
 // Get initials from name
