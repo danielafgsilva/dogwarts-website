@@ -83,6 +83,15 @@ export interface FormData {
   email: string
   phone: string
   message: string
+  service?: string
+}
+
+export interface ContactFormData extends FormData {
+  name: string
+  email: string
+  phone: string
+  message: string
+  service?: string
 }
 
 export function validateForm(data: FormData): { isValid: boolean; errors: Record<string, string> } {
@@ -107,6 +116,8 @@ export function validateForm(data: FormData): { isValid: boolean; errors: Record
   if (!messageResult.isValid) {
     errors.message = messageResult.error!
   }
+  
+  // Service field is optional, so no validation needed
   
   return {
     isValid: Object.keys(errors).length === 0,

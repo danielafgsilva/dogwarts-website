@@ -7,10 +7,11 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useForm } from '@/hooks/use-form'
 import { useLanguage } from '@/hooks/use-language'
+import { type ContactFormData } from '@/lib/validation'
 import { Phone, Mail, User, MessageSquare } from 'lucide-react'
 
 interface ContactFormProps {
-  onSubmit?: (data: { name: string; email: string; phone: string; message: string }) => void | Promise<void>
+  onSubmit?: (data: ContactFormData) => void | Promise<void>
   className?: string
 }
 
@@ -33,6 +34,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       email: '',
       phone: '',
       message: '',
+      service: '',
     },
     onSubmit: async (data) => {
       try {
