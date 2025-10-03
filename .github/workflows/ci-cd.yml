@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  ci-cd:
+    name: CI/CD Pipeline
     runs-on: ubuntu-latest
     
     steps:
@@ -47,8 +48,36 @@ jobs:
         path: .next/
         retention-days: 1
 
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'pnpm'
+        
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Run tests
+      run: pnpm test
+      
+    - name: Run test coverage
+      run: pnpm test:coverage
+
   deploy:
-    needs: test
+    needs: [ci-cd, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     

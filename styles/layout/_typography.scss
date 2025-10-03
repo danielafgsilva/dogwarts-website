@@ -180,6 +180,7 @@
 
 // Text pretty
 .text-pretty {
+  overflow-wrap: break-word;
   text-wrap: wrap; // fallback for unsupported browsers
   @supports (text-wrap: pretty) {
     text-wrap: pretty;

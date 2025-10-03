@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
 :root {
     --background: 0 0% 100%;

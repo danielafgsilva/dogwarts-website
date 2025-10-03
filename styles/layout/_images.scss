@@ -271,11 +271,35 @@
   }
 
   &--masonry {
-    // Masonry layout is not natively supported in most browsers.
-    // Consider using a JavaScript masonry library for this modifier.
-    // Example: https://masonry.desandro.com/
+    // Masonry layout fallback using CSS columns for better browser compatibility
+    display: block;
+    column-count: 2;
+    column-gap: $spacing-4;
+    
+    @include respond-to(md) {
+      column-count: 3;
+    }
+    
+    @include respond-to(lg) {
+      column-count: 4;
+    }
+    
+    // Ensure child items break inside columns properly
+    > * {
+      break-inside: avoid;
+      margin-bottom: $spacing-4;
+    }
+    
+    // Use CSS Grid masonry where supported (experimental)
     @supports (grid-template-rows: masonry) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-template-rows: masonry;
+      gap: $spacing-4;
+      
+      > * {
+        margin-bottom: 0;
+      }
     }
   }
 

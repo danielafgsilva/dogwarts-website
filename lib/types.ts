@@ -1,245 +1,180 @@
-// ==========================================================================
-// TypeScript Types
-// ==========================================================================
-
-import React from "react";
-
-// Navigation
-export interface NavItem {
-  href: string;
-  label: string;
-  noWrap?: boolean;
-  external?: boolean;
-  icon?: string;
+// Base types
+export interface BaseEntity {
+  id: string
+  createdAt: Date
+  updatedAt: Date
 }
 
-// Brand
-export interface Brand {
-  name: string;
-  logo: string;
-  alt: string;
-  tagline: string;
-  description: string;
+// Navigation types
+export interface NavigationItem {
+  href: string
+  label: string
+  noWrap?: boolean
 }
 
-// Contact
-export interface Contact {
-  phone: string;
-  email: string;
-  address: string;
-  hours: string;
-}
-
-// Social Links
-export interface SocialLinks {
-  facebook?: string;
-  instagram?: string;
-  twitter?: string;
-  linkedin?: string;
-  youtube?: string;
-  tiktok?: string;
-}
-
-// Service
+// Service types
 export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-  price?: string;
-  duration?: string;
+  id: string
+  icon: string
+  title: string
+  description: string
+  detail: string
+  price: string
+  color: 'primary' | 'accent' | 'secondary' | 'chart-4'
 }
 
-// Testimonial
+// Testimonial types
 export interface Testimonial {
-  id: number;
-  name: string;
-  location: string;
-  rating: number;
-  text: string;
-  image: string;
-  date?: string;
+  id: string
+  text: string
+  author: string
+  role: string
+  initials: string
+  color: 'primary' | 'accent' | 'secondary'
+  stars?: number
 }
 
-// FAQ Item
-export interface FAQItem {
-  id: number;
-  question: string;
-  answer: string;
-  category?: string;
+// Footer link types
+export interface FooterLink {
+  href: string
+  label: string
 }
 
-// Language
-export interface Language {
-  code: string;
-  label: string;
-  flag: string;
+export interface FooterSection {
+  services: FooterLink[]
+  company: FooterLink[]
 }
 
-// Theme
-export type Theme = "light" | "dark" | "system";
-
-// Animation
-export interface AnimationConfig {
-  scrollThreshold: number;
-  staggerDelay: number;
-  duration: number;
+// Contact types
+export interface ContactInfo {
+  phone: string
+  email: string
+  location: string
 }
 
-// API Response
-export interface ApiResponse<T = any> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  message?: string;
-}
-
-// Form
-export interface ContactForm {
-  name: string;
-  email: string;
-  phone?: string;
-  subject: string;
-  message: string;
-  service?: string;
-}
-
-// Blog Post
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  image: string;
-  tags: string[];
-  slug: string;
-}
-
-// Gallery Item
-export interface GalleryItem {
-  id: string;
-  src: string;
-  alt: string;
-  title?: string;
-  description?: string;
-  category?: string;
-}
-
-// Pricing Plan
-export interface PricingPlan {
-  id: string;
-  name: string;
-  price: number;
-  period: string;
-  features: string[];
-  popular?: boolean;
-  buttonText: string;
-  buttonHref: string;
-}
-
-// Team Member
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  image: string;
-  social?: SocialLinks;
-}
-
-// Event
-export interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  image?: string;
-  price?: number;
-}
-
-// Utility Types
-export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
-export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;
-export type PartialExcept<T, K extends keyof T> = Partial<T> & Pick<T, K>;
-
-// Component Props
-export interface BaseComponentProps {
-  className?: string;
-  children?: React.ReactNode;
-}
-
-export interface ClickableProps extends BaseComponentProps {
-  onClick?: () => void;
-  disabled?: boolean;
-}
-
-export interface LinkProps extends BaseComponentProps {
-  href: string;
-  external?: boolean;
-  target?: string;
-  rel?: string;
-}
-
-// API Types
-export interface PaginationParams {
-  page?: number;
-  limit?: number;
-  sort?: string;
-  order?: "asc" | "desc";
-}
-
-export interface PaginatedResponse<T> extends ApiResponse<T[]> {
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    pages: number;
-  };
-}
-
-// Error Types
-export interface AppError {
-  code: string;
-  message: string;
-  details?: any;
-}
-
-// Localization
-export interface Locale {
-  code: string;
-  name: string;
-  flag: string;
-  dir?: "ltr" | "rtl";
-}
-
-// Configuration
+// App configuration types
 export interface AppConfig {
-  theme: Theme;
-  language: string;
-  animations: boolean;
-  notifications: boolean;
+  name: string
+  tagline: string
+  description: string
+  url: string
+  email: string
+  phone: string
+  location: string
+  founded: string
+  rating: number
+  happyDogs: number
 }
 
-// Analytics
-export interface AnalyticsEvent {
-  name: string;
-  category: string;
-  action: string;
-  label?: string;
-  value?: number;
+// Component props types
+export interface NavbarProps {
+  currentPage?: string
 }
 
-// SEO
-export interface SEOData {
-  title: string;
-  description: string;
-  keywords: string[];
-  image?: string;
-  url?: string;
-  type?: string;
+export interface ButtonProps {
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  size?: 'default' | 'sm' | 'lg' | 'icon'
+  className?: string
+  children: React.ReactNode
+  onClick?: () => void
+  disabled?: boolean
+  type?: 'button' | 'submit' | 'reset'
+  'aria-label'?: string
+}
+
+export interface CardProps {
+  className?: string
+  children: React.ReactNode
+  role?: string
+  'aria-labelledby'?: string
+}
+
+export interface SectionProps {
+  className?: string
+  children: React.ReactNode
+  'aria-labelledby'?: string
+  role?: string
+}
+
+// Animation types
+export interface AnimationConfig {
+  duration: number
+  delay: number
+  easing: string
+}
+
+// Responsive types
+export interface ResponsiveConfig {
+  mobile: string
+  tablet: string
+  desktop: string
+}
+
+// Form types
+export interface ContactFormData {
+  name: string
+  email: string
+  phone: string
+  service?: string
+  message: string
+}
+
+export interface FormField {
+  name: string
+  label: string
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select'
+  required: boolean
+  placeholder?: string
+  options?: { value: string; label: string }[]
+}
+
+// API types
+export interface ApiResponse<T = any> {
+  success: boolean
+  data?: T
+  error?: string
+  message?: string
+}
+
+// Theme types
+export type Theme = 'light' | 'dark' | 'system'
+
+// Breakpoint types
+export type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+
+// Color types
+export type ColorVariant = 'primary' | 'accent' | 'secondary' | 'chart-4'
+
+// Animation delay types
+export type AnimationDelay = '100' | '200' | '300' | '400' | '500'
+
+// Utility types
+export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
+export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>
+export type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+// Event types
+export interface CustomEvent<T = any> extends Event {
+  detail: T
+}
+
+// Hook return types
+export interface UseScrollAnimationReturn {
+  ref: React.RefObject<HTMLElement>
+  isVisible: boolean
+}
+
+export interface UseNavbarReturn {
+  isMenuOpen: boolean
+  setIsMenuOpen: (open: boolean) => void
+  toggleMenu: () => void
+  closeMenu: () => void
+}
+
+export interface UseThemeReturn {
+  theme: Theme
+  setTheme: (theme: Theme) => void
+  toggleTheme: () => void
 }

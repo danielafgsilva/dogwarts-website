@@ -13,11 +13,60 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dogwarts - Cães Felizes & Donos Tranquilos",
+  title: {
+    default: "Dogwarts - Cães Felizes & Donos Tranquilos",
+    template: "%s | Dogwarts",
+  },
   description:
-    "Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar.",
-  generator: "v0.app",
-};
+    "Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar em Lisboa, Portugal.",
+  keywords: [
+    "cuidados cães",
+    "petsitting",
+    "dogwalking",
+    "creche cães",
+    "estadia familiar",
+    "Lisboa",
+    "Portugal",
+  ],
+  authors: [{ name: "Dogwarts" }],
+  creator: "Dogwarts",
+  publisher: "Dogwarts",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://dogwarts.pt"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_PT",
+    url: "https://dogwarts.pt",
+    title: "Dogwarts - Cães Felizes & Donos Tranquilos",
+    description:
+      "Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar em Lisboa, Portugal.",
+    siteName: "Dogwarts",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dogwarts - Cães Felizes & Donos Tranquilos",
+    description:
+      "Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar em Lisboa, Portugal.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+}
 
 export default function RootLayout({
   children,

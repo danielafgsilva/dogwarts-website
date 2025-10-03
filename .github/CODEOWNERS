@@ -1,0 +1,26 @@
+# Global owners
+* @danielafgsilva
+
+# Core application files
+/app/ @danielafgsilva
+/components/ @danielafgsilva
+/hooks/ @danielafgsilva
+/lib/ @danielafgsilva
+
+# Configuration files
+package.json @danielafgsilva
+next.config.mjs @danielafgsilva
+tsconfig.json @danielafgsilva
+tailwind.config.ts @danielafgsilva
+
+# GitHub workflows
+/.github/workflows/ @danielafgsilva
+
+# Documentation
+README.md @danielafgsilva
+/docs/ @danielafgsilva
+
+# Tests
+/__tests__/ @danielafgsilva
+jest.config.js @danielafgsilva
+jest.setup.js @danielafgsilva
