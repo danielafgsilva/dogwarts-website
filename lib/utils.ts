@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 
@@ -20,69 +20,84 @@ export function generateSlug(text: string): string {
 
 // Truncate text
 export function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text
-  return text.slice(0, maxLength).trim() + '...'
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength).trim() + "...";
 }
 
 // Debounce function
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout
+  let timeout: NodeJS.Timeout;
   return (...args: Parameters<T>) => {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => func(...args), wait)
-  }
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
 }
 
 // Throttle function
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
-  limit: number
+  limit: number,
 ): (...args: Parameters<T>) => void {
-  let inThrottle: boolean
+  let inThrottle: boolean;
   return (...args: Parameters<T>) => {
     if (!inThrottle) {
-      func(...args)
-      inThrottle = true
-      setTimeout(() => (inThrottle = false), limit)
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
     }
-  }
+  };
 }
 
 // Check if element is in viewport
 export function isInViewport(element: Element): boolean {
-  const rect = element.getBoundingClientRect()
+  const rect = element.getBoundingClientRect();
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  )
+  );
 }
 
 
 // Validate email
 export function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 // Validate phone number
-export function isValidPhone(phone: string): boolean {
-  const phoneRegex = /^(\+351|351)?\s?[0-9]{9}$/
-  return phoneRegex.test(phone.replace(/\s/g, ''))
+export function isValidPhone(phone: string, countryCode = 'PT'): boolean {
+  // Remove all non-digit characters except + at the start
+  const cleaned = phone.replace(/[^\d+]/g, '')
+
+  // International format: +[country code][local number]
+  // - Country code: 1-3 digits after '+' (no leading zero)
+  // - Local number: 6-12 digits (varies by country, but 6+ is typical)
+  // - Leading zeros are allowed in the local number (intentional), but NOT in the country code
+  // Domestic format: 7-15 digits
+  const intlRegex = /^\+([1-9]\d{0,2})(\d{6,12})$/ // +[1-3 digits][6-12 digits], local number may start with zero, country code cannot
+  const domesticRegex = /^\d{7,15}$/
+
+  if (cleaned.startsWith('+')) {
+    return intlRegex.test(cleaned)
+  } else {
+    return domesticRegex.test(cleaned)
+  }
 }
 
 // Get initials from name
 export function getInitials(name: string): string {
   return name
-    .split(' ')
-    .map(word => word.charAt(0))
-    .join('')
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("")
     .toUpperCase()
-    .slice(0, 2)
+    .slice(0, 2);
 }
 
 

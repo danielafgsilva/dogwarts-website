@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { LanguageSelector } from "@/components/language-selector"
-import { useLanguage } from "@/hooks/use-language"
+// import { LanguageSelector } from "@/components/language-selector"
+// import { useLanguage } from "@/hooks/use-language"
 
 interface NavbarProps {
-  currentPage?: string
+  currentPage?: string;
 }
 
 export default function Navbar({ currentPage }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { t } = useLanguage()
+  // const { t } = useLanguage()
 
   const navItems = [
-    { href: "/", label: t.navigation.home },
-    { href: "/sobre", label: t.navigation.about, noWrap: true },
-    { href: "/servicos", label: t.navigation.services },
-    { href: "/contactos", label: t.navigation.contact },
-    { href: "/testemunhos", label: t.navigation.testimonials },
-  ]
+    { href: "/", label: "Início" },
+    { href: "/sobre", label: "Sobre Nós", noWrap: true },
+    { href: "/servicos", label: "Serviços" },
+    { href: "/contactos", label: "Contactos" },
+    { href: "/testemunhos", label: "Testemunhos" },
+  ];
 
   return (
     <nav 
@@ -48,7 +48,9 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 sizes="(max-width: 768px) 40px, (max-width: 1200px) 48px, 48px"
               />
             </div>
-            <span className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-gray-100">Dogwarts</span>
+            <span className="text-xl md:text-2xl font-inter font-bold text-black">
+              Dogwarts
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-4 lg:space-x-6" role="menubar" aria-label="Menu de navegação principal">
@@ -71,7 +73,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 )}
               </Link>
             ))}
-            <LanguageSelector />
+            {/* <LanguageSelector /> */}
           </div>
 
           <Button
@@ -117,12 +119,12 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 </Link>
               ))}
               <div className="pt-2 border-t border-border">
-                <LanguageSelector />
+                {/* <LanguageSelector /> */}
               </div>
             </div>
           </div>
         )}
       </div>
     </nav>
-  )
+  );
 }

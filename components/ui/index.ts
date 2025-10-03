@@ -3,8 +3,8 @@
 // ==========================================================================
 
 // Custom Components
-export { CustomButton } from './custom-button'
-export type { CustomButtonProps } from './custom-button'
+export { CustomButton } from "./custom-button";
+export type { CustomButtonProps } from "./custom-button";
 
 export {
   CustomCard,
@@ -12,34 +12,34 @@ export {
   CustomCardTitle,
   CustomCardSubtitle,
   CustomCardContent,
-  CustomCardFooter
-} from './custom-card'
+  CustomCardFooter,
+} from "./custom-card";
 export type {
   CustomCardProps,
   CustomCardHeaderProps,
   CustomCardTitleProps,
   CustomCardSubtitleProps,
   CustomCardContentProps,
-  CustomCardFooterProps
-} from './custom-card'
+  CustomCardFooterProps,
+} from "./custom-card";
 
-export { CustomNavbar } from './custom-navbar'
-export type { CustomNavbarProps, NavItem } from './custom-navbar'
+export { CustomNavbar } from "./custom-navbar";
+export type { CustomNavbarProps, NavItem } from "./custom-navbar";
 
 export {
   CustomSection,
   CustomSectionHeader,
   CustomSectionTitle,
   CustomSectionSubtitle,
-  CustomSectionContent
-} from './custom-section'
+  CustomSectionContent,
+} from "./custom-section";
 export type {
   CustomSectionProps,
   CustomSectionHeaderProps,
   CustomSectionTitleProps,
   CustomSectionSubtitleProps,
-  CustomSectionContentProps
-} from './custom-section'
+  CustomSectionContentProps,
+} from "./custom-section";
 
 // Re-export existing UI components
 export * from './button'
@@ -85,5 +85,5 @@ export * from './toggle'
 export * from './toggle-group'
 export * from './input-otp'
 export * from './chart'
-export * from './sonner'
-export * from './toaster'
+export { Toaster as SonnerToaster } from './sonner'
+export { Toaster } from './toaster'

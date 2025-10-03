@@ -1,0 +1,1086 @@
+@import "tailwindcss";
+
+@layer base {
+:root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 43 74% 66%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+}
+
+.dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 43 74% 66%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+  /* Custom Dogwarts Styles for Enhanced Responsiveness and Beauty */
+  
+  /* Fix for content overflow issues */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Force all sections to stay within viewport */
+  section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Fix for the main page container */
+  .min-h-screen {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Ensure all content fits within viewport */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Fix for responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Fix for absolute positioned elements that might overflow */
+  .absolute {
+    position: absolute;
+  }
+
+  /* Ensure absolute elements don't cause horizontal overflow */
+  .relative {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Fix for grid layouts */
+  .grid {
+    display: grid;
+  }
+
+  /* Ensure containers don't overflow */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Fix for hero section specifically */
+  .hero-section {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Fix for aspect-square containers */
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Fix for absolute positioned elements that extend beyond viewport */
+  .absolute.-bottom-4.-left-4 {
+    left: 0;
+    bottom: -1rem;
+  }
+
+  @media (min-width: 768px) {
+    .absolute.-bottom-6.-left-6 {
+      left: 0;
+      bottom: -1.5rem;
+    }
+  }
+
+  /* Ensure the parent container can handle absolute children */
+  .relative.order-first.lg\:order-last {
+    overflow: visible;
+    position: relative;
+  }
+
+  /* Fix for the main grid container */
+  .grid.lg\:grid-cols-2 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Force specific colors to work */
+  .text-black {
+    color: #000000 !important;
+  }
+  
+  .text-gray-900 {
+    color: #111827 !important;
+  }
+  
+  .text-gray-800 {
+    color: #1f2937 !important;
+  }
+  
+  .text-gray-700 {
+    color: #374151 !important;
+  }
+  
+  .text-gray-600 {
+    color: #4b5563 !important;
+  }
+  
+  .text-gray-200 {
+    color: #e5e7eb !important;
+  }
+  
+  .text-gray-100 {
+    color: #f3f4f6 !important;
+  }
+  
+  .text-muted-foreground {
+    color: #6b7280 !important;
+  }
+  
+  .bg-primary {
+    background-color: #FDCF4D !important;
+  }
+  
+  .text-primary {
+    color: #FDCF4D !important;
+  }
+  
+  .bg-accent {
+    background-color: #f1f5f9 !important;
+  }
+  
+  .text-accent {
+    color: #64748b !important;
+  }
+  
+  .bg-secondary {
+    background-color: #e2e8f0 !important;
+  }
+  
+  .text-secondary {
+    color: #475569 !important;
+  }
+  
+  .bg-card {
+    background-color: #ffffff !important;
+  }
+  
+  .text-card-foreground {
+    color: #111827 !important;
+  }
+  
+  .bg-background {
+    background-color: #ffffff !important;
+  }
+  
+  .text-foreground {
+    color: #111827 !important;
+  }
+  
+  .border-border {
+    border-color: #e5e7eb !important;
+  }
+  
+  .bg-primary\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .bg-accent\/10 {
+    background-color: rgba(100, 116, 139, 0.1) !important;
+  }
+  
+  .bg-secondary\/10 {
+    background-color: rgba(71, 85, 105, 0.1) !important;
+  }
+  
+  .text-chart-4 {
+    color: #FDCF4D !important;
+  }
+  
+  .bg-chart-4\/10 {
+    background-color: rgba(253, 207, 77, 0.1) !important;
+  }
+  
+  .border-chart-4\/30 {
+    border-color: rgba(253, 207, 77, 0.3) !important;
+  }
+  
+  .border-primary\/30 {
+    border-color: rgba(253, 207, 77, 0.3) !important;
+  }
+  
+  .border-accent\/30 {
+    border-color: rgba(100, 116, 139, 0.3) !important;
+  }
+  
+  .border-secondary\/30 {
+    border-color: rgba(71, 85, 105, 0.3) !important;
+  }
+  
+  /* Gradients */
+  .bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important;
+  }
+  
+  .from-card {
+    --tw-gradient-from: #ffffff !important;
+    --tw-gradient-to: rgba(255, 255, 255, 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+  
+  .to-background {
+    --tw-gradient-to: #ffffff !important;
+  }
+  
+  .from-primary\/5 {
+    --tw-gradient-from: rgba(253, 207, 77, 0.05) !important;
+    --tw-gradient-to: rgba(253, 207, 77, 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+  
+  .to-accent\/5 {
+    --tw-gradient-to: rgba(100, 116, 139, 0.05) !important;
+  }
+  
+  /* Specific color overrides */
+  .text-\[#1F3B75\] {
+    color: #1F3B75 !important;
+  }
+  
+  .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .text-\[#B8860B\] {
+    color: #B8860B !important;
+  }
+  
+  .bg-\[#B8860B\] {
+    background-color: #B8860B !important;
+  }
+  
+  .border-\[#B8860B\] {
+    border-color: #B8860B !important;
+  }
+  
+  /* Hover states */
+  .hover\:text-\[#B8860B\]:hover {
+    color: #B8860B !important;
+  }
+  
+  .hover\:bg-primary\/90:hover {
+    background-color: rgba(253, 207, 77, 0.9) !important;
+  }
+  
+  .hover\:bg-secondary:hover {
+    background-color: #e2e8f0 !important;
+  }
+  
+  .hover\:text-secondary-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:border-primary\/20:hover {
+    border-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .hover\:bg-accent:hover {
+    background-color: #f1f5f9 !important;
+  }
+  
+  .hover\:text-accent-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  /* Dark mode overrides */
+  .dark .text-gray-100 {
+    color: #f3f4f6 !important;
+  }
+  
+  .dark .text-gray-200 {
+    color: #e5e7eb !important;
+  }
+  
+  .dark .text-gray-400 {
+    color: #9ca3af !important;
+  }
+  
+  .dark .text-gray-600 {
+    color: #4b5563 !important;
+  }
+  
+  .dark .bg-input\/30 {
+    background-color: rgba(17, 24, 39, 0.3) !important;
+  }
+  
+  .dark .border-input {
+    border-color: #374151 !important;
+  }
+  
+  .dark .hover\:bg-input\/50:hover {
+    background-color: rgba(17, 24, 39, 0.5) !important;
+  }
+  
+  /* Additional missing colors */
+  .bg-background\/95 {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+  
+  .bg-background\/60 {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+  }
+  
+  .bg-primary\/5 {
+    background-color: rgba(253, 207, 77, 0.05) !important;
+  }
+  
+  .bg-primary\/10 {
+    background-color: rgba(253, 207, 77, 0.1) !important;
+  }
+  
+  .bg-primary\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .bg-accent\/5 {
+    background-color: rgba(100, 116, 139, 0.05) !important;
+  }
+  
+  .bg-accent\/10 {
+    background-color: rgba(100, 116, 139, 0.1) !important;
+  }
+  
+  .bg-accent\/20 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .bg-secondary\/10 {
+    background-color: rgba(71, 85, 105, 0.1) !important;
+  }
+  
+  .bg-secondary\/20 {
+    background-color: rgba(71, 85, 105, 0.2) !important;
+  }
+  
+  .bg-chart-4\/10 {
+    background-color: rgba(253, 207, 77, 0.1) !important;
+  }
+  
+  .bg-chart-4\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+  
+  .text-primary-foreground {
+    color: #ffffff !important;
+  }
+  
+  .text-secondary-foreground {
+    color: #111827 !important;
+  }
+  
+  .text-accent-foreground {
+    color: #111827 !important;
+  }
+  
+  .text-card-foreground {
+    color: #111827 !important;
+  }
+  
+  .text-foreground {
+    color: #111827 !important;
+  }
+  
+  .border-2 {
+    border-width: 2px !important;
+  }
+  
+  .border-background {
+    border-color: #ffffff !important;
+  }
+  
+  .border-primary\/20 {
+    border-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .border-accent\/20 {
+    border-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .border-secondary\/20 {
+    border-color: rgba(71, 85, 105, 0.2) !important;
+  }
+  
+  .border-chart-4\/20 {
+    border-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .border-secondary-foreground\/20 {
+    border-color: rgba(17, 24, 39, 0.2) !important;
+  }
+  
+  .hover\:bg-primary\/20:hover {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .hover\:bg-accent\/20:hover {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .hover\:bg-secondary\/20:hover {
+    background-color: rgba(71, 85, 105, 0.2) !important;
+  }
+  
+  .hover\:bg-chart-4\/20:hover {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .hover\:bg-secondary\/90:hover {
+    background-color: rgba(226, 232, 240, 0.9) !important;
+  }
+  
+  .hover\:bg-accent\/50:hover {
+    background-color: rgba(100, 116, 139, 0.5) !important;
+  }
+  
+  .hover\:bg-secondary-foreground\/10:hover {
+    background-color: rgba(17, 24, 39, 0.1) !important;
+  }
+  
+  .hover\:border-primary\/20:hover {
+    border-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .hover\:border-accent\/20:hover {
+    border-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .hover\:border-secondary\/20:hover {
+    border-color: rgba(71, 85, 105, 0.2) !important;
+  }
+  
+  .hover\:border-chart-4\/20:hover {
+    border-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .hover\:text-primary:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-accent:hover {
+    color: #64748b !important;
+  }
+  
+  .hover\:text-secondary:hover {
+    color: #475569 !important;
+  }
+  
+  .hover\:text-chart-4:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-primary-foreground:hover {
+    color: #ffffff !important;
+  }
+  
+  .hover\:text-secondary-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-accent-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-card-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-foreground:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-\[#B8860B\]:hover {
+    color: #B8860B !important;
+  }
+  
+  .hover\:text-\[#1F3B75\]:hover {
+    color: #1F3B75 !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#64748b\]:hover {
+    color: #64748b !important;
+  }
+  
+  .hover\:text-\[#475569\]:hover {
+    color: #475569 !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#ffffff\]:hover {
+    color: #ffffff !important;
+  }
+  
+  .hover\:text-\[#111827\]:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-\[#6b7280\]:hover {
+    color: #6b7280 !important;
+  }
+  
+  .hover\:text-\[#374151\]:hover {
+    color: #374151 !important;
+  }
+  
+  .hover\:text-\[#1f2937\]:hover {
+    color: #1f2937 !important;
+  }
+  
+  .hover\:text-\[#4b5563\]:hover {
+    color: #4b5563 !important;
+  }
+  
+  .hover\:text-\[#9ca3af\]:hover {
+    color: #9ca3af !important;
+  }
+  
+  .hover\:text-\[#e5e7eb\]:hover {
+    color: #e5e7eb !important;
+  }
+  
+  .hover\:text-\[#f3f4f6\]:hover {
+    color: #f3f4f6 !important;
+  }
+  
+  .hover\:text-\[#000000\]:hover {
+    color: #000000 !important;
+  }
+  
+  .hover\:text-\[#ffffff\]:hover {
+    color: #ffffff !important;
+  }
+  
+  .hover\:text-\[#111827\]:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-\[#6b7280\]:hover {
+    color: #6b7280 !important;
+  }
+  
+  .hover\:text-\[#374151\]:hover {
+    color: #374151 !important;
+  }
+  
+  .hover\:text-\[#1f2937\]:hover {
+    color: #1f2937 !important;
+  }
+  
+  .hover\:text-\[#4b5563\]:hover {
+    color: #4b5563 !important;
+  }
+  
+  .hover\:text-\[#9ca3af\]:hover {
+    color: #9ca3af !important;
+  }
+  
+  .hover\:text-\[#e5e7eb\]:hover {
+    color: #e5e7eb !important;
+  }
+  
+  .hover\:text-\[#f3f4f6\]:hover {
+    color: #f3f4f6 !important;
+  }
+  
+  .hover\:text-\[#000000\]:hover {
+    color: #000000 !important;
+  }
+  
+  /* Dynamic color classes for services - these are the missing ones */
+  .bg-primary\/10 {
+    background-color: rgba(253, 207, 77, 0.1) !important;
+  }
+  
+  .bg-primary\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .bg-accent\/10 {
+    background-color: rgba(100, 116, 139, 0.1) !important;
+  }
+  
+  .bg-accent\/20 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .bg-secondary\/10 {
+    background-color: rgba(100, 116, 139, 0.1) !important;
+  }
+  
+  .bg-secondary\/20 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .bg-chart-4\/10 {
+    background-color: rgba(253, 207, 77, 0.1) !important;
+  }
+  
+  .bg-chart-4\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .text-primary {
+    color: #FDCF4D !important;
+  }
+  
+  .text-accent {
+    color: #64748b !important;
+  }
+  
+  .text-secondary {
+    color: #475569 !important;
+  }
+  
+  .text-chart-4 {
+    color: #FDCF4D !important;
+  }
+  
+  .border-primary\/30 {
+    border-color: rgba(253, 207, 77, 0.3) !important;
+  }
+  
+  .border-accent\/30 {
+    border-color: rgba(100, 116, 139, 0.3) !important;
+  }
+  
+  .border-secondary\/30 {
+    border-color: rgba(100, 116, 139, 0.3) !important;
+  }
+  
+  .border-chart-4\/30 {
+    border-color: rgba(253, 207, 77, 0.3) !important;
+  }
+  
+  /* Hover states for dynamic colors */
+  .group:hover .bg-primary\/10 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .group:hover .bg-accent\/10 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .group:hover .bg-secondary\/10 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .group:hover .bg-chart-4\/10 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  /* Testimonial colors */
+  .bg-primary\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  .bg-accent\/20 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .bg-secondary\/20 {
+    background-color: rgba(100, 116, 139, 0.2) !important;
+  }
+  
+  .bg-chart-4\/20 {
+    background-color: rgba(253, 207, 77, 0.2) !important;
+  }
+  
+  /* Brand colors from logo */
+  .text-\[#1F3B75\] {
+    color: #1F3B75 !important;
+  }
+  
+  .dark .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .text-\[#B8860B\] {
+    color: #B8860B !important;
+  }
+  
+  .bg-\[#B8860B\] {
+    background-color: #B8860B !important;
+  }
+  
+  .border-\[#B8860B\] {
+    border-color: #B8860B !important;
+  }
+  
+  /* Additional brand colors */
+  .text-\[#1F3B75\] {
+    color: #1F3B75 !important;
+  }
+  
+  .bg-\[#1F3B75\] {
+    background-color: #1F3B75 !important;
+  }
+  
+  .border-\[#1F3B75\] {
+    border-color: #1F3B75 !important;
+  }
+  
+  .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .bg-\[#FDCF4D\] {
+    background-color: #FDCF4D !important;
+  }
+  
+  .border-\[#FDCF4D\] {
+    border-color: #FDCF4D !important;
+  }
+  
+  /* Hover states for specific colors */
+  .hover\:text-\[#B8860B\]:hover {
+    color: #B8860B !important;
+  }
+  
+  .hover\:text-\[#1F3B75\]:hover {
+    color: #1F3B75 !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#64748b\]:hover {
+    color: #64748b !important;
+  }
+  
+  .hover\:text-\[#475569\]:hover {
+    color: #475569 !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#ffffff\]:hover {
+    color: #ffffff !important;
+  }
+  
+  .hover\:text-\[#111827\]:hover {
+    color: #111827 !important;
+  }
+  
+  .hover\:text-\[#6b7280\]:hover {
+    color: #6b7280 !important;
+  }
+  
+  .hover\:text-\[#374151\]:hover {
+    color: #374151 !important;
+  }
+  
+  .hover\:text-\[#1f2937\]:hover {
+    color: #1f2937 !important;
+  }
+  
+  .hover\:text-\[#4b5563\]:hover {
+    color: #4b5563 !important;
+  }
+  
+  .hover\:text-\[#9ca3af\]:hover {
+    color: #9ca3af !important;
+  }
+  
+  .hover\:text-\[#e5e7eb\]:hover {
+    color: #e5e7eb !important;
+  }
+  
+  .hover\:text-\[#f3f4f6\]:hover {
+    color: #f3f4f6 !important;
+  }
+  
+  .hover\:text-\[#000000\]:hover {
+    color: #000000 !important;
+  }
+  
+  /* Restore original color palette */
+  .text-\[#1F3B75\] {
+    color: #1F3B75 !important;
+  }
+  
+  .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .text-\[#B8860B\] {
+    color: #B8860B !important;
+  }
+  
+  .bg-\[#1F3B75\] {
+    background-color: #1F3B75 !important;
+  }
+  
+  .bg-\[#FDCF4D\] {
+    background-color: #FDCF4D !important;
+  }
+  
+  .bg-\[#B8860B\] {
+    background-color: #B8860B !important;
+  }
+  
+  .border-\[#1F3B75\] {
+    border-color: #1F3B75 !important;
+  }
+  
+  .border-\[#FDCF4D\] {
+    border-color: #FDCF4D !important;
+  }
+  
+  .border-\[#B8860B\] {
+    border-color: #B8860B !important;
+  }
+  
+  /* Hover states for brand colors */
+  .hover\:text-\[#1F3B75\]:hover {
+    color: #1F3B75 !important;
+  }
+  
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#B8860B\]:hover {
+    color: #B8860B !important;
+  }
+  
+  .hover\:bg-\[#1F3B75\]:hover {
+    background-color: #1F3B75 !important;
+  }
+  
+  .hover\:bg-\[#FDCF4D\]:hover {
+    background-color: #FDCF4D !important;
+  }
+  
+  .hover\:bg-\[#B8860B\]:hover {
+    background-color: #B8860B !important;
+  }
+  
+  .hover\:border-\[#1F3B75\]:hover {
+    border-color: #1F3B75 !important;
+  }
+  
+  .hover\:border-\[#FDCF4D\]:hover {
+    border-color: #FDCF4D !important;
+  }
+  
+  .hover\:border-\[#B8860B\]:hover {
+    border-color: #B8860B !important;
+  }
+  
+  /* Additional brand colors from images */
+  .text-\[#FDCF4D\] {
+    color: #FDCF4D !important;
+  }
+  
+  .bg-\[#FDCF4D\] {
+    background-color: #FDCF4D !important;
+  }
+  
+  .border-\[#FDCF4D\] {
+    border-color: #FDCF4D !important;
+  }
+  
+  .text-\[#1F3B75\] {
+    color: #1F3B75 !important;
+  }
+  
+  .bg-\[#1F3B75\] {
+    background-color: #1F3B75 !important;
+  }
+  
+  .border-\[#1F3B75\] {
+    border-color: #1F3B75 !important;
+  }
+  
+  .text-\[#B8860B\] {
+    color: #B8860B !important;
+  }
+  
+  .bg-\[#B8860B\] {
+    background-color: #B8860B !important;
+  }
+  
+  .border-\[#B8860B\] {
+    border-color: #B8860B !important;
+  }
+  
+  /* Hover states for brand colors */
+  .hover\:text-\[#FDCF4D\]:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:bg-\[#FDCF4D\]:hover {
+    background-color: #FDCF4D !important;
+  }
+  
+  .hover\:border-\[#FDCF4D\]:hover {
+    border-color: #FDCF4D !important;
+  }
+  
+  .hover\:text-\[#1F3B75\]:hover {
+    color: #1F3B75 !important;
+  }
+  
+  .hover\:bg-\[#1F3B75\]:hover {
+    background-color: #1F3B75 !important;
+  }
+  
+  .hover\:border-\[#1F3B75\]:hover {
+    border-color: #1F3B75 !important;
+  }
+  
+  .hover\:text-\[#B8860B\]:hover {
+    color: #B8860B !important;
+  }
+  
+  .hover\:bg-\[#B8860B\]:hover {
+    background-color: #B8860B !important;
+  }
+  
+  .hover\:border-\[#B8860B\]:hover {
+    border-color: #B8860B !important;
+  }
+  
+  /* Force primary colors to be applied */
+  .bg-primary {
+    background-color: #FDCF4D !important;
+  }
+  
+  .text-primary {
+    color: #FDCF4D !important;
+  }
+  
+  .text-primary-foreground {
+    color: #1F3B75 !important;
+  }
+  
+  .border-primary {
+    border-color: #FDCF4D !important;
+  }
+  
+  .hover\:bg-primary:hover {
+    background-color: #FDCF4D !important;
+  }
+  
+  .hover\:text-primary:hover {
+    color: #FDCF4D !important;
+  }
+  
+  .hover\:border-primary:hover {
+    border-color: #FDCF4D !important;
+  }
+  
+  .hover\:bg-primary\/90:hover {
+    background-color: rgba(253, 207, 77, 0.9) !important;
+  }
+  
+  /* Force specific colors for CTA sections */
+  section.bg-\[#1F3B75\] {
+    background-color: #1F3B75 !important;
+  }
+  
+  section.bg-\[#1F3B75\] h2,
+  section.bg-\[#1F3B75\] h3,
+  section.bg-\[#1F3B75\] p {
+    color: white !important;
+  }
+  
+  section.bg-\[#1F3B75\] .text-white {
+    color: white !important;
+  }
+  
+  /* Override any gray text in CTA sections */
+  section.bg-\[#1F3B75\] .text-muted-foreground,
+  section.bg-\[#1F3B75\] .text-gray-600,
+  section.bg-\[#1F3B75\] .text-gray-700 {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+}

@@ -12,8 +12,6 @@ import type { Service, Testimonial } from "@/lib/types"
 import { useLanguage } from "@/hooks/use-language"
 
 export default function HomePage() {
-  const { t } = useLanguage()
-
   return (
     <div className="min-h-screen">
       <Navbar currentPage="/" />
@@ -437,5 +435,5 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

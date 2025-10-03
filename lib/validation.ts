@@ -18,14 +18,23 @@ export function validateEmail(email: string): ValidationResult {
   return { isValid: true }
 }
 
-// Phone validation
-export function validatePhone(phone: string): ValidationResult {
+// Phone validation (configurable for different regions)
+export function validatePhone(phone: string, countryCode: string = 'PT'): ValidationResult {
   if (!phone) {
     return { isValid: false, error: 'Telefone é obrigatório' }
   }
   
-  const phoneRegex = /^(\+351|351)?\s?[0-9]{9}$/
   const cleanedPhone = phone.replace(/\s/g, '')
+  
+  // Different regex patterns for different countries
+  const patterns = {
+    PT: /^(\+351|351)?[0-9]{9}$/,
+    ES: /^(\+34|34)?[0-9]{9}$/,
+    FR: /^(\+33|33)?[0-9]{10}$/,
+    INTERNATIONAL: /^(\+[1-9]\d{1,14})$/
+  }
+  
+  const phoneRegex = patterns[countryCode as keyof typeof patterns] || patterns.INTERNATIONAL
   
   if (!phoneRegex.test(cleanedPhone)) {
     return { isValid: false, error: 'Telefone inválido. Use o formato: +351 912 345 678' }
@@ -74,6 +83,7 @@ export interface FormData {
   email: string
   phone: string
   message: string
+  service?: string
 }
 
 export function validateForm(data: FormData): { isValid: boolean; errors: Record<string, string> } {
@@ -98,6 +108,8 @@ export function validateForm(data: FormData): { isValid: boolean; errors: Record
   if (!messageResult.isValid) {
     errors.message = messageResult.error!
   }
+  
+  // Service field is optional, so no validation needed
   
   return {
     isValid: Object.keys(errors).length === 0,

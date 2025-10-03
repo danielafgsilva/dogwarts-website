@@ -172,12 +172,19 @@
 
 // Text balance
 .text-balance {
-  text-wrap: balance;
+  text-wrap: wrap; // fallback for unsupported browsers
+  @supports (text-wrap: balance) {
+    text-wrap: balance;
+  }
 }
 
 // Text pretty
 .text-pretty {
-  text-wrap: pretty;
+  overflow-wrap: break-word;
+  text-wrap: wrap; // fallback for unsupported browsers
+  @supports (text-wrap: pretty) {
+    text-wrap: pretty;
+  }
 }
 
 // Responsive paragraph

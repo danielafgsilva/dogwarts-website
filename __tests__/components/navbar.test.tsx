@@ -1,22 +1,22 @@
-import { render, screen } from '@testing-library/react'
-import Navbar from '@/components/navbar'
+import { render, screen } from "@testing-library/react";
+import Navbar from "@/components/navbar";
 
 // Mock Next.js Link component
-jest.mock('next/link', () => ({
+jest.mock("next/link", () => ({
   __esModule: true,
   default: ({ children, href, ...props }: any) => (
     <a href={href} {...props}>
       {children}
     </a>
   ),
-}))
+}));
 
 // Mock Next.js Image component
-jest.mock('next/image', () => ({
+jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />
+    return <img {...props} />;
   },
 }))
 

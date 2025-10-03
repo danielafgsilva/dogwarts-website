@@ -7,10 +7,11 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useForm } from '@/hooks/use-form'
 import { useLanguage } from '@/hooks/use-language'
+import { type ContactFormData } from '@/lib/types'
 import { Phone, Mail, User, MessageSquare } from 'lucide-react'
 
 interface ContactFormProps {
-  onSubmit?: (data: { name: string; email: string; phone: string; message: string }) => void | Promise<void>
+  onSubmit?: (data: ContactFormData) => void | Promise<void>
   className?: string
 }
 
@@ -33,6 +34,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
       email: '',
       phone: '',
       message: '',
+      service: '',
     },
     onSubmit: async (data) => {
       try {
@@ -104,7 +106,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                   id="name"
                   type="text"
                   placeholder="O seu nome"
-                  value={values.name || ''}
+                  value={values.name}
                   onChange={handleChange('name')}
                   onBlur={handleBlur('name')}
                   className={`pl-10 ${errors.name ? 'border-red-500' : ''}`}
@@ -129,7 +131,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                   id="email"
                   type="email"
                   placeholder="seu@email.com"
-                  value={values.email || ''}
+                  value={values.email}
                   onChange={handleChange('email')}
                   onBlur={handleBlur('email')}
                   className={`pl-10 ${errors.email ? 'border-red-500' : ''}`}
@@ -155,7 +157,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
                 id="phone"
                 type="tel"
                 placeholder="+351 912 345 678"
-                value={values.phone || ''}
+                value={values.phone}
                 onChange={handleChange('phone')}
                 onBlur={handleBlur('phone')}
                 className={`pl-10 ${errors.phone ? 'border-red-500' : ''}`}
@@ -177,7 +179,7 @@ export function ContactForm({ onSubmit, className }: ContactFormProps) {
             <Textarea
               id="message"
               placeholder="Conte-nos como podemos ajudar..."
-              value={values.message || ''}
+              value={values.message}
               onChange={handleChange('message')}
               onBlur={handleBlur('message')}
               className={`min-h-[120px] ${errors.message ? 'border-red-500' : ''}`}

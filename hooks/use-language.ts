@@ -6,18 +6,22 @@ import { Language, translations } from '@/lib/translations'
 export function useLanguage() {
   const [language, setLanguage] = useState<Language>('pt')
 
-  // Load language from localStorage on mount
+  // Load language from localStorage on mount (client-side only)
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('dogwarts-language') as Language
-    if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage)
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('dogwarts-language') as Language
+      if (savedLanguage && (savedLanguage === 'pt' || savedLanguage === 'en')) {
+        setLanguage(savedLanguage)
+      }
     }
   }, [])
 
-  // Save language to localStorage when it changes
+  // Save language to localStorage when it changes (client-side only)
   const changeLanguage = (newLanguage: Language) => {
     setLanguage(newLanguage)
-    localStorage.setItem('dogwarts-language', newLanguage)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dogwarts-language', newLanguage)
+    }
   }
 
   // Get current translations

@@ -70,10 +70,53 @@ export function formatRelativeTime(date: Date | string, locale = 'pt-PT'): strin
 export function formatPhoneNumber(phone: string, locale = 'pt-PT'): string {
   const cleaned = phone.replace(/\D/g, '')
   
-  if (locale === 'pt-PT') {
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/)
+  // Country-specific formatting patterns
+  const patterns = {
+    'pt-PT': {
+      countryCode: '+351',
+      pattern: /^(\d{3})(\d{3})(\d{3})$/,
+      format: (match: RegExpMatchArray) => `+351 ${match[1]} ${match[2]} ${match[3]}`
+    },
+    'es-ES': {
+      countryCode: '+34',
+      pattern: /^(\d{3})(\d{3})(\d{3})$/,
+      format: (match: RegExpMatchArray) => `+34 ${match[1]} ${match[2]} ${match[3]}`
+    },
+    'fr-FR': {
+      countryCode: '+33',
+      pattern: /^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,
+      format: (match: RegExpMatchArray) => `+33 ${match[1]} ${match[2]} ${match[3]} ${match[4]} ${match[5]}`
+    },
+    'en-US': {
+      countryCode: '+1',
+      pattern: /^(\d{3})(\d{3})(\d{4})$/,
+      format: (match: RegExpMatchArray) => `+1 (${match[1]}) ${match[2]}-${match[3]}`
+    },
+    'en-GB': {
+      countryCode: '+44',
+      pattern: /^(\d{4})(\d{6})$/,
+      format: (match: RegExpMatchArray) => `+44 ${match[1]} ${match[2]}`
+    }
+  }
+  
+  const pattern = patterns[locale as keyof typeof patterns]
+  if (pattern) {
+    const match = cleaned.match(pattern.pattern)
     if (match) {
-      return `+351 ${match[1]} ${match[2]} ${match[3]}`
+      return pattern.format(match)
+    }
+  }
+  
+  // Fallback: if already has country code, return as is
+  if (phone.startsWith('+')) {
+    return phone
+  }
+  
+  // Generic fallback formatting
+  if (cleaned.length >= 7) {
+    const match = cleaned.match(/^(\d{3})(\d{3})(\d+)$/)
+    if (match) {
+      return `+${cleaned.slice(0, -match[3].length)} ${match[1]} ${match[2]} ${match[3]}`
     }
   }
   
