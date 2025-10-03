@@ -47,20 +47,32 @@ export default function ServicesPage() {
       </div>
 
       {/* Hero Section */}
-      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
-        <div className={`${responsive.container} ${responsive.textCenter}`}>
+      <section 
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+        aria-labelledby="services-hero-heading"
+        role="banner"
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+        
+        <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
           <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <Badge
               variant="secondary"
-              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               Os Nossos Serviços
             </Badge>
-            <h1 className={`${responsive.heading1} text-balance text-white`}>
-              Cuidados <span className="text-[#FDCF4D]">Personalizados</span> para
+            <h1 
+              id="services-hero-heading"
+              className={`${responsive.heading1} font-serif text-balance`}
+            >
+              Cuidados <span className="text-primary">Personalizados</span> para
               Cada Patudo
             </h1>
-            <p className={`${responsive.bodyLarge} text-white/90 text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
+            <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
               Oferecemos uma gama completa de serviços pensados para o bem-estar
               dos seus cães e a sua total tranquilidade.
             </p>
@@ -728,10 +740,10 @@ export default function ServicesPage() {
       <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
-            <h2 className={`${responsive.heading1} text-balance text-white`}>
+            <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Pronto para Começar?
             </h2>
-            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
+            <p className={`${responsive.bodyLarge} text-white text-pretty`}>
               Entre em contacto connosco para discutir as necessidades do seu
               patudo e encontrar o serviço perfeito.
             </p>

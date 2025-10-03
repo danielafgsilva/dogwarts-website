@@ -4,40 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match Dogwarts brand palette */
+  /* Enhanced color tokens with improved WCAG AA contrast ratios */
   --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.2 0 0); /* Dark text (#1A1A1A equivalent) */
-  --card: oklch(0.97 0.02 85); /* Warm beige (#F5F1DA equivalent) */
-  --card-foreground: oklch(0.2 0 0);
+  --foreground: oklch(0.15 0 0); /* Darker text for better contrast (#1A1A1A -> #000000) */
+  --card: oklch(0.98 0.01 85); /* Slightly warmer beige */
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0 0);
-  --primary: oklch(0.8 0.15 85); /* Golden Yellow (#FDCF4D equivalent) */
-  --primary-foreground: oklch(0.25 0.08 250); /* Deep Navy Blue (#1F3B75 equivalent) */
-  --secondary: oklch(0.25 0.08 250); /* Deep Navy Blue (#1F3B75 equivalent) */
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.75 0.18 85); /* Darker golden yellow for better contrast */
+  --primary-foreground: oklch(0.2 0.06 250); /* Darker navy for better contrast */
+  --secondary: oklch(0.2 0.06 250); /* Deep Navy Blue (#1F3B75 equivalent) */
   --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.97 0.02 85); /* Warm beige for muted elements */
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.45 0.15 320); /* Burgundy Red (#B4164C equivalent) */
+  --muted: oklch(0.98 0.01 85); /* Warm beige for muted elements */
+  --muted-foreground: oklch(0.45 0 0); /* Darker muted text for better readability */
+  --accent: oklch(0.4 0.18 320); /* Darker burgundy for better contrast */
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.01 85);
-  --input: oklch(0.97 0.02 85);
-  --ring: oklch(0.8 0.15 85); /* Golden yellow for focus rings */
-  --chart-1: oklch(0.8 0.15 85); /* Golden Yellow */
-  --chart-2: oklch(0.25 0.08 250); /* Deep Navy Blue */
-  --chart-3: oklch(0.45 0.15 320); /* Burgundy Red */
-  --chart-4: oklch(0.3 0.08 150); /* Forest Green (#1F4732 equivalent) */
-  --chart-5: oklch(0.4 0.12 250); /* Royal Blue (#255FB5 equivalent) */
+  --border: oklch(0.92 0.01 85); /* Slightly darker border for definition */
+  --input: oklch(0.98 0.01 85);
+  --ring: oklch(0.75 0.18 85); /* Golden yellow for focus rings */
+  --chart-1: oklch(0.75 0.18 85); /* Golden Yellow */
+  --chart-2: oklch(0.2 0.06 250); /* Deep Navy Blue */
+  --chart-3: oklch(0.4 0.18 320); /* Burgundy Red */
+  --chart-4: oklch(0.25 0.06 150); /* Forest Green */
+  --chart-5: oklch(0.35 0.1 250); /* Royal Blue */
   --radius: 0.75rem; /* Slightly more rounded for friendly feel */
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.2 0 0);
-  --sidebar-primary: oklch(0.8 0.15 85);
-  --sidebar-primary-foreground: oklch(0.25 0.08 250);
-  --sidebar-accent: oklch(0.97 0.02 85);
-  --sidebar-accent-foreground: oklch(0.2 0 0);
-  --sidebar-border: oklch(0.9 0.01 85);
-  --sidebar-ring: oklch(0.8 0.15 85);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.75 0.18 85);
+  --sidebar-primary-foreground: oklch(0.2 0.06 250);
+  --sidebar-accent: oklch(0.98 0.01 85);
+  --sidebar-accent-foreground: oklch(0.15 0 0);
+  --sidebar-border: oklch(0.92 0.01 85);
+  --sidebar-ring: oklch(0.75 0.18 85);
 }
 
 .dark {
@@ -121,9 +121,56 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
-  body {
+body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Enhanced focus styles for better accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary ring-2 ring-primary/20;
+  }
+  
+  /* Skip link for screen readers */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 
+           bg-primary text-primary-foreground px-4 py-2 rounded-md z-50;
+  }
+  
+  /* Improved button focus states */
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+  
+  /* Link focus states */
+  a:focus-visible {
+    @apply underline underline-offset-4 decoration-2;
+  }
+  
+  /* Improved text contrast on light backgrounds */
+  .text-contrast {
+    color: oklch(0.25 0 0); /* Darker text for better contrast */
+  }
+  
+  .text-contrast-muted {
+    color: oklch(0.4 0 0); /* Darker muted text */
+  }
+  
+  /* Enhanced card contrast */
+  .card-enhanced {
+    background-color: oklch(0.99 0.005 85);
+    border-color: oklch(0.88 0.01 85);
+  }
+  
+  /* Better button contrast */
+  .btn-primary-enhanced {
+    background-color: oklch(0.7 0.2 85);
+    color: oklch(0.15 0 0);
+  }
+  
+  .btn-primary-enhanced:hover {
+    background-color: oklch(0.65 0.2 85);
   }
 }

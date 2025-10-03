@@ -16,7 +16,11 @@ export default function HomePage() {
   const { t } = useLanguage();
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
+      {/* Skip link for accessibility */}
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo principal
+      </a>
       <Navbar currentPage="/" />
 
       {/* Hero Section */}
@@ -42,7 +46,7 @@ export default function HomePage() {
                 </Badge>
                 <h1 
                   id="hero-heading"
-                  className={responsive.heading1}
+                  className={`${responsive.heading1} font-serif`}
                 >
                   {t.hero.title}
                 </h1>
@@ -119,7 +123,7 @@ export default function HomePage() {
             </Badge>
             <h2 
               id="services-heading"
-              className={responsive.heading1}
+              className={`${responsive.heading1} font-serif`}
             >
               {t.services.subtitle}
             </h2>
@@ -333,18 +337,18 @@ export default function HomePage() {
           <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 
               id="cta-heading"
-              className={`${responsive.heading1} text-white`}
+              className={`${responsive.heading1} font-serif text-white`}
             >
               Pronto para Dar ao Seu Cão o Melhor Cuidado?
             </h2>
-            <p className={`${responsive.bodyLarge} text-white/90 ${responsive.maxWidth['2xl']} mx-auto`}>
+            <p className={`${responsive.bodyLarge} text-white ${responsive.maxWidth['2xl']} mx-auto`}>
               Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
               tranquilo.
             </p>
             <div className={`${responsive.buttonGroupCenter}`} role="group" aria-label="Ações de contacto">
               <Button 
                 size="lg" 
-                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 focus:outline-none focus:ring-2 focus:ring-[#FDCF4D] focus:ring-offset-2"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 focus:outline-none focus:ring-2 focus:ring-[#FDCF4D] focus:ring-offset-2 focus:ring-offset-[#1F3B75] transition-colors duration-200"
                 aria-label="Ligar para a Dogwarts agora"
               >
                 <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -353,7 +357,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1F3B75] transition-colors duration-200"
                 aria-label="Enviar mensagem para a Dogwarts"
               >
                 <Mail className="w-5 h-5 mr-2" aria-hidden="true" />

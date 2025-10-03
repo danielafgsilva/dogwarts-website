@@ -46,22 +46,34 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+      <section 
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+        aria-labelledby="about-hero-heading"
+        role="banner"
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+        
         <div className={responsive.container}>
-          <div className={`${responsive.grid2} items-center`}>
+          <div className={`${responsive.grid2} items-center relative z-10`}>
             <div className={responsive.spaceY.lg}>
               <div className={responsive.spaceY.sm}>
                 <Badge
                   variant="secondary"
-                  className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
+                  className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
                 >
                   A Nossa História
                 </Badge>
-                <h1 className={`${responsive.heading1} text-balance text-white`}>
-                  Uma História de <span className="text-[#FDCF4D]">Amor</span> e{" "}
-                  <span className="text-white">Confiança</span>
+                <h1 
+                  id="about-hero-heading"
+                  className={`${responsive.heading1} font-serif text-balance`}
+                >
+                  Uma História de <span className="text-primary">Amor</span> e{" "}
+                  <span className="text-accent">Confiança</span>
                 </h1>
-                <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
+                <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty`}>
                   Nascemos do coração de uma tutora que compreendeu, na prática,
                   o que significa cuidar verdadeiramente dos nossos companheiros
                   de quatro patas.
@@ -413,10 +425,10 @@ export default function AboutPage() {
       <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
-            <h2 className={`${responsive.heading1} text-balance text-white`}>
+            <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Quer Conhecer Melhor a Nossa Família?
             </h2>
-            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
+            <p className={`${responsive.bodyLarge} text-white text-pretty`}>
               Venha conhecer-nos pessoalmente e descubra como podemos cuidar do
               seu patudo com todo o amor e dedicação que ele merece.
             </p>

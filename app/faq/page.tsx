@@ -29,24 +29,36 @@ import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
       <Navbar currentPage="/faq" />
 
       {/* Hero Section */}
-      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+      <section 
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+        aria-labelledby="faq-hero-heading"
+        role="banner"
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+        
         <div className={responsive.container}>
-          <div className={`${responsive.textCenter} ${responsive.spaceY.md} ${responsive.maxWidth['3xl']} mx-auto`}>
+          <div className={`${responsive.textCenter} ${responsive.spaceY.md} ${responsive.maxWidth['3xl']} mx-auto relative z-10`}>
             <Badge
               variant="secondary"
-              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               Perguntas Frequentes
             </Badge>
-            <h1 className={`${responsive.heading1} font-serif text-balance text-white`}>
+            <h1 
+              id="faq-hero-heading"
+              className={`${responsive.heading1} font-serif text-balance`}
+            >
               Tudo o Que Precisa de Saber Sobre a{" "}
-              <span className="text-[#FDCF4D]">Dogwarts</span>
+              <span className="text-primary">Dogwarts</span>
             </h1>
-            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
+            <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty`}>
               Encontre respostas às perguntas mais comuns sobre os nossos
               serviços, políticas e cuidados com o seu patudo.
             </p>
@@ -351,7 +363,7 @@ export default function FAQPage() {
             <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Pronto para Conhecer os Nossos Serviços?
             </h2>
-            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
+            <p className={`${responsive.bodyLarge} text-white text-pretty`}>
               Agende uma consulta gratuita e descubra como podemos cuidar do seu
               patudo com todo o amor e dedicação.
             </p>
