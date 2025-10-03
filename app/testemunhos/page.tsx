@@ -48,8 +48,8 @@ export default function TestimonialsPage() {
                 <div className="text-sm text-muted-foreground">{STATISTICS.happyDogs.label}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">{APP_CONFIG.rating}</div>
-                <div className="text-sm text-muted-foreground">Avaliação Média</div>
+                <div className="text-3xl font-bold text-accent">{STATISTICS.satisfaction.value}</div>
+                <div className="text-sm text-muted-foreground">{STATISTICS.satisfaction.label}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-secondary">{STATISTICS.yearsExperience.value}</div>

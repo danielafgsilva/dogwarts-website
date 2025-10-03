@@ -25,6 +25,10 @@ export const STATISTICS = {
     value: '200+',
     label: 'Clientes Satisfeitos',
   },
+  satisfaction: {
+    value: '98%',
+    label: 'Satisfação dos Clientes',
+  },
   servicesProvided: {
     value: '1000+',
     label: 'Serviços Prestados',
