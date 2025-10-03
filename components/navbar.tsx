@@ -48,7 +48,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 sizes="(max-width: 768px) 40px, (max-width: 1200px) 48px, 48px"
               />
             </div>
-            <span className="text-xl md:text-2xl font-inter font-bold text-black">
+            <span className="text-xl md:text-2xl font-inter font-bold text-foreground">
               Dogwarts
             </span>
           </Link>
@@ -58,16 +58,16 @@ export default function Navbar({ currentPage }: NavbarProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative text-sm lg:text-base font-inter transition-all duration-300 hover:text-[#B8860B] hover:scale-105 ${
+                className={`relative text-sm lg:text-base font-inter transition-all duration-300 hover:text-brand-primary hover:scale-105 focus-brand ${
                   item.noWrap ? "whitespace-nowrap" : ""
-                } ${currentPage === item.href ? "text-[#B8860B] font-medium" : "text-gray-700 dark:text-gray-200"}`}
+                } ${currentPage === item.href ? "text-brand-primary font-medium" : "text-foreground"}`}
                 role="menuitem"
                 aria-current={currentPage === item.href ? "page" : undefined}
               >
                 {item.label}
                 {currentPage === item.href && (
                   <span 
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#B8860B] rounded-full animate-in slide-in-from-left-full duration-300"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary rounded-full animate-in slide-in-from-left-full duration-300"
                     aria-hidden="true"
                   />
                 )}
@@ -101,9 +101,9 @@ export default function Navbar({ currentPage }: NavbarProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative text-sm font-inter py-2 transition-all duration-300 hover:text-[#B8860B] hover:translate-x-2 ${
+                  className={`relative text-sm font-inter py-2 transition-all duration-300 hover:text-brand-primary hover:translate-x-2 focus-brand ${
                     item.noWrap ? "whitespace-nowrap" : ""
-                  } ${currentPage === item.href ? "text-[#B8860B] font-medium" : "text-gray-700 dark:text-gray-200"}`}
+                  } ${currentPage === item.href ? "text-brand-primary font-medium" : "text-foreground"}`}
                   style={{ animationDelay: `${index * 50}ms` }}
                   onClick={() => setIsMenuOpen(false)}
                   role="menuitem"
@@ -112,7 +112,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
                   {item.label}
                   {currentPage === item.href && (
                     <span 
-                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#B8860B] rounded-full"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-brand-primary rounded-full"
                       aria-hidden="true"
                     />
                   )}

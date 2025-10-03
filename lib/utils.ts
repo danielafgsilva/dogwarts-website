@@ -133,3 +133,44 @@ export function isDesktop(): boolean {
   if (typeof window === 'undefined') return false
   return window.innerWidth >= 1024
 }
+
+// Format phone number
+export function formatPhoneNumber(phone: string): string {
+  const cleaned = phone.replace(/\D/g, '')
+  if (cleaned.length === 9) {
+    return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  }
+  return phone
+}
+
+// Format currency
+export function formatCurrency(amount: number, currency = 'EUR'): string {
+  return new Intl.NumberFormat('pt-PT', {
+    style: 'currency',
+    currency,
+  }).format(amount)
+}
+
+// Format date
+export function formatDate(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return new Intl.DateTimeFormat('pt-PT').format(d)
+}
+
+// Format time
+export function formatTime(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return new Intl.DateTimeFormat('pt-PT', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(d)
+}
+
+// Format file size
+export function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}

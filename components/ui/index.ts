@@ -28,14 +28,12 @@ export type { CustomNavbarProps, NavItem } from "./custom-navbar";
 
 export {
   CustomSection,
-  CustomSectionHeader,
   CustomSectionTitle,
   CustomSectionSubtitle,
   CustomSectionContent,
 } from "./custom-section";
 export type {
   CustomSectionProps,
-  CustomSectionHeaderProps,
   CustomSectionTitleProps,
   CustomSectionSubtitleProps,
   CustomSectionContentProps,
@@ -85,5 +83,5 @@ export * from './toggle'
 export * from './toggle-group'
 export * from './input-otp'
 export * from './chart'
-export { Toaster as SonnerToaster } from './sonner'
+export { SonnerToaster } from './sonner'
 export { Toaster } from './toaster'

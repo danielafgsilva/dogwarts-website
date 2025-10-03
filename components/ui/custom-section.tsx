@@ -113,22 +113,6 @@ const CustomSectionTitle = React.forwardRef<HTMLHeadingElement, CustomSectionTit
   }
 )
 
-const CustomSectionTitle = React.forwardRef<
-  HTMLHeadingElement,
-  CustomSectionTitleProps
->(({ className, children, level = 2, ...props }, ref) => {
-  const Component = `h${level}` as const;
-  return (
-    <Component
-      ref={ref}
-      className={cn("section__title", `heading--${level}`, className)}
-      {...props}
-    >
-      {children}
-    </Component>
-  );
-});
-
 const CustomSectionSubtitle = React.forwardRef<
   HTMLParagraphElement,
   CustomSectionSubtitleProps
@@ -148,14 +132,12 @@ const CustomSectionContent = React.forwardRef<
 ));
 
 CustomSection.displayName = "CustomSection";
-CustomSectionHeader.displayName = "CustomSectionHeader";
 CustomSectionTitle.displayName = "CustomSectionTitle";
 CustomSectionSubtitle.displayName = "CustomSectionSubtitle";
 CustomSectionContent.displayName = "CustomSectionContent";
 
 export {
   CustomSection,
-  CustomSectionHeader,
   CustomSectionTitle,
   CustomSectionSubtitle,
   CustomSectionContent,
