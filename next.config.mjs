@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: process.env.NEXT_IGNORE_BUILD_ERRORS === 'true',
   },
   images: {
     formats: ['image/webp', 'image/avif'],

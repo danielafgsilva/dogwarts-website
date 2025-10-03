@@ -172,7 +172,7 @@
 
 // Text balance
 .text-balance {
-  overflow-wrap: break-word;
+  text-wrap: wrap; // fallback for unsupported browsers
   @supports (text-wrap: balance) {
     text-wrap: balance;
   }

@@ -293,7 +293,7 @@
     // Use CSS Grid masonry where supported (experimental)
     @supports (grid-template-rows: masonry) {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-template-rows: masonry;
       gap: $spacing-4;
       
