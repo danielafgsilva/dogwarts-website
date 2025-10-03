@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
+import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function FAQPage() {
   return (
@@ -32,20 +33,20 @@ export default function FAQPage() {
       <Navbar currentPage="/faq" />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-6 max-w-3xl mx-auto">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={responsive.container}>
+          <div className={`${responsive.textCenter} ${responsive.spaceY.md} ${responsive.maxWidth['3xl']} mx-auto`}>
             <Badge
               variant="secondary"
               className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Perguntas Frequentes
             </Badge>
-            <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance">
+            <h1 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Tudo o Que Precisa de Saber Sobre a{" "}
-              <span className="text-[#1F3B75]">Dogwarts</span>
+              <span className="text-[#FDCF4D]">Dogwarts</span>
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Encontre respostas às perguntas mais comuns sobre os nossos
               serviços, políticas e cuidados com o seu patudo.
             </p>
@@ -54,9 +55,9 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-[#FDCF4D]/5">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12">
+      <section className={`${responsive.sectionPadding} ${brand.gradients.accent}`}>
+        <div className={responsive.container}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             <div className="lg:col-span-2">
               <div className="space-y-8">
                 <div>
@@ -344,17 +345,17 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#1F3B75] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Pronto para Conhecer os Nossos Serviços?
             </h2>
-            <p className="text-xl text-white/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Agende uma consulta gratuita e descubra como podemos cuidar do seu
               patudo com todo o amor e dedicação.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"

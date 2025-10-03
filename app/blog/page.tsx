@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
+import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function BlogPage() {
   const blogPosts = [
@@ -104,20 +105,20 @@ export default function BlogPage() {
       <Navbar currentPage="/blog" />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-6 max-w-3xl mx-auto">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={responsive.container}>
+          <div className={`${responsive.textCenter} ${responsive.spaceY.md} ${responsive.maxWidth['3xl']} mx-auto`}>
             <Badge
               variant="secondary"
               className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D] hover:bg-[#FDCF4D]/90"
             >
               Blog Dogwarts
             </Badge>
-            <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance">
+            <h1 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Dicas e Conselhos para{" "}
-              <span className="text-[#1F3B75]">Cães Felizes</span>
+              <span className="text-[#FDCF4D]">Cães Felizes</span>
             </h1>
-            <p className="text-xl text-[#1F3B75]/70 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Partilhamos conhecimento e experiência para ajudar a cuidar melhor
               do seu patudo. Artigos escritos por especialistas em cuidados
               caninos.
@@ -348,17 +349,17 @@ export default function BlogPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#1F3B75] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Tem Alguma Pergunta Sobre Cuidados Caninos?
             </h2>
-            <p className="text-xl text-white/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               A nossa equipa de especialistas está sempre disponível para ajudar
               com dúvidas sobre o bem-estar do seu patudo.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"

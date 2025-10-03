@@ -45,31 +45,31 @@ const CustomSection = React.forwardRef<HTMLElement, CustomSectionProps>(
     },
     ref,
   ) => {
-    const baseClasses = "section";
+    const baseClasses = "relative";
     const variantClasses = {
-      default: "section--default",
-      primary: "section--primary",
-      secondary: "section--secondary",
-      accent: "section--accent",
+      default: "bg-background",
+      primary: "bg-primary text-primary-foreground",
+      secondary: "bg-secondary text-secondary-foreground",
+      accent: "bg-accent text-accent-foreground",
     };
     const sizeClasses = {
-      sm: "section--sm",
-      md: "section--md",
-      lg: "section--lg",
-      xl: "section--xl",
+      sm: "py-8 md:py-12",
+      md: "py-12 md:py-20",
+      lg: "py-16 md:py-24",
+      xl: "py-20 md:py-32",
     };
     const backgroundClasses = {
       none: "",
-      gradient: "section--gradient",
-      pattern: "section--pattern",
-      image: "section--image",
+      gradient: "bg-gradient-to-br from-background via-card to-muted/30",
+      pattern: "bg-background bg-[radial-gradient(circle_at_1px_1px,_rgb(0_0_0_/_0.15)_1px,_transparent_0)] bg-[length:20px_20px]",
+      image: "bg-cover bg-center bg-no-repeat",
     };
     const paddingClasses = {
-      none: "section--padding-none",
-      sm: "section--padding-sm",
-      md: "section--padding-md",
-      lg: "section--padding-lg",
-      xl: "section--padding-xl",
+      none: "",
+      sm: "px-4 sm:px-6",
+      md: "px-4 sm:px-6 lg:px-8",
+      lg: "px-6 sm:px-8 lg:px-12",
+      xl: "px-8 sm:px-12 lg:px-16",
     };
 
     const sectionClasses = cn(
@@ -83,7 +83,7 @@ const CustomSection = React.forwardRef<HTMLElement, CustomSectionProps>(
 
     return (
       <section ref={ref} className={sectionClasses} {...props}>
-        <div className="section__container">{children}</div>
+        <div className="container mx-auto max-w-7xl">{children}</div>
       </section>
     );
   },
@@ -104,7 +104,7 @@ const CustomSectionTitle = React.forwardRef<HTMLHeadingElement, CustomSectionTit
     return (
       <Component
         ref={ref}
-        className={cn('section__title', `heading--${level}`, className)}
+        className={cn('text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight', className)}
         {...props}
       >
         {children}
@@ -117,7 +117,7 @@ const CustomSectionSubtitle = React.forwardRef<
   HTMLParagraphElement,
   CustomSectionSubtitleProps
 >(({ className, children, ...props }, ref) => (
-  <p ref={ref} className={cn("section__subtitle", className)} {...props}>
+  <p ref={ref} className={cn("text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed", className)} {...props}>
     {children}
   </p>
 ));
@@ -126,7 +126,7 @@ const CustomSectionContent = React.forwardRef<
   HTMLDivElement,
   CustomSectionContentProps
 >(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={cn("section__content", className)} {...props}>
+  <div ref={ref} className={cn("mt-6 space-y-4", className)} {...props}>
     {children}
   </div>
 ));

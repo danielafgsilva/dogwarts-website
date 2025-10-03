@@ -10,6 +10,7 @@ import Navbar from "@/components/navbar"
 import { APP_CONFIG } from "@/lib/constants"
 import type { Service, Testimonial } from "@/lib/types"
 import { useLanguage } from "@/hooks/use-language"
+import { responsive, brand } from "@/lib/responsive-utils"
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -20,39 +21,39 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section 
-        className="relative section-padding bg-gradient-to-br from-background via-card to-muted/30 overflow-hidden"
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
         aria-labelledby="hero-heading"
         role="banner"
       >
         {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/5 via-transparent to-brand-accent/5" />
-        <div className="absolute top-20 right-20 w-32 h-32 bg-brand-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-40 h-40 bg-brand-accent/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
         
-        <div className="container mx-auto container-padding relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-8 text-center lg:text-left animate-fade-in">
+        <div className={`${responsive.container} relative z-10`}>
+          <div className={`${responsive.grid2} gap-8 lg:gap-16 items-center`}>
+            <div className={`${responsive.spaceY.lg} ${responsive.textCenterLg}`}>
               <div className="space-y-6">
                 <Badge
                   variant="secondary"
-                  className="bg-brand-primary/20 text-brand-secondary border-brand-primary/30 hover:bg-brand-primary/30 transition-colors"
+                  className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
                 >
                   {t.hero.badge}
                 </Badge>
                 <h1 
                   id="hero-heading"
-                  className="heading-responsive font-bold text-foreground leading-tight tracking-tight"
+                  className={responsive.heading1}
                 >
                   {t.hero.title}
                 </h1>
-                <p className="text-responsive text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['2xl']} mx-auto lg:mx-0`}>
                   {t.hero.description}
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" role="group" aria-label="Ações principais">
+              <div className={`${responsive.buttonGroupCenter} lg:justify-start`} role="group" aria-label="Ações principais">
                 <Button 
                   size="lg" 
-                  className="btn-primary focus-brand"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   aria-label="Conhecer os nossos serviços de cuidados para cães"
                 >
                   <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -61,7 +62,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-brand-secondary text-brand-secondary hover:bg-brand-secondary hover:text-white focus-brand"
+                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                   aria-label="Contactar-nos agora para mais informações"
                 >
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -69,8 +70,8 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative order-first lg:order-last animate-slide-up">
-              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 flex items-center justify-center p-8 shadow-2xl">
+            <div className="relative order-first lg:order-last">
+              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center p-8 shadow-2xl">
                 <img
                   src="/dogwarts-logo-with-tagline.png"
                   alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
@@ -80,17 +81,17 @@ export default function HomePage() {
                   height="400"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-xl animate-scale-in">
+              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-xl">
                 <div className="flex items-center space-x-3">
                   <div className="flex -space-x-2">
-                    <div className="w-8 h-8 bg-brand-primary rounded-full border-2 border-background shadow-sm" />
-                    <div className="w-8 h-8 bg-brand-accent rounded-full border-2 border-background shadow-sm" />
-                    <div className="w-8 h-8 bg-brand-success rounded-full border-2 border-background shadow-sm" />
+                    <div className="w-8 h-8 bg-primary rounded-full border-2 border-background shadow-sm" />
+                    <div className="w-8 h-8 bg-accent rounded-full border-2 border-background shadow-sm" />
+                    <div className="w-8 h-8 bg-chart-4 rounded-full border-2 border-background shadow-sm" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">100+ Cães Felizes</p>
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 text-brand-primary fill-current" />
+                      <Star className="w-4 h-4 text-primary fill-current" />
                       <span className="text-sm text-muted-foreground ml-1">5.0 avaliação</span>
                     </div>
                   </div>
@@ -104,30 +105,30 @@ export default function HomePage() {
       {/* Services Section */}
       <section 
         id="servicos" 
-        className="section-padding bg-background"
+        className={`${responsive.sectionPadding} bg-background`}
         aria-labelledby="services-heading"
         role="region"
       >
-        <div className="container mx-auto container-padding">
-          <div className="text-center space-y-6 mb-16">
+        <div className={responsive.container}>
+          <div className={`${responsive.spaceY.md} ${responsive.textCenter} mb-12 lg:mb-16`}>
             <Badge
               variant="secondary"
-              className="bg-brand-primary/20 text-brand-secondary border-brand-primary/30 hover:bg-brand-primary/30 transition-colors"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               {t.services.title}
             </Badge>
             <h2 
               id="services-heading"
-              className="heading-responsive font-bold text-foreground"
+              className={responsive.heading1}
             >
               {t.services.subtitle}
             </h2>
-            <p className="text-responsive text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['3xl']} mx-auto`}>
               Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua tranquilidade.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" role="list" aria-label="Lista de serviços oferecidos">
+          <div className={responsive.grid4} role="list" aria-label="Lista de serviços oferecidos">
             {[
               {
                 icon: Heart,
@@ -135,10 +136,8 @@ export default function HomePage() {
                 desc: t.services.items.daycare.description,
                 detail: t.services.items.daycare.detail,
                 price: t.services.items.daycare.price,
-                color: "brand-primary",
-                bgColor: "bg-brand-primary/10",
-                iconColor: "text-brand-primary",
-                delay: "delay-100",
+                bgColor: "bg-primary/10",
+                iconColor: "text-primary",
               },
               {
                 icon: MapPin,
@@ -146,10 +145,8 @@ export default function HomePage() {
                 desc: t.services.items.walking.description,
                 detail: t.services.items.walking.detail,
                 price: t.services.items.walking.price,
-                color: "brand-accent",
-                bgColor: "bg-brand-accent/10",
-                iconColor: "text-brand-accent",
-                delay: "delay-200",
+                bgColor: "bg-accent/10",
+                iconColor: "text-accent",
               },
               {
                 icon: Clock,
@@ -157,10 +154,8 @@ export default function HomePage() {
                 desc: t.services.items.boarding.description,
                 detail: t.services.items.boarding.detail,
                 price: t.services.items.boarding.price,
-                color: "brand-success",
-                bgColor: "bg-brand-success/10",
-                iconColor: "text-brand-success",
-                delay: "delay-300",
+                bgColor: "bg-chart-4/10",
+                iconColor: "text-chart-4",
               },
               {
                 icon: Heart,
@@ -168,21 +163,19 @@ export default function HomePage() {
                 desc: t.services.items.training.description,
                 detail: t.services.items.training.detail,
                 price: t.services.items.training.price,
-                color: "brand-warning",
-                bgColor: "bg-brand-warning/10",
-                iconColor: "text-brand-warning",
-                delay: "delay-400",
+                bgColor: "bg-chart-5/10",
+                iconColor: "text-chart-5",
               },
             ].map((service, index) => (
               <Card
                 key={index}
-                className="card-brand group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 role="listitem"
                 aria-labelledby={`service-title-${index}`}
               >
                 <CardHeader className="text-center pb-6">
                   <div
-                    className={`w-20 h-20 ${service.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-20 h-20 ${service.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
                     aria-hidden="true"
                   >
                     {React.createElement(service.icon, { 
@@ -214,7 +207,7 @@ export default function HomePage() {
           <div className="text-center mt-16">
             <Button 
               size="lg" 
-              className="btn-primary focus-brand"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               asChild
             >
               <Link href="/servicos">
@@ -227,30 +220,30 @@ export default function HomePage() {
 
       {/* Testimonials Section */}
       <section 
-        className="section-padding bg-gradient-to-br from-card to-muted/30"
+        className={`${responsive.sectionPadding} ${brand.gradients.card}`}
         aria-labelledby="testimonials-heading"
         role="region"
       >
-        <div className="container mx-auto container-padding">
-          <div className="text-center space-y-6 mb-16">
+        <div className={responsive.container}>
+          <div className={`${responsive.spaceY.md} ${responsive.textCenter} mb-12 lg:mb-16`}>
             <Badge
               variant="secondary"
-              className="bg-brand-primary/20 text-brand-secondary border-brand-primary/30 hover:bg-brand-primary/30 transition-colors"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               Testemunhos
             </Badge>
             <h2 
               id="testimonials-heading"
-              className="heading-responsive font-bold text-foreground"
+              className={responsive.heading1}
             >
               O Que Dizem os Nossos Clientes
             </h2>
-            <p className="text-responsive text-muted-foreground max-w-2xl mx-auto">
+            <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['2xl']} mx-auto`}>
               Histórias reais de famílias que confiam nos nossos cuidados
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Testemunhos dos clientes">
+          <div className={responsive.grid3} role="list" aria-label="Testemunhos dos clientes">
             {[
               {
                 stars: 5,
@@ -258,10 +251,8 @@ export default function HomePage() {
                 initials: "MC",
                 name: "Maria Costa",
                 role: "Tutora do Max",
-                color: "brand-primary",
-                bgColor: "bg-brand-primary/20",
-                textColor: "text-brand-primary",
-                delay: "delay-100",
+                bgColor: "bg-primary/20",
+                textColor: "text-primary",
               },
               {
                 stars: 5,
@@ -269,10 +260,8 @@ export default function HomePage() {
                 initials: "JS",
                 name: "João Silva",
                 role: "Tutor da Luna",
-                color: "brand-accent",
-                bgColor: "bg-brand-accent/20",
-                textColor: "text-brand-accent",
-                delay: "delay-200",
+                bgColor: "bg-accent/20",
+                textColor: "text-accent",
               },
               {
                 stars: 5,
@@ -280,15 +269,13 @@ export default function HomePage() {
                 initials: "AF",
                 name: "Ana Ferreira",
                 role: "Tutora do Bobby",
-                color: "brand-success",
-                bgColor: "bg-brand-success/20",
-                textColor: "text-brand-success",
-                delay: "delay-300",
+                bgColor: "bg-chart-4/20",
+                textColor: "text-chart-4",
               },
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className="card-brand group hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 role="listitem"
                 aria-labelledby={`testimonial-author-${index}`}
               >
@@ -298,7 +285,7 @@ export default function HomePage() {
                       {[...Array(testimonial.stars)].map((_, i) => (
                         <Star 
                           key={i} 
-                          className="w-5 h-5 text-brand-primary fill-current" 
+                          className="w-5 h-5 text-primary fill-current" 
                           aria-hidden="true"
                         />
                       ))}
@@ -333,31 +320,31 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section 
-        className="section-padding bg-gradient-to-br from-brand-secondary to-brand-primary text-white relative overflow-hidden"
+        className={`${responsive.sectionPadding} bg-[#1F3B75] text-white relative overflow-hidden`}
         aria-labelledby="cta-heading"
         role="region"
       >
         {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-secondary/90 via-brand-primary/80 to-brand-secondary/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1F3B75]/90 via-[#1F3B75]/80 to-[#1F3B75]/90" />
         <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
         <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
         
-        <div className="container mx-auto container-padding text-center relative z-10">
-          <div className="max-w-4xl mx-auto space-y-8">
+        <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+          <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 
               id="cta-heading"
-              className="heading-responsive font-bold text-white leading-tight"
+              className={`${responsive.heading1} text-white`}
             >
               Pronto para Dar ao Seu Cão o Melhor Cuidado?
             </h2>
-            <p className="text-responsive text-white/90 leading-relaxed max-w-2xl mx-auto">
+            <p className={`${responsive.bodyLarge} text-white/90 ${responsive.maxWidth['2xl']} mx-auto`}>
               Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
               tranquilo.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center" role="group" aria-label="Ações de contacto">
+            <div className={`${responsive.buttonGroupCenter}`} role="group" aria-label="Ações de contacto">
               <Button 
                 size="lg" 
-                className="bg-white text-brand-secondary hover:bg-white/90 focus-brand"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 focus:outline-none focus:ring-2 focus:ring-[#FDCF4D] focus:ring-offset-2"
                 aria-label="Ligar para a Dogwarts agora"
               >
                 <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -366,7 +353,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 bg-transparent focus-brand"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
                 aria-label="Enviar mensagem para a Dogwarts"
               >
                 <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -379,12 +366,12 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer 
-        className="bg-background border-t border-border section-padding"
+        className={`bg-background border-t border-border ${responsive.sectionPadding}`}
         role="contentinfo"
         aria-label="Rodapé do site"
       >
-        <div className="container mx-auto container-padding">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+        <div className={responsive.container}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             <div className="space-y-6 sm:col-span-2 md:col-span-1">
               <div className="flex items-center space-x-3">
                 <img 
@@ -405,22 +392,22 @@ export default function HomePage() {
               <h3 className="font-semibold mb-6 text-foreground">Serviços</h3>
               <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Lista de serviços">
                 <li>
-                  <Link href="/servicos" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Estadia Familiar
                   </Link>
                 </li>
@@ -431,22 +418,22 @@ export default function HomePage() {
               <h3 className="font-semibold mb-6 text-foreground">Empresa</h3>
               <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Links da empresa">
                 <li>
-                  <Link href="/sobre" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/sobre" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/testemunhos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/faq" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-brand-primary transition-colors focus-brand">
+                  <Link href="/blog" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Blog
                   </Link>
                 </li>
@@ -457,12 +444,12 @@ export default function HomePage() {
               <h3 className="font-semibold mb-6 text-foreground">Contacto</h3>
               <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Informações de contacto">
                 <li>
-                  <a href="tel:+351XXXXXXXXX" className="hover:text-brand-primary transition-colors focus-brand">
+                  <a href="tel:+351XXXXXXXXX" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     +351 XXX XXX XXX
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@dogwarts.pt" className="hover:text-brand-primary transition-colors focus-brand">
+                  <a href="mailto:info@dogwarts.pt" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     info@dogwarts.pt
                   </a>
                 </li>

@@ -18,22 +18,22 @@ const ResponsiveContainer = React.forwardRef<
     { variant = "default", padding = "md", className, children, ...props },
     ref,
   ) => {
-    const baseClasses = "container";
+    const baseClasses = "w-full";
     const variantClasses = {
-      default: "",
-      fluid: "container--fluid",
-      sm: "container--sm",
-      md: "container--md",
-      lg: "container--lg",
-      xl: "container--xl",
-      "2xl": "container--2xl",
+      default: "container mx-auto max-w-7xl",
+      fluid: "w-full",
+      sm: "container mx-auto max-w-2xl",
+      md: "container mx-auto max-w-4xl",
+      lg: "container mx-auto max-w-6xl",
+      xl: "container mx-auto max-w-7xl",
+      "2xl": "container mx-auto max-w-[1400px]",
     };
     const paddingClasses = {
-      none: "spacing--none",
-      sm: "spacing--sm",
-      md: "spacing--md",
-      lg: "spacing--lg",
-      xl: "spacing--xl",
+      none: "",
+      sm: "px-4 sm:px-6",
+      md: "px-4 sm:px-6 lg:px-8",
+      lg: "px-6 sm:px-8 lg:px-12",
+      xl: "px-8 sm:px-12 lg:px-16",
     };
 
     const containerClasses = cn(

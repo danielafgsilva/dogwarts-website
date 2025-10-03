@@ -6,6 +6,7 @@ import { Star, Quote, Camera, Calendar, MapPin, Phone, MessageCircle } from "luc
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import { STATISTICS } from "@/lib/constants"
+import { responsive, brand } from "@/lib/responsive-utils"
 
 export default function TestimonialsPage() {
   return (
@@ -14,7 +15,7 @@ export default function TestimonialsPage() {
 
       {/* Breadcrumb */}
       <div className="bg-card py-4">
-        <div className="container mx-auto px-4">
+        <div className={responsive.container}>
           <div className="flex items-center space-x-2 text-sm">
             <Link
               href="/"
@@ -29,35 +30,35 @@ export default function TestimonialsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto space-y-8">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <Badge
               variant="secondary"
               className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Testemunhos dos Nossos Clientes
             </Badge>
-            <h1 className="text-4xl lg:text-6xl font-serif font-bold text-balance leading-tight">
+            <h1 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Histórias de <span className="text-[#FDCF4D]">Amor</span> e{" "}
-              <span className="text-[#1F3B75]">Confiança</span>
+              <span className="text-white">Confiança</span>
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
               Descubra o que os nossos clientes e os seus patudos pensam sobre
               os cuidados da Dogwarts através das suas próprias palavras.
             </p>
             <div className="flex items-center justify-center space-x-8 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary">{STATISTICS.happyDogs.value}</div>
-                <div className="text-sm text-muted-foreground">{STATISTICS.happyDogs.label}</div>
+                <div className="text-3xl font-bold text-[#FDCF4D]">{STATISTICS.happyDogs.value}</div>
+                <div className="text-sm text-white/80">{STATISTICS.happyDogs.label}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">{STATISTICS.satisfaction.value}</div>
-                <div className="text-sm text-muted-foreground">{STATISTICS.satisfaction.label}</div>
+                <div className="text-3xl font-bold text-white">{STATISTICS.satisfaction.value}</div>
+                <div className="text-sm text-white/80">{STATISTICS.satisfaction.label}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-secondary">{STATISTICS.yearsExperience.value}</div>
-                <div className="text-sm text-muted-foreground">{STATISTICS.yearsExperience.label}</div>
+                <div className="text-3xl font-bold text-[#FDCF4D]">{STATISTICS.yearsExperience.value}</div>
+                <div className="text-sm text-white/80">{STATISTICS.yearsExperience.label}</div>
               </div>
             </div>
           </div>
@@ -199,16 +200,16 @@ export default function TestimonialsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-secondary text-secondary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} text-balance text-white`}>
               Pronto para Fazer Parte da Nossa Família?
             </h2>
-            <p className="text-lg text-secondary-foreground/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado que ele merece.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"

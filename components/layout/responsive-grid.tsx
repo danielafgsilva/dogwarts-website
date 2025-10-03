@@ -33,41 +33,41 @@ const ResponsiveGrid = React.forwardRef<HTMLDivElement, ResponsiveGridProps>(
   ) => {
     const baseClasses = "grid";
     const columnClasses = {
-      1: "grid--1",
-      2: "grid--2",
-      3: "grid--3",
-      4: "grid--4",
-      5: "grid--5",
-      6: "grid--6",
+      1: "grid-cols-1",
+      2: "grid-cols-1 md:grid-cols-2",
+      3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+      4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+      5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
+      6: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6",
     };
     const gapClasses = {
-      none: "grid--gap-none",
-      sm: "grid--gap-sm",
-      md: "grid--gap-md",
-      lg: "grid--gap-lg",
-      xl: "grid--gap-xl",
+      none: "gap-0",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-6",
+      xl: "gap-8",
     };
     const alignClasses = {
-      start: "grid--start",
-      center: "grid--center",
-      end: "grid--end",
-      stretch: "grid--stretch",
+      start: "items-start",
+      center: "items-center",
+      end: "items-end",
+      stretch: "items-stretch",
     };
     const justifyClasses = {
-      start: "grid--justify-start",
-      center: "grid--justify-center",
-      end: "grid--justify-end",
-      between: "grid--justify-between",
-      around: "grid--justify-around",
-      evenly: "grid--justify-evenly",
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end",
+      between: "justify-between",
+      around: "justify-around",
+      evenly: "justify-evenly",
     };
 
     const gridClasses = cn(
       baseClasses,
       !responsive && !autoFit && !autoFill && columnClasses[columns],
-      responsive && "grid--responsive",
-      autoFit && "grid--auto-fit",
-      autoFill && "grid--auto-fill",
+      responsive && "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+      autoFit && "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+      autoFill && "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]",
       gapClasses[gap],
       alignClasses[align],
       justifyClasses[justify],

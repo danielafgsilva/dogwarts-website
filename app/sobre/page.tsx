@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
+import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function AboutPage() {
   return (
@@ -30,7 +31,7 @@ export default function AboutPage() {
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 lg:py-4">
-        <div className="container mx-auto px-4">
+        <div className={responsive.container}>
           <div className="flex items-center space-x-2 text-sm">
             <Link
               href="/"
@@ -45,22 +46,22 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-12 lg:py-20 xl:py-32 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8">
-              <div className="space-y-4">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={responsive.container}>
+          <div className={`${responsive.grid2} items-center`}>
+            <div className={responsive.spaceY.lg}>
+              <div className={responsive.spaceY.sm}>
                 <Badge
                   variant="secondary"
                   className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
                 >
                   A Nossa História
                 </Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
+                <h1 className={`${responsive.heading1} text-balance text-white`}>
                   Uma História de <span className="text-[#FDCF4D]">Amor</span> e{" "}
-                  <span className="text-[#1F3B75]">Confiança</span>
+                  <span className="text-white">Confiança</span>
                 </h1>
-                <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed">
+                <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
                   Nascemos do coração de uma tutora que compreendeu, na prática,
                   o que significa cuidar verdadeiramente dos nossos companheiros
                   de quatro patas.
@@ -409,17 +410,17 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 lg:py-20 bg-secondary text-secondary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 lg:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} text-balance text-white`}>
               Quer Conhecer Melhor a Nossa Família?
             </h2>
-            <p className="text-lg lg:text-xl text-secondary-foreground/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Venha conhecer-nos pessoalmente e descubra como podemos cuidar do
               seu patudo com todo o amor e dedicação que ele merece.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
@@ -433,7 +434,7 @@ export default function AboutPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#1F3B75] text-[#1F3B75] hover:bg-[#1F3B75] hover:text-white bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
                 asChild
               >
                 <Link href="/servicos">

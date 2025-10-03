@@ -22,6 +22,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
+import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function ServicesPage() {
   return (
@@ -31,7 +32,7 @@ export default function ServicesPage() {
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 lg:py-4">
-        <div className="container mx-auto px-4">
+        <div className={responsive.container}>
           <div className="flex items-center space-x-2 text-sm">
             <Link
               href="/"
@@ -46,20 +47,20 @@ export default function ServicesPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-12 lg:py-20 xl:py-32 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto space-y-6 lg:space-y-8">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <Badge
               variant="secondary"
               className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
             >
               Os Nossos Serviços
             </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
-              Cuidados <span className="text-[#1F3B75]">Personalizados</span> para
+            <h1 className={`${responsive.heading1} text-balance text-white`}>
+              Cuidados <span className="text-[#FDCF4D]">Personalizados</span> para
               Cada Patudo
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
               Oferecemos uma gama completa de serviços pensados para o bem-estar
               dos seus cães e a sua total tranquilidade.
             </p>
@@ -68,9 +69,9 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-12 lg:py-20 bg-[#FDCF4D]/5">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      <section className={`${responsive.sectionPadding} ${brand.gradients.accent}`}>
+        <div className={responsive.container}>
+          <div className={responsive.grid2}>
             {/* Petsitting */}
             <Card className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30">
               <div className="aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
@@ -724,17 +725,17 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 lg:py-20 bg-[#1F3B75] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 lg:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} text-balance text-white`}>
               Pronto para Começar?
             </h2>
-            <p className="text-lg lg:text-xl text-white/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white/90 text-pretty`}>
               Entre em contacto connosco para discutir as necessidades do seu
               patudo e encontrar o serviço perfeito.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"

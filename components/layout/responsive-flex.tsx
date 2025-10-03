@@ -29,35 +29,35 @@ const ResponsiveFlex = React.forwardRef<HTMLDivElement, ResponsiveFlexProps>(
   ) => {
     const baseClasses = "flex";
     const directionClasses = {
-      row: "flex--row",
-      column: "flex--column",
-      responsive: "flex--responsive",
+      row: "flex-row",
+      column: "flex-col",
+      responsive: "flex-col md:flex-row",
     };
     const wrapClasses = {
-      wrap: "flex--wrap",
-      nowrap: "flex--nowrap",
+      wrap: "flex-wrap",
+      nowrap: "flex-nowrap",
     };
     const gapClasses = {
-      none: "flex--gap-none",
-      sm: "flex--gap-sm",
-      md: "flex--gap-md",
-      lg: "flex--gap-lg",
-      xl: "flex--gap-xl",
+      none: "gap-0",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-6",
+      xl: "gap-8",
     };
     const alignClasses = {
-      start: "flex--align-start",
-      center: "flex--align-center",
-      end: "flex--align-end",
-      stretch: "flex--align-stretch",
-      baseline: "flex--align-baseline",
+      start: "items-start",
+      center: "items-center",
+      end: "items-end",
+      stretch: "items-stretch",
+      baseline: "items-baseline",
     };
     const justifyClasses = {
-      start: "flex--justify-start",
-      center: "flex--justify-center",
-      end: "flex--justify-end",
-      between: "flex--justify-between",
-      around: "flex--justify-around",
-      evenly: "flex--justify-evenly",
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end",
+      between: "justify-between",
+      around: "justify-around",
+      evenly: "justify-evenly",
     };
 
     const flexClasses = cn(
