@@ -10,42 +10,64 @@ import Navbar from "@/components/navbar"
 import { APP_CONFIG } from "@/lib/constants"
 import type { Service, Testimonial } from "@/lib/types"
 import { useLanguage } from "@/hooks/use-language"
+import { responsive, brand } from "@/lib/responsive-utils"
 
 export default function HomePage() {
+  const { t: tRaw } = useLanguage() || {};
+  const t = tRaw ?? {
+    hero: {
+      badge: "Bem-vindo",
+      title: "Título padrão",
+      description: "Descrição padrão do herói.",
+      ctaPrimary: "Conheça nossos serviços",
+      ctaSecondary: "Contacte-nos",
+    },
+    // Adicione outros campos necessários para evitar erros em outras seções
+  };
+  
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
+      {/* Skip link for accessibility */}
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo principal
+      </a>
       <Navbar currentPage="/" />
 
       {/* Hero Section */}
       <section 
-        className="relative py-12 md:py-20 lg:py-32 bg-gradient-to-br from-card to-background"
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
         aria-labelledby="hero-heading"
         role="banner"
       >
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
-              <div className="space-y-4">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+        
+        <div className={`${responsive.container} relative z-10`}>
+          <div className={`${responsive.grid2} gap-8 lg:gap-16 items-center`}>
+            <div className={`${responsive.spaceY.lg} ${responsive.textCenterLg}`}>
+              <div className="space-y-6">
                 <Badge
                   variant="secondary"
-                  className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+                  className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
                 >
                   {t.hero.badge}
                 </Badge>
                 <h1 
                   id="hero-heading"
-                  className="text-3xl md:text-4xl lg:text-6xl font-bold text-balance leading-tight"
+                  className={`${responsive.heading1} font-serif`}
                 >
                   {t.hero.title}
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
+                <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['2xl']} mx-auto lg:mx-0`}>
                   {t.hero.description}
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" role="group" aria-label="Ações principais">
+              <div className={`${responsive.buttonGroupCenter} lg:justify-start`} role="group" aria-label="Ações principais">
                 <Button 
                   size="lg" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   aria-label="Conhecer os nossos serviços de cuidados para cães"
                 >
                   <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -54,7 +76,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent"
+                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
                   aria-label="Contactar-nos agora para mais informações"
                 >
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -63,28 +85,28 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative order-first lg:order-last">
-              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4 md:p-8">
+              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center p-8 shadow-2xl">
                 <img
                   src="/dogwarts-logo-with-tagline.png"
                   alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
-                  className="w-full h-full object-contain max-w-sm md:max-w-md"
+                  className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
                   loading="eager"
                   width="400"
                   height="400"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-card border border-border rounded-2xl p-3 md:p-4 shadow-lg">
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="flex -space-x-1 md:-space-x-2">
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full border-2 border-background"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-accent rounded-full border-2 border-background"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-secondary rounded-full border-2 border-background"></div>
+              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-xl">
+                <div className="flex items-center space-x-3">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 bg-primary rounded-full border-2 border-background shadow-sm" />
+                    <div className="w-8 h-8 bg-accent rounded-full border-2 border-background shadow-sm" />
+                    <div className="w-8 h-8 bg-chart-4 rounded-full border-2 border-background shadow-sm" />
                   </div>
                   <div>
-                    <p className="text-xs md:text-sm font-medium">100+ Cães Felizes</p>
+                    <p className="text-sm font-semibold text-foreground">100+ Cães Felizes</p>
                     <div className="flex items-center">
-                      <Star className="w-3 h-3 md:w-4 md:h-4 text-primary fill-current" />
-                      <span className="text-xs md:text-sm text-muted-foreground ml-1">5.0 avaliação</span>
+                      <Star className="w-4 h-4 text-primary fill-current" />
+                      <span className="text-sm text-muted-foreground ml-1">5.0 avaliação</span>
                     </div>
                   </div>
                 </div>
@@ -97,30 +119,30 @@ export default function HomePage() {
       {/* Services Section */}
       <section 
         id="servicos" 
-        className="py-12 md:py-20 bg-background"
+        className={`${responsive.sectionPadding} bg-background`}
         aria-labelledby="services-heading"
         role="region"
       >
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12 md:mb-16">
+        <div className={responsive.container}>
+          <div className={`${responsive.spaceY.md} ${responsive.textCenter} mb-12 lg:mb-16`}>
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               {t.services.title}
             </Badge>
             <h2 
               id="services-heading"
-              className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance"
+              className={`${responsive.heading1} font-serif`}
             >
               {t.services.subtitle}
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['3xl']} mx-auto`}>
               Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua tranquilidade.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" role="list" aria-label="Lista de serviços oferecidos">
+          <div className={responsive.grid4} role="list" aria-label="Lista de serviços oferecidos">
             {[
               {
                 icon: Heart,
@@ -128,8 +150,8 @@ export default function HomePage() {
                 desc: t.services.items.daycare.description,
                 detail: t.services.items.daycare.detail,
                 price: t.services.items.daycare.price,
-                color: "primary",
-                delay: "delay-100",
+                bgColor: "bg-primary/10",
+                iconColor: "text-primary",
               },
               {
                 icon: MapPin,
@@ -137,8 +159,8 @@ export default function HomePage() {
                 desc: t.services.items.walking.description,
                 detail: t.services.items.walking.detail,
                 price: t.services.items.walking.price,
-                color: "accent",
-                delay: "delay-200",
+                bgColor: "bg-accent/10",
+                iconColor: "text-accent",
               },
               {
                 icon: Clock,
@@ -146,8 +168,8 @@ export default function HomePage() {
                 desc: t.services.items.boarding.description,
                 detail: t.services.items.boarding.detail,
                 price: t.services.items.boarding.price,
-                color: "secondary",
-                delay: "delay-300",
+                bgColor: "bg-chart-4/10",
+                iconColor: "text-chart-4",
               },
               {
                 icon: Heart,
@@ -155,37 +177,40 @@ export default function HomePage() {
                 desc: t.services.items.training.description,
                 detail: t.services.items.training.detail,
                 price: t.services.items.training.price,
-                color: "chart-4",
-                delay: "delay-400",
+                bgColor: "bg-chart-5/10",
+                iconColor: "text-chart-5",
               },
             ].map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20"
+                className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 role="listitem"
                 aria-labelledby={`service-title-${index}`}
               >
-                <CardHeader className="text-center pb-4">
+                <CardHeader className="text-center pb-6">
                   <div
-                    className={`w-16 h-16 bg-${service.color}/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-${service.color}/20 transition-colors`}
+                    className={`w-20 h-20 ${service.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
                     aria-hidden="true"
                   >
                     {React.createElement(service.icon, { 
-                      className: `w-8 h-8 text-${service.color}`,
+                      className: `w-10 h-10 ${service.iconColor}`,
                       "aria-hidden": "true"
                     })}
                   </div>
                   <CardTitle 
                     id={`service-title-${index}`}
-                    className="text-xl font-serif"
+                    className="text-xl font-semibold text-foreground"
                   >
                     {service.title}
                   </CardTitle>
-                  <CardDescription>{service.desc}</CardDescription>
+                  <CardDescription className="text-muted-foreground">{service.desc}</CardDescription>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-sm text-muted-foreground mb-4">{service.detail}</p>
-                  <Badge variant="outline" className={`text-${service.color} border-${service.color}/30`}>
+                <CardContent className="text-center space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.detail}</p>
+                  <Badge 
+                    variant="outline" 
+                    className={`${service.iconColor} border-current hover:bg-current hover:text-white transition-colors`}
+                  >
                     {service.price}
                   </Badge>
                 </CardContent>
@@ -193,37 +218,46 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="text-center mt-8 md:mt-12">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Ver Todos os Serviços
+          <div className="text-center mt-16">
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              asChild
+            >
+              <Link href="/servicos">
+                Ver Todos os Serviços
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Quick Testimonials */}
+      {/* Testimonials Section */}
       <section 
-        className="py-12 md:py-20 bg-card"
+        className={`${responsive.sectionPadding} ${brand.gradients.card}`}
         aria-labelledby="testimonials-heading"
         role="region"
       >
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12 md:mb-16">
+        <div className={responsive.container}>
+          <div className={`${responsive.spaceY.md} ${responsive.textCenter} mb-12 lg:mb-16`}>
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               Testemunhos
             </Badge>
             <h2 
               id="testimonials-heading"
-              className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance"
+              className={responsive.heading1}
             >
               O Que Dizem os Nossos Clientes
             </h2>
+            <p className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth['2xl']} mx-auto`}>
+              Histórias reais de famílias que confiam nos nossos cuidados
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" role="list" aria-label="Testemunhos dos clientes">
+          <div className={responsive.grid3} role="list" aria-label="Testemunhos dos clientes">
             {[
               {
                 stars: 5,
@@ -231,8 +265,8 @@ export default function HomePage() {
                 initials: "MC",
                 name: "Maria Costa",
                 role: "Tutora do Max",
-                color: "primary",
-                delay: "delay-100",
+                bgColor: "bg-primary/20",
+                textColor: "text-primary",
               },
               {
                 stars: 5,
@@ -240,8 +274,8 @@ export default function HomePage() {
                 initials: "JS",
                 name: "João Silva",
                 role: "Tutor da Luna",
-                color: "accent",
-                delay: "delay-200",
+                bgColor: "bg-accent/20",
+                textColor: "text-accent",
               },
               {
                 stars: 5,
@@ -249,40 +283,42 @@ export default function HomePage() {
                 initials: "AF",
                 name: "Ana Ferreira",
                 role: "Tutora do Bobby",
-                color: "secondary",
-                delay: "delay-300",
+                bgColor: "bg-chart-4/20",
+                textColor: "text-chart-4",
               },
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-border transition-all duration-700"
+                className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 role="listitem"
                 aria-labelledby={`testimonial-author-${index}`}
               >
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
+                <CardContent className="pt-8 pb-6">
+                  <div className="flex items-center mb-6">
                     <div className="flex" role="img" aria-label={`${testimonial.stars} estrelas de avaliação`}>
                       {[...Array(testimonial.stars)].map((_, i) => (
                         <Star 
                           key={i} 
-                          className="w-4 h-4 text-primary fill-current" 
+                          className="w-5 h-5 text-primary fill-current" 
                           aria-hidden="true"
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="text-muted-foreground mb-4 text-pretty">"{testimonial.text}"</p>
+                  <blockquote className="text-muted-foreground mb-6 leading-relaxed">
+                    <p className="text-pretty">"{testimonial.text}"</p>
+                  </blockquote>
                   <div className="flex items-center">
                     <div
-                      className={`w-10 h-10 bg-${testimonial.color}/20 rounded-full flex items-center justify-center mr-3`}
+                      className={`w-12 h-12 ${testimonial.bgColor} rounded-full flex items-center justify-center mr-4`}
                       aria-hidden="true"
                     >
-                      <span className={`text-sm font-medium text-${testimonial.color}`}>{testimonial.initials}</span>
+                      <span className={`text-sm font-semibold ${testimonial.textColor}`}>{testimonial.initials}</span>
                     </div>
                     <div>
                       <p 
                         id={`testimonial-author-${index}`}
-                        className="font-medium"
+                        className="font-semibold text-foreground"
                       >
                         {testimonial.name}
                       </p>
@@ -298,26 +334,31 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section 
-        className="py-12 md:py-20 bg-secondary text-secondary-foreground"
+        className={`${responsive.sectionPadding} bg-[#1F3B75] text-white relative overflow-hidden`}
         aria-labelledby="cta-heading"
         role="region"
       >
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1F3B75]/90 via-[#1F3B75]/80 to-[#1F3B75]/90" />
+        <div className="absolute top-10 left-10 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+        
+        <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+          <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 
               id="cta-heading"
-              className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance"
+              className={`${responsive.heading1} font-serif text-white`}
             >
               Pronto para Dar ao Seu Cão o Melhor Cuidado?
             </h2>
-            <p className="text-lg md:text-xl text-secondary-foreground/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white ${responsive.maxWidth['2xl']} mx-auto`}>
               Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
               tranquilo.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center" role="group" aria-label="Ações de contacto">
+            <div className={`${responsive.buttonGroupCenter}`} role="group" aria-label="Ações de contacto">
               <Button 
                 size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 focus:outline-none focus:ring-2 focus:ring-[#FDCF4D] focus:ring-offset-2 focus:ring-offset-[#1F3B75] transition-colors duration-200"
                 aria-label="Ligar para a Dogwarts agora"
               >
                 <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -326,7 +367,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1F3B75] transition-colors duration-200"
                 aria-label="Enviar mensagem para a Dogwarts"
               >
                 <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -339,43 +380,48 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer 
-        className="bg-background border-t border-border py-8 md:py-12"
+        className={`bg-background border-t border-border ${responsive.sectionPadding}`}
         role="contentinfo"
         aria-label="Rodapé do site"
       >
-        <div className="container mx-auto px-4">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div className="space-y-4 sm:col-span-2 md:col-span-1">
-              <img 
-                src="/dogwarts-logo-transparent.png" 
-                alt="Logo da Dogwarts" 
-                className="w-10 h-10 object-contain"
-                width="40"
-                height="40"
-              />
-              <span className="text-xl font-bold">Dogwarts</span>
+        <div className={responsive.container}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div className="space-y-6 sm:col-span-2 md:col-span-1">
+              <div className="flex items-center space-x-3">
+                <img 
+                  src="/dogwarts-logo-transparent.png" 
+                  alt="Logo da Dogwarts" 
+                  className="w-12 h-12 object-contain"
+                  width="48"
+                  height="48"
+                />
+                <span className="text-2xl font-bold text-foreground">Dogwarts</span>
+              </div>
+              <p className="text-muted-foreground leading-relaxed max-w-sm">
+                Cuidados caninos personalizados com amor e profissionalismo. O seu cão merece o melhor.
+              </p>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Serviços</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm" role="list" aria-label="Lista de serviços">
+              <h3 className="font-semibold mb-6 text-foreground">Serviços</h3>
+              <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Lista de serviços">
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link href="/servicos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Estadia Familiar
                   </Link>
                 </li>
@@ -383,25 +429,25 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Empresa</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm" role="list" aria-label="Links da empresa">
+              <h3 className="font-semibold mb-6 text-foreground">Empresa</h3>
+              <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Links da empresa">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link href="/sobre" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link href="/testemunhos" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link href="/faq" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link href="/blog" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     Blog
                   </Link>
                 </li>
@@ -409,15 +455,15 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Contacto</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm" role="list" aria-label="Informações de contacto">
+              <h3 className="font-semibold mb-6 text-foreground">Contacto</h3>
+              <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Informações de contacto">
                 <li>
-                  <a href="tel:+351XXXXXXXXX" className="hover:text-primary transition-colors">
+                  <a href="tel:+351XXXXXXXXX" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     +351 XXX XXX XXX
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@dogwarts.pt" className="hover:text-primary transition-colors">
+                  <a href="mailto:info@dogwarts.pt" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
                     info@dogwarts.pt
                   </a>
                 </li>
@@ -426,10 +472,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 text-center text-muted-foreground">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-              <p className="text-sm">&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">Desenvolvido por Daniela Silva & Tiago Santos</p>
+          <div className="border-t border-border mt-12 pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-muted-foreground">
+                &copy; 2024 Dogwarts. Todos os direitos reservados.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Desenvolvido por Daniela Silva & Tiago Santos
+              </p>
             </div>
           </div>
         </div>

@@ -57,18 +57,18 @@ const CustomCard = React.forwardRef<HTMLDivElement, CustomCardProps>(
     },
     ref,
   ) => {
-    const baseClasses = "card";
+    const baseClasses = "rounded-lg border bg-card text-card-foreground shadow-sm";
     const variantClasses = {
       default: "",
-      elevated: "card--elevated",
-      flat: "card--flat",
-      interactive: "card--interactive",
+      elevated: "shadow-lg",
+      flat: "shadow-none border-0",
+      interactive: "hover:shadow-md transition-shadow cursor-pointer",
     };
     const sizeClasses = {
-      sm: "card--sm",
-      md: "card--md",
-      lg: "card--lg",
-      xl: "card--xl",
+      sm: "p-3",
+      md: "p-4",
+      lg: "p-6",
+      xl: "p-8",
     };
 
     const cardClasses = cn(
@@ -76,14 +76,14 @@ const CustomCard = React.forwardRef<HTMLDivElement, CustomCardProps>(
       variantClasses[variant],
       sizeClasses[size],
       {
-        "card--loading": loading,
+        "opacity-50": loading,
       },
       className,
     );
 
     return (
       <div ref={ref} className={cardClasses} {...props}>
-        {badge && <span className="card__badge">{badge}</span>}
+        {badge && <span className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">{badge}</span>}
 
         {image && (
           <Image
@@ -91,7 +91,7 @@ const CustomCard = React.forwardRef<HTMLDivElement, CustomCardProps>(
             alt={image.alt}
             width={image.width}
             height={image.height}
-            className="card__image"
+            className="w-full h-auto rounded-t-lg object-cover"
           />
         )}
 
@@ -105,7 +105,7 @@ const CustomCardHeader = React.forwardRef<
   HTMLDivElement,
   CustomCardHeaderProps
 >(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={cn("card__header", className)} {...props}>
+  <div ref={ref} className={cn("flex flex-col space-y-1.5 p-6", className)} {...props}>
     {children}
   </div>
 ));
@@ -114,7 +114,7 @@ const CustomCardTitle = React.forwardRef<
   HTMLHeadingElement,
   CustomCardTitleProps
 >(({ className, children, ...props }, ref) => (
-  <h3 ref={ref} className={cn("card__title", className)} {...props}>
+  <h3 ref={ref} className={cn("text-2xl font-semibold leading-none tracking-tight", className)} {...props}>
     {children}
   </h3>
 ));
@@ -123,7 +123,7 @@ const CustomCardSubtitle = React.forwardRef<
   HTMLParagraphElement,
   CustomCardSubtitleProps
 >(({ className, children, ...props }, ref) => (
-  <p ref={ref} className={cn("card__subtitle", className)} {...props}>
+  <p ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props}>
     {children}
   </p>
 ));
@@ -132,7 +132,7 @@ const CustomCardContent = React.forwardRef<
   HTMLDivElement,
   CustomCardContentProps
 >(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={cn("card__body", className)} {...props}>
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props}>
     {children}
   </div>
 ));
@@ -141,7 +141,7 @@ const CustomCardFooter = React.forwardRef<
   HTMLDivElement,
   CustomCardFooterProps
 >(({ className, children, ...props }, ref) => (
-  <div ref={ref} className={cn("card__footer", className)} {...props}>
+  <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props}>
     {children}
   </div>
 ));

@@ -133,3 +133,63 @@ export function isDesktop(): boolean {
   if (typeof window === 'undefined') return false
   return window.innerWidth >= 1024
 }
+
+// Format phone number
+export function formatPhoneNumber(phone: string): string {
+  const cleaned = phone.replace(/\D/g, '')
+  // Portuguese (9 digits): XXX XXX XXX
+  if (cleaned.length === 9) {
+    return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
+  }
+  // US (10 digits): (XXX) XXX-XXXX
+  if (cleaned.length === 10) {
+    return cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')
+  }
+  // US (11 digits, country code): +X (XXX) XXX-XXXX
+  if (cleaned.length === 11) {
+    return cleaned.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3-$4')
+  }
+  // International (starts with country code, e.g., 12+ digits)
+  if (cleaned.length > 11) {
+    // Group digits in blocks of 3 or 4 for readability
+    return cleaned.replace(/(\d{3})(?=\d)/g, '$1 ').trim()
+  }
+  // Fallback: group digits in blocks of 3
+  if (cleaned.length > 3) {
+    return cleaned.replace(/(\d{3})(?=\d)/g, '$1 ').trim()
+  }
+  // If nothing matches, return the cleaned number
+  return cleaned
+}
+
+// Format currency
+export function formatCurrency(amount: number, currency = 'EUR'): string {
+  return new Intl.NumberFormat('pt-PT', {
+    style: 'currency',
+    currency,
+  }).format(amount)
+}
+
+// Format date
+export function formatDate(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return new Intl.DateTimeFormat('pt-PT').format(d)
+}
+
+// Format time
+export function formatTime(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return new Intl.DateTimeFormat('pt-PT', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(d)
+}
+
+// Format file size
+export function formatFileSize(bytes: number): string {
+  if (bytes === 0) return '0 Bytes'
+  const k = 1024
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
+}

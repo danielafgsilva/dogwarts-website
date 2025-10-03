@@ -30,19 +30,21 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
     },
     ref,
   ) => {
-    const baseClasses = "button";
+    const baseClasses = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all disabled:pointer-events-none disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    
     const variantClasses = {
-      primary: "button--primary",
-      secondary: "button--secondary",
-      outline: "button--outline",
-      ghost: "button--ghost",
-      link: "button--link",
+      primary: "bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-secondary",
+      outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground focus:ring-ring",
+      ghost: "hover:bg-accent hover:text-accent-foreground focus:ring-ring",
+      link: "text-primary underline-offset-4 hover:underline focus:ring-primary",
     };
+    
     const sizeClasses = {
-      sm: "button--sm",
-      md: "button--md",
-      lg: "button--lg",
-      xl: "button--xl",
+      sm: "h-8 px-3 text-sm",
+      md: "h-9 px-4 py-2",
+      lg: "h-10 px-6 text-base",
+      xl: "h-12 px-8 text-lg",
     };
 
     const buttonClasses = cn(
@@ -50,10 +52,10 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
       variantClasses[variant],
       sizeClasses[size],
       {
-        "button--full": fullWidth,
-        "button--loading": loading,
-        "button--disabled": disabled,
-        "button--icon-only": React.Children.count(children) === 0 && icon,
+        "w-full": fullWidth,
+        "opacity-50 cursor-not-allowed": loading,
+        "pointer-events-none": disabled,
+        "aspect-square p-0": React.Children.count(children) === 0 && icon,
       },
       className,
     );

@@ -49,56 +49,56 @@ const ResponsiveImage = React.forwardRef<
     },
     ref,
   ) => {
-    const baseClasses = "image";
+    const baseClasses = "w-full h-auto";
     const aspectRatioClasses = {
-      square: "image--square",
-      landscape: "image--landscape",
-      portrait: "image--portrait",
-      wide: "image--wide",
-      tall: "image--tall",
+      square: "aspect-square",
+      landscape: "aspect-video",
+      portrait: "aspect-[3/4]",
+      wide: "aspect-[21/9]",
+      tall: "aspect-[3/5]",
     };
     const objectFitClasses = {
-      cover: "image--cover",
-      contain: "image--contain",
-      fill: "image--fill",
-      "scale-down": "image--scale-down",
-      none: "image--none",
+      cover: "object-cover",
+      contain: "object-contain",
+      fill: "object-fill",
+      "scale-down": "object-scale-down",
+      none: "object-none",
     };
     const objectPositionClasses = {
-      center: "image--center",
-      top: "image--top",
-      bottom: "image--bottom",
-      left: "image--left",
-      right: "image--right",
+      center: "object-center",
+      top: "object-top",
+      bottom: "object-bottom",
+      left: "object-left",
+      right: "object-right",
     };
     const sizeClasses = {
-      xs: "image--xs",
-      sm: "image--sm",
-      md: "image--md",
-      lg: "image--lg",
-      xl: "image--xl",
-      "2xl": "image--2xl",
-      responsive: "image--responsive",
+      xs: "w-8 h-8",
+      sm: "w-16 h-16",
+      md: "w-24 h-24",
+      lg: "w-32 h-32",
+      xl: "w-48 h-48",
+      "2xl": "w-64 h-64",
+      responsive: "w-full h-auto",
     };
     const roundedClasses = {
       none: "",
-      sm: "image--rounded",
-      md: "image--rounded",
-      lg: "image--rounded-lg",
-      xl: "image--rounded-xl",
-      full: "image--rounded-full",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
+      full: "rounded-full",
     };
     const shadowClasses = {
       none: "",
-      sm: "image--shadow",
-      md: "image--shadow",
-      lg: "image--shadow-lg",
-      xl: "image--shadow-xl",
+      sm: "shadow-sm",
+      md: "shadow-md",
+      lg: "shadow-lg",
+      xl: "shadow-xl",
     };
     const hoverClasses = {
       none: "",
-      scale: "image--hover-scale",
-      zoom: "image--hover-zoom",
+      scale: "hover:scale-105 transition-transform",
+      zoom: "hover:scale-110 transition-transform",
     };
 
     const imageClasses = cn(

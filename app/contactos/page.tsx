@@ -31,16 +31,17 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
+import { responsive, brand } from "@/lib/responsive-utils";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen font-inter">
+    <div className="min-h-screen font-sans">
       {/* Navigation */}
       <Navbar currentPage="/contactos" />
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 md:py-4">
-        <div className="container mx-auto px-4">
+        <div className={responsive.container}>
           <div className="flex items-center space-x-2 text-sm">
             <Link
               href="/"
@@ -55,20 +56,32 @@ export default function ContactPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-12 md:py-20 lg:py-32 bg-gradient-to-br from-card to-background">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
+      <section 
+        className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+        aria-labelledby="contact-hero-heading"
+        role="banner"
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
+        <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+        
+        <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+          <div className={`${responsive.maxWidth['4xl']} mx-auto ${responsive.spaceY.lg}`}>
             <Badge
               variant="secondary"
-              className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
+              className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
               Entre em Contacto
             </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-inter font-bold text-balance leading-tight">
-              Vamos <span className="text-[#1F3B75]">Conversar</span> sobre o Seu
+            <h1 
+              id="contact-hero-heading"
+              className={`${responsive.heading1} font-serif text-balance`}
+            >
+              Vamos <span className="text-primary">Conversar</span> sobre o Seu
               Patudo
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
+            <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
               Estamos aqui para responder às suas questões e ajudar a encontrar
               o melhor cuidado para o seu cão. Entre em contacto connosco!
             </p>
@@ -452,17 +465,17 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 bg-[#1F3B75] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-inter font-bold text-balance">
+      <section className={`${responsive.sectionPadding} bg-[#1F3B75] text-white`}>
+        <div className={`${responsive.container} ${responsive.textCenter}`}>
+          <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
+            <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
               Pronto para Conhecer a Dogwarts?
             </h2>
-            <p className="text-lg md:text-xl text-white/80 text-pretty">
+            <p className={`${responsive.bodyLarge} text-white text-pretty`}>
               Entre em contacto connosco e venha conhecer como podemos cuidar do
               seu patudo com todo o amor que ele merece.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
