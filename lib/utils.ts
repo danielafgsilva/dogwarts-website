@@ -137,10 +137,29 @@ export function isDesktop(): boolean {
 // Format phone number
 export function formatPhoneNumber(phone: string): string {
   const cleaned = phone.replace(/\D/g, '')
+  // Portuguese (9 digits): XXX XXX XXX
   if (cleaned.length === 9) {
     return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')
   }
-  return phone
+  // US (10 digits): (XXX) XXX-XXXX
+  if (cleaned.length === 10) {
+    return cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')
+  }
+  // US (11 digits, country code): +X (XXX) XXX-XXXX
+  if (cleaned.length === 11) {
+    return cleaned.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '+$1 ($2) $3-$4')
+  }
+  // International (starts with country code, e.g., 12+ digits)
+  if (cleaned.length > 11) {
+    // Group digits in blocks of 3 or 4 for readability
+    return cleaned.replace(/(\d{3})(?=\d)/g, '$1 ').trim()
+  }
+  // Fallback: group digits in blocks of 3
+  if (cleaned.length > 3) {
+    return cleaned.replace(/(\d{3})(?=\d)/g, '$1 ').trim()
+  }
+  // If nothing matches, return the cleaned number
+  return cleaned
 }
 
 // Format currency
