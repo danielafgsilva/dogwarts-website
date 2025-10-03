@@ -86,7 +86,7 @@ export interface FormData {
   service?: string
 }
 
-export interface ContactFormData extends FormData {
+export interface ContactFormValidationData extends FormData {
   name: string
   email: string
   phone: string

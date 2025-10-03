@@ -18,7 +18,7 @@ export type {
 } from "./use-scroll-animation";
 
 // Re-export existing hooks
-export { useMobile } from './use-mobile'
+export { useIsMobile } from './use-mobile'
 export { useToast } from './use-toast'
 export { useLanguage } from './use-language'
 export { useForm } from './use-form'

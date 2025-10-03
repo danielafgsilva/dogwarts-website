@@ -1,5 +1,5 @@
 // Object utilities
-export function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+export function pick<T extends Record<string, any>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>
   keys.forEach(key => {
     if (key in obj) {
@@ -74,7 +74,7 @@ export function deepClone<T>(obj: T): T {
 }
 
 export function merge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = { ...target }
+  const result = { ...target } as any
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {
@@ -93,7 +93,7 @@ export function merge<T extends Record<string, any>>(target: T, ...sources: Part
 }
 
 export function deepMerge<T extends Record<string, any>>(target: T, ...sources: Partial<T>[]): T {
-  const result = deepClone(target)
+  const result = deepClone(target) as any
   
   sources.forEach(source => {
     Object.keys(source).forEach(key => {

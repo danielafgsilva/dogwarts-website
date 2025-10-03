@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useForm } from '@/hooks/use-form'
 import { useLanguage } from '@/hooks/use-language'
-import { type ContactFormData } from '@/lib/validation'
+import { type ContactFormData } from '@/lib/types'
 import { Phone, Mail, User, MessageSquare } from 'lucide-react'
 
 interface ContactFormProps {
