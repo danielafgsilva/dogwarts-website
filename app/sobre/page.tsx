@@ -1,10 +1,26 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Home, Shield, Users, Star, Award, Clock, ChevronLeft, ChevronRight } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import Navbar from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Heart,
+  Home,
+  Shield,
+  Users,
+  Star,
+  Award,
+  Clock,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/navbar";
 
 export default function AboutPage() {
   return (
@@ -16,7 +32,10 @@ export default function AboutPage() {
       <div className="bg-card py-3 lg:py-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="/"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Início
             </Link>
             <span className="text-muted-foreground">/</span>
@@ -33,17 +52,18 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <Badge
                   variant="secondary"
-                  className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+                  className="bg-[#FDCF4D] text-[#1F3B75] border-[#FDCF4D]"
                 >
                   A Nossa História
                 </Badge>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-balance leading-tight">
-                  Uma História de <span className="text-primary">Amor</span> e{" "}
-                  <span className="text-accent">Confiança</span>
+                  Uma História de <span className="text-[#FDCF4D]">Amor</span> e{" "}
+                  <span className="text-[#1F3B75]">Confiança</span>
                 </h1>
                 <p className="text-lg lg:text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Nascemos do coração de uma tutora que compreendeu, na prática, o que significa cuidar verdadeiramente
-                  dos nossos companheiros de quatro patas.
+                  Nascemos do coração de uma tutora que compreendeu, na prática,
+                  o que significa cuidar verdadeiramente dos nossos companheiros
+                  de quatro patas.
                 </p>
               </div>
             </div>
@@ -90,8 +110,12 @@ export default function AboutPage() {
               </div>
               <div className="absolute -bottom-4 lg:-bottom-6 -right-4 lg:-right-6 bg-card border border-border rounded-xl lg:rounded-2xl p-3 lg:p-4 shadow-lg">
                 <div className="text-center">
-                  <p className="text-xl lg:text-2xl font-bold text-primary">4</p>
-                  <p className="text-xs lg:text-sm text-muted-foreground">Cães da Família</p>
+                  <p className="text-xl lg:text-2xl font-bold text-primary">
+                    4
+                  </p>
+                  <p className="text-xs lg:text-sm text-muted-foreground">
+                    Cães da Família
+                  </p>
                 </div>
               </div>
             </div>
@@ -100,46 +124,55 @@ export default function AboutPage() {
       </section>
 
       {/* Founder Story */}
-      <section className="py-12 lg:py-20 bg-background">
+      <section className="py-12 lg:py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center space-y-4 mb-12 lg:mb-16">
               <Badge
                 variant="secondary"
-                className="bg-accent/20 text-gray-800 border-accent/30 dark:bg-accent/30 dark:text-gray-100"
+                className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
               >
                 Setembro 2023
               </Badge>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">Como Tudo Começou</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
+                Como Tudo Começou
+              </h2>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
               <div className="lg:col-span-2 space-y-6">
                 <div className="prose prose-lg max-w-none">
                   <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    A Dogwarts nasceu em setembro de 2023, criada por uma tutora apaixonada de quatro cães que viveu na
-                    pele os desafios de deixar os seus companheiros quando precisava de trabalhar ou viajar.
+                    A Dogwarts nasceu em setembro de 2023, criada por uma tutora
+                    apaixonada de quatro cães que viveu na pele os desafios de
+                    deixar os seus companheiros quando precisava de trabalhar ou
+                    viajar.
                   </p>
 
                   <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    Depois de anos a procurar soluções que realmente compreendessem as necessidades emocionais dos cães,
-                    percebeu que faltava algo no mercado: um serviço que tratasse cada animal como família, não apenas
-                    como um "trabalho".
+                    Depois de anos a procurar soluções que realmente
+                    compreendessem as necessidades emocionais dos cães, percebeu
+                    que faltava algo no mercado: um serviço que tratasse cada
+                    animal como família, não apenas como um "trabalho".
                   </p>
 
                   <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    Foi assim que nasceu a missão da Dogwarts: criar um espaço onde os cães se sentem verdadeiramente em
-                    casa, rodeados de amor, atenção e cuidados personalizados, para que os tutores possam ter a
-                    tranquilidade que merecem.
+                    Foi assim que nasceu a missão da Dogwarts: criar um espaço
+                    onde os cães se sentem verdadeiramente em casa, rodeados de
+                    amor, atenção e cuidados personalizados, para que os tutores
+                    possam ter a tranquilidade que merecem.
                   </p>
                 </div>
 
                 <div className="bg-card rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
                   <blockquote className="text-base lg:text-lg italic text-foreground">
-                    "Cada cão tem a sua personalidade única, os seus medos e as suas alegrias. O nosso trabalho é
-                    conhecê-los profundamente e cuidar deles como se fossem nossos."
+                    "Cada cão tem a sua personalidade única, os seus medos e as
+                    suas alegrias. O nosso trabalho é conhecê-los profundamente
+                    e cuidar deles como se fossem nossos."
                   </blockquote>
-                  <cite className="text-sm text-muted-foreground mt-4 block">— Fundadora da Dogwarts</cite>
+                  <cite className="text-sm text-muted-foreground mt-4 block">
+                    — Fundadora da Dogwarts
+                  </cite>
                 </div>
               </div>
 
@@ -151,8 +184,12 @@ export default function AboutPage() {
                         <Award className="w-5 h-5 lg:w-6 lg:h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-sm lg:text-base">Experiência</h3>
-                        <p className="text-xs lg:text-sm text-muted-foreground">Tutora há mais de 8 anos</p>
+                        <h3 className="font-semibold text-sm lg:text-base">
+                          Experiência
+                        </h3>
+                        <p className="text-xs lg:text-sm text-muted-foreground">
+                          Tutora há mais de 8 anos
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -165,8 +202,12 @@ export default function AboutPage() {
                         <Heart className="w-5 h-5 lg:w-6 lg:h-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-sm lg:text-base">Paixão</h3>
-                        <p className="text-xs lg:text-sm text-muted-foreground">Amor genuíno pelos animais</p>
+                        <h3 className="font-semibold text-sm lg:text-base">
+                          Paixão
+                        </h3>
+                        <p className="text-xs lg:text-sm text-muted-foreground">
+                          Amor genuíno pelos animais
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -179,8 +220,12 @@ export default function AboutPage() {
                         <Clock className="w-5 h-5 lg:w-6 lg:h-6 text-secondary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-sm lg:text-base">Dedicação</h3>
-                        <p className="text-xs lg:text-sm text-muted-foreground">Disponível 24/7</p>
+                        <h3 className="font-semibold text-sm lg:text-base">
+                          Dedicação
+                        </h3>
+                        <p className="text-xs lg:text-sm text-muted-foreground">
+                          Disponível 24/7
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -192,12 +237,12 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-12 lg:py-20 bg-card">
+      <section className="py-12 lg:py-20 bg-[#8B5CF6]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-12 lg:mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-[#10B981] text-white border-[#10B981]"
             >
               Os Nossos Valores
             </Badge>
@@ -205,24 +250,30 @@ export default function AboutPage() {
               O Que Nos Move Todos os Dias
             </h2>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Três pilares fundamentais guiam cada decisão e cada cuidado que oferecemos aos nossos patudos.
+              Três pilares fundamentais guiam cada decisão e cada cuidado que
+              oferecemos aos nossos patudos.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Confiança */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20 text-center">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-primary/20 transition-colors">
-                  <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-primary" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#FDCF4D]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#FDCF4D]/20 transition-colors">
+                  <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-[#FDCF4D]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-primary">Confiança</CardTitle>
-                <CardDescription className="text-sm lg:text-base">A base de tudo o que fazemos</CardDescription>
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#FDCF4D]">
+                  Confiança
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  A base de tudo o que fazemos
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Construímos relações sólidas baseadas na transparência, comunicação constante e no cumprimento
-                  rigoroso dos nossos compromissos. A sua tranquilidade é a nossa prioridade.
+                  Construímos relações sólidas baseadas na transparência,
+                  comunicação constante e no cumprimento rigoroso dos nossos
+                  compromissos. A sua tranquilidade é a nossa prioridade.
                 </p>
                 <div className="space-y-2">
                   <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
@@ -242,18 +293,23 @@ export default function AboutPage() {
             </Card>
 
             {/* Amor */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-accent/20 text-center">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#8B5CF6]/20 text-center">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-accent/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-accent/20 transition-colors">
-                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-accent" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#8B5CF6]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#8B5CF6]/20 transition-colors">
+                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-[#8B5CF6]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-accent">Amor</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Cuidado genuíno e carinhoso</CardDescription>
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#8B5CF6]">
+                  Amor
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Cuidado genuíno e carinhoso
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Cada cão é tratado com o amor e carinho que merece. Não são apenas "clientes" - são membros da nossa
-                  família alargada, com personalidades únicas que respeitamos e celebramos.
+                  Cada cão é tratado com o amor e carinho que merece. Não são
+                  apenas "clientes" - são membros da nossa família alargada, com
+                  personalidades únicas que respeitamos e celebramos.
                 </p>
                 <div className="space-y-2">
                   <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
@@ -273,18 +329,23 @@ export default function AboutPage() {
             </Card>
 
             {/* Familiaridade */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-secondary/20 text-center md:col-span-2 lg:col-span-1">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#1F3B75]/20 text-center md:col-span-2 lg:col-span-1">
               <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-secondary/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-secondary/20 transition-colors">
-                  <Home className="w-8 h-8 lg:w-10 lg:h-10 text-secondary" />
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#1F3B75]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#1F3B75]/20 transition-colors">
+                  <Home className="w-8 h-8 lg:w-10 lg:h-10 text-[#1F3B75]" />
                 </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-secondary">Familiaridade</CardTitle>
-                <CardDescription className="text-sm lg:text-base">Um ambiente como em casa</CardDescription>
+                <CardTitle className="text-xl lg:text-2xl font-bold text-[#1F3B75]">
+                  Familiaridade
+                </CardTitle>
+                <CardDescription className="text-sm lg:text-base">
+                  Um ambiente como em casa
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Criamos um ambiente familiar onde os cães se sentem seguros e confortáveis. Mantemos rotinas,
-                  respeitamos hábitos e proporcionamos o conforto de casa, mesmo longe de casa.
+                  Criamos um ambiente familiar onde os cães se sentem seguros e
+                  confortáveis. Mantemos rotinas, respeitamos hábitos e
+                  proporcionamos o conforto de casa, mesmo longe de casa.
                 </p>
                 <div className="space-y-2">
                   <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
@@ -307,12 +368,12 @@ export default function AboutPage() {
       </section>
 
       {/* Team Photos Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-[#10B981]/5">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+              className="bg-[#F59E0B] text-white border-[#F59E0B]"
             >
               A Nossa Família
             </Badge>
@@ -355,11 +416,15 @@ export default function AboutPage() {
               Quer Conhecer Melhor a Nossa Família?
             </h2>
             <p className="text-lg lg:text-xl text-secondary-foreground/80 text-pretty">
-              Venha conhecer-nos pessoalmente e descubra como podemos cuidar do seu patudo com todo o amor e dedicação
-              que ele merece.
+              Venha conhecer-nos pessoalmente e descubra como podemos cuidar do
+              seu patudo com todo o amor e dedicação que ele merece.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <Button
+                size="lg"
+                className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
+                asChild
+              >
                 <Link href="/contactos">
                   <Users className="w-5 h-5 mr-2" />
                   Contactar-nos
@@ -368,7 +433,7 @@ export default function AboutPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-[#1F3B75] text-[#1F3B75] hover:bg-[#1F3B75] hover:text-white bg-transparent"
                 asChild
               >
                 <Link href="/servicos">
@@ -405,22 +470,34 @@ export default function AboutPage() {
               <h3 className="font-semibold mb-4">Serviços</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Petsitting
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Dogwalking
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Creche/Daycare
                   </Link>
                 </li>
                 <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/servicos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Estadia Familiar
                   </Link>
                 </li>
@@ -431,22 +508,34 @@ export default function AboutPage() {
               <h3 className="font-semibold mb-4">Empresa</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/sobre"
+                    className="hover:text-primary transition-colors"
+                  >
                     Sobre Nós
                   </Link>
                 </li>
                 <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/testemunhos"
+                    className="hover:text-primary transition-colors"
+                  >
                     Testemunhos
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/faq"
+                    className="hover:text-primary transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
+                  <Link
+                    href="/blog"
+                    className="hover:text-primary transition-colors"
+                  >
                     Blog
                   </Link>
                 </li>
@@ -465,10 +554,12 @@ export default function AboutPage() {
 
           <div className="border-t border-border mt-6 lg:mt-8 pt-6 lg:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs lg:text-sm text-muted-foreground">
             <p>&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-            <p className="text-muted-foreground/60">Desenvolvido por Daniela Silva & Tiago Santos</p>
+            <p className="text-muted-foreground/60">
+              Desenvolvido por Daniela Silva & Tiago Santos
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }

@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @layer base {
 :root {
@@ -82,7 +79,7 @@ html, body {
 }
 
 @layer utilities {
-/* Brand colors - Force with !important */
+/* Brand colors - Clean and organized */
 .text-\[#1F3B75\] {
     color: #1F3B75 !important;
 }
@@ -155,7 +152,7 @@ html, body {
     border-color: #B8860B !important;
 }
 
-/* Primary colors - Force with !important */
+/* Primary colors */
 .bg-primary {
     background-color: #FDCF4D !important;
 }
@@ -172,7 +169,7 @@ html, body {
     border-color: #FDCF4D !important;
 }
 
-/* Hover states - Force with !important */
+/* Hover states */
 .hover\:bg-primary:hover {
     background-color: #FDCF4D !important;
 }
@@ -189,7 +186,7 @@ html, body {
     background-color: rgba(253, 207, 77, 0.9) !important;
 }
 
-/* CTA sections - Force with !important */
+/* CTA sections */
 section.bg-\[#1F3B75\] {
     background-color: #1F3B75 !important;
 }
@@ -223,7 +220,7 @@ section.bg-\[#1F3B75\] .text-gray-700 {
     color: #ffffff !important;
 }
 
-/* Background colors with opacity - Force with !important */
+/* Background colors with opacity */
 .bg-\[#FDCF4D\]\/5 {
     background-color: rgba(253, 207, 77, 0.05) !important;
 }
@@ -244,6 +241,7 @@ section.bg-\[#1F3B75\] .text-gray-700 {
     background-color: rgba(245, 158, 11, 0.05) !important;
 }
 
+/* Background colors with 10% opacity */
 .bg-\[#FDCF4D\]\/10 {
     background-color: rgba(253, 207, 77, 0.1) !important;
 }
@@ -264,6 +262,7 @@ section.bg-\[#1F3B75\] .text-gray-700 {
     background-color: rgba(245, 158, 11, 0.1) !important;
 }
 
+/* Background colors with 20% opacity */
 .bg-\[#FDCF4D\]\/20 {
     background-color: rgba(253, 207, 77, 0.2) !important;
 }
@@ -284,7 +283,7 @@ section.bg-\[#1F3B75\] .text-gray-700 {
     background-color: rgba(245, 158, 11, 0.2) !important;
 }
 
-/* Hover states for brand colors - Force with !important */
+/* Hover states for brand colors */
 .hover\:text-\[#1F3B75\]:hover {
     color: #1F3B75 !important;
 }
@@ -355,54 +354,5 @@ section.bg-\[#1F3B75\] .text-gray-700 {
 
 .hover\:border-\[#B8860B\]:hover {
     border-color: #B8860B !important;
-}
-
-/* Additional utility classes for common patterns */
-.text-muted-foreground {
-    color: hsl(var(--muted-foreground)) !important;
-}
-
-.bg-muted {
-    background-color: hsl(var(--muted)) !important;
-}
-
-.bg-accent {
-    background-color: hsl(var(--accent)) !important;
-}
-
-.text-accent-foreground {
-    color: hsl(var(--accent-foreground)) !important;
-}
-
-/* Force button variants */
-.bg-primary\/90 {
-    background-color: rgba(253, 207, 77, 0.9) !important;
-}
-
-.hover\:bg-primary\/90:hover {
-    background-color: rgba(253, 207, 77, 0.9) !important;
-}
-
-/* Force card backgrounds */
-.bg-card {
-    background-color: hsl(var(--card)) !important;
-}
-
-.text-card-foreground {
-    color: hsl(var(--card-foreground)) !important;
-}
-
-/* Force border colors */
-.border-border {
-    border-color: hsl(var(--border)) !important;
-}
-
-/* Force shadow utilities */
-.shadow-sm {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
-}
-
-.shadow-xs {
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
 }
 }

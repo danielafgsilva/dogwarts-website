@@ -55,23 +55,26 @@ dogwarts-website/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended) or npm/yarn
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/danielafgsilva/dogwarts-website.git
    cd dogwarts-website
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Start development server**
+
    ```bash
    pnpm dev
    ```
@@ -138,15 +141,20 @@ We use BEM (Block Element Modifier) for CSS class naming:
 
 ```scss
 // Block
-.navbar { }
+.navbar {
+}
 
 // Element
-.navbar__item { }
-.navbar__link { }
+.navbar__item {
+}
+.navbar__link {
+}
 
 // Modifier
-.navbar__item--active { }
-.navbar--mobile { }
+.navbar__item--active {
+}
+.navbar--mobile {
+}
 ```
 
 ### SASS Structure
