@@ -13,7 +13,17 @@ import { useLanguage } from "@/hooks/use-language"
 import { responsive, brand } from "@/lib/responsive-utils"
 
 export default function HomePage() {
-  const { t } = useLanguage();
+  const { t: tRaw } = useLanguage() || {};
+  const t = tRaw ?? {
+    hero: {
+      badge: "Bem-vindo",
+      title: "Título padrão",
+      description: "Descrição padrão do herói.",
+      ctaPrimary: "Conheça nossos serviços",
+      ctaSecondary: "Contacte-nos",
+    },
+    // Adicione outros campos necessários para evitar erros em outras seções
+  };
   
   return (
     <div className="min-h-screen font-sans">
