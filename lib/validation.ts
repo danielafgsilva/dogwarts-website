@@ -86,14 +86,6 @@ export interface FormData {
   service?: string
 }
 
-export interface ContactFormValidationData extends FormData {
-  name: string
-  email: string
-  phone: string
-  message: string
-  service?: string
-}
-
 export function validateForm(data: FormData): { isValid: boolean; errors: Record<string, string> } {
   const errors: Record<string, string> = {}
   
