@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,14 +5,13 @@ import { Badge } from "@/components/ui/badge"
 import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
-import { APP_CONFIG } from "@/lib/constants"
-import type { Service, Testimonial } from "@/lib/types"
-import { useLanguage } from "@/hooks/use-language"
 import { responsive, brand } from "@/lib/responsive-utils"
+import { getHomePage, getFeaturedTestimonials, getSiteSettings, urlFor } from "@/lib/sanity"
+// import { PortableText } from '@portabletext/react'
 
-export default function HomePage() {
-  const { t: tRaw } = useLanguage() || {};
-  const t = tRaw ?? {
+export default async function HomePage() {
+  const { homeData, testimonials, siteSettings } = await getPageData()
+  const t = homeData || {
     hero: {
       badge: "Bem-vindo",
       title: "Título padrão",
@@ -22,7 +19,16 @@ export default function HomePage() {
       ctaPrimary: "Conheça nossos serviços",
       ctaSecondary: "Contacte-nos",
     },
-    // Adicione outros campos necessários para evitar erros em outras seções
+    services: {
+      title: "Os Nossos Serviços",
+      subtitle: "Cuidados Personalizados para Cada Patudo",
+      items: {
+        daycare: { title: "Creche/Daycare", description: "Cuidados diurnos", detail: "Um dia completo de diversão", price: "25€/dia" },
+        walking: { title: "Dogwalking", description: "Passeios energizantes", detail: "Passeios adaptados às necessidades", price: "12€/passeio" },
+        boarding: { title: "Estadia Familiar", description: "Hospedagem completa", detail: "Cuidados 24h na nossa família", price: "30€/dia" },
+        training: { title: "Petsitting", description: "Cuidados ao domicílio", detail: "Sessões de 1h30 no conforto de casa", price: "15€/sessão" }
+      }
+    }
   };
   
   return (
@@ -86,14 +92,25 @@ export default function HomePage() {
             </div>
             <div className="relative order-first lg:order-last">
               <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center p-8 shadow-2xl">
-                <img
-                  src="/dogwarts-logo-with-tagline.png"
-                  alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
-                  className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
-                  loading="eager"
-                  width="400"
-                  height="400"
-                />
+                {t.hero?.heroImage ? (
+                  <img
+                    src={urlFor(t.hero.heroImage).width(400).height(400).url()}
+                    alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
+                    className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
+                    loading="eager"
+                    width="400"
+                    height="400"
+                  />
+                ) : (
+                  <img
+                    src="/dogwarts-logo-with-tagline.png"
+                    alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
+                    className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
+                    loading="eager"
+                    width="400"
+                    height="400"
+                  />
+                )}
               </div>
               <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-xl">
                 <div className="flex items-center space-x-3">
@@ -143,44 +160,57 @@ export default function HomePage() {
           </div>
 
           <div className={responsive.grid4} role="list" aria-label="Lista de serviços oferecidos">
-            {[
+            {(t.services?.services || [
               {
-                icon: Heart,
-                title: t.services.items.daycare.title,
-                desc: t.services.items.daycare.description,
-                detail: t.services.items.daycare.detail,
-                price: t.services.items.daycare.price,
-                bgColor: "bg-primary/10",
-                iconColor: "text-primary",
+                icon: 'Heart',
+                title: t.services?.items?.daycare?.title || 'Creche/Daycare',
+                desc: t.services?.items?.daycare?.description || 'Cuidados diurnos',
+                detail: t.services?.items?.daycare?.detail || 'Um dia completo de diversão',
+                price: t.services?.items?.daycare?.price || '25€/dia',
+                color: 'primary',
               },
               {
-                icon: MapPin,
-                title: t.services.items.walking.title,
-                desc: t.services.items.walking.description,
-                detail: t.services.items.walking.detail,
-                price: t.services.items.walking.price,
-                bgColor: "bg-accent/10",
-                iconColor: "text-accent",
+                icon: 'MapPin',
+                title: t.services?.items?.walking?.title || 'Dogwalking',
+                desc: t.services?.items?.walking?.description || 'Passeios energizantes',
+                detail: t.services?.items?.walking?.detail || 'Passeios adaptados às necessidades',
+                price: t.services?.items?.walking?.price || '12€/passeio',
+                color: 'accent',
               },
               {
-                icon: Clock,
-                title: t.services.items.boarding.title,
-                desc: t.services.items.boarding.description,
-                detail: t.services.items.boarding.detail,
-                price: t.services.items.boarding.price,
-                bgColor: "bg-chart-4/10",
-                iconColor: "text-chart-4",
+                icon: 'Clock',
+                title: t.services?.items?.boarding?.title || 'Estadia Familiar',
+                desc: t.services?.items?.boarding?.description || 'Hospedagem completa',
+                detail: t.services?.items?.boarding?.detail || 'Cuidados 24h na nossa família',
+                price: t.services?.items?.boarding?.price || '30€/dia',
+                color: 'chart-4',
               },
               {
-                icon: Heart,
-                title: t.services.items.training.title,
-                desc: t.services.items.training.description,
-                detail: t.services.items.training.detail,
-                price: t.services.items.training.price,
-                bgColor: "bg-chart-5/10",
-                iconColor: "text-chart-5",
+                icon: 'Heart',
+                title: t.services?.items?.training?.title || 'Petsitting',
+                desc: t.services?.items?.training?.description || 'Cuidados ao domicílio',
+                detail: t.services?.items?.training?.detail || 'Sessões de 1h30 no conforto de casa',
+                price: t.services?.items?.training?.price || '15€/sessão',
+                color: 'chart-5',
               },
-            ].map((service, index) => (
+            ]).map((service: any, index: number) => {
+              const iconMap: { [key: string]: any } = {
+                Heart,
+                MapPin,
+                Clock,
+                Home,
+              }
+              const IconComponent = iconMap[service.icon] || Heart
+              const colorMap: { [key: string]: string } = {
+                primary: 'bg-primary/10 text-primary',
+                accent: 'bg-accent/10 text-accent',
+                'chart-4': 'bg-chart-4/10 text-chart-4',
+                'chart-5': 'bg-chart-5/10 text-chart-5',
+              }
+              const colorClass = colorMap[service.color] || 'bg-primary/10 text-primary'
+              const [bgColor, iconColor] = colorClass.split(' ')
+              
+              return (
               <Card
                 key={index}
                 className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
@@ -189,13 +219,13 @@ export default function HomePage() {
               >
                 <CardHeader className="text-center pb-6">
                   <div
-                    className={`w-20 h-20 ${service.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
+                    className={`w-20 h-20 ${bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
                     aria-hidden="true"
                   >
-                    {React.createElement(service.icon, { 
-                      className: `w-10 h-10 ${service.iconColor}`,
-                      "aria-hidden": "true"
-                    })}
+                    <IconComponent 
+                      className={`w-10 h-10 ${iconColor}`}
+                      aria-hidden="true"
+                    />
                   </div>
                   <CardTitle 
                     id={`service-title-${index}`}
@@ -209,13 +239,14 @@ export default function HomePage() {
                   <p className="text-sm text-muted-foreground leading-relaxed">{service.detail}</p>
                   <Badge 
                     variant="outline" 
-                    className={`${service.iconColor} border-current hover:bg-current hover:text-white transition-colors`}
+                    className={`${iconColor} border-current hover:bg-current hover:text-white transition-colors`}
                   >
                     {service.price}
                   </Badge>
                 </CardContent>
               </Card>
-            ))}
+              )
+            })}
           </div>
 
           <div className="text-center mt-16">
@@ -258,15 +289,14 @@ export default function HomePage() {
           </div>
 
           <div className={responsive.grid3} role="list" aria-label="Testemunhos dos clientes">
-            {[
+            {(testimonials || [
               {
                 stars: 5,
                 text: "A Dogwarts transformou a nossa rotina! O Max fica sempre feliz e eu trabalho tranquila sabendo que está em boas mãos.",
                 initials: "MC",
                 name: "Maria Costa",
                 role: "Tutora do Max",
-                bgColor: "bg-primary/20",
-                textColor: "text-primary",
+                color: "primary",
               },
               {
                 stars: 5,
@@ -274,8 +304,7 @@ export default function HomePage() {
                 initials: "JS",
                 name: "João Silva",
                 role: "Tutor da Luna",
-                bgColor: "bg-accent/20",
-                textColor: "text-accent",
+                color: "accent",
               },
               {
                 stars: 5,
@@ -283,10 +312,19 @@ export default function HomePage() {
                 initials: "AF",
                 name: "Ana Ferreira",
                 role: "Tutora do Bobby",
-                bgColor: "bg-chart-4/20",
-                textColor: "text-chart-4",
+                color: "chart-4",
               },
-            ].map((testimonial, index) => (
+            ]).map((testimonial: any, index: number) => {
+              const colorMap: { [key: string]: string } = {
+                primary: 'bg-primary/20 text-primary',
+                accent: 'bg-accent/20 text-accent',
+                'chart-4': 'bg-chart-4/20 text-chart-4',
+                'chart-5': 'bg-chart-5/20 text-chart-5',
+              }
+              const colorClass = colorMap[testimonial.color] || 'bg-primary/20 text-primary'
+              const [bgColor, textColor] = colorClass.split(' ')
+              
+              return (
               <Card
                 key={index}
                 className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
@@ -295,8 +333,8 @@ export default function HomePage() {
               >
                 <CardContent className="pt-8 pb-6">
                   <div className="flex items-center mb-6">
-                    <div className="flex" role="img" aria-label={`${testimonial.stars} estrelas de avaliação`}>
-                      {[...Array(testimonial.stars)].map((_, i) => (
+                    <div className="flex" role="img" aria-label={`${testimonial.rating || testimonial.stars} estrelas de avaliação`}>
+                      {[...Array(testimonial.rating || testimonial.stars)].map((_, i) => (
                         <Star 
                           key={i} 
                           className="w-5 h-5 text-primary fill-current" 
@@ -310,10 +348,10 @@ export default function HomePage() {
                   </blockquote>
                   <div className="flex items-center">
                     <div
-                      className={`w-12 h-12 ${testimonial.bgColor} rounded-full flex items-center justify-center mr-4`}
+                      className={`w-12 h-12 ${bgColor} rounded-full flex items-center justify-center mr-4`}
                       aria-hidden="true"
                     >
-                      <span className={`text-sm font-semibold ${testimonial.textColor}`}>{testimonial.initials}</span>
+                      <span className={`text-sm font-semibold ${textColor}`}>{testimonial.initials}</span>
                     </div>
                     <div>
                       <p 
@@ -327,7 +365,8 @@ export default function HomePage() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -349,11 +388,10 @@ export default function HomePage() {
               id="cta-heading"
               className={`${responsive.heading1} font-serif text-white`}
             >
-              Pronto para Dar ao Seu Cão o Melhor Cuidado?
+              {t.cta?.title || 'Pronto para Dar ao Seu Cão o Melhor Cuidado?'}
             </h2>
             <p className={`${responsive.bodyLarge} text-white ${responsive.maxWidth['2xl']} mx-auto`}>
-              Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
-              tranquilo.
+              {t.cta?.description || 'Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você tranquilo.'}
             </p>
             <div className={`${responsive.buttonGroupCenter}`} role="group" aria-label="Ações de contacto">
               <Button 
@@ -362,7 +400,7 @@ export default function HomePage() {
                 aria-label="Ligar para a Dogwarts agora"
               >
                 <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                Ligar Agora
+                {t.cta?.primaryButton || 'Ligar Agora'}
               </Button>
               <Button
                 size="lg"
@@ -371,7 +409,7 @@ export default function HomePage() {
                 aria-label="Enviar mensagem para a Dogwarts"
               >
                 <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
-                Enviar Mensagem
+                {t.cta?.secondaryButton || 'Enviar Mensagem'}
               </Button>
             </div>
           </div>
@@ -398,7 +436,7 @@ export default function HomePage() {
                 <span className="text-2xl font-bold text-foreground">Dogwarts</span>
               </div>
               <p className="text-muted-foreground leading-relaxed max-w-sm">
-                Cuidados caninos personalizados com amor e profissionalismo. O seu cão merece o melhor.
+                {siteSettings?.business?.mission || 'Cuidados caninos personalizados com amor e profissionalismo. O seu cão merece o melhor.'}
               </p>
             </div>
 
@@ -458,16 +496,16 @@ export default function HomePage() {
               <h3 className="font-semibold mb-6 text-foreground">Contacto</h3>
               <ul className="space-y-3 text-muted-foreground" role="list" aria-label="Informações de contacto">
                 <li>
-                  <a href="tel:+351XXXXXXXXX" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                    +351 XXX XXX XXX
+                  <a href={`tel:${siteSettings?.contact?.phone || '+351XXXXXXXXX'}`} className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                    {siteSettings?.contact?.phone || '+351 XXX XXX XXX'}
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@dogwarts.pt" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                    info@dogwarts.pt
+                  <a href={`mailto:${siteSettings?.contact?.email || 'info@dogwarts.pt'}`} className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                    {siteSettings?.contact?.email || 'info@dogwarts.pt'}
                   </a>
                 </li>
-                <li>Lisboa, Portugal</li>
+                <li>{siteSettings?.contact?.city || 'Lisboa, Portugal'}</li>
               </ul>
             </div>
           </div>
@@ -475,10 +513,10 @@ export default function HomePage() {
           <div className="border-t border-border mt-12 pt-8">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-sm text-muted-foreground">
-                &copy; 2024 Dogwarts. Todos os direitos reservados.
+                {siteSettings?.footer?.copyright || '© 2024 Dogwarts. Todos os direitos reservados.'}
               </p>
               <p className="text-xs text-muted-foreground">
-                Desenvolvido por Daniela Silva & Tiago Santos
+                {siteSettings?.footer?.developer || 'Desenvolvido por Daniela Silva & Tiago Santos'}
               </p>
             </div>
           </div>
@@ -486,4 +524,33 @@ export default function HomePage() {
       </footer>
     </div>
   );
+}
+
+// This function gets called at build time
+export async function generateStaticParams() {
+  return []
+}
+
+// Fetch data at build time
+async function getPageData() {
+  try {
+    const [homeData, testimonials, siteSettings] = await Promise.all([
+      getHomePage(),
+      getFeaturedTestimonials(),
+      getSiteSettings(),
+    ])
+
+    return {
+      homeData,
+      testimonials,
+      siteSettings,
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    return {
+      homeData: null,
+      testimonials: [],
+      siteSettings: null,
+    }
+  }
 }
