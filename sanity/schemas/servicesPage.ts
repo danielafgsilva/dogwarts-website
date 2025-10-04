@@ -27,6 +27,14 @@ export default defineType({
           title: 'Descrição',
           type: 'text',
           rows: 3
+        },
+        {
+          name: 'backgroundImage',
+          title: 'Imagem de Fundo',
+          type: 'image',
+          options: {
+            hotspot: true
+          }
         }
       ]
     },

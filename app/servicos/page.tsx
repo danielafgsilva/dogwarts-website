@@ -23,14 +23,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 import { responsive, brand } from "@/lib/responsive-utils";
-import { getServicesPage } from "@/lib/sanity";
+import { getServicesPage, getSiteSettings, urlFor } from "@/lib/sanity";
 
 export default async function ServicesPage() {
-  const servicesData = await getServicesPage();
+  const [servicesData, siteSettings] = await Promise.all([
+    getServicesPage(),
+    getSiteSettings()
+  ]);
   return (
     <div className="min-h-screen font-sans">
       {/* Navbar */}
-      <Navbar currentPage="/servicos" />
+             <Navbar currentPage="/servicos" siteName={siteSettings?.siteName} />
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 lg:py-4">
@@ -87,11 +90,23 @@ export default async function ServicesPage() {
             {servicesData?.mainServices?.map((service: any) => (
             <Card key={service._key} className="group hover:shadow-xl transition-all duration-300 border-border hover:border-primary/30">
               <div className="aspect-video rounded-t-lg overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
-                <img
-                  src="/cozy-dog-nap-time-in-comfortable-living-room-dogw.jpg"
-                  alt={`${service.title} - ${service.description}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+                {service.image ? (
+                  <Image
+                    src={urlFor(service.image).width(600).height(400).url()}
+                    alt={`${service.title} - ${service.description}`}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <Image
+                    src="/cozy-dog-nap-time-in-comfortable-living-room-dogw.jpg"
+                    alt={`${service.title} - ${service.description}`}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                )}
               </div>
               <CardHeader className="pb-4 lg:pb-6">
                 <div className="flex items-center justify-between mb-4">

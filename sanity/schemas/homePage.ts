@@ -49,6 +49,14 @@ export const homePage = defineType({
             hotspot: true,
           },
         }),
+        defineField({
+          name: 'backgroundImage',
+          title: 'Imagem de Fundo',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        }),
       ],
     }),
     defineField({
@@ -127,6 +135,14 @@ export const homePage = defineType({
                       { title: 'Chart 4', value: 'chart-4' },
                       { title: 'Chart 5', value: 'chart-5' },
                     ],
+                  },
+                }),
+                defineField({
+                  name: 'image',
+                  title: 'Imagem do Serviço',
+                  type: 'image',
+                  options: {
+                    hotspot: true,
                   },
                 }),
               ],

@@ -16,6 +16,30 @@ async function seedData() {
   try {
     console.log('🌱 Iniciando seed do Sanity...')
 
+    // 0. Criar imagens de exemplo (você pode substituir por imagens reais)
+    console.log('📸 Criando imagens de exemplo...')
+    
+    // Nota: Para usar imagens reais, você precisa fazer upload delas primeiro
+    // Aqui estamos criando referências que você pode substituir depois
+    const imageAssets = [
+      { _id: 'image-1', _type: 'sanity.imageAsset', url: '/cozy-dog-nap-time-in-comfortable-living-room-dogw.jpg' },
+      { _id: 'image-2', _type: 'sanity.imageAsset', url: '/hero-background.jpg' },
+      { _id: 'image-3', _type: 'sanity.imageAsset', url: '/daycare-service.jpg' },
+      { _id: 'image-4', _type: 'sanity.imageAsset', url: '/dogwalking-service.jpg' },
+      { _id: 'image-5', _type: 'sanity.imageAsset', url: '/boarding-service.jpg' },
+      { _id: 'image-6', _type: 'sanity.imageAsset', url: '/petsitting-service.jpg' },
+      { _id: 'image-7', _type: 'sanity.imageAsset', url: '/cozy-dog-nap-time-in-comfortable-living-room-dogw.jpg' },
+      { _id: 'image-8', _type: 'sanity.imageAsset', url: '/dogwalking-service.jpg' },
+      { _id: 'image-9', _type: 'sanity.imageAsset', url: '/daycare-service.jpg' },
+      { _id: 'image-10', _type: 'sanity.imageAsset', url: '/boarding-service.jpg' },
+    ]
+
+    // Criar assets de imagem (comentado porque requer upload real)
+    // for (const asset of imageAssets) {
+    //   await client.create(asset)
+    // }
+    console.log('✅ Referências de imagem preparadas')
+
     // 1. Criar configurações do site
     const siteSettings = await client.createOrReplace({
       _type: 'siteSettings',
@@ -61,6 +85,20 @@ async function seedData() {
         description: 'Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua total tranquilidade. Cada patudo é tratado como família.',
         ctaPrimary: 'Conheça nossos serviços',
         ctaSecondary: 'Contacte-nos',
+        // heroImage: {
+        //   _type: 'image',
+        //   asset: {
+        //     _type: 'reference',
+        //     _ref: 'image-1' // Referência para imagem do hero
+        //   }
+        // },
+        // backgroundImage: {
+        //   _type: 'image',
+        //   asset: {
+        //     _type: 'reference',
+        //     _ref: 'image-2' // Referência para imagem de fundo
+        //   }
+        // }
       },
       services: {
         title: 'Os Nossos Serviços',
@@ -75,6 +113,13 @@ async function seedData() {
             price: '25€/dia',
             icon: 'Clock',
             color: 'chart-4',
+            // image: {
+            //   _type: 'image',
+            //   asset: {
+            //     _type: 'reference',
+            //     _ref: 'image-3' // Imagem da creche
+            //   }
+            // }
           },
           {
             _key: 'dogwalking',
@@ -84,6 +129,13 @@ async function seedData() {
             price: '12€/passeio',
             icon: 'MapPin',
             color: 'accent',
+            // image: {
+            //   _type: 'image',
+            //   asset: {
+            //     _type: 'reference',
+            //     _ref: 'image-4' // Imagem do dogwalking
+            //   }
+            // }
           },
           {
             _key: 'estadia-familiar',
@@ -93,6 +145,13 @@ async function seedData() {
             price: '30€/dia',
             icon: 'Heart',
             color: 'chart-5',
+            // image: {
+            //   _type: 'image',
+            //   asset: {
+            //     _type: 'reference',
+            //     _ref: 'image-5' // Imagem da estadia
+            //   }
+            // }
           },
           {
             _key: 'petsitting',
@@ -102,6 +161,13 @@ async function seedData() {
             price: '15€/sessão',
             icon: 'Home',
             color: 'primary',
+            // image: {
+            //   _type: 'image',
+            //   asset: {
+            //     _type: 'reference',
+            //     _ref: 'image-6' // Imagem do petsitting
+            //   }
+            // }
           },
         ],
       },
@@ -248,6 +314,13 @@ async function seedData() {
           icon: 'Home',
           color: 'primary',
           badge: 'Mais Popular',
+          // image: {
+          //   _type: 'image',
+          //   asset: {
+          //     _type: 'reference',
+          //     _ref: 'image-7' // Imagem do petsitting
+          //   }
+          // },
           features: [
             'Alimentação e hidratação',
             'Brincadeiras e exercício',
@@ -264,6 +337,13 @@ async function seedData() {
           price: '12€',
           icon: 'MapPin',
           color: 'accent',
+          // image: {
+          //   _type: 'image',
+          //   asset: {
+          //     _type: 'reference',
+          //     _ref: 'image-8' // Imagem do dogwalking
+          //   }
+          // },
           features: [
             'Passeio de 45-60 minutos',
             'Socialização com outros cães',
@@ -280,6 +360,13 @@ async function seedData() {
           price: '25€',
           icon: 'Clock',
           color: 'secondary',
+          // image: {
+          //   _type: 'image',
+          //   asset: {
+          //     _type: 'reference',
+          //     _ref: 'image-9' // Imagem da creche
+          //   }
+          // },
           features: [
             'Cuidados das 8h às 18h',
             'Refeições e snacks',
@@ -297,6 +384,13 @@ async function seedData() {
           icon: 'Heart',
           color: 'chart-5',
           badge: 'Premium',
+          // image: {
+          //   _type: 'image',
+          //   asset: {
+          //     _type: 'reference',
+          //     _ref: 'image-10' // Imagem da estadia
+          //   }
+          // },
           features: [
             'Cuidados 24h por dia',
             'Todas as refeições incluídas',

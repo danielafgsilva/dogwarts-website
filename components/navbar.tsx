@@ -11,9 +11,10 @@ import { responsive } from "@/lib/responsive-utils"
 
 interface NavbarProps {
   currentPage?: string;
+  siteName?: string;
 }
 
-export default function Navbar({ currentPage }: NavbarProps) {
+export default function Navbar({ currentPage, siteName = 'Dogwarts' }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   // const { t } = useLanguage()
 
@@ -50,7 +51,7 @@ export default function Navbar({ currentPage }: NavbarProps) {
               />
             </div>
             <span className="text-xl md:text-2xl font-inter font-bold text-foreground">
-              Dogwarts
+              {siteName}
             </span>
           </Link>
 

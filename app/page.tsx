@@ -7,6 +7,7 @@ import Link from "next/link"
 import Navbar from "@/components/navbar"
 import { responsive, brand } from "@/lib/responsive-utils"
 import { getHomePage, getFeaturedTestimonials, getSiteSettings, urlFor } from "@/lib/sanity"
+import Image from "next/image"
 // import { PortableText } from '@portabletext/react'
 
 export default async function HomePage() {
@@ -37,7 +38,7 @@ export default async function HomePage() {
       <a href="#main-content" className="skip-link">
         Pular para o conteúdo principal
       </a>
-      <Navbar currentPage="/" />
+      <Navbar currentPage="/" siteName={siteSettings?.siteName} />
 
       {/* Hero Section */}
       <section 
@@ -93,22 +94,22 @@ export default async function HomePage() {
             <div className="relative order-first lg:order-last">
               <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center p-8 shadow-2xl">
                 {t.hero?.heroImage ? (
-                  <img
+                  <Image
                     src={urlFor(t.hero.heroImage).width(400).height(400).url()}
                     alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
                     className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
-                    loading="eager"
-                    width="400"
-                    height="400"
+                    width={400}
+                    height={400}
+                    priority
                   />
                 ) : (
-                  <img
+                  <Image
                     src="/dogwarts-logo-with-tagline.png"
                     alt="Logo da Dogwarts com o slogan 'Cães Felizes & Donos Tranquilos'"
                     className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
-                    loading="eager"
-                    width="400"
-                    height="400"
+                    width={400}
+                    height={400}
+                    priority
                   />
                 )}
               </div>
@@ -218,15 +219,27 @@ export default async function HomePage() {
                 aria-labelledby={`service-title-${index}`}
               >
                 <CardHeader className="text-center pb-6">
-                  <div
-                    className={`w-20 h-20 ${bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
-                    aria-hidden="true"
-                  >
-                    <IconComponent 
-                      className={`w-10 h-10 ${iconColor}`}
+                  {service.image ? (
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-6 hover:scale-110 transition-transform duration-300">
+                      <Image
+                        src={urlFor(service.image).width(80).height(80).url()}
+                        alt={`Imagem do serviço ${service.title}`}
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className={`w-20 h-20 ${bgColor} rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300`}
                       aria-hidden="true"
-                    />
-                  </div>
+                    >
+                      <IconComponent 
+                        className={`w-10 h-10 ${iconColor}`}
+                        aria-hidden="true"
+                      />
+                    </div>
+                  )}
                   <CardTitle 
                     id={`service-title-${index}`}
                     className="text-xl font-semibold text-foreground"

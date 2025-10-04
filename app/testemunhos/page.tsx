@@ -7,11 +7,17 @@ import Link from "next/link"
 import Navbar from "@/components/navbar"
 import { STATISTICS } from "@/lib/constants"
 import { responsive, brand } from "@/lib/responsive-utils"
+import { getTestimonialsPage, getTestimonials, getSiteSettings } from "@/lib/sanity"
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage() {
+  const [testimonialsPageData, testimonials, siteSettings] = await Promise.all([
+    getTestimonialsPage(),
+    getTestimonials(),
+    getSiteSettings()
+  ]);
   return (
     <div className="min-h-screen font-sans">
-      <Navbar currentPage="/testemunhos" />
+      <Navbar currentPage="/testemunhos" siteName={siteSettings?.siteName} />
 
       {/* Breadcrumb */}
       <div className="bg-card py-4">
@@ -46,18 +52,16 @@ export default function TestimonialsPage() {
               variant="secondary"
               className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
-              Testemunhos dos Nossos Clientes
+              {testimonialsPageData?.hero?.badge || 'Testemunhos dos Nossos Clientes'}
             </Badge>
             <h1 
               id="testimonials-hero-heading"
               className={`${responsive.heading1} font-serif text-balance`}
             >
-              Histórias de <span className="text-primary">Amor</span> e{" "}
-              <span className="text-accent">Confiança</span>
+              {testimonialsPageData?.hero?.title || 'Histórias de Amor e Confiança'}
             </h1>
             <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
-              Descubra o que os nossos clientes e os seus patudos pensam sobre
-              os cuidados da Dogwarts através das suas próprias palavras.
+              {testimonialsPageData?.hero?.description || 'Descubra o que os nossos clientes e os seus patudos pensam sobre os cuidados da Dogwarts através das suas próprias palavras.'}
             </p>
             <div className="flex items-center justify-center space-x-8 text-center">
               <div>
@@ -85,22 +89,23 @@ export default function TestimonialsPage() {
               <CardContent className="p-8 md:p-12 text-center">
                 <Quote className="w-12 h-12 text-primary mx-auto mb-6" />
                 <blockquote className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-                  "A Dogwarts transformou completamente a nossa vida! O Max fica sempre feliz quando vai para lá e eu
-                  trabalho tranquila sabendo que está em boas mãos. O cuidado é excepcional e o carinho genuíno."
+                  "{testimonialsPageData?.featuredTestimonial?.text || 'A Dogwarts transformou completamente a nossa vida! O Max fica sempre feliz quando vai para lá e eu trabalho tranquila sabendo que está em boas mãos. O cuidado é excepcional e o carinho genuíno.'}"
                 </blockquote>
                 <div className="flex items-center justify-center space-x-4">
                   <Avatar className="w-16 h-16">
-                    <AvatarImage src="/placeholder-user.jpg" alt="Maria Costa" />
-                    <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">MC</AvatarFallback>
+                    <AvatarImage src="/placeholder-user.jpg" alt={testimonialsPageData?.featuredTestimonial?.name || 'Maria Costa'} />
+                    <AvatarFallback className="bg-primary/20 text-primary text-lg font-semibold">
+                      {testimonialsPageData?.featuredTestimonial?.initials || 'MC'}
+                    </AvatarFallback>
                   </Avatar>
                   <div className="text-left">
-                    <div className="font-semibold text-lg">Maria Costa</div>
-                    <div className="text-muted-foreground">Tutora do Max (Golden Retriever)</div>
+                    <div className="font-semibold text-lg">{testimonialsPageData?.featuredTestimonial?.name || 'Maria Costa'}</div>
+                    <div className="text-muted-foreground">{testimonialsPageData?.featuredTestimonial?.role || 'Tutora do Max (Golden Retriever)'}</div>
                     <div className="flex items-center mt-1">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(testimonialsPageData?.featuredTestimonial?.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 text-primary fill-current" />
                       ))}
-                      <span className="ml-2 text-sm text-muted-foreground">5.0</span>
+                      <span className="ml-2 text-sm text-muted-foreground">{testimonialsPageData?.featuredTestimonial?.rating || 5}.0</span>
                     </div>
                   </div>
                 </div>
@@ -114,74 +119,19 @@ export default function TestimonialsPage() {
       <section className="py-16 bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">O Que Dizem os Nossos Clientes</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">{testimonialsPageData?.testimonialsGrid?.title || 'O Que Dizem os Nossos Clientes'}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Cada testemunho é uma história de confiança, amor e cuidado especializado.
+              {testimonialsPageData?.testimonialsGrid?.description || 'Cada testemunho é uma história de confiança, amor e cuidado especializado.'}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                name: "João Silva",
-                role: "Tutor da Luna",
-                avatar: "JS",
-                rating: 5,
-                text: "Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!",
-                service: "Dogwalking",
-                date: "Janeiro 2024"
-              },
-              {
-                name: "Ana Ferreira",
-                role: "Tutora do Bobby",
-                avatar: "AF",
-                rating: 5,
-                text: "Durante as nossas férias, o Bobby ficou na Dogwarts. Voltámos e ele estava radiante! Serviço de confiança total.",
-                service: "Estadia Familiar",
-                date: "Dezembro 2023"
-              },
-              {
-                name: "Carlos Santos",
-                role: "Tutor da Mia",
-                avatar: "CS",
-                rating: 5,
-                text: "A Mia é muito tímida, mas na Dogwarts ela se sente em casa. O cuidado personalizado faz toda a diferença.",
-                service: "Petsitting",
-                date: "Fevereiro 2024"
-              },
-              {
-                name: "Sofia Rodrigues",
-                role: "Tutora do Rex",
-                avatar: "SR",
-                rating: 5,
-                text: "O Rex adora ir à creche! Volta sempre com energia gasta e muito feliz. Equipe fantástica!",
-                service: "Creche/Daycare",
-                date: "Março 2024"
-              },
-              {
-                name: "Miguel Costa",
-                role: "Tutor da Bella",
-                avatar: "MC",
-                rating: 5,
-                text: "Serviço excepcional! A Bella fica sempre feliz e bem cuidada. Recomendo sem hesitação.",
-                service: "Petsitting",
-                date: "Abril 2024"
-              },
-              {
-                name: "Rita Alves",
-                role: "Tutora do Thor",
-                avatar: "RA",
-                rating: 5,
-                text: "O Thor é muito energético, mas na Dogwarts ele se diverte e socializa. Excelente trabalho!",
-                service: "Dogwalking",
-                date: "Maio 2024"
-              }
-            ].map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+            {testimonialsPageData?.testimonialsGrid?.testimonials?.map((testimonial: any) => (
+              <Card key={testimonial._key} className="hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
+                      {[...Array(testimonial.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 text-primary fill-current" />
                       ))}
                     </div>
@@ -192,7 +142,7 @@ export default function TestimonialsPage() {
                     <div className="flex items-center space-x-3">
                       <Avatar className="w-10 h-10">
                         <AvatarFallback className="bg-primary/20 text-primary font-semibold">
-                          {testimonial.avatar}
+                          {testimonial.initials}
                         </AvatarFallback>
                       </Avatar>
                       <div>
@@ -206,7 +156,38 @@ export default function TestimonialsPage() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            )) || (
+              // Fallback content
+              <Card className="hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
+                      ))}
+                    </div>
+                    <span className="ml-2 text-sm text-muted-foreground">Janeiro 2024</span>
+                  </div>
+                  <p className="text-muted-foreground mb-4 text-pretty">"Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!"</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <Avatar className="w-10 h-10">
+                        <AvatarFallback className="bg-primary/20 text-primary font-semibold">
+                          JS
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="font-medium">João Silva</div>
+                        <div className="text-sm text-muted-foreground">Tutor da Luna</div>
+                      </div>
+                    </div>
+                    <Badge variant="outline" className="text-xs">
+                      Dogwalking
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </section>
@@ -216,26 +197,32 @@ export default function TestimonialsPage() {
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
-              Pronto para Fazer Parte da Nossa Família?
+              {testimonialsPageData?.cta?.title || 'Pronto para Fazer Parte da Nossa Família?'}
             </h2>
             <p className={`${responsive.bodyLarge} text-white text-pretty`}>
-              Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado que ele merece.
+              {testimonialsPageData?.cta?.description || 'Junte-se aos nossos clientes satisfeitos e dê ao seu cão o cuidado que ele merece.'}
             </p>
             <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
+                asChild
               >
-                <Phone className="w-5 h-5 mr-2" />
-                Contactar Agora
+                <Link href="/contactos">
+                  <Phone className="w-5 h-5 mr-2" />
+                  {testimonialsPageData?.cta?.primaryButton || 'Contactar Agora'}
+                </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
+                asChild
               >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Ver Serviços
+                <Link href="/servicos">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  {testimonialsPageData?.cta?.secondaryButton || 'Ver Serviços'}
+                </Link>
               </Button>
             </div>
           </div>
