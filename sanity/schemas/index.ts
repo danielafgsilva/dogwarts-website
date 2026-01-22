@@ -10,16 +10,19 @@ import contactPage from './contactPage'
 import testimonialsPage from './testimonialsPage'
 import blogPage from './blogPage'
 
+// Page Schemas - Main page configurations
 export const schemaTypes = [
   homePage,
   servicesPage,
   aboutPage,
-  testimonial,
-  faq,
-  blogPost,
-  siteSettings,
   faqPage,
   contactPage,
   testimonialsPage,
   blogPage,
+  // Content Types - Reusable content schemas
+  testimonial,
+  faq,
+  blogPost,
+  // Settings - Site-wide configuration
+  siteSettings,
 ]
