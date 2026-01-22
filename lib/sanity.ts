@@ -10,11 +10,34 @@ export const client = createClient({
 
 const builder = imageUrlBuilder(client)
 
-export function urlFor(source: any) {
-  return builder.image(source)
+export interface SanityImageSource {
+  _type: 'image';
+  asset: {
+    _ref?: string;
+    _id?: string;
+    _type?: 'reference' | 'sanity.imageAsset';
+  };
+  alt?: string;
+  caption?: string;
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+  [key: string]: any;
 }
 
-// GROQ Queries
+export function urlFor(source: SanityImageSource | null | undefined) {
+  return builder.image(source as SanityImageSource)
+}
+
 export const queries = {
   // Home Page
   homePage: `*[_type == "homePage"][0]{
