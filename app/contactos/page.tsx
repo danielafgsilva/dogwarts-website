@@ -113,8 +113,14 @@ export default async function ContactPage() {
               return (
                 <Card key={method._key} className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#FDCF4D]/20 bg-white">
                   <CardHeader>
-                    <div className={`w-12 h-12 md:w-16 md:h-16 bg-[${color}]/10 rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                      <IconComponent className={`w-6 h-6 md:w-8 md:h-8 text-[${color}]`} />
+                    <div 
+                      className="w-12 h-12 md:w-16 md:h-16 contact-icon-bg rounded-2xl flex items-center justify-center mx-auto mb-4"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
+                      <IconComponent 
+                        className="w-6 h-6 md:w-8 md:h-8 contact-icon-text" 
+                        style={{ '--contact-color': color } as React.CSSProperties}
+                      />
                     </div>
                     <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
                       {method.title}
@@ -122,13 +128,19 @@ export default async function ContactPage() {
                     <CardDescription className="text-[#1F3B75]/70">{method.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className={`text-xl md:text-2xl font-bold text-[${color}] mb-2`}>
+                    <p 
+                      className="text-xl md:text-2xl font-bold contact-value-text mb-2"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
                       {method.value}
                     </p>
                     <p className="text-sm text-[#1F3B75]/60 mb-4">
                       {method.availability}
                     </p>
-                    <Button className={`bg-[${color}] text-white hover:bg-[${color}]/90 w-full`}>
+                    <Button 
+                      className="contact-button w-full"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
                       <IconComponent className="w-4 h-4 mr-2" />
                       {method.buttonText}
                     </Button>
