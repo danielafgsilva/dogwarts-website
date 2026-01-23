@@ -8,7 +8,6 @@ import Navbar from "@/components/navbar"
 import { responsive, brand } from "@/lib/responsive-utils"
 import { getHomePage, getFeaturedTestimonials, getSiteSettings, urlFor } from "@/lib/sanity"
 import Image from "next/image"
-// import { PortableText } from '@portabletext/react'
 
 export default async function HomePage() {
   const { homeData, testimonials, siteSettings } = await getPageData()

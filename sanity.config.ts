@@ -3,12 +3,29 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemas'
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+if (!projectId) {
+  throw new Error(
+    'Missing required environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID\n' +
+    'Please set it in your .env file or environment variables.'
+  )
+}
+
+if (!dataset) {
+  throw new Error(
+    'Missing required environment variable: NEXT_PUBLIC_SANITY_DATASET\n' +
+    'Please set it in your .env file or environment variables.'
+  )
+}
+
 export default defineConfig({
   name: 'dogwarts-cms',
   title: 'Dogwarts CMS',
   
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId,
+  dataset,
   
   plugins: [
     structureTool({

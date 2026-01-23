@@ -23,7 +23,6 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import { responsive, brand } from "@/lib/responsive-utils";
 import { getAboutPage, getSiteSettings } from "@/lib/sanity";
-import { urlFor } from "@/lib/sanity";
 
 export default async function AboutPage() {
   const [aboutPageData, siteSettings] = await Promise.all([
@@ -293,10 +292,19 @@ export default async function AboutPage() {
               return (
                 <Card key={value._key} className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
                   <CardHeader className="pb-4">
-                    <div className={`w-16 h-16 lg:w-20 lg:h-20 bg-[${color}]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[${color}]/20 transition-colors`}>
-                      <IconComponent className={`w-8 h-8 lg:w-10 lg:h-10 text-[${color}]`} />
+                    <div 
+                      className="w-16 h-16 lg:w-20 lg:h-20 value-icon-bg rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6"
+                      style={{ '--value-color': color } as React.CSSProperties}
+                    >
+                      <IconComponent 
+                        className="w-8 h-8 lg:w-10 lg:h-10 value-text" 
+                        style={{ '--value-color': color } as React.CSSProperties}
+                      />
                     </div>
-                    <CardTitle className={`text-xl lg:text-2xl font-bold text-[${color}]`}>
+                    <CardTitle 
+                      className="text-xl lg:text-2xl font-bold value-text"
+                      style={{ '--value-color': color } as React.CSSProperties}
+                    >
                       {value.title}
                     </CardTitle>
                     <CardDescription className="text-sm lg:text-base">
