@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Navbar from "@/components/navbar";
 
-// Mock Next.js Link component
 jest.mock("next/link", () => ({
   __esModule: true,
   default: ({ children, href, ...props }: any) => (
@@ -11,12 +10,11 @@ jest.mock("next/link", () => ({
   ),
 }));
 
-// Mock Next.js Image component
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img {...props} />;
+    const { fill, priority, sizes, ...imgProps } = props;
+    return <img {...imgProps} />;
   },
 }))
 
