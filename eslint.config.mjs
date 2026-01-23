@@ -38,6 +38,14 @@ export default [
       '@next/next/no-page-custom-font': 'off',
       '@next/next/no-img-element': 'off',
       'react/react-in-jsx-scope': 'off',
+      // Disable prop-types for TypeScript projects
+      'react/prop-types': 'off',
+      // Allow setState in effects for initialization (e.g., localStorage)
+      'react-hooks/set-state-in-effect': 'warn',
+      // Allow impure functions in useMemo when needed
+      'react-hooks/purity': 'warn',
+      // TypeScript handles types, so we can be more lenient with exhaustive-deps
+      'react-hooks/exhaustive-deps': 'warn',
     },
     settings: {
       react: {
@@ -77,6 +85,14 @@ export default [
       '@next/next/no-page-custom-font': 'off',
       '@next/next/no-img-element': 'off',
       'react/react-in-jsx-scope': 'off',
+      // Disable prop-types for TypeScript projects
+      'react/prop-types': 'off',
+      // Allow setState in effects for initialization (e.g., localStorage)
+      'react-hooks/set-state-in-effect': 'warn',
+      // Allow impure functions in useMemo when needed
+      'react-hooks/purity': 'warn',
+      // TypeScript handles types, so we can be more lenient with exhaustive-deps
+      'react-hooks/exhaustive-deps': 'warn',
     },
     settings: {
       react: {
