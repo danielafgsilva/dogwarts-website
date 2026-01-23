@@ -173,4 +173,41 @@ body {
   .btn-primary-enhanced:hover {
     background-color: oklch(0.65 0.2 85);
   }
+
+  /* Dynamic color utilities for values section */
+  .value-icon-bg {
+    background-color: color-mix(in srgb, var(--value-color) 10%, transparent);
+    transition: background-color 0.3s ease;
+  }
+
+  .value-icon-bg:hover {
+    background-color: color-mix(in srgb, var(--value-color) 20%, transparent);
+  }
+
+  .value-text {
+    color: var(--value-color);
+  }
+
+  /* Dynamic color utilities for contact methods section */
+  .contact-icon-bg {
+    background-color: color-mix(in srgb, var(--contact-color) 10%, transparent);
+  }
+
+  .contact-icon-text {
+    color: var(--contact-color);
+  }
+
+  .contact-value-text {
+    color: var(--contact-color);
+  }
+
+  .contact-button {
+    background-color: var(--contact-color);
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .contact-button:hover {
+    background-color: color-mix(in srgb, var(--contact-color) 90%, black);
+  }
 }
