@@ -20,89 +20,20 @@ import {
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import { responsive, brand } from "@/lib/responsive-utils";
+import { getBlogPage, getBlogPosts, getFeaturedBlogPosts, getSiteSettings } from "@/lib/sanity";
+import { urlFor } from "@/lib/sanity";
 
-export default function BlogPage() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "10 Sinais de que o Seu Cão Está Feliz e Saudável",
-      excerpt:
-        "Aprenda a reconhecer os indicadores de bem-estar no seu patudo e como manter a sua felicidade no dia a dia.",
-      category: "Saúde & Bem-estar",
-      date: "15 Jan 2024",
-      readTime: "5 min",
-      author: "Equipa Dogwarts",
-      image: "/happy-golden-retriever-playing-in-a-cozy-home-envi.jpg",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Como Preparar o Seu Cão para a Primeira Estadia Fora de Casa",
-      excerpt:
-        "Dicas essenciais para tornar a experiência de deixar o seu cão aos cuidados de outros mais tranquila para ambos.",
-      category: "Dicas & Conselhos",
-      date: "10 Jan 2024",
-      readTime: "7 min",
-      author: "Equipa Dogwarts",
-      image: "/founder-with-four-dogs-in-cozy-living-room-portra.jpg",
-    },
-    {
-      id: 3,
-      title:
-        "A Importância da Socialização Canina: Benefícios dos Passeios em Grupo",
-      excerpt:
-        "Descubra como os passeios em grupo podem melhorar o comportamento e a felicidade do seu cão.",
-      category: "Comportamento",
-      date: "5 Jan 2024",
-      readTime: "6 min",
-      author: "Equipa Dogwarts",
-      image: "/dog-walker-with-multiple-happy-dogs-in-lisbon-pa.jpg",
-    },
-    {
-      id: 4,
-      title: "Cuidados Especiais para Cães Idosos: O Que Deve Saber",
-      excerpt:
-        "Orientações importantes para garantir conforto e qualidade de vida aos cães seniores.",
-      category: "Saúde & Bem-estar",
-      date: "28 Dez 2023",
-      readTime: "8 min",
-      author: "Equipa Dogwarts",
-      image: "/cozy-dog-nap-time-in-comfortable-living-room-dogw.jpg",
-    },
-    {
-      id: 5,
-      title: "Rotinas de Exercício: Mantendo o Seu Cão Ativo e Saudável",
-      excerpt:
-        "Planos de exercício adaptados a diferentes idades, raças e necessidades dos cães.",
-      category: "Exercício & Atividade",
-      date: "20 Dez 2023",
-      readTime: "6 min",
-      author: "Equipa Dogwarts",
-      image: "/happy-dogs-playing-together-in-sunny-garden-dogwa.jpg",
-    },
-    {
-      id: 6,
-      title: "Sinais de Stress em Cães: Como Identificar e Ajudar",
-      excerpt:
-        "Aprenda a reconhecer os sinais de ansiedade e stress no seu cão e como proporcionar alívio.",
-      category: "Comportamento",
-      date: "15 Dez 2023",
-      readTime: "7 min",
-      author: "Equipa Dogwarts",
-      image: "/bella-labrador-socializing-daycare-dogwarts-lisb.jpg",
-    },
-  ];
-
-  const categories = [
-    { name: "Saúde & Bem-estar", count: 8, icon: Heart },
-    { name: "Dicas & Conselhos", count: 12, icon: Lightbulb },
-    { name: "Comportamento", count: 6, icon: BookOpen },
-    { name: "Exercício & Atividade", count: 5, icon: Shield },
-  ];
+export default async function BlogPage() {
+  const [blogPageData, blogPosts, featuredPosts, siteSettings] = await Promise.all([
+    getBlogPage(),
+    getBlogPosts(),
+    getFeaturedBlogPosts(),
+    getSiteSettings()
+  ]);
 
   return (
     <div className="min-h-screen font-sans">
-      <Navbar currentPage="/blog" />
+      <Navbar currentPage="/blog" siteName={siteSettings?.siteName} />
 
       {/* Hero Section */}
       <section 
@@ -121,19 +52,16 @@ export default function BlogPage() {
               variant="secondary"
               className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
-              Blog Dogwarts
+              {blogPageData?.hero?.badge || 'Blog Dogwarts'}
             </Badge>
             <h1 
               id="blog-hero-heading"
               className={`${responsive.heading1} font-serif text-balance`}
             >
-              Dicas e Conselhos para{" "}
-              <span className="text-primary">Cães Felizes</span>
+              {blogPageData?.hero?.title || 'Dicas e Conselhos para Cães Felizes'}
             </h1>
             <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty`}>
-              Partilhamos conhecimento e experiência para ajudar a cuidar melhor
-              do seu patudo. Artigos escritos por especialistas em cuidados
-              caninos.
+              {blogPageData?.hero?.description || 'Partilhamos conhecimento e experiência para ajudar a cuidar melhor do seu patudo. Artigos escritos por especialistas em cuidados caninos.'}
             </p>
           </div>
         </div>
@@ -149,49 +77,98 @@ export default function BlogPage() {
                 <h2 className="text-2xl font-serif font-bold mb-8">
                   Artigo em Destaque
                 </h2>
-                <Card className="overflow-hidden border-[#FDCF4D]/20 hover:shadow-lg transition-all duration-300">
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={blogPosts[0].image || "/placeholder.svg"}
-                      alt={blogPosts[0].title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardHeader className="space-y-4">
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                {blogPageData?.featuredPost ? (
+                  <Card className="overflow-hidden border-[#FDCF4D]/20 hover:shadow-lg transition-all duration-300">
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src="/happy-golden-retriever-playing-in-a-cozy-home-envi.jpg"
+                        alt={blogPageData.featuredPost.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <Badge
                           variant="secondary"
                           className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
                         >
-                          {blogPosts[0].category}
+                          {blogPageData.featuredPost.category}
                         </Badge>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {blogPosts[0].date}
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          {blogPageData.featuredPost.date}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          {blogPageData.featuredPost.readTime}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User className="w-4 h-4" />
+                          {blogPageData.featuredPost.author}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {blogPosts[0].readTime}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <User className="w-4 h-4" />
-                        {blogPosts[0].author}
-                      </div>
+                      <CardTitle className="text-2xl font-serif hover:text-[#1F3B75] transition-colors cursor-pointer">
+                        {blogPageData.featuredPost.title}
+                      </CardTitle>
+                      <CardDescription className="text-base leading-relaxed">
+                        {blogPageData.featuredPost.excerpt}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90" asChild>
+                        <Link href={`/blog/${blogPageData.featuredPost.slug?.current || '#'}`}>
+                          Ler Artigo Completo
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  // Fallback content
+                  <Card className="overflow-hidden border-[#FDCF4D]/20 hover:shadow-lg transition-all duration-300">
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src="/happy-golden-retriever-playing-in-a-cozy-home-envi.jpg"
+                        alt="Artigo em destaque"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    <CardTitle className="text-2xl font-serif hover:text-[#1F3B75] transition-colors cursor-pointer">
-                      {blogPosts[0].title}
-                    </CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
-                      {blogPosts[0].excerpt}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
-                      Ler Artigo Completo
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </CardContent>
-                </Card>
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <Badge
+                          variant="secondary"
+                          className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
+                        >
+                          Saúde & Bem-estar
+                        </Badge>
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          15 Jan 2024
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          5 min
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User className="w-4 h-4" />
+                          Equipa Dogwarts
+                        </div>
+                      </div>
+                      <CardTitle className="text-2xl font-serif hover:text-[#1F3B75] transition-colors cursor-pointer">
+                        10 Sinais de que o Seu Cão Está Feliz e Saudável
+                      </CardTitle>
+                      <CardDescription className="text-base leading-relaxed">
+                        Aprenda a reconhecer os indicadores de bem-estar no seu patudo e como manter a sua felicidade no dia a dia.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
+                        Ler Artigo Completo
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
 
               {/* Recent Posts */}
@@ -200,14 +177,14 @@ export default function BlogPage() {
                   Artigos Recentes
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8">
-                  {blogPosts.slice(1).map((post) => (
+                  {blogPageData?.blogPosts?.map((post: any, index: number) => (
                     <Card
-                      key={post.id}
+                      key={post._key}
                       className="overflow-hidden hover:shadow-lg transition-all duration-300 group"
                     >
                       <div className="aspect-video overflow-hidden">
                         <img
-                          src={post.image || "/placeholder.svg"}
+                          src="/founder-with-four-dogs-in-cozy-living-room-portra.jpg"
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -238,13 +215,58 @@ export default function BlogPage() {
                           variant="outline"
                           size="sm"
                           className="group-hover:bg-[#FDCF4D] group-hover:text-[#1F3B75] transition-colors bg-transparent"
+                          asChild
+                        >
+                          <Link href={`/blog/${post.slug?.current || '#'}`}>
+                            Ler Mais
+                            <ArrowRight className="w-3 h-3 ml-2" />
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  )) || (
+                    // Fallback content
+                    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src="/founder-with-four-dogs-in-cozy-living-room-portra.jpg"
+                          alt="Artigo do blog"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <CardHeader className="space-y-3">
+                        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                          <Badge variant="outline" className="text-xs">
+                            Dicas & Conselhos
+                          </Badge>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            10 Jan 2024
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            7 min
+                          </div>
+                        </div>
+                        <CardTitle className="text-lg font-serif group-hover:text-[#1F3B75] transition-colors cursor-pointer line-clamp-2">
+                          Como Preparar o Seu Cão para a Primeira Estadia Fora de Casa
+                        </CardTitle>
+                        <CardDescription className="text-sm leading-relaxed line-clamp-3">
+                          Dicas essenciais para tornar a experiência de deixar o seu cão aos cuidados de outros mais tranquila para ambos.
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="group-hover:bg-[#FDCF4D] group-hover:text-[#1F3B75] transition-colors bg-transparent"
                         >
                           Ler Mais
                           <ArrowRight className="w-3 h-3 ml-2" />
                         </Button>
                       </CardContent>
                     </Card>
-                  ))}
+                  )}
                 </div>
               </div>
 
@@ -271,11 +293,17 @@ export default function BlogPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {categories.map((category) => {
-                    const IconComponent = category.icon;
+                  {blogPageData?.categories?.map((category: any) => {
+                    const iconMap: { [key: string]: any } = {
+                      'Saúde & Bem-estar': Heart,
+                      'Dicas & Conselhos': Lightbulb,
+                      'Comportamento': BookOpen,
+                      'Exercício & Atividade': Shield,
+                    };
+                    const IconComponent = iconMap[category.name] || BookOpen;
                     return (
                       <div
-                        key={category.name}
+                        key={category._key}
                         className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
                       >
                         <div className="flex items-center gap-3">
@@ -285,11 +313,37 @@ export default function BlogPage() {
                           </span>
                         </div>
                         <Badge variant="secondary" className="text-xs">
-                          {category.count}
+                          {category.count || 0}
                         </Badge>
                       </div>
                     );
-                  })}
+                  }) || (
+                    // Fallback content
+                    <>
+                      <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <Heart className="w-4 h-4 text-[#8B5CF6]" />
+                          <span className="text-sm font-medium">
+                            Saúde & Bem-estar
+                          </span>
+                        </div>
+                        <Badge variant="secondary" className="text-xs">
+                          8
+                        </Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <Lightbulb className="w-4 h-4 text-[#8B5CF6]" />
+                          <span className="text-sm font-medium">
+                            Dicas & Conselhos
+                          </span>
+                        </div>
+                        <Badge variant="secondary" className="text-xs">
+                          12
+                        </Badge>
+                      </div>
+                    </>
+                  )}
                 </CardContent>
               </Card>
 
@@ -332,7 +386,7 @@ export default function BlogPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {blogPosts.slice(0, 3).map((post, index) => (
+                  {blogPosts.slice(0, 3).map((post: any, index: number) => (
                     <div
                       key={post.id}
                       className="flex gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer"
@@ -365,27 +419,32 @@ export default function BlogPage() {
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
-              Tem Alguma Pergunta Sobre Cuidados Caninos?
+              {blogPageData?.cta?.title || 'Tem Alguma Pergunta Sobre Cuidados Caninos?'}
             </h2>
             <p className={`${responsive.bodyLarge} text-white text-pretty`}>
-              A nossa equipa de especialistas está sempre disponível para ajudar
-              com dúvidas sobre o bem-estar do seu patudo.
+              {blogPageData?.cta?.description || 'A nossa equipa de especialistas está sempre disponível para ajudar com dúvidas sobre o bem-estar do seu patudo.'}
             </p>
             <div className={`${responsive.buttonGroupCenter}`}>
               <Button
                 size="lg"
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
+                asChild
               >
-                <Heart className="w-5 h-5 mr-2" />
-                Contactar Especialistas
+                <Link href="/contactos">
+                  <Heart className="w-5 h-5 mr-2" />
+                  {blogPageData?.cta?.primaryButton || 'Contactar Especialistas'}
+                </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
+                asChild
               >
-                <BookOpen className="w-5 h-5 mr-2" />
-                Ver FAQ
+                <Link href="/faq">
+                  <BookOpen className="w-5 h-5 mr-2" />
+                  {blogPageData?.cta?.secondaryButton || 'Ver FAQ'}
+                </Link>
               </Button>
             </div>
           </div>

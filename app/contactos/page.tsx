@@ -32,12 +32,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 import { responsive, brand } from "@/lib/responsive-utils";
+import { getContactPage, getSiteSettings } from "@/lib/sanity";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [contactPageData, siteSettings] = await Promise.all([
+    getContactPage(),
+    getSiteSettings()
+  ]);
   return (
     <div className="min-h-screen font-sans">
       {/* Navigation */}
-      <Navbar currentPage="/contactos" />
+      <Navbar currentPage="/contactos" siteName={siteSettings?.siteName} />
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 md:py-4">
@@ -72,18 +77,16 @@ export default function ContactPage() {
               variant="secondary"
               className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
             >
-              Entre em Contacto
+              {contactPageData?.hero?.badge || 'Entre em Contacto'}
             </Badge>
             <h1 
               id="contact-hero-heading"
               className={`${responsive.heading1} font-serif text-balance`}
             >
-              Vamos <span className="text-primary">Conversar</span> sobre o Seu
-              Patudo
+              {contactPageData?.hero?.title || 'Vamos Conversar sobre o Seu Patudo'}
             </h1>
             <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth['2xl']} mx-auto`}>
-              Estamos aqui para responder às suas questões e ajudar a encontrar
-              o melhor cuidado para o seu cão. Entre em contacto connosco!
+              {contactPageData?.hero?.description || 'Estamos aqui para responder às suas questões e ajudar a encontrar o melhor cuidado para o seu cão. Entre em contacto connosco!'}
             </p>
           </div>
         </div>
@@ -93,86 +96,85 @@ export default function ContactPage() {
       <section className="py-12 md:py-20 bg-[#FDCF4D]/5">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
-            {/* Phone */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#FDCF4D]/20 bg-white">
-              <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FDCF4D]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-[#FDCF4D]" />
-                </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
-                  Telefone
-                </CardTitle>
-                <CardDescription className="text-[#1F3B75]/70">Ligue-nos diretamente</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-xl md:text-2xl font-bold text-[#FDCF4D] mb-2">
-                  +351 XXX XXX XXX
-                </p>
-                <p className="text-sm text-[#1F3B75]/60 mb-4">
-                  Disponível das 8h às 20h
-                </p>
-                <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 w-full">
-                  <Phone className="w-4 h-4 mr-2" />
-                  Ligar Agora
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* WhatsApp */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#8B5CF6]/20 bg-white">
-              <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#8B5CF6]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <MessageCircle className="w-6 h-6 md:w-8 md:h-8 text-[#8B5CF6]" />
-                </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
-                  WhatsApp
-                </CardTitle>
-                <CardDescription className="text-[#1F3B75]/70">Mensagem rápida e fácil</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-xl md:text-2xl font-bold text-[#8B5CF6] mb-2">
-                  +351 XXX XXX XXX
-                </p>
-                <p className="text-sm text-[#1F3B75]/60 mb-4">
-                  Resposta rápida garantida
-                </p>
-                <Button
-                  variant="outline"
-                  className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white bg-transparent w-full"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Enviar Mensagem
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Email */}
-            <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#10B981]/20 bg-white">
-              <CardHeader>
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#10B981]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-[#10B981]" />
-                </div>
-                <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
-                  Email
-                </CardTitle>
-                <CardDescription className="text-[#1F3B75]/70">Para questões detalhadas</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-base md:text-lg font-semibold text-[#10B981] mb-2">
-                  info@dogwarts.pt
-                </p>
-                <p className="text-sm text-[#1F3B75]/60 mb-4">
-                  Resposta em 24h
-                </p>
-                <Button
-                  variant="outline"
-                  className="border-[#10B981] text-[#10B981] hover:bg-[#10B981] hover:text-white bg-transparent w-full"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  Enviar Email
-                </Button>
-              </CardContent>
-            </Card>
+            {contactPageData?.contactMethods?.map((method: any) => {
+              const iconMap: { [key: string]: any } = {
+                'phone': Phone,
+                'whatsapp': MessageCircle,
+                'email': Mail,
+              };
+              const IconComponent = iconMap[method.type] || Phone;
+              const colorMap: { [key: string]: string } = {
+                'phone': '#FDCF4D',
+                'whatsapp': '#8B5CF6',
+                'email': '#10B981',
+              };
+              const color = colorMap[method.type] || '#FDCF4D';
+              
+              return (
+                <Card key={method._key} className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#FDCF4D]/20 bg-white">
+                  <CardHeader>
+                    <div 
+                      className="w-12 h-12 md:w-16 md:h-16 contact-icon-bg rounded-2xl flex items-center justify-center mx-auto mb-4"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
+                      <IconComponent 
+                        className="w-6 h-6 md:w-8 md:h-8 contact-icon-text" 
+                        style={{ '--contact-color': color } as React.CSSProperties}
+                      />
+                    </div>
+                    <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
+                      {method.title}
+                    </CardTitle>
+                    <CardDescription className="text-[#1F3B75]/70">{method.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p 
+                      className="text-xl md:text-2xl font-bold contact-value-text mb-2"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
+                      {method.value}
+                    </p>
+                    <p className="text-sm text-[#1F3B75]/60 mb-4">
+                      {method.availability}
+                    </p>
+                    <Button 
+                      className="contact-button w-full"
+                      style={{ '--contact-color': color } as React.CSSProperties}
+                    >
+                      <IconComponent className="w-4 h-4 mr-2" />
+                      {method.buttonText}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            }) || (
+              // Fallback content
+              <>
+                <Card className="text-center border-border hover:shadow-lg transition-all duration-300 hover:border-[#FDCF4D]/20 bg-white">
+                  <CardHeader>
+                    <div className="w-12 h-12 md:w-16 md:h-16 bg-[#FDCF4D]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Phone className="w-6 h-6 md:w-8 md:h-8 text-[#FDCF4D]" />
+                    </div>
+                    <CardTitle className="text-lg md:text-xl font-inter font-semibold text-[#1F3B75]">
+                      Telefone
+                    </CardTitle>
+                    <CardDescription className="text-[#1F3B75]/70">Ligue-nos diretamente</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-xl md:text-2xl font-bold text-[#FDCF4D] mb-2">
+                      +351 XXX XXX XXX
+                    </p>
+                    <p className="text-sm text-[#1F3B75]/60 mb-4">
+                      Disponível das 8h às 20h
+                    </p>
+                    <Button className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90 w-full">
+                      <Phone className="w-4 h-4 mr-2" />
+                      Ligar Agora
+                    </Button>
+                  </CardContent>
+                </Card>
+              </>
+            )}
           </div>
 
           {/* Contact Form and Info */}
@@ -181,11 +183,10 @@ export default function ContactPage() {
             <Card className="border-border">
               <CardHeader>
                 <CardTitle className="text-xl md:text-2xl font-inter font-semibold">
-                  Envie-nos uma Mensagem
+                  {contactPageData?.contactForm?.title || 'Envie-nos uma Mensagem'}
                 </CardTitle>
                 <CardDescription>
-                  Preencha o formulário e entraremos em contacto consigo o mais
-                  breve possível.
+                  {contactPageData?.contactForm?.description || 'Preencha o formulário e entraremos em contacto consigo o mais breve possível.'}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -231,18 +232,27 @@ export default function ContactPage() {
                         <SelectValue placeholder="Selecione um serviço" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="petsitting">
-                          Petsitting ao Domicílio
-                        </SelectItem>
-                        <SelectItem value="dogwalking">Dogwalking</SelectItem>
-                        <SelectItem value="daycare">Creche/Daycare</SelectItem>
-                        <SelectItem value="estadia">
-                          Estadia Familiar
-                        </SelectItem>
-                        <SelectItem value="consulta">
-                          Consulta Gratuita
-                        </SelectItem>
-                        <SelectItem value="outro">Outro</SelectItem>
+                        {contactPageData?.contactForm?.serviceOptions?.map((option: any) => (
+                          <SelectItem key={option._key} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        )) || (
+                          // Fallback content
+                          <>
+                            <SelectItem value="petsitting">
+                              Petsitting ao Domicílio
+                            </SelectItem>
+                            <SelectItem value="dogwalking">Dogwalking</SelectItem>
+                            <SelectItem value="daycare">Creche/Daycare</SelectItem>
+                            <SelectItem value="estadia">
+                              Estadia Familiar
+                            </SelectItem>
+                            <SelectItem value="consulta">
+                              Consulta Gratuita
+                            </SelectItem>
+                            <SelectItem value="outro">Outro</SelectItem>
+                          </>
+                        )}
                       </SelectContent>
                     </Select>
                   </div>
@@ -258,7 +268,7 @@ export default function ContactPage() {
 
                   <Button className="w-full bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90">
                     <Send className="w-4 h-4 mr-2" />
-                    Enviar Mensagem
+                    {contactPageData?.contactForm?.submitButton || 'Enviar Mensagem'}
                   </Button>
                 </form>
               </CardContent>
@@ -469,11 +479,10 @@ export default function ContactPage() {
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
-              Pronto para Conhecer a Dogwarts?
+              {contactPageData?.cta?.title || 'Pronto para Conhecer a Dogwarts?'}
             </h2>
             <p className={`${responsive.bodyLarge} text-white text-pretty`}>
-              Entre em contacto connosco e venha conhecer como podemos cuidar do
-              seu patudo com todo o amor que ele merece.
+              {contactPageData?.cta?.description || 'Entre em contacto connosco e venha conhecer como podemos cuidar do seu patudo com todo o amor que ele merece.'}
             </p>
             <div className={`${responsive.buttonGroupCenter}`}>
               <Button
@@ -481,7 +490,7 @@ export default function ContactPage() {
                 className="bg-[#FDCF4D] text-[#1F3B75] hover:bg-[#FDCF4D]/90"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Ligar Agora
+                {contactPageData?.cta?.primaryButton || 'Ligar Agora'}
               </Button>
               <Button
                 size="lg"
@@ -489,7 +498,7 @@ export default function ContactPage() {
                 className="border-white text-white hover:bg-white hover:text-[#1F3B75] bg-transparent"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp Direto
+                {contactPageData?.cta?.secondaryButton || 'WhatsApp Direto'}
               </Button>
             </div>
           </div>

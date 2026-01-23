@@ -22,12 +22,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 import { responsive, brand } from "@/lib/responsive-utils";
+import { getAboutPage, getSiteSettings } from "@/lib/sanity";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [aboutPageData, siteSettings] = await Promise.all([
+    getAboutPage(),
+    getSiteSettings()
+  ]);
   return (
     <div className="min-h-screen font-sans">
       {/* Navigation */}
-      <Navbar currentPage="/sobre" />
+      <Navbar currentPage="/sobre" siteName={siteSettings?.siteName} />
 
       {/* Breadcrumb */}
       <div className="bg-card py-3 lg:py-4">
@@ -64,19 +69,16 @@ export default function AboutPage() {
                   variant="secondary"
                   className="bg-primary/20 text-primary-foreground border-primary/30 hover:bg-primary/30 transition-colors"
                 >
-                  A Nossa História
+                  {aboutPageData?.hero?.badge || 'A Nossa História'}
                 </Badge>
                 <h1 
                   id="about-hero-heading"
                   className={`${responsive.heading1} font-serif text-balance`}
                 >
-                  Uma História de <span className="text-primary">Amor</span> e{" "}
-                  <span className="text-accent">Confiança</span>
+                  {aboutPageData?.hero?.title || 'Uma História de Amor e Confiança'}
                 </h1>
                 <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty`}>
-                  Nascemos do coração de uma tutora que compreendeu, na prática,
-                  o que significa cuidar verdadeiramente dos nossos companheiros
-                  de quatro patas.
+                  {aboutPageData?.hero?.description || 'Nascemos do coração de uma tutora que compreendeu, na prática, o que significa cuidar verdadeiramente dos nossos companheiros de quatro patas.'}
                 </p>
               </div>
             </div>
@@ -145,46 +147,51 @@ export default function AboutPage() {
                 variant="secondary"
                 className="bg-[#8B5CF6] text-white border-[#8B5CF6]"
               >
-                Setembro 2023
+                {aboutPageData?.founderStory?.badge || 'Setembro 2023'}
               </Badge>
               <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
-                Como Tudo Começou
+                {aboutPageData?.founderStory?.title || 'Como Tudo Começou'}
               </h2>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-start">
               <div className="lg:col-span-2 space-y-6">
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    A Dogwarts nasceu em setembro de 2023, criada por uma tutora
-                    apaixonada de quatro cães que viveu na pele os desafios de
-                    deixar os seus companheiros quando precisava de trabalhar ou
-                    viajar.
-                  </p>
-
-                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    Depois de anos a procurar soluções que realmente
-                    compreendessem as necessidades emocionais dos cães, percebeu
-                    que faltava algo no mercado: um serviço que tratasse cada
-                    animal como família, não apenas como um "trabalho".
-                  </p>
-
-                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
-                    Foi assim que nasceu a missão da Dogwarts: criar um espaço
-                    onde os cães se sentem verdadeiramente em casa, rodeados de
-                    amor, atenção e cuidados personalizados, para que os tutores
-                    possam ter a tranquilidade que merecem.
-                  </p>
+                  {aboutPageData?.founderStory?.content?.map((paragraph: string, index: number) => (
+                    <p key={index} className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                      {paragraph}
+                    </p>
+                  )) || (
+                    // Fallback content
+                    <>
+                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                        A Dogwarts nasceu em setembro de 2023, criada por uma tutora
+                        apaixonada de quatro cães que viveu na pele os desafios de
+                        deixar os seus companheiros quando precisava de trabalhar ou
+                        viajar.
+                      </p>
+                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                        Depois de anos a procurar soluções que realmente
+                        compreendessem as necessidades emocionais dos cães, percebeu
+                        que faltava algo no mercado: um serviço que tratasse cada
+                        animal como família, não apenas como um "trabalho".
+                      </p>
+                      <p className="text-base lg:text-lg text-muted-foreground leading-relaxed">
+                        Foi assim que nasceu a missão da Dogwarts: criar um espaço
+                        onde os cães se sentem verdadeiramente em casa, rodeados de
+                        amor, atenção e cuidados personalizados, para que os tutores
+                        possam ter a tranquilidade que merecem.
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 <div className="bg-card rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-border">
                   <blockquote className="text-base lg:text-lg italic text-foreground">
-                    "Cada cão tem a sua personalidade única, os seus medos e as
-                    suas alegrias. O nosso trabalho é conhecê-los profundamente
-                    e cuidar deles como se fossem nossos."
+                    {aboutPageData?.founderStory?.quote || '"Cada cão tem a sua personalidade única, os seus medos e as suas alegrias. O nosso trabalho é conhecê-los profundamente e cuidar deles como se fossem nossos."'}
                   </blockquote>
                   <cite className="text-sm text-muted-foreground mt-4 block">
-                    — Fundadora da Dogwarts
+                    — {aboutPageData?.founderStory?.quoteAuthor || 'Fundadora da Dogwarts'}
                   </cite>
                 </div>
               </div>
@@ -257,125 +264,107 @@ export default function AboutPage() {
               variant="secondary"
               className="bg-[#10B981] text-white border-[#10B981]"
             >
-              Os Nossos Valores
+              {aboutPageData?.values?.badge || 'Os Nossos Valores'}
             </Badge>
             <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-balance">
-              O Que Nos Move Todos os Dias
+              {aboutPageData?.values?.title || 'O Que Nos Move Todos os Dias'}
             </h2>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Três pilares fundamentais guiam cada decisão e cada cuidado que
-              oferecemos aos nossos patudos.
+              {aboutPageData?.values?.description || 'Três pilares fundamentais guiam cada decisão e cada cuidado que oferecemos aos nossos patudos.'}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Confiança */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
-              <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#FDCF4D]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#FDCF4D]/20 transition-colors">
-                  <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-[#FDCF4D]" />
-                </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-[#FDCF4D]">
-                  Confiança
-                </CardTitle>
-                <CardDescription className="text-sm lg:text-base">
-                  A base de tudo o que fazemos
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Construímos relações sólidas baseadas na transparência,
-                  comunicação constante e no cumprimento rigoroso dos nossos
-                  compromissos. A sua tranquilidade é a nossa prioridade.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
-                    <span>Comunicação transparente</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
-                    <span>Relatórios regulares</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
-                    <span>Disponibilidade total</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Amor */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#8B5CF6]/20 text-center">
-              <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#8B5CF6]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#8B5CF6]/20 transition-colors">
-                  <Heart className="w-8 h-8 lg:w-10 lg:h-10 text-[#8B5CF6]" />
-                </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-[#8B5CF6]">
-                  Amor
-                </CardTitle>
-                <CardDescription className="text-sm lg:text-base">
-                  Cuidado genuíno e carinhoso
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Cada cão é tratado com o amor e carinho que merece. Não são
-                  apenas "clientes" - são membros da nossa família alargada, com
-                  personalidades únicas que respeitamos e celebramos.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Heart className="w-3 h-3 lg:w-4 lg:h-4 text-accent fill-current" />
-                    <span>Atenção personalizada</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Heart className="w-3 h-3 lg:w-4 lg:h-4 text-accent fill-current" />
-                    <span>Carinho genuíno</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Heart className="w-3 h-3 lg:w-4 lg:h-4 text-accent fill-current" />
-                    <span>Respeito individual</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Familiaridade */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#1F3B75]/20 text-center md:col-span-2 lg:col-span-1">
-              <CardHeader className="pb-4">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#1F3B75]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#1F3B75]/20 transition-colors">
-                  <Home className="w-8 h-8 lg:w-10 lg:h-10 text-[#1F3B75]" />
-                </div>
-                <CardTitle className="text-xl lg:text-2xl font-bold text-[#1F3B75]">
-                  Familiaridade
-                </CardTitle>
-                <CardDescription className="text-sm lg:text-base">
-                  Um ambiente como em casa
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
-                  Criamos um ambiente familiar onde os cães se sentem seguros e
-                  confortáveis. Mantemos rotinas, respeitamos hábitos e
-                  proporcionamos o conforto de casa, mesmo longe de casa.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Home className="w-3 h-3 lg:w-4 lg:h-4 text-secondary" />
-                    <span>Ambiente acolhedor</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Home className="w-3 h-3 lg:w-4 lg:h-4 text-secondary" />
-                    <span>Rotinas respeitadas</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
-                    <Home className="w-3 h-3 lg:w-4 lg:h-4 text-secondary" />
-                    <span>Conforto garantido</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {aboutPageData?.values?.items?.map((value: any) => {
+              const iconMap: { [key: string]: any } = {
+                'Confiança': Shield,
+                'Amor': Heart,
+                'Familiaridade': Home,
+              };
+              const IconComponent = iconMap[value.title] || Shield;
+              const colorMap: { [key: string]: string } = {
+                'Confiança': '#FDCF4D',
+                'Amor': '#8B5CF6',
+                'Familiaridade': '#1F3B75',
+              };
+              const color = colorMap[value.title] || '#FDCF4D';
+              
+              return (
+                <Card key={value._key} className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
+                  <CardHeader className="pb-4">
+                    <div 
+                      className="w-16 h-16 lg:w-20 lg:h-20 value-icon-bg rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6"
+                      style={{ '--value-color': color } as React.CSSProperties}
+                    >
+                      <IconComponent 
+                        className="w-8 h-8 lg:w-10 lg:h-10 value-text" 
+                        style={{ '--value-color': color } as React.CSSProperties}
+                      />
+                    </div>
+                    <CardTitle 
+                      className="text-xl lg:text-2xl font-bold value-text"
+                      style={{ '--value-color': color } as React.CSSProperties}
+                    >
+                      {value.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm lg:text-base">
+                      {value.subtitle}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
+                      {value.description}
+                    </p>
+                    <div className="space-y-2">
+                      {value.features?.map((feature: string, index: number) => (
+                        <div key={index} className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
+                          <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            }) || (
+              // Fallback content
+              <>
+                <Card className="group hover:shadow-lg transition-all duration-300 border-border hover:border-[#FDCF4D]/20 text-center">
+                  <CardHeader className="pb-4">
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-[#FDCF4D]/10 rounded-2xl lg:rounded-3xl flex items-center justify-center mx-auto mb-4 lg:mb-6 group-hover:bg-[#FDCF4D]/20 transition-colors">
+                      <Shield className="w-8 h-8 lg:w-10 lg:h-10 text-[#FDCF4D]" />
+                    </div>
+                    <CardTitle className="text-xl lg:text-2xl font-bold text-[#FDCF4D]">
+                      Confiança
+                    </CardTitle>
+                    <CardDescription className="text-sm lg:text-base">
+                      A base de tudo o que fazemos
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-4 lg:mb-6">
+                      Construímos relações sólidas baseadas na transparência,
+                      comunicação constante e no cumprimento rigoroso dos nossos
+                      compromissos. A sua tranquilidade é a nossa prioridade.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
+                        <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
+                        <span>Comunicação transparente</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
+                        <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
+                        <span>Relatórios regulares</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2 text-xs lg:text-sm text-muted-foreground">
+                        <Star className="w-3 h-3 lg:w-4 lg:h-4 text-primary" />
+                        <span>Disponibilidade total</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -426,11 +415,10 @@ export default function AboutPage() {
         <div className={`${responsive.container} ${responsive.textCenter}`}>
           <div className={`${responsive.maxWidth['3xl']} mx-auto ${responsive.spaceY.lg}`}>
             <h2 className={`${responsive.heading1} font-serif text-balance text-white`}>
-              Quer Conhecer Melhor a Nossa Família?
+              {aboutPageData?.cta?.title || 'Quer Conhecer Melhor a Nossa Família?'}
             </h2>
             <p className={`${responsive.bodyLarge} text-white text-pretty`}>
-              Venha conhecer-nos pessoalmente e descubra como podemos cuidar do
-              seu patudo com todo o amor e dedicação que ele merece.
+              {aboutPageData?.cta?.description || 'Venha conhecer-nos pessoalmente e descubra como podemos cuidar do seu patudo com todo o amor e dedicação que ele merece.'}
             </p>
             <div className={`${responsive.buttonGroupCenter}`}>
               <Button
@@ -440,7 +428,7 @@ export default function AboutPage() {
               >
                 <Link href="/contactos">
                   <Users className="w-5 h-5 mr-2" />
-                  Contactar-nos
+                  {aboutPageData?.cta?.primaryButton || 'Contactar-nos'}
                 </Link>
               </Button>
               <Button
@@ -451,7 +439,7 @@ export default function AboutPage() {
               >
                 <Link href="/servicos">
                   <Heart className="w-5 h-5 mr-2" />
-                  Ver Serviços
+                  {aboutPageData?.cta?.secondaryButton || 'Ver Serviços'}
                 </Link>
               </Button>
             </div>
