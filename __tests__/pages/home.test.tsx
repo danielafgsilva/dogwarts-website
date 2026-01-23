@@ -1,28 +1,55 @@
-import { render, screen } from "@testing-library/react";
-import Home from "@/app/page";
 
-// Mock Next.js Image component
+jest.mock("@/lib/sanity", () => {
+  const mockUrlFor = {
+    url: jest.fn(() => ""),
+  };
+  return {
+    client: {
+      fetch: jest.fn(() => Promise.resolve({})),
+    },
+    urlFor: jest.fn(() => mockUrlFor),
+    getHomePage: jest.fn(() => Promise.resolve({
+      hero: {
+        badge: "Bem-vindo",
+        title: "Título de Teste",
+        description: "Descrição de teste",
+        ctaPrimary: "Conheça nossos serviços",
+        ctaSecondary: "Contacte-nos",
+      },
+      services: {
+        title: "Os Nossos Serviços",
+        subtitle: "Cuidados Personalizados",
+        items: [],
+      },
+    })),
+    getFeaturedTestimonials: jest.fn(() => Promise.resolve([])),
+    getSiteSettings: jest.fn(() => Promise.resolve({ siteName: "Dogwarts" })),
+  };
+});
+
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: any) => {
-    // eslint-disable-next-line @next/next/no-img-element
     return <img {...props} />;
   },
 }));
 
-describe("Home Page", () => {
-  it("renders the main heading", () => {
-    render(<Home />);
+import { render, screen } from "@testing-library/react";
+import Home from "@/app/page";
 
-    // Check if the main heading is present
+describe("Home Page", () => {
+  it("renders the main heading", async () => {
+    const HomeComponent = await Home();
+    render(HomeComponent);
+
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
   });
 
-  it("renders navigation links", () => {
-    render(<Home />);
+  it("renders navigation links", async () => {
+    const HomeComponent = await Home();
+    render(HomeComponent);
 
-    // Check if navigation links are present (using getAllByText for multiple occurrences)
     const servicosLinks = screen.getAllByText(/serviços/i);
     const sobreLinks = screen.getAllByText(/sobre/i);
     const contactosLinks = screen.getAllByText(/contactos/i);
@@ -32,10 +59,10 @@ describe("Home Page", () => {
     expect(contactosLinks.length).toBeGreaterThan(0);
   });
 
-  it("renders call-to-action buttons", () => {
-    render(<Home />);
+  it("renders call-to-action buttons", async () => {
+    const HomeComponent = await Home();
+    render(HomeComponent);
 
-    // Check if CTA buttons are present
     const ctaButtons = screen.getAllByRole("button");
     expect(ctaButtons.length).toBeGreaterThan(0);
   });
