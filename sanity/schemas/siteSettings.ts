@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export const siteSettings = defineType({
   name: 'siteSettings',
@@ -23,9 +23,7 @@ export const siteSettings = defineType({
       name: 'logo',
       title: 'Logo',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
     }),
     defineField({
       name: 'favicon',
@@ -42,6 +40,19 @@ export const siteSettings = defineType({
           name: 'phone',
           title: 'Telefone',
           type: 'string',
+          description: 'Apenas os 9 dígitos (ex.: 918018726)',
+        }),
+        defineField({
+          name: 'phoneHours',
+          title: 'Horário do telefone',
+          type: 'string',
+          initialValue: 'Disponível das 10h às 19h',
+        }),
+        defineField({
+          name: 'whatsapp',
+          title: 'WhatsApp',
+          type: 'string',
+          description: 'Número com indicativo, sem espaços (ex.: 351918018726)',
         }),
         defineField({
           name: 'email',
@@ -49,16 +60,38 @@ export const siteSettings = defineType({
           type: 'string',
         }),
         defineField({
-          name: 'address',
-          title: 'Endereço',
+          name: 'location',
+          title: 'Localização',
           type: 'string',
+          description: 'Cidade ou região mostrada publicamente (sem morada exata)',
+          initialValue: 'Vila Nova de Gaia',
         }),
         defineField({
-          name: 'city',
-          title: 'Cidade',
+          name: 'googlePlaceId',
+          title: 'Google Place ID',
           type: 'string',
-          initialValue: 'Lisboa, Portugal',
+          description:
+            'Identificador do estabelecimento no Google Maps usado para puxar as avaliações.',
         }),
+        defineField({
+          name: 'googleReviewsUrl',
+          title: 'URL público das avaliações Google',
+          type: 'url',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'businessHours',
+      title: 'Horário de Funcionamento',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'day', title: 'Dia(s)', type: 'string' }),
+            defineField({ name: 'time', title: 'Horário', type: 'string' }),
+          ],
+        },
       ],
     }),
     defineField({
@@ -66,22 +99,8 @@ export const siteSettings = defineType({
       title: 'Redes Sociais',
       type: 'object',
       fields: [
-        defineField({
-          name: 'facebook',
-          title: 'Facebook',
-          type: 'url',
-        }),
-        defineField({
-          name: 'instagram',
-          title: 'Instagram',
-          type: 'url',
-        }),
-        defineField({
-          name: 'whatsapp',
-          title: 'WhatsApp',
-          type: 'string',
-          description: 'Número do WhatsApp (apenas números)',
-        }),
+        defineField({ name: 'facebook', title: 'Facebook', type: 'url' }),
+        defineField({ name: 'instagram', title: 'Instagram', type: 'url' }),
       ],
     }),
     defineField({
@@ -93,32 +112,25 @@ export const siteSettings = defineType({
           name: 'metaTitle',
           title: 'Meta Título',
           type: 'string',
-          description: 'Título para motores de busca',
         }),
         defineField({
           name: 'metaDescription',
           title: 'Meta Descrição',
           type: 'text',
           rows: 3,
-          description: 'Descrição para motores de busca',
         }),
         defineField({
           name: 'keywords',
           title: 'Palavras-chave',
           type: 'array',
           of: [{ type: 'string' }],
-          options: {
-            layout: 'tags',
-          },
+          options: { layout: 'tags' },
         }),
         defineField({
           name: 'ogImage',
-          title: 'Imagem para Redes Sociais',
+          title: 'Imagem para redes sociais',
           type: 'image',
-          description: 'Imagem que aparece quando o site é partilhado',
-          options: {
-            hotspot: true,
-          },
+          options: { hotspot: true },
         }),
       ],
     }),
@@ -128,16 +140,20 @@ export const siteSettings = defineType({
       type: 'object',
       fields: [
         defineField({
+          name: 'description',
+          title: 'Texto descritivo',
+          type: 'text',
+          rows: 2,
+        }),
+        defineField({
           name: 'copyright',
           title: 'Texto de Copyright',
           type: 'string',
-          initialValue: '© 2024 Dogwarts. Todos os direitos reservados.',
         }),
         defineField({
           name: 'developer',
-          title: 'Créditos do Desenvolvedor',
+          title: 'Créditos do desenvolvedor',
           type: 'string',
-          initialValue: 'Desenvolvido por Daniela Silva & Tiago Santos',
         }),
       ],
     }),
@@ -156,7 +172,6 @@ export const siteSettings = defineType({
           name: 'tagline',
           title: 'Slogan',
           type: 'string',
-          initialValue: 'Cães Felizes & Donos Tranquilos',
         }),
         defineField({
           name: 'mission',
@@ -164,20 +179,12 @@ export const siteSettings = defineType({
           type: 'text',
           rows: 3,
         }),
-        defineField({
-          name: 'values',
-          title: 'Valores Principais',
-          type: 'array',
-          of: [{ type: 'string' }],
-        }),
       ],
     }),
   ],
   preview: {
     prepare() {
-      return {
-        title: 'Configurações do Site',
-      }
+      return { title: 'Configurações do Site' }
     },
   },
 })

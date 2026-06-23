@@ -68,18 +68,10 @@ export const aboutPage = defineType({
         }),
         defineField({
           name: 'content',
-          title: 'Conteúdo',
+          title: 'Conteúdo (parágrafos)',
+          description: 'Cada item é um parágrafo da história.',
           type: 'array',
-          of: [
-            {
-              type: 'block',
-              styles: [
-                { title: 'Normal', value: 'normal' },
-                { title: 'H2', value: 'h2' },
-                { title: 'H3', value: 'h3' },
-              ],
-            },
-          ],
+          of: [{ type: 'text', rows: 3 }],
         }),
         defineField({
           name: 'quote',

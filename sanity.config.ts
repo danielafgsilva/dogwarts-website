@@ -23,10 +23,10 @@ if (!dataset) {
 export default defineConfig({
   name: 'dogwarts-cms',
   title: 'Dogwarts CMS',
-  
+
   projectId,
   dataset,
-  
+
   plugins: [
     structureTool({
       structure: (S) =>
@@ -36,79 +36,40 @@ export default defineConfig({
             S.listItem()
               .title('Página Inicial')
               .child(
-                S.document()
-                  .schemaType('homePage')
-                  .documentId('homePage')
+                S.document().schemaType('homePage').documentId('homePage')
               ),
             S.listItem()
-              .title('Serviços')
+              .title('Página de Serviços')
               .child(
                 S.document()
                   .schemaType('servicesPage')
                   .documentId('servicesPage')
               ),
             S.listItem()
-              .title('Sobre Nós')
+              .title('Página Sobre Nós')
+              .child(
+                S.document().schemaType('aboutPage').documentId('aboutPage')
+              ),
+            S.listItem()
+              .title('Página de Contactos')
               .child(
                 S.document()
-                  .schemaType('aboutPage')
-                  .documentId('aboutPage')
+                  .schemaType('contactPage')
+                  .documentId('contactPage')
+              ),
+            S.listItem()
+              .title('Página de Testemunhos')
+              .child(
+                S.document()
+                  .schemaType('testimonialsPage')
+                  .documentId('testimonialsPage')
               ),
             S.divider(),
             S.listItem()
               .title('Testemunhos')
               .child(
-                S.documentTypeList('testimonial')
-                  .title('Testemunhos')
+                S.documentTypeList('testimonial').title('Testemunhos')
               ),
-                   S.listItem()
-                     .title('FAQ')
-                     .child(
-                       S.documentTypeList('faq')
-                         .title('Perguntas Frequentes')
-                     ),
-                   S.listItem()
-                     .title('Posts do Blog')
-                     .child(
-                       S.documentTypeList('blogPost')
-                         .title('Posts do Blog')
-                     ),
-                   S.divider(),
-                   S.listItem()
-                     .title('Página de Serviços')
-                     .child(
-                       S.document()
-                         .schemaType('servicesPage')
-                         .documentId('servicesPage')
-                     ),
-                   S.listItem()
-                     .title('Página FAQ')
-                     .child(
-                       S.document()
-                         .schemaType('faqPage')
-                         .documentId('faqPage')
-                     ),
-                   S.listItem()
-                     .title('Página de Contactos')
-                     .child(
-                       S.document()
-                         .schemaType('contactPage')
-                         .documentId('contactPage')
-                     ),
-                   S.listItem()
-                     .title('Página de Testemunhos')
-                     .child(
-                       S.document()
-                         .schemaType('testimonialsPage')
-                         .documentId('testimonialsPage')
-                     ),
-                   S.listItem()
-                     .title('Página do Blog')
-                     .child(
-                       S.document()
-                         .schemaType('blogPage')
-                         .documentId('blogPage')
-                     ),
             S.divider(),
             S.listItem()
               .title('Configurações Gerais')
@@ -117,11 +78,11 @@ export default defineConfig({
                   .schemaType('siteSettings')
                   .documentId('siteSettings')
               ),
-          ])
+          ]),
     }),
     visionTool(),
   ],
-  
+
   schema: {
     types: schemaTypes,
   },

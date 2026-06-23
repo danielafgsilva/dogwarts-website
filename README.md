@@ -29,9 +29,7 @@ A modern, responsive website for professional dog care services built with Next.
 ```
 dogwarts-website/
 ├── app/                    # Next.js App Router pages
-│   ├── blog/              # Blog page
 │   ├── contactos/         # Contact page
-│   ├── faq/               # FAQ page
 │   ├── servicos/          # Services page
 │   ├── sobre/             # About page
 │   ├── testemunhos/       # Testimonials page
@@ -73,14 +71,46 @@ dogwarts-website/
    pnpm install
    ```
 
-3. **Start development server**
+3. **Configure environment variables**
+
+   ```bash
+   cp .env.example .env
+   # fill in your Sanity + Google Places values
+   ```
+
+4. **Seed the CMS (first run only)**
+
+   All page content lives in Sanity — the pages render nothing for sections
+   that have not been authored. Populate the dataset with the canonical
+   content (requires `SANITY_API_TOKEN` with write access):
+
+   ```bash
+   node scripts/seed-sanity.js
+   ```
+
+   After seeding, edit everything at `/studio`.
+
+5. **Start development server**
 
    ```bash
    pnpm dev
    ```
 
-4. **Open in browser**
+6. **Open in browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Content & integrations
+
+- **All content comes from Sanity.** Page copy, prices, contact details and
+  business hours are edited in the Studio (`/studio`); there are no hardcoded
+  text fallbacks in the pages.
+- **Testimonials are live Google reviews.** With `GOOGLE_PLACES_API_KEY` and a
+  Place ID set (env var `GOOGLE_PLACE_ID` or `siteSettings.contact.googlePlaceId`
+  in Sanity), the site fetches reviews via the Places API (New), cached hourly.
+  Without them, the reviews section links out to the Google profile instead.
+- **Contact form** opens the visitor's mail client (`mailto:`) targeting the
+  email in `siteSettings`. To send server-side instead, pass an `onSubmit`
+  handler to `<ContactForm>` wired to a provider (e.g. Resend / Nodemailer).
 
 ### Available Scripts
 

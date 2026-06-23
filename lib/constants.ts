@@ -1,164 +1,97 @@
 // Application constants
+
 export const APP_CONFIG = {
   name: 'Dogwarts',
   tagline: 'Cães Felizes & Donos Tranquilos',
-  description: 'Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche e estadia familiar.',
+  description:
+    'Serviços de cuidados para cães com amor e confiança. Petsitting, dogwalking, creche canina e estadia familiar em Vila Nova de Gaia.',
   url: 'https://dogwarts.pt',
-  email: 'info@dogwarts.pt',
-  phone: '+351 XXX XXX XXX',
-  location: 'Lisboa, Portugal',
   founded: 'Setembro 2023',
-  rating: 5.0,
-  happyDogs: 100,
 } as const
 
+export const CONTACT_INFO = {
+  phone: '918018726',
+  phoneDisplay: '+351 918 018 726',
+  phoneHours: 'Disponível das 10h às 19h',
+  whatsapp: '351918018726',
+  email: 'dogwarts.pt@gmail.com',
+  location: 'Vila Nova de Gaia',
+  googleReviewsUrl:
+    'https://www.google.com/search?sa=X&sca_esv=5ded1eb12a838e6b&hl=pt-PT&sxsrf=APpeQnt8NQKY3rDvxsu9WHOnAIhu_c7JFQ:1782223073327&q=Dogwarts+%7C+Estadia+familiar+%26+Creche+canina+Cr%C3%ADticas&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDEzMjE3NrA0NjY0tjA1NTAyMtrAyPiK0dQlP708saikWKFGwbW4JDElM1EhLTE3MyczsUhBTcG5KDU5I1UhOTEvMy8RyDu8tiQzObF4ESt5-gBpGbmFiwAAAA&rldimm=14624730933138550222&tbm=lcl&ved=2ahUKEwifv8ipwp2VAxV4UqQEHYdzHBgQ9fQKegQIQRAG&biw=1259&bih=903&dpr=2#lkt=LocalPoiReviews',
+} as const
+
+export const BUSINESS_HOURS = [
+  { day: 'Segunda a Sábado', time: '8h – 19h' },
+  { day: 'Domingo', time: 'Encerrado' },
+] as const
+
 export const STATISTICS = {
-  happyDogs: {
-    value: '100+',
-    label: 'Cães Felizes',
-  },
-  yearsExperience: {
-    value: '5+',
-    label: 'Anos de Experiência',
-  },
-  satisfiedClients: {
-    value: '200+',
-    label: 'Clientes Satisfeitos',
-  },
-  satisfaction: {
-    value: '98%',
-    label: 'Satisfação dos Clientes',
-  },
-  servicesProvided: {
-    value: '1000+',
-    label: 'Serviços Prestados',
-  },
+  happyDogs: { value: '100+', label: 'Cães Felizes' },
+  yearsExperience: { value: '2+', label: 'Anos de Experiência' },
+  satisfaction: { value: '5.0', label: 'Avaliação Google' },
 } as const
 
 export const NAVIGATION_ITEMS = [
   { href: '/', label: 'Início' },
   { href: '/sobre', label: 'Sobre Nós', noWrap: true },
   { href: '/servicos', label: 'Serviços' },
-  { href: '/contactos', label: 'Contactos' },
   { href: '/testemunhos', label: 'Testemunhos' },
+  { href: '/contactos', label: 'Contactos' },
 ] as const
 
 export const SERVICES = [
   {
+    id: 'petsitting',
     icon: 'Home',
-    title: "Petsitting",
-    desc: "Cuidados ao domicílio",
-    detail: "Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.",
-    price: "A partir de 15€",
-    color: "primary",
-    delay: "delay-100",
-    bgColor: "bg-[#FDCF4D]/10",
-    iconColor: "text-[#FDCF4D]",
-    priceColor: "bg-[#FDCF4D] text-[#1F3B75]",
+    title: 'Petsitting ao Domicílio',
+    desc: 'Cuidados no conforto de casa',
+    detail:
+      'Visitas de 1 hora à sua casa para cuidar do seu cão, manter a rotina e dar todo o carinho que merece.',
+    price: '10€',
+    priceNote: '+ deslocação · visita de 1h',
   },
   {
+    id: 'dogwalking',
     icon: 'MapPin',
-    title: "Dogwalking",
-    desc: "Passeios diários",
-    detail: "Passeios energizantes e socializantes adaptados às necessidades do seu cão.",
-    price: "A partir de 12€",
-    color: "accent",
-    delay: "delay-200",
-    bgColor: "bg-[#8B5CF6]/10",
-    iconColor: "text-[#8B5CF6]",
-    priceColor: "bg-[#8B5CF6] text-white",
+    title: 'Dogwalking',
+    desc: 'Passeios energizantes',
+    detail:
+      'Passeios de 1 hora adaptados às necessidades do seu cão, com exercício e socialização.',
+    price: '10€',
+    priceNote: '+ deslocação · passeio de 1h',
   },
   {
+    id: 'daycare',
     icon: 'Clock',
-    title: "Creche/Daycare",
-    desc: "Cuidados diurnos",
-    detail: "Ambiente seguro e divertido para o seu cão durante o dia de trabalho.",
-    price: "A partir de 25€",
-    color: "secondary",
-    delay: "delay-300",
-    bgColor: "bg-[#10B981]/10",
-    iconColor: "text-[#10B981]",
-    priceColor: "bg-[#10B981] text-white",
+    title: 'Creche Canina',
+    desc: 'Cuidados diurnos',
+    detail:
+      'Um dia completo de diversão e socialização num espaço seguro e familiar.',
+    price: 'desde 15€',
+    priceNote: 'por dia',
   },
   {
+    id: 'boarding',
     icon: 'Heart',
-    title: "Estadia Familiar",
-    desc: "Hospedagem completa",
-    detail: "O seu cão fica na nossa família durante as suas férias ou viagens.",
-    price: "A partir de 30€/dia",
-    color: "chart-4",
-    delay: "delay-400",
-    bgColor: "bg-[#F59E0B]/10",
-    iconColor: "text-[#F59E0B]",
-    priceColor: "bg-[#F59E0B] text-white",
+    title: 'Estadia Familiar',
+    desc: 'Hospedagem completa',
+    detail:
+      'O seu cão fica integrado na nossa família durante as suas férias ou ausências.',
+    price: '20€',
+    priceNote: 'por diária',
   },
-] as const;
+] as const
 
-// Testimonials data
-export const TESTIMONIALS = [
-  {
-    stars: 5,
-    text: "A Dogwarts transformou a nossa rotina! O Max fica sempre feliz e eu trabalho tranquila sabendo que está em boas mãos.",
-    initials: "MC",
-    name: "Maria Costa",
-    role: "Tutora do Max",
-    color: "primary",
-    delay: "delay-100",
-    bgColor: "bg-[#FDCF4D]/20",
-    textColor: "text-[#1F3B75]",
-  },
-  {
-    stars: 5,
-    text: "Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!",
-    initials: "JS",
-    name: "João Silva",
-    role: "Tutor da Luna",
-    color: "accent",
-    delay: "delay-200",
-    bgColor: "bg-[#8B5CF6]/20",
-    textColor: "text-[#8B5CF6]",
-  },
-  {
-    stars: 5,
-    text: "Durante as nossas férias, o Bobby ficou na Dogwarts. Voltámos e ele estava radiante! Serviço de confiança total.",
-    initials: "AF",
-    name: "Ana Ferreira",
-    role: "Tutora do Bobby",
-    color: "secondary",
-    delay: "delay-300",
-    bgColor: "bg-[#10B981]/20",
-    textColor: "text-[#10B981]",
-  },
-] as const;
-
-// Navigation links
 export const FOOTER_LINKS = {
   services: [
-    { href: "/servicos", label: "Petsitting" },
-    { href: "/servicos", label: "Dogwalking" },
-    { href: "/servicos", label: "Creche/Daycare" },
-    { href: "/servicos", label: "Estadia Familiar" },
+    { href: '/servicos#petsitting', label: 'Petsitting' },
+    { href: '/servicos#dogwalking', label: 'Dogwalking' },
+    { href: '/servicos#daycare', label: 'Creche Canina' },
+    { href: '/servicos#boarding', label: 'Estadia Familiar' },
   ],
   company: [
-    { href: "/sobre", label: "Sobre Nós" },
-    { href: "/testemunhos", label: "Testemunhos" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/blog", label: "Blog" },
+    { href: '/sobre', label: 'Sobre Nós' },
+    { href: '/testemunhos', label: 'Testemunhos' },
+    { href: '/contactos', label: 'Contactos' },
   ],
-} as const;
-
-// Contact information
-export const CONTACT_INFO = {
-  phone: "+351 XXX XXX XXX",
-  email: "info@dogwarts.pt",
-  location: "Lisboa, Portugal",
-} as const;
-
-// Brand colors
-export const BRAND_COLORS = {
-  primary: "#FDCF4D",
-  secondary: "#1F3B75",
-  accent: "#8B5CF6",
-  success: "#10B981",
-  warning: "#F59E0B",
-} as const;
+} as const

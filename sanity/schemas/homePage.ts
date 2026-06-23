@@ -24,10 +24,18 @@ export const homePage = defineType({
         }),
         defineField({
           name: 'description',
-          title: 'Descrição',
+          title: 'Descrição (parágrafo principal)',
           type: 'text',
           rows: 3,
           validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'intro',
+          title: 'Parágrafos de introdução',
+          description:
+            'Parágrafos exibidos abaixo do título e da descrição (ex.: história da fundadora).',
+          type: 'array',
+          of: [{ type: 'text', rows: 3 }],
         }),
         defineField({
           name: 'ctaPrimary',
@@ -109,6 +117,13 @@ export const homePage = defineType({
                 defineField({
                   name: 'price',
                   title: 'Preço',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'priceNote',
+                  title: 'Detalhe do preço',
+                  description:
+                    'Ex.: "+ deslocação · visita de 1h", "por diária".',
                   type: 'string',
                 }),
                 defineField({

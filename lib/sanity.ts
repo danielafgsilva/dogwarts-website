@@ -1,5 +1,13 @@
 import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
+import type {
+  AboutPageContent,
+  ContactPageContent,
+  HomePageContent,
+  ServicesPageContent,
+  SiteSettings,
+  TestimonialsPageContent,
+} from '@/lib/types/content'
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'bsfnftzl',
@@ -11,27 +19,17 @@ export const client = createClient({
 const builder = imageUrlBuilder(client)
 
 export interface SanityImageSource {
-  _type: 'image';
+  _type: 'image'
   asset: {
-    _ref?: string;
-    _id?: string;
-    _type?: 'reference' | 'sanity.imageAsset';
-  };
-  alt?: string;
-  caption?: string;
-  hotspot?: {
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-  };
-  crop?: {
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
-  };
-  [key: string]: any;
+    _ref?: string
+    _id?: string
+    _type?: 'reference' | 'sanity.imageAsset'
+  }
+  alt?: string
+  caption?: string
+  hotspot?: { x: number; y: number; height: number; width: number }
+  crop?: { top: number; bottom: number; left: number; right: number }
+  [key: string]: unknown
 }
 
 export function urlFor(source: SanityImageSource | null | undefined) {
@@ -39,24 +37,19 @@ export function urlFor(source: SanityImageSource | null | undefined) {
 }
 
 export const queries = {
-  // Home Page
   homePage: `*[_type == "homePage"][0]{
     hero,
     services,
-    testimonials,
+    "reviews": testimonials{ title, description },
     cta
   }`,
 
-  // Services Page
   servicesPage: `*[_type == "servicesPage"][0]{
     hero,
     mainServices,
-    additionalServices,
-    pricingPlans,
     cta
   }`,
 
-  // About Page
   aboutPage: `*[_type == "aboutPage"][0]{
     hero,
     founderStory,
@@ -65,193 +58,39 @@ export const queries = {
     cta
   }`,
 
-  // Testimonials
-  testimonials: `*[_type == "testimonial"] | order(order asc, _createdAt desc) {
-    _id,
-    name,
-    role,
-    text,
-    rating,
-    initials,
-    color,
-    featured,
-    order
-  }`,
-
-  featuredTestimonials: `*[_type == "testimonial" && featured == true] | order(order asc, _createdAt desc) [0...3] {
-    _id,
-    name,
-    role,
-    text,
-    rating,
-    initials,
-    color,
-    featured,
-    order
-  }`,
-
-  // FAQ
-  faqs: `*[_type == "faq"] | order(order asc, _createdAt desc) {
-    _id,
-    question,
-    answer,
-    category,
-    order,
-    featured
-  }`,
-
-  faqsByCategory: `*[_type == "faq"] | order(order asc, _createdAt desc) {
-    _id,
-    question,
-    answer,
-    category,
-    order,
-    featured
-  }`,
-
-  // Blog Posts
-  blogPosts: `*[_type == "blogPost" && published == true] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    excerpt,
-    featuredImage,
-    author,
-    publishedAt,
-    category,
-    tags,
-    featured
-  }`,
-
-  featuredBlogPosts: `*[_type == "blogPost" && published == true && featured == true] | order(publishedAt desc) [0...3] {
-    _id,
-    title,
-    slug,
-    excerpt,
-    featuredImage,
-    author,
-    publishedAt,
-    category,
-    tags
-  }`,
-
-  blogPostBySlug: `*[_type == "blogPost" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    excerpt,
-    content,
-    featuredImage,
-    author,
-    publishedAt,
-    category,
-    tags
-  }`,
-
-  // Site Settings
   siteSettings: `*[_type == "siteSettings"][0] {
-    siteName,
-    siteDescription,
-    logo,
-    favicon,
-    contact,
-    socialMedia,
-    seo,
-    footer,
-    business
+    siteName, siteDescription, logo, favicon, contact, businessHours, socialMedia, seo, footer, business
   }`,
 
-  // FAQ Page
-  faqPage: `*[_type == "faqPage"][0]{
-    hero,
-    faqCategories,
-    contactCard,
-    businessHours,
-    guarantees,
-    cta
-  }`,
-
-  // Contact Page
   contactPage: `*[_type == "contactPage"][0]{
-    hero,
-    contactMethods,
-    contactForm,
-    businessInfo,
-    faqQuickLinks,
-    cta
+    hero, contactCards, contactForm, locationCard, hoursCard, socialCard, cta
   }`,
 
-  // Testimonials Page
   testimonialsPage: `*[_type == "testimonialsPage"][0]{
-    hero,
-    featuredTestimonial,
-    testimonialsGrid,
-    cta
-  }`,
-
-  // Blog Page
-  blogPage: `*[_type == "blogPage"][0]{
-    hero,
-    featuredPost,
-    blogPosts,
-    categories,
-    cta
+    hero, cta
   }`,
 }
 
-// Helper functions
-export async function getHomePage() {
-  return await client.fetch(queries.homePage)
+export async function getHomePage(): Promise<HomePageContent | null> {
+  return client.fetch(queries.homePage)
 }
 
-export async function getServicesPage() {
-  return await client.fetch(queries.servicesPage)
+export async function getServicesPage(): Promise<ServicesPageContent | null> {
+  return client.fetch(queries.servicesPage)
 }
 
-export async function getAboutPage() {
-  return await client.fetch(queries.aboutPage)
+export async function getAboutPage(): Promise<AboutPageContent | null> {
+  return client.fetch(queries.aboutPage)
 }
 
-export async function getTestimonials() {
-  return await client.fetch(queries.testimonials)
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  return client.fetch(queries.siteSettings)
 }
 
-export async function getFeaturedTestimonials() {
-  return await client.fetch(queries.featuredTestimonials)
+export async function getContactPage(): Promise<ContactPageContent | null> {
+  return client.fetch(queries.contactPage)
 }
 
-export async function getFAQs() {
-  return await client.fetch(queries.faqs)
-}
-
-export async function getBlogPosts() {
-  return await client.fetch(queries.blogPosts)
-}
-
-export async function getFeaturedBlogPosts() {
-  return await client.fetch(queries.featuredBlogPosts)
-}
-
-export async function getBlogPostBySlug(slug: string) {
-  return await client.fetch(queries.blogPostBySlug, { slug })
-}
-
-export async function getSiteSettings() {
-  return await client.fetch(queries.siteSettings)
-}
-
-export async function getFAQPage() {
-  return await client.fetch(queries.faqPage)
-}
-
-export async function getContactPage() {
-  return await client.fetch(queries.contactPage)
-}
-
-export async function getTestimonialsPage() {
-  return await client.fetch(queries.testimonialsPage)
-}
-
-export async function getBlogPage() {
-  return await client.fetch(queries.blogPage)
+export async function getTestimonialsPage(): Promise<TestimonialsPageContent | null> {
+  return client.fetch(queries.testimonialsPage)
 }

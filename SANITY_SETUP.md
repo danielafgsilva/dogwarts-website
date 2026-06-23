@@ -86,32 +86,10 @@ O CMS está organizado nas seguintes seções:
 - **Galeria**: Fotos da equipe e cães
 
 #### 💬 Testemunhos
-- **Nome**: Nome do cliente
-- **Função**: Relacionamento com o cão (ex: "Tutora do Max")
-- **Texto**: Depoimento
-- **Avaliação**: Número de estrelas (1-5)
-- **Iniciais**: Para o avatar
-- **Cor**: Cor do avatar
-- **Destaque**: Se aparece na página inicial
-
-#### ❓ FAQ
-- **Pergunta**: Pergunta frequente
-- **Resposta**: Resposta em formato rico
-- **Categoria**: Tipo de pergunta
-- **Ordem**: Ordem de exibição
-- **Destaque**: Se aparece em destaque
-
-#### 📝 Blog
-- **Título**: Título do post
-- **Slug**: URL amigável (gerado automaticamente)
-- **Resumo**: Descrição curta
-- **Conteúdo**: Conteúdo completo em formato rico
-- **Imagem Destacada**: Imagem principal
-- **Autor**: Nome do autor
-- **Data**: Data de publicação
-- **Categoria**: Categoria do post
-- **Tags**: Tags para organização
-- **Publicado**: Se está visível no site
+Os testemunhos são agora **avaliações reais do Google**, obtidas via Places API
+(ver `lib/google-reviews.ts`). Não são geridos no Sanity — basta configurar
+`GOOGLE_PLACES_API_KEY` e o Place ID (`GOOGLE_PLACE_ID` ou
+`siteSettings.contact.googlePlaceId`).
 
 #### ⚙️ Configurações do Site
 - **Informações Básicas**: Nome, descrição, logo

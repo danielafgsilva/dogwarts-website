@@ -29,6 +29,14 @@ export default defineType({
           rows: 3
         },
         {
+          name: 'petsittingIntro',
+          title: 'Texto intro Petsitting',
+          description:
+            'Bloco curto exibido por baixo da descrição, focado no Petsitting ao domicílio.',
+          type: 'text',
+          rows: 3
+        },
+        {
           name: 'backgroundImage',
           title: 'Imagem de Fundo',
           type: 'image',
@@ -67,6 +75,12 @@ export default defineType({
             {
               name: 'price',
               title: 'Preço',
+              type: 'string'
+            },
+            {
+              name: 'priceNote',
+              title: 'Detalhe do preço',
+              description: 'Ex.: "+ deslocação · 1h", "por diária".',
               type: 'string'
             },
             {
