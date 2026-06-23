@@ -22,6 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/footer";
 import { ContactForm } from "@/components/contact-form";
+import { phoneDisplay, telHref, whatsappHref } from "@/lib/contact";
 import { brand, responsive } from "@/lib/responsive-utils";
 import { getContactPage, getSiteSettings } from "@/lib/sanity";
 import type { ContactPageContent, SiteSettings } from "@/lib/types/content";
@@ -213,7 +214,7 @@ function PhoneWhatsappCard({
   contact?: SiteSettings["contact"];
 }) {
   if (!contact?.phone && !contact?.whatsapp) return null;
-  const display = contact?.phone ? `+351 ${contact.phone}` : "";
+  const display = phoneDisplay(contact?.phone) ?? "";
 
   return (
     <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
@@ -248,7 +249,7 @@ function PhoneWhatsappCard({
               asChild
               className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              <a href={`tel:+351${contact.phone}`}>
+              <a href={telHref(contact.phone)}>
                 <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
                 {card?.phoneButton ?? "Ligar agora"}
               </a>
@@ -257,7 +258,7 @@ function PhoneWhatsappCard({
           {contact?.whatsapp && (
             <Button asChild variant="outline" className="flex-1">
               <a
-                href={`https://wa.me/${contact.whatsapp}`}
+                href={whatsappHref(contact.whatsapp)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -410,7 +411,7 @@ function CtaSection({
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                <a href={`tel:+351${contact.phone}`}>
+                <a href={telHref(contact.phone)}>
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                   {cta.primaryButton ?? "Ligar agora"}
                 </a>
@@ -424,7 +425,7 @@ function CtaSection({
                 className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
               >
                 <a
-                  href={`https://wa.me/${contact.whatsapp}`}
+                  href={whatsappHref(contact.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { FOOTER_LINKS } from "@/lib/constants";
+import { phoneDisplay, telHref } from "@/lib/contact";
 import { responsive } from "@/lib/responsive-utils";
 import { urlFor } from "@/lib/sanity";
 import type { SiteSettings } from "@/lib/types/content";
@@ -74,10 +75,10 @@ export default function SiteFooter({
             {contact?.phone && (
               <li>
                 <a
-                  href={`tel:+351${contact.phone}`}
+                  href={telHref(contact.phone)}
                   className="hover:text-primary transition-colors"
                 >
-                  +351 {contact.phone}
+                  {phoneDisplay(contact.phone)}
                 </a>
               </li>
             )}

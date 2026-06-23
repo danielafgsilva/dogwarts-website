@@ -58,7 +58,7 @@ export const queries = {
     cta
   }`,
 
-  siteSettings: `*[_type == "siteSettings"][0] {
+  siteSettings: `*[_id == "siteSettings"][0] {
     siteName, siteDescription, logo, favicon, contact, businessHours, socialMedia, seo, footer, business
   }`,
 

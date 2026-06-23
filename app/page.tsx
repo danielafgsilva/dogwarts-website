@@ -14,6 +14,7 @@ import {
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/footer";
 import { GoogleReviewsSection } from "@/components/sections/google-reviews-section";
+import { telHref } from "@/lib/contact";
 import { getGoogleReviews } from "@/lib/google-reviews";
 import { brand, responsive } from "@/lib/responsive-utils";
 import { getHomePage, getSiteSettings, urlFor } from "@/lib/sanity";
@@ -386,7 +387,7 @@ function CtaSection({
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                <a href={`tel:+351${contact.phone}`}>
+                <a href={telHref(contact.phone)}>
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                   {cta.primaryButton ?? "Ligar agora"}
                 </a>
