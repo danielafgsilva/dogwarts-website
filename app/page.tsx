@@ -1,388 +1,393 @@
-"use client"
+import { Clock, Heart, Home, Mail, MapPin, PawPrint, Phone, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-import React from "react"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/footer";
+import { GoogleReviewsSection } from "@/components/sections/google-reviews-section";
+import { Reveal } from "@/components/magic/reveal";
+import { PawPattern } from "@/components/magic/paw-pattern";
+import { SectionIntro } from "@/components/magic/section-intro";
+import { PawDivider } from "@/components/magic/paw-divider";
+import { telHref } from "@/lib/contact";
+import { getGoogleReviews } from "@/lib/google-reviews";
+import { responsive } from "@/lib/responsive-utils";
+import { getHomePage, getSiteSettings, urlFor } from "@/lib/sanity";
+import type { HomePageContent, ServiceItem, SiteSettings } from "@/lib/types/content";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Home, MapPin, Clock, Star, Phone, Mail } from "lucide-react"
-import Link from "next/link"
-import Navbar from "@/components/navbar"
-import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+const SERVICE_ICONS: Record<string, typeof Heart> = { Heart, Home, MapPin, Clock };
 
-export default function HomePage() {
-  const heroAnimation = useScrollAnimation()
-  const servicesAnimation = useScrollAnimation()
-  const testimonialsAnimation = useScrollAnimation()
-  const ctaAnimation = useScrollAnimation()
+export default async function HomePage() {
+  const [home, siteSettings] = await Promise.all([
+    getHomePage().catch(() => null),
+    getSiteSettings().catch(() => null),
+  ]);
+
+  const reviews = await getGoogleReviews(
+    siteSettings?.contact?.googlePlaceId
+  ).catch(() => null);
 
   return (
-    <div className="min-h-screen">
-      <Navbar currentPage="/" />
+    <div className="min-h-screen font-sans">
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo principal
+      </a>
+      <Navbar currentPage="/" siteName={siteSettings?.siteName} />
 
-      {/* Hero Section */}
-      <section
-        ref={heroAnimation.ref}
-        className={`relative py-12 md:py-20 lg:py-32 bg-gradient-to-br from-card to-background transition-all duration-1000 ${
-          heroAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
-              <div className="space-y-4">
-                <Badge
-                  variant="secondary"
-                  className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
-                >
-                  Desde Setembro 2023
-                </Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-balance leading-tight">
-                  Cães Felizes & <span className="text-[#1F3B75] dark:text-[#FDCF4D]">Donos Tranquilos</span>
-                </h1>
-                <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Um espaço seguro e familiar onde os seus cães se sentem em casa, criado por uma tutora que compreende
-                  as necessidades dos animais quando os donos estão ausentes.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Heart className="w-5 h-5 mr-2" />
-                  Conhecer Serviços
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground bg-transparent"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Contactar Agora
-                </Button>
-              </div>
+      <main id="main-content">
+        {home?.hero && (
+          <HeroSection
+            hero={home.hero}
+            reviewRating={reviews?.averageRating}
+            reviewCount={reviews?.totalReviews}
+          />
+        )}
+        {home?.services && <ServicesSection services={home.services} />}
+        <GoogleReviewsSection
+          data={reviews}
+          reviewsUrl={siteSettings?.contact?.googleReviewsUrl}
+          heading={home?.reviews?.title}
+          description={home?.reviews?.description}
+        />
+        {home?.cta && (
+          <CtaSection cta={home.cta} contact={siteSettings?.contact} />
+        )}
+      </main>
+
+      <SiteFooter siteName={siteSettings?.siteName} siteSettings={siteSettings} />
+    </div>
+  );
+}
+
+function HeroSection({
+  hero,
+  reviewRating,
+  reviewCount,
+}: {
+  hero: NonNullable<HomePageContent["hero"]>;
+  reviewRating?: number;
+  reviewCount?: number;
+}) {
+  // Split the title so the last word can carry the gold-foil "magic" accent.
+  const words = (hero.title ?? "").trim().split(" ");
+  const lastWord = words.length > 1 ? words.pop() : null;
+  const leadWords = words.join(" ");
+
+  return (
+    <section
+      className="relative overflow-hidden bg-gradient-to-b from-secondary/8 via-background to-background"
+      aria-labelledby="hero-heading"
+    >
+      <PawPattern />
+      <div className="absolute -top-24 right-0 w-[28rem] h-[28rem] bg-primary/10 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-0 -left-24 w-[24rem] h-[24rem] bg-accent/10 rounded-full blur-3xl" aria-hidden="true" />
+
+      <div className={`${responsive.container} ${responsive.sectionPadding} relative z-10`}>
+        <div className={`${responsive.grid2} gap-10 lg:gap-16 items-center`}>
+          <div className={`${responsive.spaceY.lg} ${responsive.textCenterLg}`}>
+            <div className="space-y-6">
+              {hero.badge && (
+                <Reveal>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/15 text-foreground border-primary/30 font-mono text-xs uppercase tracking-[0.18em] inline-flex items-center gap-1.5"
+                  >
+                    <PawPrint className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                    {hero.badge}
+                  </Badge>
+                </Reveal>
+              )}
+              {hero.title && (
+                <Reveal delay={80}>
+                  <h1
+                    id="hero-heading"
+                    className={`${responsive.heading1} font-serif text-balance leading-[1.05]`}
+                  >
+                    {leadWords}{" "}
+                    {lastWord && <span className="text-gold-foil">{lastWord}</span>}
+                  </h1>
+                </Reveal>
+              )}
+              {hero.description && (
+                <Reveal delay={160}>
+                  <p
+                    className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
+                  >
+                    {hero.description}
+                  </p>
+                </Reveal>
+              )}
+              {hero.intro?.[0] && (
+                <Reveal delay={240}>
+                  <p
+                    className={`text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
+                  >
+                    {hero.intro[0]}
+                  </p>
+                </Reveal>
+              )}
             </div>
-            <div className="relative order-first lg:order-last">
-              <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-4 md:p-8">
-                <img
-                  src="/dogwarts-logo-with-tagline.png"
-                  alt="Dogwarts - Cães Felizes & Donos Tranquilos"
-                  className="w-full h-full object-contain max-w-sm md:max-w-md"
+
+            <Reveal delay={320}>
+              <div
+                className={`${responsive.buttonGroupCenter} lg:justify-start`}
+                role="group"
+                aria-label="Ações principais"
+              >
+                {hero.ctaPrimary && (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    <Link href="/servicos">
+                      <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
+                      {hero.ctaPrimary}
+                    </Link>
+                  </Button>
+                )}
+                {hero.ctaSecondary && (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
+                  >
+                    <Link href="/contactos">
+                      <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+                      {hero.ctaSecondary}
+                    </Link>
+                  </Button>
+                )}
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Logo framed in a warm nude medallion */}
+          <Reveal delay={200} className="relative order-first lg:order-last">
+            <div className="relative mx-auto aspect-square max-w-md">
+              <div
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-nude to-nude-deep shadow-xl float-slow"
+                aria-hidden="true"
+              />
+              <div
+                className="absolute inset-2 rounded-full ring-1 ring-primary/30"
+                aria-hidden="true"
+              />
+              <PawPattern className="rounded-full overflow-hidden" opacity={0.06} />
+              <div className="absolute inset-0 flex items-center justify-center p-12">
+                <Image
+                  src={
+                    hero.heroImage
+                      ? urlFor(hero.heroImage).width(420).height(420).url()
+                      : "/dogwarts-logo-with-tagline.png"
+                  }
+                  alt="Dogwarts"
+                  width={420}
+                  height={420}
+                  className="w-full h-full object-contain drop-shadow-lg"
+                  priority
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-card border border-border rounded-2xl p-3 md:p-4 shadow-lg">
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="flex -space-x-1 md:-space-x-2">
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-primary rounded-full border-2 border-background"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-accent rounded-full border-2 border-background"></div>
-                    <div className="w-6 h-6 md:w-8 md:h-8 bg-secondary rounded-full border-2 border-background"></div>
-                  </div>
-                  <div>
-                    <p className="text-xs md:text-sm font-medium">100+ Cães Felizes</p>
-                    <div className="flex items-center">
-                      <Star className="w-3 h-3 md:w-4 md:h-4 text-primary fill-current" />
-                      <span className="text-xs md:text-sm text-muted-foreground ml-1">5.0 avaliação</span>
-                    </div>
-                  </div>
+            </div>
+
+            {reviewRating && reviewRating > 0 ? (
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl flex items-center gap-3">
+                <Star className="w-7 h-7 text-primary fill-current" aria-hidden="true" />
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-foreground">
+                    {reviewRating.toFixed(1)} no Google
+                  </p>
+                  {reviewCount ? (
+                    <p className="text-xs text-muted-foreground">
+                      {reviewCount} avaliações
+                    </p>
+                  ) : null}
                 </div>
               </div>
-            </div>
-          </div>
+            ) : null}
+          </Reveal>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      {/* Services Section */}
-      <section
-        ref={servicesAnimation.ref}
-        id="servicos"
-        className={`py-12 md:py-20 bg-background transition-all duration-1000 delay-200 ${
-          servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12 md:mb-16">
-            <Badge
-              variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
+function ServicesSection({
+  services,
+}: {
+  services: NonNullable<HomePageContent["services"]>;
+}) {
+  const items = services.services ?? [];
+  if (items.length === 0) return null;
+
+  return (
+    <section
+      id="servicos"
+      className={`${responsive.sectionPadding} bg-background`}
+      aria-labelledby="services-heading"
+    >
+      <div className={responsive.container}>
+        <SectionIntro
+          id="services-heading"
+          eyebrow={services.title}
+          title={services.subtitle}
+          description={services.description}
+          className="mb-6"
+        />
+        <PawDivider className="mb-12 lg:mb-16" />
+
+        <div className={`${responsive.grid4} list-none`} role="list" aria-label="Serviços oferecidos">
+          {items.map((service, index) => (
+            <Reveal
+              as="li"
+              key={service._key ?? index}
+              delay={index * 60}
+              className="h-full list-none"
             >
-              Os Nossos Serviços
-            </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">
-              Cuidados Personalizados para Cada Patudo
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Oferecemos uma gama completa de serviços pensados para o bem-estar dos seus cães e a sua tranquilidade.
-            </p>
-          </div>
+              <ServiceCard service={service} index={index} />
+            </Reveal>
+          ))}
+        </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              {
-                icon: Home,
-                title: "Petsitting",
-                desc: "Cuidados ao domicílio",
-                detail: "Sessões de 1h30 no conforto da sua casa, mantendo a rotina do seu cão.",
-                price: "A partir de 15€",
-                color: "primary",
-                delay: "delay-100",
-              },
-              {
-                icon: MapPin,
-                title: "Dogwalking",
-                desc: "Passeios diários",
-                detail: "Passeios energizantes e socializantes adaptados às necessidades do seu cão.",
-                price: "A partir de 12€",
-                color: "accent",
-                delay: "delay-200",
-              },
-              {
-                icon: Clock,
-                title: "Creche/Daycare",
-                desc: "Cuidados diurnos",
-                detail: "Ambiente seguro e divertido para o seu cão durante o dia de trabalho.",
-                price: "A partir de 25€",
-                color: "secondary",
-                delay: "delay-300",
-              },
-              {
-                icon: Heart,
-                title: "Estadia Familiar",
-                desc: "Hospedagem completa",
-                detail: "O seu cão fica na nossa família durante as suas férias ou viagens.",
-                price: "A partir de 30€/dia",
-                color: "chart-4",
-                delay: "delay-400",
-              },
-            ].map((service, index) => (
-              <Card
-                key={index}
-                className={`group hover:shadow-lg transition-all duration-300 border-border hover:border-primary/20 ${service.delay} ${
-                  servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                <CardHeader className="text-center pb-4">
-                  <div
-                    className={`w-16 h-16 bg-${service.color}/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-${service.color}/20 transition-colors`}
-                  >
-                    {React.createElement(service.icon, { className: `w-8 h-8 text-${service.color}` })}
-                  </div>
-                  <CardTitle className="text-xl font-serif">{service.title}</CardTitle>
-                  <CardDescription>{service.desc}</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-sm text-muted-foreground mb-4">{service.detail}</p>
-                  <Badge variant="outline" className={`text-${service.color} border-${service.color}/30`}>
-                    {service.price}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <Reveal className="text-center mt-14">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Link href="/servicos">Ver todos os serviços</Link>
+          </Button>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
+function ServiceCard({ service, index }: { service: ServiceItem; index: number }) {
+  const IconComponent = SERVICE_ICONS[service.icon ?? "Heart"] ?? Heart;
+  return (
+    <Card
+      className="lift group h-full flex flex-col bg-card border border-border rounded-2xl shadow-sm hover:shadow-xl hover:border-primary/30"
+      aria-labelledby={`service-title-${index}`}
+    >
+      <CardHeader className="text-center pb-6">
+        {service.image ? (
+          <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-6">
+            <Image
+              src={urlFor(service.image).width(80).height(80).url()}
+              alt={service.title ?? "Serviço"}
+              width={80}
+              height={80}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ) : (
           <div
-            className={`text-center mt-8 md:mt-12 transition-all duration-700 delay-500 ${
-              servicesAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+            className="relative w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3"
+            aria-hidden="true"
           >
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Ver Todos os Serviços
-            </Button>
+            <IconComponent className="w-10 h-10" aria-hidden="true" />
           </div>
-        </div>
-      </section>
-
-      {/* Quick Testimonials */}
-      <section
-        ref={testimonialsAnimation.ref}
-        className={`py-12 md:py-20 bg-card transition-all duration-1000 delay-300 ${
-          testimonialsAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-12 md:mb-16">
-            <Badge
-              variant="secondary"
-              className="bg-primary/20 text-gray-800 border-primary/30 dark:bg-primary/30 dark:text-gray-100"
-            >
-              Testemunhos
-            </Badge>
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">O Que Dizem os Nossos Clientes</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                stars: 5,
-                text: "A Dogwarts transformou a nossa rotina! O Max fica sempre feliz e eu trabalho tranquila sabendo que está em boas mãos.",
-                initials: "MC",
-                name: "Maria Costa",
-                role: "Tutora do Max",
-                color: "primary",
-                delay: "delay-100",
-              },
-              {
-                stars: 5,
-                text: "Profissionalismo e carinho genuíno. A Luna adora os passeios e volta sempre cansada e feliz. Recomendo vivamente!",
-                initials: "JS",
-                name: "João Silva",
-                role: "Tutor da Luna",
-                color: "accent",
-                delay: "delay-200",
-              },
-              {
-                stars: 5,
-                text: "Durante as nossas férias, o Bobby ficou na Dogwarts. Voltámos e ele estava radiante! Serviço de confiança total.",
-                initials: "AF",
-                name: "Ana Ferreira",
-                role: "Tutora do Bobby",
-                color: "secondary",
-                delay: "delay-300",
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className={`border-border transition-all duration-700 ${testimonial.delay} ${
-                  testimonialsAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    <div className="flex">
-                      {[...Array(testimonial.stars)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-primary fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground mb-4 text-pretty">"{testimonial.text}"</p>
-                  <div className="flex items-center">
-                    <div
-                      className={`w-10 h-10 bg-${testimonial.color}/20 rounded-full flex items-center justify-center mr-3`}
-                    >
-                      <span className={`text-sm font-medium text-${testimonial.color}`}>{testimonial.initials}</span>
-                    </div>
-                    <div>
-                      <p className="font-medium">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section
-        ref={ctaAnimation.ref}
-        className={`py-12 md:py-20 bg-secondary text-secondary-foreground transition-all duration-1000 delay-400 ${
-          ctaAnimation.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance">
-              Pronto para Dar ao Seu Cão o Melhor Cuidado?
-            </h2>
-            <p className="text-lg md:text-xl text-secondary-foreground/80 text-pretty">
-              Entre em contacto connosco hoje e descubra como podemos ajudar a manter o seu patudo feliz e você
-              tranquilo.
+        )}
+        {service.title && (
+          <CardTitle
+            id={`service-title-${index}`}
+            className="text-xl font-serif font-semibold text-foreground"
+          >
+            {service.title}
+          </CardTitle>
+        )}
+        {service.description && (
+          <p className="text-muted-foreground text-sm">{service.description}</p>
+        )}
+      </CardHeader>
+      <CardContent className="text-center flex flex-1 flex-col">
+        {service.detail && (
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {service.detail}
+          </p>
+        )}
+        {service.price && (
+          <div className="mt-auto pt-4 border-t border-border/60">
+            <p className="text-2xl font-bold text-primary font-serif">
+              {service.price}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Phone className="w-5 h-5 mr-2" />
-                Ligar Agora
-              </Button>
+            {service.priceNote && (
+              <p className="text-xs text-muted-foreground">{service.priceNote}</p>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+function CtaSection({
+  cta,
+  contact,
+}: {
+  cta: NonNullable<HomePageContent["cta"]>;
+  contact?: SiteSettings["contact"];
+}) {
+  return (
+    <section
+      className={`${responsive.sectionPadding} relative overflow-hidden bg-secondary text-secondary-foreground`}
+      aria-labelledby="cta-heading"
+    >
+      <PawPattern opacity={0.045} />
+      <div className="absolute top-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl" aria-hidden="true" />
+      <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl" aria-hidden="true" />
+
+      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+        <Reveal className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}>
+          {cta.title && (
+            <h2
+              id="cta-heading"
+              className={`${responsive.heading1} font-serif text-secondary-foreground`}
+            >
+              {cta.title}
+            </h2>
+          )}
+          {cta.description && (
+            <p
+              className={`${responsive.bodyLarge} text-secondary-foreground/90 ${responsive.maxWidth["2xl"]} mx-auto`}
+            >
+              {cta.description}
+            </p>
+          )}
+          <div
+            className={responsive.buttonGroupCenter}
+            role="group"
+            aria-label="Ações de contacto"
+          >
+            {contact?.phone && (
               <Button
+                asChild
+                size="lg"
+                className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                <a href={telHref(contact.phone)}>
+                  <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+                  {cta.primaryButton ?? "Ligar agora"}
+                </a>
+              </Button>
+            )}
+            {contact?.email && (
+              <Button
+                asChild
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary-foreground/10 bg-transparent"
+                className="border-secondary-foreground/40 text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
               >
-                <Mail className="w-5 h-5 mr-2" />
-                Enviar Mensagem
+                <a href={`mailto:${contact.email}`}>
+                  <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
+                  {cta.secondaryButton ?? "Enviar mensagem"}
+                </a>
               </Button>
-            </div>
+            )}
           </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-background border-t border-border py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div className="space-y-4 sm:col-span-2 md:col-span-1">
-              <img src="/dogwarts-logo-transparent.png" alt="Dogwarts Logo" className="w-10 h-10 object-contain" />
-              <span className="text-xl font-bold">Dogwarts</span>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Serviços</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
-                    Petsitting
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
-                    Dogwalking
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
-                    Creche/Daycare
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/servicos" className="hover:text-primary transition-colors">
-                    Estadia Familiar
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Empresa</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>
-                  <Link href="/sobre" className="hover:text-primary transition-colors">
-                    Sobre Nós
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/testemunhos" className="hover:text-primary transition-colors">
-                    Testemunhos
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className="hover:text-primary transition-colors">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="hover:text-primary transition-colors">
-                    Blog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Contacto</h3>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li>+351 XXX XXX XXX</li>
-                <li>info@dogwarts.pt</li>
-                <li>Lisboa, Portugal</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 text-center text-muted-foreground">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-              <p className="text-sm">&copy; 2024 Dogwarts. Todos os direitos reservados.</p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">Desenvolvido por Daniela Silva & Tiago Santos</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
+        </Reveal>
+      </div>
+    </section>
+  );
 }
