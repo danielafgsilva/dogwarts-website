@@ -126,7 +126,9 @@ export default function SiteFooter({ siteName, siteSettings }: SiteFooterProps) 
                 para os patudos
               </span>
               {footer?.developer && (
-                <span className="whitespace-nowrap">· {footer.developer}</span>
+                <span className="whitespace-nowrap">
+                  · {renderDeveloperCredit(footer.developer)}
+                </span>
               )}
             </p>
           </div>
@@ -171,5 +173,29 @@ function FooterLink({
         {children}
       </Link>
     </li>
+  );
+}
+
+const DEVELOPER_PORTFOLIO_URL = "https://daniela-silva.vercel.app/";
+
+function renderDeveloperCredit(text: string) {
+  const match = text.match(/^(.*?)(Daniela(?: Silva)?)([\s\S]*)$/);
+  if (!match) return text;
+
+  const [, before, name, after] = match;
+
+  return (
+    <>
+      {before}
+      <a
+        href={DEVELOPER_PORTFOLIO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-primary transition-colors underline-offset-2 hover:underline"
+      >
+        {name}
+      </a>
+      {after}
+    </>
   );
 }
