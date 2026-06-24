@@ -1,31 +1,24 @@
-import { Clock, Heart, Home, Mail, MapPin, Phone, Star } from "lucide-react";
+import { Clock, Heart, Home, Mail, MapPin, PawPrint, Phone, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/footer";
 import { GoogleReviewsSection } from "@/components/sections/google-reviews-section";
+import { Reveal } from "@/components/magic/reveal";
+import { PawPattern } from "@/components/magic/paw-pattern";
+import { SectionIntro } from "@/components/magic/section-intro";
+import { PawDivider } from "@/components/magic/paw-divider";
 import { telHref } from "@/lib/contact";
 import { getGoogleReviews } from "@/lib/google-reviews";
-import { brand, responsive } from "@/lib/responsive-utils";
+import { responsive } from "@/lib/responsive-utils";
 import { getHomePage, getSiteSettings, urlFor } from "@/lib/sanity";
 import type { HomePageContent, ServiceItem, SiteSettings } from "@/lib/types/content";
 
-const SERVICE_ICONS: Record<string, typeof Heart> = {
-  Heart,
-  Home,
-  MapPin,
-  Clock,
-};
+const SERVICE_ICONS: Record<string, typeof Heart> = { Heart, Home, MapPin, Clock };
 
 export default async function HomePage() {
   const [home, siteSettings] = await Promise.all([
@@ -64,10 +57,7 @@ export default async function HomePage() {
         )}
       </main>
 
-      <SiteFooter
-        siteName={siteSettings?.siteName}
-        siteSettings={siteSettings}
-      />
+      <SiteFooter siteName={siteSettings?.siteName} siteSettings={siteSettings} />
     </div>
   );
 }
@@ -81,119 +71,145 @@ function HeroSection({
   reviewRating?: number;
   reviewCount?: number;
 }) {
+  // Split the title so the last word can carry the gold-foil "magic" accent.
+  const words = (hero.title ?? "").trim().split(" ");
+  const lastWord = words.length > 1 ? words.pop() : null;
+  const leadWords = words.join(" ");
+
   return (
     <section
-      className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+      className="relative overflow-hidden bg-gradient-to-b from-secondary/8 via-background to-background"
       aria-labelledby="hero-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-      <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+      <PawPattern />
+      <div className="absolute -top-24 right-0 w-[28rem] h-[28rem] bg-primary/10 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-0 -left-24 w-[24rem] h-[24rem] bg-accent/10 rounded-full blur-3xl" aria-hidden="true" />
 
-      <div className={`${responsive.container} relative z-10`}>
-        <div className={`${responsive.grid2} gap-8 lg:gap-16 items-center`}>
+      <div className={`${responsive.container} ${responsive.sectionPadding} relative z-10`}>
+        <div className={`${responsive.grid2} gap-10 lg:gap-16 items-center`}>
           <div className={`${responsive.spaceY.lg} ${responsive.textCenterLg}`}>
             <div className="space-y-6">
               {hero.badge && (
-                <Badge
-                  variant="secondary"
-                  className="bg-primary/20 text-primary-foreground border-primary/30"
-                >
-                  {hero.badge}
-                </Badge>
+                <Reveal>
+                  <Badge
+                    variant="secondary"
+                    className="bg-primary/15 text-foreground border-primary/30 font-mono text-xs uppercase tracking-[0.18em] inline-flex items-center gap-1.5"
+                  >
+                    <PawPrint className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                    {hero.badge}
+                  </Badge>
+                </Reveal>
               )}
               {hero.title && (
-                <h1
-                  id="hero-heading"
-                  className={`${responsive.heading1} font-serif`}
-                >
-                  {hero.title}
-                </h1>
+                <Reveal delay={80}>
+                  <h1
+                    id="hero-heading"
+                    className={`${responsive.heading1} font-serif text-balance leading-[1.05]`}
+                  >
+                    {leadWords}{" "}
+                    {lastWord && <span className="text-gold-foil">{lastWord}</span>}
+                  </h1>
+                </Reveal>
               )}
               {hero.description && (
-                <p
-                  className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
-                >
-                  {hero.description}
-                </p>
+                <Reveal delay={160}>
+                  <p
+                    className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
+                  >
+                    {hero.description}
+                  </p>
+                </Reveal>
               )}
-              {hero.intro?.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <div
-              className={`${responsive.buttonGroupCenter} lg:justify-start`}
-              role="group"
-              aria-label="Ações principais"
-            >
-              {hero.ctaPrimary && (
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
-                >
-                  <Link href="/servicos">
-                    <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
-                    {hero.ctaPrimary}
-                  </Link>
-                </Button>
-              )}
-              {hero.ctaSecondary && (
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-                >
-                  <Link href="/contactos">
-                    <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
-                    {hero.ctaSecondary}
-                  </Link>
-                </Button>
+              {hero.intro?.[0] && (
+                <Reveal delay={240}>
+                  <p
+                    className={`text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto lg:mx-0`}
+                  >
+                    {hero.intro[0]}
+                  </p>
+                </Reveal>
               )}
             </div>
+
+            <Reveal delay={320}>
+              <div
+                className={`${responsive.buttonGroupCenter} lg:justify-start`}
+                role="group"
+                aria-label="Ações principais"
+              >
+                {hero.ctaPrimary && (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    <Link href="/servicos">
+                      <Heart className="w-5 h-5 mr-2" aria-hidden="true" />
+                      {hero.ctaPrimary}
+                    </Link>
+                  </Button>
+                )}
+                {hero.ctaSecondary && (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
+                  >
+                    <Link href="/contactos">
+                      <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
+                      {hero.ctaSecondary}
+                    </Link>
+                  </Button>
+                )}
+              </div>
+            </Reveal>
           </div>
-          <div className="relative order-first lg:order-last">
-            <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center p-8 shadow-2xl">
-              <Image
-                src={
-                  hero.heroImage
-                    ? urlFor(hero.heroImage).width(400).height(400).url()
-                    : "/dogwarts-logo-with-tagline.png"
-                }
-                alt="Dogwarts"
-                className="w-full h-full object-contain max-w-sm md:max-w-md transition-transform hover:scale-105 duration-300"
-                width={400}
-                height={400}
-                priority
+
+          {/* Logo framed in a warm nude medallion */}
+          <Reveal delay={200} className="relative order-first lg:order-last">
+            <div className="relative mx-auto aspect-square max-w-md">
+              <div
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-nude to-nude-deep shadow-xl float-slow"
+                aria-hidden="true"
               />
+              <div
+                className="absolute inset-2 rounded-full ring-1 ring-primary/30"
+                aria-hidden="true"
+              />
+              <PawPattern className="rounded-full overflow-hidden" opacity={0.06} />
+              <div className="absolute inset-0 flex items-center justify-center p-12">
+                <Image
+                  src={
+                    hero.heroImage
+                      ? urlFor(hero.heroImage).width(420).height(420).url()
+                      : "/dogwarts-logo-with-tagline.png"
+                  }
+                  alt="Dogwarts"
+                  width={420}
+                  height={420}
+                  className="w-full h-full object-contain drop-shadow-lg"
+                  priority
+                />
+              </div>
             </div>
-            {reviewRating && reviewRating > 0 && (
-              <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl p-4 shadow-xl">
-                <div className="flex items-center space-x-3">
-                  <Star
-                    className="w-8 h-8 text-primary fill-current"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">
-                      {reviewRating.toFixed(1)} no Google
+
+            {reviewRating && reviewRating > 0 ? (
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl flex items-center gap-3">
+                <Star className="w-7 h-7 text-primary fill-current" aria-hidden="true" />
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-foreground">
+                    {reviewRating.toFixed(1)} no Google
+                  </p>
+                  {reviewCount ? (
+                    <p className="text-xs text-muted-foreground">
+                      {reviewCount} avaliações
                     </p>
-                    {reviewCount ? (
-                      <p className="text-sm text-muted-foreground">
-                        {reviewCount} avaliações
-                      </p>
-                    ) : null}
-                  </div>
+                  ) : null}
                 </div>
               </div>
-            )}
-          </div>
+            ) : null}
+          </Reveal>
         </div>
       </div>
     </section>
@@ -215,74 +231,43 @@ function ServicesSection({
       aria-labelledby="services-heading"
     >
       <div className={responsive.container}>
-        <div
-          className={`${responsive.spaceY.md} ${responsive.textCenter} mb-12 lg:mb-16`}
-        >
-          {services.title && (
-            <Badge
-              variant="secondary"
-              className="bg-primary/20 text-primary-foreground border-primary/30"
-            >
-              {services.title}
-            </Badge>
-          )}
-          {services.subtitle && (
-            <h2
-              id="services-heading"
-              className={`${responsive.heading1} font-serif`}
-            >
-              {services.subtitle}
-            </h2>
-          )}
-          {services.description && (
-            <p
-              className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["3xl"]} mx-auto`}
-            >
-              {services.description}
-            </p>
-          )}
-        </div>
+        <SectionIntro
+          id="services-heading"
+          eyebrow={services.title}
+          title={services.subtitle}
+          description={services.description}
+          className="mb-6"
+        />
+        <PawDivider className="mb-12 lg:mb-16" />
 
-        <div
-          className={responsive.grid4}
-          role="list"
-          aria-label="Lista de serviços oferecidos"
-        >
+        <div className={`${responsive.grid4} list-none`} role="list" aria-label="Serviços oferecidos">
           {items.map((service, index) => (
-            <ServiceCard
+            <Reveal
+              as="li"
               key={service._key ?? index}
-              service={service}
-              index={index}
-            />
+              delay={index * 60}
+              className="h-full list-none"
+            >
+              <ServiceCard service={service} index={index} />
+            </Reveal>
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <Button
-            asChild
-            size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-          >
+        <Reveal className="text-center mt-14">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Link href="/servicos">Ver todos os serviços</Link>
           </Button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: ServiceItem;
-  index: number;
-}) {
+function ServiceCard({ service, index }: { service: ServiceItem; index: number }) {
   const IconComponent = SERVICE_ICONS[service.icon ?? "Heart"] ?? Heart;
   return (
     <Card
-      className="bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-      role="listitem"
+      className="lift group h-full flex flex-col bg-card border border-border rounded-2xl shadow-sm hover:shadow-xl hover:border-primary/30"
       aria-labelledby={`service-title-${index}`}
     >
       <CardHeader className="text-center pb-6">
@@ -298,7 +283,7 @@ function ServiceCard({
           </div>
         ) : (
           <div
-            className="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300"
+            className="relative w-20 h-20 mx-auto mb-6 rounded-2xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3"
             aria-hidden="true"
           >
             <IconComponent className="w-10 h-10" aria-hidden="true" />
@@ -307,30 +292,28 @@ function ServiceCard({
         {service.title && (
           <CardTitle
             id={`service-title-${index}`}
-            className="text-xl font-semibold text-foreground"
+            className="text-xl font-serif font-semibold text-foreground"
           >
             {service.title}
           </CardTitle>
         )}
         {service.description && (
-          <CardDescription className="text-muted-foreground">
-            {service.description}
-          </CardDescription>
+          <p className="text-muted-foreground text-sm">{service.description}</p>
         )}
       </CardHeader>
-      <CardContent className="text-center space-y-4">
+      <CardContent className="text-center flex flex-1 flex-col">
         {service.detail && (
           <p className="text-sm text-muted-foreground leading-relaxed">
             {service.detail}
           </p>
         )}
         {service.price && (
-          <div>
-            <p className="text-2xl font-bold text-primary">{service.price}</p>
+          <div className="mt-auto pt-4 border-t border-border/60">
+            <p className="text-2xl font-bold text-primary font-serif">
+              {service.price}
+            </p>
             {service.priceNote && (
-              <p className="text-xs text-muted-foreground">
-                {service.priceNote}
-              </p>
+              <p className="text-xs text-muted-foreground">{service.priceNote}</p>
             )}
           </div>
         )}
@@ -348,19 +331,15 @@ function CtaSection({
 }) {
   return (
     <section
-      className={`${responsive.sectionPadding} bg-secondary text-secondary-foreground relative overflow-hidden`}
+      className={`${responsive.sectionPadding} relative overflow-hidden bg-secondary text-secondary-foreground`}
       aria-labelledby="cta-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary" />
-      <div className="absolute top-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl" />
+      <PawPattern opacity={0.045} />
+      <div className="absolute top-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl" aria-hidden="true" />
+      <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary/20 rounded-full blur-2xl" aria-hidden="true" />
 
-      <div
-        className={`${responsive.container} ${responsive.textCenter} relative z-10`}
-      >
-        <div
-          className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}
-        >
+      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+        <Reveal className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}>
           {cta.title && (
             <h2
               id="cta-heading"
@@ -385,7 +364,7 @@ function CtaSection({
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <a href={telHref(contact.phone)}>
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -398,7 +377,7 @@ function CtaSection({
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
+                className="border-secondary-foreground/40 text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
               >
                 <a href={`mailto:${contact.email}`}>
                   <Mail className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -407,7 +386,7 @@ function CtaSection({
               </Button>
             )}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

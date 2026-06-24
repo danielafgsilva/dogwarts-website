@@ -1,4 +1,4 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, PawPrint, Phone } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/footer";
 import { GoogleReviewsSection } from "@/components/sections/google-reviews-section";
+import { Reveal } from "@/components/magic/reveal";
+import { PawPattern } from "@/components/magic/paw-pattern";
 import { telHref } from "@/lib/contact";
 import { getGoogleReviews } from "@/lib/google-reviews";
-import { brand, responsive } from "@/lib/responsive-utils";
+import { responsive } from "@/lib/responsive-utils";
 import { getSiteSettings, getTestimonialsPage } from "@/lib/sanity";
 import type { TestimonialsPageContent } from "@/lib/types/content";
 
@@ -25,7 +27,6 @@ export default async function TestimonialsPage() {
   return (
     <div className="min-h-screen font-sans">
       <Navbar currentPage="/testemunhos" siteName={siteSettings?.siteName} />
-
       <Breadcrumb />
 
       <main>
@@ -46,13 +47,10 @@ export default async function TestimonialsPage() {
 
 function Breadcrumb() {
   return (
-    <div className="bg-card py-4">
+    <div className="bg-card/60 py-4 border-b border-border/60">
       <div className={responsive.container}>
         <div className="flex items-center space-x-2 text-sm">
-          <Link
-            href="/"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
+          <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
             Início
           </Link>
           <span className="text-muted-foreground">/</span>
@@ -63,48 +61,40 @@ function Breadcrumb() {
   );
 }
 
-function HeroSection({
-  hero,
-}: {
-  hero: NonNullable<TestimonialsPageContent["hero"]>;
-}) {
+function HeroSection({ hero }: { hero: NonNullable<TestimonialsPageContent["hero"]> }) {
   return (
     <section
-      className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+      className="relative overflow-hidden bg-gradient-to-b from-secondary/8 via-background to-background"
       aria-labelledby="testimonials-hero-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-      <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+      <PawPattern />
+      <div className="absolute -top-16 right-1/4 w-[26rem] h-[26rem] bg-primary/10 rounded-full blur-3xl" aria-hidden="true" />
 
-      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
-        <div
-          className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}
-        >
+      <div className={`${responsive.container} ${responsive.sectionPadding} ${responsive.textCenter} relative z-10`}>
+        <Reveal className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}>
           {hero.badge && (
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-primary-foreground border-primary/30"
+              className="bg-primary/15 text-foreground border-primary/30 font-mono text-xs uppercase tracking-[0.18em] inline-flex items-center gap-1.5"
             >
+              <PawPrint className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
               {hero.badge}
             </Badge>
           )}
           {hero.title && (
             <h1
               id="testimonials-hero-heading"
-              className={`${responsive.heading1} font-serif`}
+              className={`${responsive.heading1} font-serif text-balance leading-[1.05]`}
             >
               {hero.title}
             </h1>
           )}
           {hero.description && (
-            <p
-              className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto`}
-            >
+            <p className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth["2xl"]} mx-auto`}>
               {hero.description}
             </p>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -119,12 +109,11 @@ function CtaSection({
 }) {
   return (
     <section
-      className={`${responsive.sectionPadding} bg-secondary text-secondary-foreground`}
+      className={`${responsive.sectionPadding} relative overflow-hidden bg-secondary text-secondary-foreground`}
     >
-      <div className={`${responsive.container} ${responsive.textCenter}`}>
-        <div
-          className={`${responsive.maxWidth["3xl"]} mx-auto ${responsive.spaceY.lg}`}
-        >
+      <PawPattern opacity={0.045} />
+      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+        <Reveal className={`${responsive.maxWidth["3xl"]} mx-auto ${responsive.spaceY.lg}`}>
           {cta.title && (
             <h2 className={`${responsive.heading1} font-serif text-secondary-foreground`}>
               {cta.title}
@@ -140,7 +129,7 @@ function CtaSection({
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <a href={telHref(phone)}>
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -152,7 +141,7 @@ function CtaSection({
               asChild
               size="lg"
               variant="outline"
-              className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
+              className="border-secondary-foreground/40 text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
             >
               <Link href="/servicos">
                 <MessageCircle className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -160,7 +149,7 @@ function CtaSection({
               </Link>
             </Button>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

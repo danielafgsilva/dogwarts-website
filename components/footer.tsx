@@ -1,6 +1,9 @@
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { PawDivider } from "@/components/magic/paw-divider";
+import { PawPattern } from "@/components/magic/paw-pattern";
 import { FOOTER_LINKS } from "@/lib/constants";
 import { phoneDisplay, telHref } from "@/lib/contact";
 import { responsive } from "@/lib/responsive-utils";
@@ -12,24 +15,34 @@ interface SiteFooterProps {
   siteSettings?: SiteSettings | null;
 }
 
-export default function SiteFooter({
-  siteName,
-  siteSettings,
-}: SiteFooterProps) {
+export default function SiteFooter({ siteName, siteSettings }: SiteFooterProps) {
   const name = siteName ?? siteSettings?.siteName ?? "Dogwarts";
   const contact = siteSettings?.contact;
   const footer = siteSettings?.footer;
   const logo = siteSettings?.logo;
+  const tagline = siteSettings?.business?.tagline;
 
   return (
     <footer
-      className="bg-background border-t border-border py-12"
+      className="relative overflow-hidden bg-muted/40 border-t border-border"
       role="contentinfo"
       aria-label="Rodapé do site"
     >
-      <div className={responsive.container}>
+      <PawPattern opacity={0.025} />
+
+      <div className={`${responsive.container} relative z-10 py-14`}>
+        {/* Warm pet-lover band */}
+        <div className="text-center mb-12">
+          <PawDivider className="mb-4" />
+          {tagline && (
+            <p className="font-serif text-lg md:text-xl text-foreground">
+              {tagline}
+            </p>
+          )}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <div className="space-y-6 sm:col-span-2 lg:col-span-1">
+          <div className="space-y-5 sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
               className="flex items-center space-x-3"
@@ -46,7 +59,9 @@ export default function SiteFooter({
                 height={48}
                 className="w-12 h-12 object-contain"
               />
-              <span className="text-2xl font-bold text-foreground">{name}</span>
+              <span className="text-2xl font-serif font-bold text-foreground">
+                {name}
+              </span>
             </Link>
             {footer?.description && (
               <p className="text-muted-foreground leading-relaxed max-w-sm">
@@ -96,16 +111,24 @@ export default function SiteFooter({
           </FooterColumn>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border/70 mt-12 pt-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-3 text-center">
             {footer?.copyright && (
               <p className="text-sm text-muted-foreground">{footer.copyright}</p>
             )}
-            {footer?.developer && (
-              <p className="text-xs text-muted-foreground/70">
-                {footer.developer}
-              </p>
-            )}
+            <p className="text-xs text-muted-foreground/80 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                Feito com
+                <Heart
+                  className="w-3.5 h-3.5 text-primary fill-current"
+                  aria-hidden="true"
+                />
+                para os patudos
+              </span>
+              {footer?.developer && (
+                <span className="whitespace-nowrap">· {footer.developer}</span>
+              )}
+            </p>
           </div>
         </div>
       </div>
@@ -124,7 +147,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="font-semibold mb-6 text-foreground">{title}</h3>
+      <h3 className="font-serif font-semibold mb-5 text-foreground">{title}</h3>
       <ul className="space-y-3 text-muted-foreground" aria-label={ariaLabel}>
         {children}
       </ul>

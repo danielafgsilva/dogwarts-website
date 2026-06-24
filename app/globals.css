@@ -4,21 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Enhanced color tokens with improved WCAG AA contrast ratios */
-  --background: oklch(1 0 0); /* White background */
-  --foreground: oklch(0.15 0 0); /* Darker text for better contrast (#1A1A1A -> #000000) */
-  --card: oklch(0.98 0.01 85); /* Slightly warmer beige */
-  --card-foreground: oklch(0.15 0 0);
+  /* "Magia Familiar" palette — warm parchment base, Hogwarts gold + night-sky navy */
+  --background: oklch(0.985 0.013 85); /* Warm parchment for familiaridade */
+  --foreground: oklch(0.17 0.02 265); /* Deep ink (slight navy cast) */
+  --card: oklch(1 0 0); /* White cards pop against the parchment */
+  --card-foreground: oklch(0.17 0.02 265);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0 0);
   --primary: oklch(0.75 0.18 85); /* Darker golden yellow for better contrast */
   --primary-foreground: oklch(0.2 0.06 250); /* Darker navy for better contrast */
   --secondary: oklch(0.2 0.06 250); /* Deep Navy Blue (#1F3B75 equivalent) */
   --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.98 0.01 85); /* Warm beige for muted elements */
-  --muted-foreground: oklch(0.45 0 0); /* Darker muted text for better readability */
+  --muted: oklch(0.955 0.018 85); /* Deeper parchment for muted sections */
+  --muted-foreground: oklch(0.45 0.02 265); /* Readable muted ink */
   --accent: oklch(0.4 0.18 320); /* Darker burgundy for better contrast */
   --accent-foreground: oklch(1 0 0);
+  --nude: oklch(0.9 0.035 75); /* Warm beige for the logo medallion */
+  --nude-deep: oklch(0.82 0.05 68); /* Deeper tan */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.92 0.01 85); /* Slightly darker border for definition */
@@ -79,7 +81,7 @@
 @theme inline {
   /* Updated font variables for Dogwarts branding */
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-libre-baskerville);
+  --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -95,6 +97,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-nude: var(--nude);
+  --color-nude-deep: var(--nude-deep);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -209,5 +213,180 @@ body {
 
   .contact-button:hover {
     background-color: color-mix(in srgb, var(--contact-color) 90%, black);
+  }
+}
+
+/* ===========================================================================
+   "Magia Familiar" — motion & decoration system
+   Tokens: micro 150–300ms, ease-out enter, transform/opacity only.
+   Everything below degrades gracefully under prefers-reduced-motion.
+   =========================================================================== */
+@layer utilities {
+  /* Gold-foil heading accent (used sparingly on hero words) */
+  .text-gold-foil {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-primary) 0%,
+      oklch(0.85 0.16 88) 45%,
+      var(--color-primary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Scroll reveal — JS adds .is-visible when the element enters the viewport */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Slow ambient drift for decorative blobs / paw motifs */
+  .float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+
+  /* Gentle lift used on interactive cards */
+  .lift {
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Shimmer sweep for the primary "magic" CTA */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      color-mix(in srgb, white 55%, transparent) 50%,
+      transparent 70%
+    );
+    transform: translateX(-130%);
+    transition: transform 700ms ease;
+  }
+  .shimmer:hover::after {
+    transform: translateX(130%);
+  }
+
+  /* Warm tiled paw-print pattern — the pet-lover motif (replaces stars) */
+  .paw-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='%23B8893B'%3E%3Cellipse cx='24' cy='22' rx='3.4' ry='4.6'/%3E%3Cellipse cx='34' cy='19' rx='3.4' ry='4.8'/%3E%3Cellipse cx='44' cy='23' rx='3.4' ry='4.6'/%3E%3Cellipse cx='18' cy='31' rx='3' ry='4'/%3E%3Cpath d='M34 30c-6 0-10 4.6-10 8.6 0 3.8 4 5 10 5s10-1.2 10-5c0-4-4-8.6-10-8.6z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 72px 72px;
+  }
+}
+
+/* Intro preloader — Dogwarts crest in a spinning gold magic circle */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  animation: preloader-out 1.9s ease forwards;
+}
+.preloader__inner {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.preloader__ring {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 9999px;
+  border: 3px solid color-mix(in srgb, var(--color-primary) 22%, transparent);
+  border-top-color: var(--color-primary);
+  animation: preloader-spin 0.9s linear infinite;
+}
+.preloader__logo {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  animation: preloader-pop 0.6s ease both;
+}
+
+@keyframes preloader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes preloader-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes preloader-out {
+  0%,
+  62% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    animation-duration: 0.8s;
+  }
+  .preloader__ring,
+  .preloader__logo {
+    animation: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+/* Honour reduced-motion: no drift, no twinkle, reveals appear instantly */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .float-slow {
+    animation: none !important;
+  }
+  .lift:hover {
+    transform: none;
+  }
+  .shimmer::after {
+    display: none;
   }
 }

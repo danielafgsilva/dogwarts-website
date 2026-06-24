@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dogwarts-dev",
+      "runtimeExecutable": "/Users/danielasilva/Library/Application Support/Herd/config/nvm/versions/node/v22.19.0/bin/node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "port": 3000,
+      "autoPort": true,
+      "env": {
+        "PATH": "/Users/danielasilva/Library/Application Support/Herd/config/nvm/versions/node/v22.19.0/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    }
+  ]
+}

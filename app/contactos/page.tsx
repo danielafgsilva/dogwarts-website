@@ -5,6 +5,7 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  PawPrint,
   Phone,
 } from "lucide-react";
 import Link from "next/link";
@@ -22,8 +23,10 @@ import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/footer";
 import { ContactForm } from "@/components/contact-form";
+import { Reveal } from "@/components/magic/reveal";
+import { PawPattern } from "@/components/magic/paw-pattern";
 import { phoneDisplay, telHref, whatsappHref } from "@/lib/contact";
-import { brand, responsive } from "@/lib/responsive-utils";
+import { responsive } from "@/lib/responsive-utils";
 import { getContactPage, getSiteSettings } from "@/lib/sanity";
 import type { ContactPageContent, SiteSettings } from "@/lib/types/content";
 
@@ -44,14 +47,18 @@ export default async function ContactPage() {
       <main>
         {page?.hero && <HeroSection hero={page.hero} />}
 
-        <section className={`${responsive.sectionPadding} bg-card`}>
+        <section className={`${responsive.sectionPadding} bg-background`}>
           <div className={responsive.container}>
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 max-w-4xl mx-auto">
-              <PhoneWhatsappCard
-                card={page?.contactCards?.phoneCard}
-                contact={contact}
-              />
-              <EmailCard card={page?.contactCards?.emailCard} email={contact?.email} />
+              <Reveal>
+                <PhoneWhatsappCard
+                  card={page?.contactCards?.phoneCard}
+                  contact={contact}
+                />
+              </Reveal>
+              <Reveal delay={80}>
+                <EmailCard card={page?.contactCards?.emailCard} email={contact?.email} />
+              </Reveal>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
@@ -68,12 +75,10 @@ export default async function ContactPage() {
                     )}
                   </div>
                 )}
-                {contact?.email && (
-                  <ContactForm
-                    recipientEmail={contact.email}
-                    submitLabel={page?.contactForm?.submitButton}
-                  />
-                )}
+                <ContactForm
+                  submitLabel={page?.contactForm?.submitButton}
+                  successMessage={page?.contactForm?.successMessage}
+                />
               </div>
 
               <div className="space-y-6 md:space-y-8">
@@ -166,41 +171,39 @@ function HeroSection({
 }) {
   return (
     <section
-      className={`relative ${responsive.sectionPadding} ${brand.gradients.hero} overflow-hidden`}
+      className="relative overflow-hidden bg-gradient-to-b from-secondary/8 via-background to-background"
       aria-labelledby="contact-hero-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-      <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-40 h-40 bg-accent/10 rounded-full blur-3xl" />
+      <PawPattern />
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[28rem] h-[28rem] bg-primary/10 rounded-full blur-3xl" aria-hidden="true" />
 
-      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
-        <div
-          className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}
-        >
+      <div className={`${responsive.container} ${responsive.sectionPadding} ${responsive.textCenter} relative z-10`}>
+        <Reveal className={`${responsive.maxWidth["4xl"]} mx-auto ${responsive.spaceY.lg}`}>
           {hero.badge && (
             <Badge
               variant="secondary"
-              className="bg-primary/20 text-primary-foreground border-primary/30"
+              className="bg-primary/15 text-foreground border-primary/30 font-mono text-xs uppercase tracking-[0.18em] inline-flex items-center gap-1.5"
             >
+              <PawPrint className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
               {hero.badge}
             </Badge>
           )}
           {hero.title && (
             <h1
               id="contact-hero-heading"
-              className={`${responsive.heading1} font-serif`}
+              className={`${responsive.heading1} font-serif text-balance leading-[1.05]`}
             >
               {hero.title}
             </h1>
           )}
           {hero.description && (
             <p
-              className={`${responsive.bodyLarge} text-muted-foreground ${responsive.maxWidth["2xl"]} mx-auto`}
+              className={`${responsive.bodyLarge} text-muted-foreground text-pretty ${responsive.maxWidth["2xl"]} mx-auto`}
             >
               {hero.description}
             </p>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -217,7 +220,7 @@ function PhoneWhatsappCard({
   const display = phoneDisplay(contact?.phone) ?? "";
 
   return (
-    <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
+    <Card className="lift h-full text-center border-border rounded-2xl hover:border-primary/30 hover:shadow-xl">
       <CardHeader>
         <div
           className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
@@ -225,7 +228,7 @@ function PhoneWhatsappCard({
         >
           <Phone className="w-6 h-6 md:w-8 md:h-8 text-primary" />
         </div>
-        <CardTitle className="text-lg md:text-xl font-semibold text-foreground">
+        <CardTitle className="text-lg md:text-xl font-serif font-semibold text-foreground">
           {card?.title ?? "Telefone e WhatsApp"}
         </CardTitle>
         {card?.description && (
@@ -282,7 +285,7 @@ function EmailCard({
 }) {
   if (!email) return null;
   return (
-    <Card className="text-center border-border hover:shadow-lg transition-all duration-300">
+    <Card className="lift h-full text-center border-border rounded-2xl hover:border-primary/30 hover:shadow-xl">
       <CardHeader>
         <div
           className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4"
@@ -290,7 +293,7 @@ function EmailCard({
         >
           <Mail className="w-6 h-6 md:w-8 md:h-8 text-primary" />
         </div>
-        <CardTitle className="text-lg md:text-xl font-semibold text-foreground">
+        <CardTitle className="text-lg md:text-xl font-serif font-semibold text-foreground">
           {card?.title ?? "Email"}
         </CardTitle>
         {card?.description && (
@@ -388,10 +391,11 @@ function CtaSection({
 }) {
   return (
     <section
-      className={`${responsive.sectionPadding} bg-secondary text-secondary-foreground`}
+      className={`${responsive.sectionPadding} relative overflow-hidden bg-secondary text-secondary-foreground`}
     >
-      <div className={`${responsive.container} ${responsive.textCenter}`}>
-        <div
+      <PawPattern opacity={0.045} />
+      <div className={`${responsive.container} ${responsive.textCenter} relative z-10`}>
+        <Reveal
           className={`${responsive.maxWidth["3xl"]} mx-auto ${responsive.spaceY.lg}`}
         >
           {cta.title && (
@@ -409,7 +413,7 @@ function CtaSection({
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="shimmer bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <a href={telHref(contact.phone)}>
                   <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -422,7 +426,7 @@ function CtaSection({
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
+                className="border-secondary-foreground/40 text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary bg-transparent"
               >
                 <a
                   href={whatsappHref(contact.whatsapp)}
@@ -435,7 +439,7 @@ function CtaSection({
               </Button>
             )}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,26 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MessageSquare, Phone, User } from "lucide-react";
+import { CheckCircle2, Mail, MessageSquare, Phone, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ContactFormProps {
-  /** Address the message is sent to. */
-  recipientEmail: string;
   submitLabel?: string;
-  /**
-   * Optional handler for wiring a server-side email provider later
-   * (e.g. Resend / Nodemailer). When omitted, the form falls back to
-   * opening the visitor's mail client via a mailto: link.
-   */
-  onSubmit?: (data: ContactMessage) => Promise<void> | void;
+  successMessage?: string;
   className?: string;
 }
 
-export interface ContactMessage {
+interface ContactMessage {
   name: string;
   email: string;
   phone: string;
@@ -29,49 +22,68 @@ export interface ContactMessage {
 
 const EMPTY: ContactMessage = { name: "", email: "", phone: "", message: "" };
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export function ContactForm({
-  recipientEmail,
   submitLabel = "Enviar mensagem",
-  onSubmit,
+  successMessage = "Obrigado pelo seu contacto — respondemos em breve.",
   className,
 }: ContactFormProps) {
   const [values, setValues] = useState<ContactMessage>(EMPTY);
-  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string | null>(null);
 
   const update =
     (field: keyof ContactMessage) =>
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setValues((prev) => ({ ...prev, [field]: event.target.value }));
 
-  const sendViaMailto = (data: ContactMessage) => {
-    const subject = `Pedido de contacto — ${data.name || "Site Dogwarts"}`;
-    const body = [
-      `Nome: ${data.name}`,
-      `Email: ${data.email}`,
-      `Telefone: ${data.phone}`,
-      "",
-      data.message,
-    ].join("\n");
-    const href = `mailto:${recipientEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-  };
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setSubmitting(true);
+    setStatus("sending");
+    setError(null);
     try {
-      if (onSubmit) {
-        await onSubmit(values);
-      } else {
-        sendViaMailto(values);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error ?? "Não foi possível enviar a mensagem.");
       }
       setValues(EMPTY);
-    } finally {
-      setSubmitting(false);
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Erro ao enviar.");
     }
   };
+
+  if (status === "success") {
+    return (
+      <div
+        className={`rounded-2xl border border-primary/30 bg-primary/5 p-8 text-center ${className ?? ""}`}
+        role="status"
+        aria-live="polite"
+      >
+        <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-4" aria-hidden="true" />
+        <h3 className="text-lg font-serif font-semibold text-foreground">
+          Mensagem enviada!
+        </h3>
+        <p className="text-muted-foreground mt-1">{successMessage}</p>
+        <Button
+          variant="outline"
+          className="mt-6"
+          onClick={() => setStatus("idle")}
+        >
+          Enviar outra mensagem
+        </Button>
+      </div>
+    );
+  }
+
+  const sending = status === "sending";
 
   return (
     <form onSubmit={handleSubmit} className={`space-y-4 ${className ?? ""}`}>
@@ -79,7 +91,9 @@ export function ContactForm({
         <Field id="name" label="Nome" icon={User}>
           <Input
             id="name"
+            name="name"
             required
+            autoComplete="name"
             placeholder="O seu nome"
             value={values.name}
             onChange={update("name")}
@@ -89,8 +103,10 @@ export function ContactForm({
         <Field id="email" label="Email" icon={Mail}>
           <Input
             id="email"
+            name="email"
             type="email"
             required
+            autoComplete="email"
             placeholder="seu@email.com"
             value={values.email}
             onChange={update("email")}
@@ -102,7 +118,9 @@ export function ContactForm({
       <Field id="phone" label="Telefone" icon={Phone}>
         <Input
           id="phone"
+          name="phone"
           type="tel"
+          autoComplete="tel"
           placeholder="+351 912 345 678"
           value={values.phone}
           onChange={update("phone")}
@@ -116,6 +134,7 @@ export function ContactForm({
         </label>
         <Textarea
           id="message"
+          name="message"
           required
           placeholder="Conte-nos como podemos ajudar..."
           value={values.message}
@@ -124,13 +143,19 @@ export function ContactForm({
         />
       </div>
 
+      {status === "error" && error && (
+        <p className="text-sm text-destructive" role="alert">
+          {error}
+        </p>
+      )}
+
       <Button
         type="submit"
-        disabled={submitting}
+        disabled={sending}
         className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
       >
         <Mail className="w-4 h-4 mr-2" aria-hidden="true" />
-        {submitting ? "A enviar..." : submitLabel}
+        {sending ? "A enviar..." : submitLabel}
       </Button>
     </form>
   );

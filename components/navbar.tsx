@@ -43,13 +43,13 @@ export default function Navbar({
                 sizes="(max-width: 768px) 40px, 48px"
               />
             </div>
-            <span className="text-xl md:text-2xl font-inter font-bold text-foreground">
+            <span className="text-xl md:text-2xl font-serif font-bold text-foreground">
               {siteName}
             </span>
           </Link>
 
           <div
-            className="hidden md:flex items-center space-x-4 lg:space-x-6"
+            className="hidden lg:flex items-center gap-6 xl:gap-8"
             role="menubar"
             aria-label="Menu de navegação principal"
           >
@@ -58,7 +58,6 @@ export default function Navbar({
                 key={item.href}
                 href={item.href}
                 label={item.label}
-                noWrap={"noWrap" in item ? item.noWrap : false}
                 active={currentPage === item.href}
               />
             ))}
@@ -66,8 +65,8 @@ export default function Navbar({
 
           <Button
             variant="ghost"
-            size="sm"
-            className="md:hidden transition-transform hover:scale-110 duration-200"
+            size="icon"
+            className="lg:hidden h-11 w-11"
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-label={
               isMenuOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"
@@ -86,7 +85,7 @@ export default function Navbar({
         {isMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden mt-4 pb-4 border-t border-border pt-4 animate-in slide-in-from-top-2 duration-300"
+            className="lg:hidden mt-4 pb-2 border-t border-border pt-2 animate-in slide-in-from-top-2 duration-300"
             role="menu"
             aria-label="Menu de navegação móvel"
           >
@@ -96,7 +95,6 @@ export default function Navbar({
                   key={item.href}
                   href={item.href}
                   label={item.label}
-                  noWrap={"noWrap" in item ? item.noWrap : false}
                   active={currentPage === item.href}
                   onClick={() => setIsMenuOpen(false)}
                 />
@@ -112,20 +110,18 @@ export default function Navbar({
 function NavLink({
   href,
   label,
-  noWrap,
   active,
 }: {
   href: string;
   label: string;
-  noWrap?: boolean;
   active: boolean;
 }) {
   return (
     <Link
       href={href}
-      className={`relative text-sm lg:text-base font-inter transition-all duration-300 hover:text-primary hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-        noWrap ? "whitespace-nowrap" : ""
-      } ${active ? "text-primary font-medium" : "text-foreground"}`}
+      className={`relative text-sm xl:text-base whitespace-nowrap transition-colors duration-200 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm ${
+        active ? "text-primary font-medium" : "text-foreground"
+      }`}
       role="menuitem"
       aria-current={active ? "page" : undefined}
     >
@@ -143,22 +139,20 @@ function NavLink({
 function MobileNavLink({
   href,
   label,
-  noWrap,
   active,
   onClick,
 }: {
   href: string;
   label: string;
-  noWrap?: boolean;
   active: boolean;
   onClick: () => void;
 }) {
   return (
     <Link
       href={href}
-      className={`relative text-sm font-inter py-2 transition-all duration-300 hover:text-primary hover:translate-x-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-        noWrap ? "whitespace-nowrap" : ""
-      } ${active ? "text-primary font-medium" : "text-foreground"}`}
+      className={`relative flex items-center min-h-[44px] text-base pl-3 transition-colors duration-200 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md ${
+        active ? "text-primary font-medium" : "text-foreground"
+      }`}
       onClick={onClick}
       role="menuitem"
       aria-current={active ? "page" : undefined}
