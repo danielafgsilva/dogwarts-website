@@ -13,8 +13,27 @@ export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'bsfnftzl',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
-  useCdn: process.env.NODE_ENV === 'production',
+  // Next.js handles caching (revalidate + tags below), so go direct to the API
+  // for fresh content on each revalidation instead of the CDN's stale cache.
+  useCdn: false,
 })
+
+/** Cache tag used by all content queries; the revalidate webhook busts it. */
+export const SANITY_TAG = 'sanity'
+
+/**
+ * Wrapper around client.fetch that makes every content query an ISR fetch:
+ * cached, time-revalidated (~60s) and tagged so the /api/revalidate webhook
+ * can refresh it instantly when content is published in the Studio.
+ */
+function sanityFetch<T>(
+  query: string,
+  params: Record<string, unknown> = {}
+): Promise<T> {
+  return client.fetch<T>(query, params, {
+    next: { revalidate: 60, tags: [SANITY_TAG] },
+  })
+}
 
 const builder = imageUrlBuilder(client)
 
@@ -72,25 +91,25 @@ export const queries = {
 }
 
 export async function getHomePage(): Promise<HomePageContent | null> {
-  return client.fetch(queries.homePage)
+  return sanityFetch(queries.homePage)
 }
 
 export async function getServicesPage(): Promise<ServicesPageContent | null> {
-  return client.fetch(queries.servicesPage)
+  return sanityFetch(queries.servicesPage)
 }
 
 export async function getAboutPage(): Promise<AboutPageContent | null> {
-  return client.fetch(queries.aboutPage)
+  return sanityFetch(queries.aboutPage)
 }
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
-  return client.fetch(queries.siteSettings)
+  return sanityFetch(queries.siteSettings)
 }
 
 export async function getContactPage(): Promise<ContactPageContent | null> {
-  return client.fetch(queries.contactPage)
+  return sanityFetch(queries.contactPage)
 }
 
 export async function getTestimonialsPage(): Promise<TestimonialsPageContent | null> {
-  return client.fetch(queries.testimonialsPage)
+  return sanityFetch(queries.testimonialsPage)
 }
